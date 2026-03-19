@@ -53,3 +53,13 @@ export const useRequestLimiterStore = create<RequestLimiterState>()(
     { name: 'request-limiter' },
   ),
 )
+
+export function getResetTimeString(): string {
+  const now = new Date()
+  const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0)
+  const diff = tomorrow.getTime() - now.getTime()
+  const hours = Math.floor(diff / (1000 * 60 * 60))
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+  if (hours > 0) return `через ${hours} ч ${minutes} мин`
+  return `через ${minutes} мин`
+}

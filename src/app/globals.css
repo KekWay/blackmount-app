@@ -71,6 +71,11 @@
   100% { background-position: -200% 0; }
 }
 
+@keyframes bannerMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 @theme inline {
   --font-manrope: "Manrope", sans-serif;
   --font-maven: "Maven Pro", sans-serif;
@@ -192,6 +197,22 @@
 }
 .hidden-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes mediaSpinSmooth {
+  0% { --media-angle: 0deg; }
+  100% { --media-angle: 360deg; }
+}
+
+@property --media-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
 }
 
 /* Dark select dropdowns */

@@ -1,8 +1,11 @@
 'use client'
 
 import { useRef } from 'react'
-import Image from 'next/image'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+
+const imgGeneratedImage = '/assets/models/46d72ecc2e7de51169acade3de4163e47b0ea22d.png'
+const imgFrame32 = '/assets/models/5f9fde09629f4366a30a9b2273d3ef5eafec1674.png'
+const imgImage31 = '/assets/models/9a402b089c2c29d5d7e2196840980b3b5e914e3c.png'
 
 interface NewsItem {
   id: string
@@ -16,25 +19,25 @@ const newsItems: NewsItem[] = [
     id: 'nb2',
     subtitle: 'NanoBanana 2',
     description: 'Протестируйте новую нейросеть для генерации фото уже сейчас!',
-    image: '/assets/models/46d72ecc2e7de51169acade3de4163e47b0ea22d.png',
+    image: imgGeneratedImage,
   },
   {
     id: 'kling3',
     subtitle: 'Kling 3.0',
     description: 'Протестируйте новую нейросеть для генерации видео в лучшем качестве уже сейчас!',
-    image: '/assets/models/5f9fde09629f4366a30a9b2273d3ef5eafec1674.png',
+    image: imgFrame32,
   },
   {
     id: 'claude4',
     subtitle: 'Claude 4 Opus',
     description: 'Новая флагманская модель Claude с улучшенным рассуждением и точностью!',
-    image: '/assets/models/46d72ecc2e7de51169acade3de4163e47b0ea22d.png',
+    image: imgGeneratedImage,
   },
   {
     id: 'sora2news',
     subtitle: 'Sora 2.0 HD',
     description: 'Генерация видео в 1080p стала доступна всем пользователям!',
-    image: '/assets/models/5f9fde09629f4366a30a9b2273d3ef5eafec1674.png',
+    image: imgFrame32,
   },
 ]
 
@@ -49,21 +52,23 @@ export function NewsCarousel() {
   }
 
   return (
-    <section className="mb-10" aria-label="News and updates">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="font-semibold text-2xl text-white">News &amp; Updates</h2>
-        <div className="flex gap-2">
+    <section className="mb-[40px]" aria-label="News and updates">
+      <div className="flex items-center justify-between mb-[16px]">
+        <h2 className="font-['Maven_Pro',sans-serif] font-extrabold text-[24px] text-white">
+          News &amp; Updates
+        </h2>
+        <div className="flex gap-[8px]">
           <button
             onClick={() => scroll('left')}
             aria-label="Назад"
-            className="bg-white/[0.06] hover:bg-white/[0.12] rounded-full size-8 flex items-center justify-center transition-colors"
+            className="bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.12)] rounded-full w-[32px] h-[32px] flex items-center justify-center transition-colors cursor-pointer"
           >
             <ChevronLeft size={16} className="text-white" />
           </button>
           <button
             onClick={() => scroll('right')}
             aria-label="Вперёд"
-            className="bg-white/[0.06] hover:bg-white/[0.12] rounded-full size-8 flex items-center justify-center transition-colors"
+            className="bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.12)] rounded-full w-[32px] h-[32px] flex items-center justify-center transition-colors cursor-pointer"
           >
             <ChevronRight size={16} className="text-white" />
           </button>
@@ -72,20 +77,23 @@ export function NewsCarousel() {
 
       <div
         ref={scrollRef}
-        className="flex gap-5 overflow-x-auto pb-2 hidden-scrollbar"
+        className="flex gap-[20px] overflow-x-auto pb-[8px] hidden-scrollbar"
       >
         {newsItems.map((item) => (
-          <article key={item.id} className="shrink-0 w-[420px] flex flex-col gap-3">
+          <article key={item.id} className="shrink-0 w-[420px] flex flex-col gap-[12px]">
             <div className="relative h-[240px] w-full rounded-[20px] overflow-hidden">
-              <Image
+              <img
                 src={item.image}
                 alt={item.subtitle}
-                fill
-                className="object-cover opacity-80"
+                className="absolute inset-0 w-full h-full object-cover opacity-80"
               />
             </div>
-            <h3 className="font-maven font-extrabold text-xl text-white">{item.subtitle}</h3>
-            <p className="font-maven text-[13px] text-white/60 leading-5">{item.description}</p>
+            <h3 className="font-['Maven_Pro',sans-serif] font-extrabold text-[20px] text-white">
+              {item.subtitle}
+            </h3>
+            <p className="font-['Maven_Pro',sans-serif] text-[13px] text-[rgba(255,255,255,0.6)] leading-[20px]">
+              {item.description}
+            </p>
           </article>
         ))}
       </div>
