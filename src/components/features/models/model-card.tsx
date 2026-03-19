@@ -17,10 +17,10 @@ export function ModelCard({ model, locked, onClick }: ModelCardProps) {
   const assets = MODEL_ASSETS[model.id as ModelId]
   const logoSrc = assets
     ? 'logo' in assets
-      ? assets.logo
+      ? (assets as { logo: string }).logo
       : 'maskImage' in assets
-        ? assets.maskImage
-        : assets.colorLogo
+        ? (assets as { maskImage: string }).maskImage
+        : (assets as { colorLogo: string }).colorLogo
     : null
 
   return (

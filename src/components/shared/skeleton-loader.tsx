@@ -1,6 +1,8 @@
-function Skeleton({ className = '' }: { className?: string }) {
+import type React from 'react'
+
+function Skeleton({ className = '', style }: { className?: string; style?: React.CSSProperties }) {
   return (
-    <div className={`relative overflow-hidden rounded-xl bg-white/[0.04] ${className}`}>
+    <div className={`relative overflow-hidden rounded-xl bg-white/[0.04] ${className}`} style={style}>
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.06] to-transparent bg-[length:200%_100%] animate-[spotlight-shimmer_1.8s_ease-in-out_infinite]" />
     </div>
   )
