@@ -1,0 +1,166 @@
+# .cursorrules — Blackmount AI Aggregator
+
+## Роль
+
+Ты — Senior Frontend Engineer. Ты переносишь AI-агрегатор нейросетей из Figma Make (Vite + React Router) в Next.js 14 App Router. Исходный код содержит сырой Figma Make output который нужно полностью переработать.
+
+## Стек
+
+- **Framework:** Next.js 14+ (App Router)
+- **Язык:** TypeScript (strict mode)
+- **Стили:** Tailwind CSS 4
+- **UI-библиотека:** shadcn/ui (Radix + CVA)
+- **Анимации:** Motion (framer-motion)
+- **State:** Zustand
+- **БД/Auth:** Supabase (через @supabase/ssr)
+- **Деплой:** Vercel (frontend) + Railway (backend tasks)
+- **Шрифты:** Manrope (body), Maven Pro (headings), Bakbak One (accent)
+
+---
+
+## 🔴 Антипаттерны Figma Make — УДАЛЯЙ при любой встрече
+
+### 1. figma:asset импорты (527 штук в проекте)
+```tsx
+// ❌ УДАЛЯЙ
+import imgLogo from "figma:asset/e4ed614bc725465a9064a38e53c100a7a89134ee.png";
+
+// ✅ ЗАМЕНЯЙ
+import Image from 'next/image'
+<Image src="/assets/logo.png" alt="Logo" width={40} height={40} />
+```
+
+### 2. Импорты из src/imports/ (160+ мусорных файлов)
+```tsx
+// ❌ УДАЛЯЙ — всё из этой папки это сырой Figma Make
+import CardChatGpt from "../../imports/CardChatGpt";
+import Group35 from "../../imports/Group35-182-751";
+import ЗакрепленныйЧат from "../../imports/ЗакрепленныйЧатНейросетей-388-3073";
+
+// ✅ ЗАМЕНЯЙ — один универсальный компонент
+import { ModelCard } from '@/components/features/models/model-card'
+```
+
+### 3. Mask-image иконки
+```tsx
+// ❌ УДАЛЯЙ — Figma Make паттерн
+<div style={{
+  width: 24, height: 24, backgroundColor: "currentColor",
+  maskImage: `url('${imgShareMask}')`, WebkitMaskImage: `url('${imgShareMask}')`,
+  maskSize: "contain", WebkitMaskSize: "contain",
+  maskRepeat: "no-repeat", WebkitMaskRepeat: "no-repeat",
+}} />
+
+// ✅ ЗАМЕНЯЙ
+import { Share2 } from 'lucide-react'
+<Share2 className="size-6" />
+```
+
+### 4. Абсолютные пиксельные позиции из Figma
+```tsx
+// ❌ УДАЛЯЙ
+<div className="absolute left-[86.2px] top-[25.2px] w-[1053px]">
+<p className="absolute left-[52px] top-[51px] font-['Manrope:Bold'] text-[20px]">
+
+// ✅ ЗАМЕНЯЙ
+<div className="flex items-center gap-3 w-full">
+<p className="font-manrope font-bold text-xl">
+```
+
+### 5. data-name атрибуты
+```tsx
+// ❌ УДАЛЯЙ
+<div data-name="Container">
+<div data-name="Button">
+
+// ✅ Просто убери атрибут, он не нужен
+```
+
+### 6. Figma-style font family
+```tsx
+// ❌ УДАЛЯЙ
+className="font-['Manrope:SemiBold',sans-serif]"
+className="font-['Maven_Pro',sans-serif]"
+
+// ✅ ЗАМЕНЯЙ (настроены через next/font)
+className="font-manrope font-semibold"
+className="font-maven"
+```
+
+---
+
+## Маппинг react-router → Next.js
+
+```tsx
+// Навигация
+useNavigate()           →  useRouter() из 'next/navigation'
+navigate('/path')       →  router.push('/path')
+navigate(-1)            →  router.back()
+<Link to="/path">       →  <Link href="/path"> из 'next/link'
+useParams()             →  useParams() из 'next/navigation'
+useSearchParams()       →  useSearchParams() из 'next/navigation'
+
+// Routing
+createBrowserRouter()   →  app/ folder structure
+<RouterProvider>        →  layout.tsx
+<Outlet>                →  {children} в layout.tsx
+ErrorBoundary           →  error.tsx
+```
+
+---
+
+## Маппинг компонентов: старые → новые
+
+```
+8 × Card*.tsx (CardChatGpt, CardClaude...)  →  1 × ModelCard.tsx с пропсом model
+home-page.tsx (680 строк)                   →  6 компонентов в features/home/
+chat-page.tsx (1977 строк)                  →  10 компонентов в features/chat/
+profile-page.tsx (2027 строк)               →  7 компонентов в features/profile/
+rating-page.tsx (780 строк)                 →  3 компонента в features/rating/
+arena-page.tsx (839 строк)                  →  3 компонента в features/arena/
+subscription-page.tsx (622 строк)           →  3 компонента в features/subscription/
+layout.tsx + layout-shell.tsx               →  sidebar.tsx + header.tsx + mobile-nav.tsx
+```
+
+---
+
+## Правила при генерации кода
+
+### Всегда:
+- `'use client'` ТОЛЬКО если есть useState/useEffect/onClick/onChange
+- Именованный экспорт: `export function Component()`
+- `cn()` из `@/lib/utils` для условных классов
+- Интерфейс пропсов для каждого компонента
+- `<Image>` из `next/image` с width, height, alt
+- `<Link>` из `next/link` для навигации
+- Mobile-first Tailwind: базовый → `md:` → `lg:`
+- Семантические HTML-теги
+
+### Никогда:
+- `any` в TypeScript
+- `style={{}}` inline стили
+- Компоненты > 150 строк
+- `console.log`
+- `<img>`, `<a href>` вместо Next.js компонентов
+- `useEffect` для загрузки данных (Server Components!)
+- Импорты из `src/imports/` или `figma:asset/`
+
+---
+
+## Дизайн-токены проекта
+
+```
+Фон:        #121118 (основной тёмный)
+Текст:      #ffffff / rgba(255,255,255,0.85) / rgba(255,255,255,0.5)
+Карточки:   rgba(255,255,255,0.05) с border rgba(255,255,255,0.1)
+Акцент:     #888AE5 (фиолетовый)
+CTA:        #65DED8 (бирюзовый)
+Скругления: 8px (sm), 12px (md), 20px (lg)
+```
+
+## Формат ответа при рефакторинге
+
+1. **Какой файл обрабатываю** — имя и путь
+2. **Что нашёл** — список проблем из Figma Make
+3. **Что создаю** — новые файлы и их пути
+4. **Код** — готовый, без TODO, без заглушек
