@@ -111,7 +111,7 @@ export function ModelCard({ model, locked, onClick }: ModelCardProps) {
 
         {/* Name — exact original className */}
         <span
-          className="absolute font-maven font-extrabold h-[29px] leading-[10px] text-white whitespace-pre-wrap"
+          className="absolute font-manrope font-extrabold h-[29px] leading-[10px] text-white whitespace-pre-wrap"
           style={{ left: cfg.text.left, top: cfg.text.top, width: cfg.text.width, fontSize: cfg.text.fontSize }}
         >
           {model.name}

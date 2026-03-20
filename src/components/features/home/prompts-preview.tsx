@@ -22,7 +22,7 @@ export function PromptsPreview() {
       <div className="flex items-center justify-between mb-[12px] md:mb-[16px]">
         <div>
           <h2
-            className="text-[20px] md:text-[24px] font-maven font-extrabold text-transparent bg-clip-text"
+            className="text-[20px] md:text-[24px] font-manrope font-extrabold text-transparent bg-clip-text"
             style={{
               backgroundImage: 'linear-gradient(90deg, #fff 0%, rgba(136,138,229,0.7) 50%, #fff 100%)',
               backgroundSize: '200% 100%',
