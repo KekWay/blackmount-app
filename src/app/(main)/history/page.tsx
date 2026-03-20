@@ -1,94 +1,147 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
-import Image from 'next/image'
 import { useBalanceStore } from '@/stores/balance'
-import { MODEL_ASSETS } from '@/lib/assets'
-import type { ModelId } from '@/lib/assets'
+import { useAuthStore } from '@/stores/auth'
+import { aiModels } from '@/data/ai-models'
+import { AnimatedToggle } from '@/components/shared/animated-toggle'
+import { HistoryFilter } from '@/components/features/history/history-filter'
+import { HistoryTextList } from '@/components/features/history/history-text-list'
+import { HistoryMediaGrid } from '@/components/features/history/history-media-grid'
+import { HistoryViewer } from '@/components/features/history/history-viewer'
+import { HistoryShareModal } from '@/components/features/history/history-share-modal'
+import { HistoryDeleteModal } from '@/components/features/history/history-delete-modal'
 import type { ModelCategory } from '@/types'
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 
-const TAB_MAP: { value: ModelCategory; label: string }[] = [
-  { value: 'text', label: 'Текст' },
-  { value: 'image', label: 'Изображения' },
-  { value: 'video', label: 'Видео' },
+type HistoryTab = 'text' | 'images' | 'video'
+
+const tabs: { key: HistoryTab; label: string }[] = [
+  { key: 'text', label: 'Текст' },
+  { key: 'images', label: 'Изображения' },
+  { key: 'video', label: 'Видео' },
 ]
 
 export default function HistoryPage() {
   const router = useRouter()
+  const { isLoggedIn } = useAuthStore()
   const genHistory = useBalanceStore((s) => s.genHistory)
+  const removeGenHistoryItem = useBalanceStore((s) => s.removeGenHistoryItem)
 
-  function getIcon(modelId: string) {
-    const assets = MODEL_ASSETS[modelId as ModelId]
-    if (!assets) return null
-    return assets.colorLogo
-  }
+  const [activeTab, setActiveTab] = useState<HistoryTab>('text')
+  const [selectedModels, setSelectedModels] = useState<string[]>([])
+  const [viewerItem, setViewerItem] = useState<typeof genHistory[number] | null>(null)
+  const [shareOpen, setShareOpen] = useState(false)
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null)
+
+  const tabToType = (tab: HistoryTab): ModelCategory =>
+    tab === 'images' ? 'image' : tab === 'video' ? 'video' : 'text'
+
+  const relevantModels = aiModels.filter((m) => m.category === tabToType(activeTab))
+  const hasActiveFilter = selectedModels.length > 0
+
+  const filtered = genHistory
+    .filter((item) => item.type === tabToType(activeTab))
+    .filter((item) => selectedModels.length === 0 || selectedModels.includes(item.modelId))
+
+  const toggleModel = useCallback((modelId: string) => {
+    setSelectedModels((prev) =>
+      prev.includes(modelId) ? prev.filter((id) => id !== modelId) : [...prev, modelId]
+    )
+  }, [])
+
+  const clearFilter = useCallback(() => setSelectedModels([]), [])
+
+  const requestDelete = useCallback((id: string) => {
+    if (!isLoggedIn) { router.push('/auth'); return }
+    setConfirmDeleteId(id)
+  }, [isLoggedIn, router])
+
+  const confirmDelete = useCallback(() => {
+    if (confirmDeleteId === null) return
+    removeGenHistoryItem(confirmDeleteId)
+    if (viewerItem?.id === confirmDeleteId) setViewerItem(null)
+    setConfirmDeleteId(null)
+  }, [confirmDeleteId, removeGenHistoryItem, viewerItem])
+
+  const deleteItemTitle = confirmDeleteId
+    ? genHistory.find((h) => h.id === confirmDeleteId)?.title ?? null
+    : null
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8">
-      <h1 className="mb-6 text-2xl font-bold text-foreground">История</h1>
+    <div className="w-full h-full overflow-y-auto px-[40px] pt-[32px] pb-[40px]">
+      <p className="font-manrope font-extrabold leading-[45px] text-[36px] text-white mb-[24px]">
+        История
+      </p>
 
-      <Tabs defaultValue="text">
-        <TabsList className="mb-6">
-          {TAB_MAP.map((tab) => (
-            <TabsTrigger key={tab.value} value={tab.value}>
-              {tab.label}
-            </TabsTrigger>
-          ))}
-        </TabsList>
+      {/* Tabs + filter */}
+      <div className="flex items-center gap-[12px] mb-[20px]">
+        <div className="w-[340px]">
+          <AnimatedToggle<HistoryTab>
+            options={tabs}
+            value={activeTab}
+            onChange={(key) => { setActiveTab(key); setSelectedModels([]) }}
+          />
+        </div>
+        <HistoryFilter
+          relevantModels={relevantModels}
+          selectedModels={selectedModels}
+          onToggleModel={toggleModel}
+          onClear={clearFilter}
+        />
+      </div>
 
-        {TAB_MAP.map((tab) => {
-          const items = genHistory.filter((item) => item.type === tab.value)
+      <p className="font-manrope font-black leading-[19.5px] text-[13px] text-center text-white mb-[20px]">
+        История генераций хранится 7 дней
+      </p>
 
-          return (
-            <TabsContent key={tab.value} value={tab.value}>
-              {items.length === 0 ? (
-                <p className="py-12 text-center text-sm text-muted-foreground">
-                  Нет записей
-                </p>
-              ) : (
-                <div className="flex flex-col gap-2">
-                  {items.map((item) => {
-                    const icon = getIcon(item.modelId)
+      {/* Content */}
+      {activeTab === 'text' && (
+        <HistoryTextList
+          items={filtered}
+          hasActiveFilter={hasActiveFilter}
+          onRequestDelete={requestDelete}
+          onClearFilter={clearFilter}
+        />
+      )}
 
-                    return (
-                      <button
-                        key={item.id}
-                        onClick={() => router.push(`/chat/${item.modelId}`)}
-                        className="flex items-center gap-3 rounded-xl bg-card p-3 text-left transition-colors hover:bg-muted"
-                      >
-                        {icon && (
-                          <Image
-                            src={icon}
-                            alt=""
-                            width={32}
-                            height={32}
-                            className="size-8 shrink-0 rounded-lg"
-                          />
-                        )}
-                        <div className="min-w-0 flex-1">
-                          <p className="truncate text-sm font-medium text-foreground">
-                            {item.title}
-                          </p>
-                          {item.preview && (
-                            <p className="truncate text-xs text-muted-foreground">
-                              {item.preview}
-                            </p>
-                          )}
-                        </div>
-                        <span className="shrink-0 text-xs text-muted-foreground">
-                          {item.time}
-                        </span>
-                      </button>
-                    )
-                  })}
-                </div>
-              )}
-            </TabsContent>
-          )
-        })}
-      </Tabs>
+      {(activeTab === 'images' || activeTab === 'video') && (
+        <div className="grid grid-cols-5 gap-[16px]">
+          <HistoryMediaGrid
+            items={filtered}
+            mediaType={activeTab === 'images' ? 'image' : 'video'}
+            hasActiveFilter={hasActiveFilter}
+            onViewItem={setViewerItem}
+            onRequestDelete={requestDelete}
+            onClearFilter={clearFilter}
+          />
+        </div>
+      )}
+
+      {/* Media viewer modal */}
+      <HistoryViewer
+        item={viewerItem}
+        onClose={() => setViewerItem(null)}
+        onDelete={(id) => { removeGenHistoryItem(id); setViewerItem(null) }}
+        onShare={() => setShareOpen(true)}
+      />
+
+      {/* Share modal */}
+      {viewerItem && (
+        <HistoryShareModal
+          open={shareOpen}
+          itemId={viewerItem.id}
+          itemTitle={viewerItem.title}
+          onClose={() => setShareOpen(false)}
+        />
+      )}
+
+      {/* Delete confirmation */}
+      <HistoryDeleteModal
+        itemTitle={deleteItemTitle}
+        onConfirm={confirmDelete}
+        onCancel={() => setConfirmDeleteId(null)}
+      />
     </div>
   )
 }
