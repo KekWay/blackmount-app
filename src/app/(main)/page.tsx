@@ -59,7 +59,7 @@ export default function HomePage() {
       <header className="flex items-center justify-between mb-[24px]">
         <div className="flex flex-col gap-[4px]">
           <h1 className="font-maven font-extrabold leading-[45px] text-[36px] text-white">Библиотека</h1>
-          <p className="font-manrope font-normal leading-[22.5px] text-[15px] text-[rgba(255,255,255,0.4)]">Выберите нейросеть для работы</p>
+          <p className="font-manrope font-normal leading-[22.5px] not-italic text-[15px] text-[rgba(255,255,255,0.4)]">Выберите нейросеть для работы</p>
         </div>
       </header>
 

@@ -13,17 +13,17 @@ export function HomeFooter() {
           height={28}
           className="shrink-0 md:w-[32px] md:h-[32px]"
         />
-        <p className="text-[11px] md:text-[12px] text-[rgba(255,255,255,0.25)] font-manrope">
+        <p className="font-manrope font-normal leading-[18px] not-italic text-[12px] text-[rgba(255,255,255,0.25)]">
           2026 Black Mount. Все права защищены.
         </p>
       </div>
 
       <div className="flex flex-col sm:flex-row items-center gap-[12px] md:gap-[24px]">
         <div className="flex items-center gap-[12px] md:gap-[16px]">
-          <span className="text-[11px] md:text-[12px] text-[rgba(255,255,255,0.35)] cursor-pointer hover:text-[rgba(255,255,255,0.6)] transition-colors">
+          <span className="font-manrope font-normal leading-[18px] not-italic text-[12px] text-[rgba(255,255,255,0.35)] cursor-pointer hover:text-[rgba(255,255,255,0.6)] transition-colors">
             Условия использования
           </span>
-          <span className="text-[11px] md:text-[12px] text-[rgba(255,255,255,0.35)] cursor-pointer hover:text-[rgba(255,255,255,0.6)] transition-colors">
+          <span className="font-manrope font-normal leading-[18px] not-italic text-[12px] text-[rgba(255,255,255,0.35)] cursor-pointer hover:text-[rgba(255,255,255,0.6)] transition-colors">
             Конфиденциальность
           </span>
         </div>

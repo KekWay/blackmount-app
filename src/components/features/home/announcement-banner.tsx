@@ -3,72 +3,69 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { ArrowRight, X } from 'lucide-react'
+import { motion, AnimatePresence } from 'motion/react'
 
 export function AnnouncementBanner() {
   const [dismissed, setDismissed] = useState(false)
   const router = useRouter()
 
-  if (dismissed) return null
-
   return (
-    <div
-      className="relative rounded-[20px] px-[40px] py-[14px] flex items-center gap-[14px] overflow-hidden mb-[24px]"
-      style={{
-        background: 'linear-gradient(90deg, rgba(136,138,229,0.08) 0%, rgba(101,222,216,0.06) 100%)',
-        border: '1px solid rgba(136,138,229,0.12)',
-      }}
-    >
-      <div
-        className="absolute top-0 left-0 right-0 h-px"
-        style={{
-          background: 'linear-gradient(90deg, transparent, rgba(136,138,229,0.4), transparent)',
-        }}
-      />
+    <AnimatePresence>
+      {!dismissed && (
+        <motion.div
+          initial={{ height: 0, opacity: 0, marginBottom: 0 }}
+          animate={{ height: 'auto', opacity: 1, marginBottom: 20 }}
+          exit={{ height: 0, opacity: 0, marginBottom: 0 }}
+          transition={{ duration: 0.35, ease: 'easeOut' }}
+          className="overflow-hidden"
+        >
+          <div
+            className="relative rounded-[16px] px-[20px] py-[14px] flex items-center gap-[14px] overflow-hidden"
+            style={{
+              background: 'linear-gradient(177deg, rgba(136,138,229,0.12) 0%, rgba(107,72,207,0.08) 50%, rgba(136,138,229,0.06) 100%)',
+              border: '0.8px solid rgba(136,138,229,0.18)',
+            }}
+          >
+            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[rgba(136,138,229,0.5)] to-transparent" />
 
-      {/* НОВОЕ badge */}
-      <div className="absolute -left-[6px] -top-[20px] flex items-center justify-center w-[107px] h-[91px]">
-        <div className="-rotate-[38deg]">
-          <div className="bg-[rgba(136,138,229,0.2)] flex font-manrope font-bold h-[19px] items-center rounded-[6px] text-[10px] tracking-wide whitespace-nowrap overflow-hidden w-[122px]">
-            <div
-              className="flex items-center gap-[16px]"
-              style={{ animation: 'bannerMarquee 4s linear infinite' }}
-            >
-              <span className="text-[#65ded8] shrink-0">НОВОЕ</span>
-              <span className="text-[#65ded8] shrink-0">НОВОЕ</span>
-              <span className="text-[#65ded8] shrink-0">НОВОЕ</span>
-              <span className="text-[#65ded8] shrink-0">НОВОЕ</span>
+            <div className="absolute left-[-6px] top-[-20px] flex items-center justify-center w-[107px] h-[91px]">
+              <div className="rotate-[-38.53deg]">
+                <div className="bg-[rgba(136,138,229,0.2)] flex font-manrope font-bold h-[19px] items-center rounded-[6px] text-[10px] tracking-[0.4px] whitespace-nowrap overflow-hidden w-[122px]">
+                  <div className="flex items-center gap-[16px]" style={{ animation: 'bannerMarquee 4s linear infinite' }}>
+                    <span className="text-[#65ded8] shrink-0">НОВОЕ</span>
+                    <span className="text-[#65ded8] shrink-0">НОВОЕ</span>
+                    <span className="text-[#65ded8] shrink-0">НОВОЕ</span>
+                    <span className="text-[#65ded8] shrink-0">НОВОЕ</span>
+                  </div>
+                </div>
+              </div>
             </div>
+
+            <div className="flex-1 min-w-0 ml-[60px]">
+              <p className="text-[13px] text-[rgba(255,255,255,0.85)] font-manrope leading-[19px] font-semibold">
+                Добавлена модель <span className="text-white font-extrabold">ChatGPT 5.4</span> — новейшая версия с улучшенным рассуждением и скоростью
+              </p>
+            </div>
+
+            <button
+              onClick={() => router.push('/chat/chatgpt')}
+              className="shrink-0 flex items-center gap-[6px] px-[14px] py-[8px] rounded-[10px] text-[12px] text-white cursor-pointer transition-all hover:brightness-110 active:scale-[0.98] font-manrope font-bold shadow-[0_2px_10px_rgba(136,138,229,0.35)]"
+              style={{ background: 'linear-gradient(103.2deg, rgb(101,222,216) 8%, rgb(54,120,117) 100%)' }}
+            >
+              Попробовать
+              <ArrowRight size={13} />
+            </button>
+
+            <button
+              onClick={() => setDismissed(true)}
+              aria-label="Dismiss announcement"
+              className="shrink-0 size-[28px] rounded-[8px] flex items-center justify-center text-[rgba(255,255,255,0.3)] hover:text-white hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"
+            >
+              <X size={14} />
+            </button>
           </div>
-        </div>
-      </div>
-
-      <div className="flex-1 min-w-0 ml-[60px]">
-        <p className="text-[13px] text-[rgba(255,255,255,0.85)] font-manrope font-semibold leading-[19px]">
-          Добавлена модель{' '}
-          <span className="text-white font-extrabold">ChatGPT 5.4</span> —{' '}
-          новейшая версия с улучшенным рассуждением и скоростью
-        </p>
-      </div>
-
-      <button
-        onClick={() => router.push('/chat/chatgpt')}
-        className="shrink-0 flex items-center gap-[6px] px-[14px] py-[8px] rounded-[10px] text-[12px] text-white font-manrope font-bold cursor-pointer transition-all hover:brightness-110 active:scale-[0.98]"
-        style={{
-          background: 'linear-gradient(90deg, #65ded8, #367875)',
-          boxShadow: '0 2px 10px rgba(101,222,216,0.25)',
-        }}
-      >
-        Попробовать
-        <ArrowRight size={12} />
-      </button>
-
-      <button
-        onClick={() => setDismissed(true)}
-        aria-label="Закрыть"
-        className="shrink-0 w-[28px] h-[28px] rounded-[10px] flex items-center justify-center text-[rgba(255,255,255,0.3)] hover:text-white hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"
-      >
-        <X size={13} />
-      </button>
-    </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }

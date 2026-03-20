@@ -34,7 +34,7 @@ export function TrendingModels() {
             <h2 className="text-[22px] font-bold text-white">
               Популярное
             </h2>
-            <p className="text-[12px] text-[rgba(255,255,255,0.35)] font-manrope">
+            <p className="text-[12px] text-[rgba(255,255,255,0.35)]">
               По частоте использования за неделю
             </p>
           </div>
@@ -63,18 +63,18 @@ export function TrendingModels() {
             >
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center gap-[10px]">
-                  <span className="text-[20px] font-extrabold" style={{ color: place.num }}>
+                  <span className="text-[20px] font-extrabold leading-none" style={{ color: place.num, textShadow: `0 0 12px ${place.glow}` }}>
                     #{idx + 1}
                   </span>
-                  <span className="text-[10px] font-semibold" style={{ color: catColor }}>
+                  <span className="text-[10px] px-[8px] py-[3px] rounded-[6px] font-semibold tracking-wide" style={{ color: catColor }}>
                     {catLabel}
                   </span>
                 </div>
                 <ModelIcon modelId={tm.id} size={28} />
               </div>
-              <div className="flex flex-col min-w-0">
-                <p className="text-[16px] font-bold text-white truncate">{tm.versionLabel}</p>
-                <p className="text-[12px] text-[rgba(255,255,255,0.4)] truncate">{tm.desc}</p>
+              <div className="flex flex-col min-w-0 relative z-10">
+                <p className="text-[16px] truncate font-bold mb-[2px] text-white">{tm.versionLabel}</p>
+                <p className="text-[12px] truncate font-medium text-[rgba(255,255,255,0.4)]">{tm.desc}</p>
               </div>
               <div className="flex items-center justify-between w-full mt-auto pt-[4px]">
                 <div className="flex items-center gap-[6px]">

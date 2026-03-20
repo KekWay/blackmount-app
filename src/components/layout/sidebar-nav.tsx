@@ -53,7 +53,7 @@ export function SidebarNav({ collapsed }: SidebarNavProps) {
               )}
               {!collapsed && (
                 <span
-                  className={`text-sm ${
+                  className={`font-normal leading-[21px] not-italic text-[14px] ${
                     isActive ? 'text-white' : 'text-white/50'
                   }`}
                 >
@@ -77,7 +77,7 @@ export function SidebarNav({ collapsed }: SidebarNavProps) {
               className="shrink-0 transition-colors text-white/50 group-hover:text-white/70"
             />
             {!collapsed && (
-              <span className="text-sm text-white/50">Войти</span>
+              <span className="font-normal leading-[21px] not-italic text-[14px] text-white/50">Войти</span>
             )}
           </Link>
         )}

@@ -54,7 +54,7 @@ export function NewsCarousel() {
   return (
     <section className="mb-[40px]" aria-label="News and updates">
       <div className="flex items-center justify-between mb-[16px]">
-        <h2 className="font-maven font-extrabold text-[24px] text-white">
+        <h2 className="font-manrope font-semibold leading-[30px] not-italic text-[24px] text-white">
           News &amp; Updates
         </h2>
         <div className="flex gap-[8px]">
