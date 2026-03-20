@@ -2,16 +2,16 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Home, Clock, BarChart3, Lightbulb, LogIn, User } from 'lucide-react'
+import { Home, Clock, Image, BookOpen, Trophy, LogIn } from 'lucide-react'
 import { MOBILE_NAV_ITEMS } from '@/lib/constants'
 import { useAuthStore } from '@/stores/auth'
 
 const ICON_MAP: Record<string, typeof Home> = {
   Home,
   Clock,
-  BarChart3,
-  Lightbulb,
-  User,
+  Image,
+  BookOpen,
+  Trophy,
   LogIn,
 }
 

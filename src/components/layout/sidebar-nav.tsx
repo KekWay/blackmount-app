@@ -1,14 +1,16 @@
+'use client'
+
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
-  Home, MessageSquare, Clock, BarChart3, Lightbulb,
-  BookOpen, Swords, User, LogIn,
+  Home, Clock, Image, BookOpen, Trophy, Swords, LogIn,
 } from 'lucide-react'
 import { NAV_ITEMS } from '@/lib/constants'
 import { useAuthStore } from '@/stores/auth'
+import { SidebarPinned } from './sidebar-pinned'
 
 const ICON_MAP: Record<string, typeof Home> = {
-  Home, MessageSquare, Clock, BarChart3, Lightbulb, BookOpen, Swords, User,
+  Home, Clock, Image, BookOpen, Trophy, Swords,
 }
 
 interface SidebarNavProps {
@@ -20,8 +22,11 @@ export function SidebarNav({ collapsed }: SidebarNavProps) {
   const isLoggedIn = useAuthStore((s) => s.isLoggedIn)
 
   return (
-    <nav className="flex-1 min-h-0 overflow-y-auto hidden-scrollbar mt-5">
-      <div className={`flex flex-col gap-1 ${collapsed ? 'px-2.5' : 'ml-5 w-[208px]'}`}>
+    <nav
+      className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden hidden-scrollbar"
+      aria-label="Main navigation"
+    >
+      <div className={`flex flex-col gap-1 items-start mt-[21px] ${collapsed ? 'px-[10px] w-full' : 'ml-[20px] w-[208px]'}`}>
         {NAV_ITEMS.map((item) => {
           const Icon = ICON_MAP[item.icon]
           const isActive =
@@ -34,50 +39,60 @@ export function SidebarNav({ collapsed }: SidebarNavProps) {
               key={item.href}
               href={item.href}
               title={collapsed ? item.label : undefined}
-              className={`group flex items-center h-[45px] rounded-xl transition-colors ${
-                collapsed ? 'justify-center' : 'pl-4 gap-3'
+              className={`group h-[45px] relative rounded-[12px] shrink-0 cursor-pointer transition-colors mb-[2px] flex items-center ${
+                collapsed ? 'w-full justify-center' : 'w-[208px] pl-[16px] gap-[12px]'
               } ${
                 isActive
                   ? 'bg-[#39375b]'
-                  : 'hover:bg-white/[0.06]'
+                  : 'hover:bg-[rgba(136,138,229,0.08)]'
               }`}
             >
               {Icon && (
-                <Icon
-                  size={20}
-                  strokeWidth={1.5}
-                  className={`shrink-0 transition-colors ${
-                    isActive ? 'text-white' : 'text-white/50 group-hover:text-white/70'
-                  }`}
-                />
+                <div className="relative shrink-0 size-[20px] flex items-center justify-center">
+                  <Icon
+                    size={18}
+                    strokeWidth={1.8}
+                    className={`transition-colors duration-150 ${
+                      isActive ? 'text-white' : 'text-[rgba(255,255,255,0.5)]'
+                    }`}
+                  />
+                </div>
               )}
               {!collapsed && (
-                <span
-                  className={`font-normal leading-[21px] not-italic text-[14px] ${
-                    isActive ? 'text-white' : 'text-white/50'
-                  }`}
+                <p
+                  className="font-normal leading-[21px] not-italic text-[14px]"
+                  style={{
+                    color: isActive ? 'white' : 'rgba(255,255,255,0.5)',
+                  }}
                 >
                   {item.label}
-                </span>
+                </p>
               )}
             </Link>
           )
         })}
+
+        <SidebarPinned collapsed={collapsed} />
+
         {!isLoggedIn && (
           <Link
             href="/auth"
             title={collapsed ? 'Войти' : undefined}
-            className={`group flex items-center h-[45px] rounded-xl transition-colors ${
-              collapsed ? 'justify-center' : 'pl-4 gap-3'
-            } hover:bg-white/[0.06]`}
+            className={`group h-[45px] relative rounded-[12px] shrink-0 cursor-pointer transition-colors mb-[2px] flex items-center ${
+              collapsed ? 'w-full justify-center' : 'w-[208px] pl-[16px] gap-[12px]'
+            } hover:bg-[rgba(136,138,229,0.08)]`}
           >
-            <LogIn
-              size={20}
-              strokeWidth={1.8}
-              className="shrink-0 transition-colors text-white/50 group-hover:text-white/70"
-            />
+            <div className="relative shrink-0 size-[20px] flex items-center justify-center">
+              <LogIn
+                size={18}
+                strokeWidth={1.8}
+                className="transition-colors duration-150 text-[rgba(255,255,255,0.5)]"
+              />
+            </div>
             {!collapsed && (
-              <span className="font-normal leading-[21px] not-italic text-[14px] text-white/50">Войти</span>
+              <p className="font-normal leading-[21px] not-italic text-[14px] text-[rgba(255,255,255,0.5)]">
+                Войти
+              </p>
             )}
           </Link>
         )}

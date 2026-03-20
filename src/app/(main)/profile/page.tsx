@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { LogOut, Users, Clock } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
+import { useAuthStore } from '@/stores/auth'
 import { SidebarItem, SectionLabel } from '@/components/features/profile/profile-sidebar'
 import { AccountTab } from '@/components/features/profile/account-tab'
 import { TopupTab } from '@/components/features/profile/topup-tab'
@@ -14,6 +15,7 @@ import { type Tab, tabTitles, IMG_LOGO, IMG_COIN_PHOTOROOM, IMG_PROFILE_MASK } f
 export default function ProfilePage() {
   const router = useRouter()
   const searchParams = useSearchParams()
+  const logout = useAuthStore((s) => s.logout)
   const tabParam = searchParams.get('tab')
 
   const [activeTab, setActiveTab] = useState<Tab>('account')
@@ -53,7 +55,7 @@ export default function ProfilePage() {
         </div>
 
         <div className="mt-auto px-[12px] pb-[24px]">
-          <SidebarItem icon={<LogOut size={15} />} label="Выход" onClick={() => router.push('/')} danger />
+          <SidebarItem icon={<LogOut size={15} />} label="Выход" onClick={() => { logout(); router.push('/auth') }} danger />
         </div>
       </div>
 
