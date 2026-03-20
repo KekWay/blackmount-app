@@ -28,12 +28,20 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
           className="flex-1 flex flex-col min-h-screen transition-[margin] duration-200 hidden md:flex"
           style={{ marginLeft: sidebarW }}
         >
-          <main className="flex-1 overflow-y-auto overflow-x-hidden">{children}</main>
+          <main className="flex-1 overflow-y-auto overflow-x-hidden">
+            <div className="w-full max-w-[1400px] px-[24px] lg:px-[40px] py-[24px]">
+              {children}
+            </div>
+          </main>
         </div>
 
         {/* Mobile: no margin */}
         <div className="flex-1 flex flex-col min-h-screen md:hidden">
-          <main className="flex-1 overflow-y-auto overflow-x-hidden pb-16">{children}</main>
+          <main className="flex-1 overflow-y-auto overflow-x-hidden pb-16">
+            <div className="w-full max-w-[1400px] px-[24px] lg:px-[40px] py-[24px]">
+              {children}
+            </div>
+          </main>
         </div>
 
         <MobileNav />
