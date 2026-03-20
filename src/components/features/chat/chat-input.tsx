@@ -62,7 +62,7 @@ export function ChatInput({
           <div className="relative">
             <AnimatedPlaceholder visible={!modelLocked && !input && messagesLength === 0} />
             <textarea
-              className="bg-transparent resize-none outline-none font-['Inter',sans-serif] font-normal leading-[22px] text-[14px] text-white px-[26px] pt-[18px] pb-[6px] w-full relative z-[1]"
+              className="bg-transparent resize-none outline-none font-manrope font-normal leading-[22px] text-[14px] text-white px-[26px] pt-[18px] pb-[6px] w-full relative z-[1]"
               placeholder={modelLocked ? 'Модель доступна по подписке PRO' : messagesLength > 0 ? 'Напишите запрос...' : ''}
               rows={2}
               value={input}
@@ -93,13 +93,13 @@ export function ChatInput({
                     >
                       <button onClick={() => setAttachOpen(false)} className="flex items-center gap-[10px] w-full px-[14px] py-[9px] transition-colors hover:bg-[rgba(136,138,229,0.08)] cursor-pointer">
                         <ImageIcon size={15} className="text-[rgba(255,255,255,0.5)] shrink-0" />
-                        <span className="font-['Inter',sans-serif] font-medium text-[13px] text-white flex-1 text-left">Прикрепить фото</span>
-                        {isTextModel && <span className="font-['Inter',sans-serif] font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">5 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>}
+                        <span className="font-manrope font-medium text-[13px] text-white flex-1 text-left">Прикрепить фото</span>
+                        {isTextModel && <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">5 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>}
                       </button>
                       <button onClick={() => setAttachOpen(false)} className="flex items-center gap-[10px] w-full px-[14px] py-[9px] transition-colors hover:bg-[rgba(136,138,229,0.08)] cursor-pointer">
                         <FileText size={15} className="text-[rgba(255,255,255,0.5)] shrink-0" />
-                        <span className="font-['Inter',sans-serif] font-medium text-[13px] text-white flex-1 text-left">Прикрепить файл</span>
-                        {isTextModel && <span className="font-['Inter',sans-serif] font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">5 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>}
+                        <span className="font-manrope font-medium text-[13px] text-white flex-1 text-left">Прикрепить файл</span>
+                        {isTextModel && <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">5 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>}
                       </button>
                       {isTextModel && (
                         <>
@@ -109,16 +109,16 @@ export function ChatInput({
                             className={`flex items-center gap-[10px] w-full px-[14px] py-[9px] hover:bg-[rgba(136,138,229,0.08)] transition-colors cursor-pointer ${webSearchActive ? 'bg-[rgba(136,138,229,0.12)]' : ''}`}
                           >
                             <Globe size={15} className={`shrink-0 ${webSearchActive ? 'text-[#888ae5]' : 'text-[rgba(255,255,255,0.5)]'}`} />
-                            <span className="font-['Inter',sans-serif] font-medium text-[13px] text-white flex-1 text-left">Веб-поиск</span>
-                            {webSearchActive ? <Check size={12} className="text-[#888ae5] shrink-0" /> : <span className="font-['Inter',sans-serif] font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">5 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>}
+                            <span className="font-manrope font-medium text-[13px] text-white flex-1 text-left">Веб-поиск</span>
+                            {webSearchActive ? <Check size={12} className="text-[#888ae5] shrink-0" /> : <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">5 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>}
                           </button>
                           <button
                             onClick={() => { setDeepResearchActive(!deepResearchActive); setAttachOpen(false) }}
                             className={`flex items-center gap-[10px] w-full px-[14px] py-[9px] hover:bg-[rgba(136,138,229,0.08)] transition-colors cursor-pointer ${deepResearchActive ? 'bg-[rgba(136,138,229,0.12)]' : ''}`}
                           >
                             <Brain size={15} className={`shrink-0 ${deepResearchActive ? 'text-[#888ae5]' : 'text-[rgba(255,255,255,0.5)]'}`} />
-                            <span className="font-['Inter',sans-serif] font-medium text-[13px] text-white flex-1 text-left">Думать</span>
-                            {deepResearchActive ? <Check size={12} className="text-[#888ae5] shrink-0" /> : <span className="font-['Inter',sans-serif] font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">5 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>}
+                            <span className="font-manrope font-medium text-[13px] text-white flex-1 text-left">Думать</span>
+                            {deepResearchActive ? <Check size={12} className="text-[#888ae5] shrink-0" /> : <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">5 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>}
                           </button>
                         </>
                       )}
@@ -126,7 +126,7 @@ export function ChatInput({
                   )}
                 </AnimatePresence>
               </div>
-              <p className="font-['Inter',sans-serif] font-extrabold leading-[22px] text-[15px] text-[#d5d4d4]">{dynamicCost === 0 ? 'Бесплатно' : dynamicCost}</p>
+              <p className="font-manrope font-extrabold leading-[22px] text-[15px] text-[#d5d4d4]">{dynamicCost === 0 ? 'Бесплатно' : dynamicCost}</p>
               {dynamicCost > 0 && <div className="relative size-[14px]">
                 <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgXsCoin} />
               </div>}

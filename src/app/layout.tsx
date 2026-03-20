@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Manrope, Maven_Pro } from 'next/font/google'
+import { Manrope, Maven_Pro, Bakbak_One } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 import { Toaster } from 'sonner'
 import './globals.css'
@@ -18,6 +18,13 @@ const mavenPro = Maven_Pro({
   display: 'swap',
 })
 
+const bakbakOne = Bakbak_One({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-bakbak',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
   title: 'Blackmount — AI Aggregator',
   description:
@@ -32,7 +39,7 @@ export default function RootLayout({
   return (
     <html
       lang="ru"
-      className={`${manrope.variable} ${mavenPro.variable}`}
+      className={`${manrope.variable} ${mavenPro.variable} ${bakbakOne.variable}`}
       suppressHydrationWarning
     >
       <body className="min-h-screen bg-background font-[family-name:var(--font-manrope)] text-foreground antialiased">

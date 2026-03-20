@@ -104,7 +104,7 @@ export function ModelCard({ model, locked, onClick }: ModelCardProps) {
             }}
           />
           <span
-            className="absolute font-['Maven_Pro',sans-serif] font-extrabold text-white"
+            className="absolute font-maven font-extrabold text-white"
             style={{
               ...cfg.textStyle,
               fontSize: cfg.fontSize ?? 20,
@@ -127,7 +127,7 @@ export function ModelCard({ model, locked, onClick }: ModelCardProps) {
 
       {isModelNew(model) && !locked && (
         <div className="absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded-md bg-gradient-to-br from-accent/90 to-[rgba(54,180,160,0.9)] shadow-[0_2px_8px_rgba(101,222,216,0.4)]">
-          <span className="font-['Manrope',sans-serif] text-[8px] text-white tracking-wider font-extrabold">
+          <span className="font-manrope text-[8px] text-white tracking-wider font-extrabold">
             NEW
           </span>
         </div>

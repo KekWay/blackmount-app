@@ -36,10 +36,10 @@ export function VersionDropdown({ currentModel, selectedVersion, onSelectVersion
       >
         <ModelIcon modelId={currentModel.id} size={30} />
         <div className="flex flex-col items-start">
-          <p className="font-['Inter',sans-serif] font-extrabold leading-[22px] text-[18px] text-white">
+          <p className="font-manrope font-extrabold leading-[22px] text-[18px] text-white">
             {currentModel.name}
           </p>
-          <p className="font-['Inter',sans-serif] font-normal text-[11px] text-[rgba(255,255,255,0.4)] leading-[14px]">
+          <p className="font-manrope font-normal text-[11px] text-[rgba(255,255,255,0.4)] leading-[14px]">
             {selectedVersion.label}
           </p>
         </div>
@@ -56,7 +56,7 @@ export function VersionDropdown({ currentModel, selectedVersion, onSelectVersion
             transition={{ type: 'spring', damping: 24, stiffness: 400 }}
           >
             <div className="px-[14px] py-[6px] border-b border-[rgba(255,255,255,0.06)] mb-[4px]">
-              <p className="font-['Inter',sans-serif] font-medium text-[11px] text-[rgba(255,255,255,0.3)] uppercase tracking-wider">Выберите модель {currentModel.name}</p>
+              <p className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] uppercase tracking-wider">Выберите модель {currentModel.name}</p>
             </div>
             {currentModel.versions.map((v) => {
               const vLocked = useSubscriptionStore.getState().isVersionLocked(v.id)
@@ -68,11 +68,11 @@ export function VersionDropdown({ currentModel, selectedVersion, onSelectVersion
                 >
                   <div className="flex flex-col items-start flex-1 min-w-0">
                     <div className="flex items-center gap-[6px]">
-                      <span className="font-['Inter',sans-serif] font-medium text-[13px] text-white">{v.label}</span>
+                      <span className="font-manrope font-medium text-[13px] text-white">{v.label}</span>
                       {vLocked && <Lock size={10} className="text-[rgba(255,255,255,0.35)]" />}
                     </div>
                     {v.description && (
-                      <span className="font-['Inter',sans-serif] font-normal text-[11px] text-[rgba(255,255,255,0.3)]">{v.description}</span>
+                      <span className="font-manrope font-normal text-[11px] text-[rgba(255,255,255,0.3)]">{v.description}</span>
                     )}
                   </div>
                   {vLocked ? (
@@ -82,13 +82,13 @@ export function VersionDropdown({ currentModel, selectedVersion, onSelectVersion
                       onClick={(e) => { e.stopPropagation(); window.location.href = '/profile?tab=subscription' }}
                     >
                       <Sparkles size={9} className="text-white" />
-                      <span className="font-['Inter',sans-serif] font-semibold text-[9px] text-white whitespace-nowrap">Подписка</span>
+                      <span className="font-manrope font-semibold text-[9px] text-white whitespace-nowrap">Подписка</span>
                     </div>
                   ) : (
                     <>
                       {v.price != null && (
                         <div className="flex items-center gap-[3px] shrink-0">
-                          <span className="font-['Inter',sans-serif] font-semibold text-[12px] text-[rgba(255,255,255,0.5)]">{v.price}</span>
+                          <span className="font-manrope font-semibold text-[12px] text-[rgba(255,255,255,0.5)]">{v.price}</span>
                           <div className="relative shrink-0 size-[12px]">
                             <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgXsCoin} />
                           </div>

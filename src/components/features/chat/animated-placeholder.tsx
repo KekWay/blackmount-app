@@ -53,7 +53,7 @@ export function AnimatedPlaceholder({ visible }: { visible: boolean }) {
   if (!visible) return null
 
   return (
-    <span className="absolute left-[26px] top-[18px] pointer-events-none font-['Inter',sans-serif] font-normal leading-[22px] text-[14px] text-[#898787] select-none z-0">
+    <span className="absolute left-[26px] top-[18px] pointer-events-none font-manrope font-normal leading-[22px] text-[14px] text-[#898787] select-none z-0">
       {displayed}
       <span
         className="inline-block w-[1.5px] h-[14px] bg-[#898787] ml-[1px] align-middle"

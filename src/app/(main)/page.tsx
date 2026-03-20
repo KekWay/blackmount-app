@@ -57,7 +57,7 @@ export default function HomePage() {
 
       {/* Header */}
       <header className="mb-[24px]">
-        <h1 className="font-['Maven_Pro',sans-serif] font-extrabold text-[36px] text-white">
+        <h1 className="font-maven font-extrabold text-[36px] text-white">
           Библиотека
         </h1>
         <p className="text-[15px] text-[rgba(255,255,255,0.4)] mt-[4px]">

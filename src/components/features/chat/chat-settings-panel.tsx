@@ -57,7 +57,7 @@ export function ChatSettingsPanel({
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between px-[20px] pt-[20px] pb-[12px]">
-              <p className="font-['Inter',sans-serif] font-bold text-[18px] text-white">Настройки модели</p>
+              <p className="font-manrope font-bold text-[18px] text-white">Настройки модели</p>
               <button
                 onClick={() => setSettingsOpen(false)}
                 className="size-[28px] rounded-full bg-[rgba(57,55,91,0.6)] flex items-center justify-center cursor-pointer hover:bg-[rgba(57,55,91,0.9)] transition-colors"
@@ -70,9 +70,9 @@ export function ChatSettingsPanel({
               {isTextModel ? (
                 <div className="flex flex-col gap-[16px]">
                   <div>
-                    <p className="font-['Inter',sans-serif] font-medium text-[14px] text-white mb-[8px]">Системный промпт</p>
+                    <p className="font-manrope font-medium text-[14px] text-white mb-[8px]">Системный промпт</p>
                     <textarea
-                      className="w-full bg-[rgba(57,55,91,0.5)] border border-[rgba(64,64,64,0.7)] rounded-[10px] px-[12px] py-[10px] text-[12px] text-white placeholder-[rgba(166,166,166,0.6)] outline-none resize-none font-['Inter',sans-serif]"
+                      className="w-full bg-[rgba(57,55,91,0.5)] border border-[rgba(64,64,64,0.7)] rounded-[10px] px-[12px] py-[10px] text-[12px] text-white placeholder-[rgba(166,166,166,0.6)] outline-none resize-none font-manrope"
                       rows={4}
                       placeholder="Напишите пользовательскую инструкцию для ИИ"
                       value={systemPrompt}
@@ -80,12 +80,12 @@ export function ChatSettingsPanel({
                     />
                   </div>
                   <div>
-                    <p className="font-['Inter',sans-serif] font-medium text-[14px] text-white mb-[8px]">Стиль и тон</p>
+                    <p className="font-manrope font-medium text-[14px] text-white mb-[8px]">Стиль и тон</p>
                     <div className="relative">
                       <select
                         value={toneSetting}
                         onChange={(e) => setToneSetting(e.target.value)}
-                        className="w-full appearance-none bg-[rgba(57,55,91,0.5)] border border-[rgba(64,64,64,0.7)] rounded-[10px] px-[12px] py-[9px] text-[13px] text-white outline-none cursor-pointer font-['Inter',sans-serif]"
+                        className="w-full appearance-none bg-[rgba(57,55,91,0.5)] border border-[rgba(64,64,64,0.7)] rounded-[10px] px-[12px] py-[9px] text-[13px] text-white outline-none cursor-pointer font-manrope"
                       >
                         <option value="default">по умолчанию</option>
                         <option value="formal">формальный</option>
@@ -100,9 +100,9 @@ export function ChatSettingsPanel({
               ) : model.category === 'image' ? (
                 <div className="flex flex-col gap-[16px]">
                   <div>
-                    <p className="font-['Inter',sans-serif] font-medium text-[14px] text-white mb-[8px]">Соотношение сторон</p>
+                    <p className="font-manrope font-medium text-[14px] text-white mb-[8px]">Соотношение сторон</p>
                     <div className="relative">
-                      <select value={aspectRatio} onChange={(e) => setAspectRatio(e.target.value)} className="w-full appearance-none bg-[rgba(57,55,91,0.5)] border border-[rgba(64,64,64,0.7)] rounded-[10px] px-[12px] py-[9px] text-[13px] text-white outline-none cursor-pointer font-['Inter',sans-serif]">
+                      <select value={aspectRatio} onChange={(e) => setAspectRatio(e.target.value)} className="w-full appearance-none bg-[rgba(57,55,91,0.5)] border border-[rgba(64,64,64,0.7)] rounded-[10px] px-[12px] py-[9px] text-[13px] text-white outline-none cursor-pointer font-manrope">
                         <option value="1:1">1:1</option>
                         <option value="16:9">16:9</option>
                         <option value="9:16">9:16</option>
@@ -113,9 +113,9 @@ export function ChatSettingsPanel({
                     </div>
                   </div>
                   <div>
-                    <p className="font-['Inter',sans-serif] font-medium text-[14px] text-white mb-[8px]">Качество</p>
+                    <p className="font-manrope font-medium text-[14px] text-white mb-[8px]">Качество</p>
                     <div className="relative">
-                      <select value={quality} onChange={(e) => setQuality(e.target.value)} className="w-full appearance-none bg-[rgba(57,55,91,0.5)] border border-[rgba(64,64,64,0.7)] rounded-[10px] px-[12px] py-[9px] text-[13px] text-white outline-none cursor-pointer font-['Inter',sans-serif]">
+                      <select value={quality} onChange={(e) => setQuality(e.target.value)} className="w-full appearance-none bg-[rgba(57,55,91,0.5)] border border-[rgba(64,64,64,0.7)] rounded-[10px] px-[12px] py-[9px] text-[13px] text-white outline-none cursor-pointer font-manrope">
                         <option value="1K">1K</option>
                         <option value="2K">2K</option>
                         <option value="4K">4K</option>
@@ -124,12 +124,12 @@ export function ChatSettingsPanel({
                     </div>
                   </div>
                   <div>
-                    <p className="font-['Inter',sans-serif] font-medium text-[14px] text-white mb-[8px]">Количество</p>
+                    <p className="font-manrope font-medium text-[14px] text-white mb-[8px]">Количество</p>
                     <div className="flex items-center bg-[rgba(57,55,91,0.5)] border border-[rgba(64,64,64,0.7)] rounded-[10px] px-[4px] py-[4px]">
                       <button onClick={() => setImageCount(Math.max(1, imageCount - 1))} className="size-[28px] rounded-[7px] flex items-center justify-center cursor-pointer hover:bg-[rgba(255,255,255,0.08)] transition-colors">
                         <Minus size={14} className="text-white" />
                       </button>
-                      <span className="flex-1 text-center font-['Inter',sans-serif] font-medium text-[14px] text-white">1/{imageCount}</span>
+                      <span className="flex-1 text-center font-manrope font-medium text-[14px] text-white">1/{imageCount}</span>
                       <button onClick={() => setImageCount(Math.min(4, imageCount + 1))} className="size-[28px] rounded-[7px] flex items-center justify-center cursor-pointer hover:bg-[rgba(255,255,255,0.08)] transition-colors">
                         <Plus size={14} className="text-white" />
                       </button>
@@ -139,9 +139,9 @@ export function ChatSettingsPanel({
               ) : (
                 <div className="flex flex-col gap-[16px]">
                   <div>
-                    <p className="font-['Inter',sans-serif] font-medium text-[14px] text-white mb-[8px]">Соотношение сторон</p>
+                    <p className="font-manrope font-medium text-[14px] text-white mb-[8px]">Соотношение сторон</p>
                     <div className="relative">
-                      <select value={aspectRatio} onChange={(e) => setAspectRatio(e.target.value)} className="w-full appearance-none bg-[rgba(57,55,91,0.5)] border border-[rgba(64,64,64,0.7)] rounded-[10px] px-[12px] py-[9px] text-[13px] text-white outline-none cursor-pointer font-['Inter',sans-serif]">
+                      <select value={aspectRatio} onChange={(e) => setAspectRatio(e.target.value)} className="w-full appearance-none bg-[rgba(57,55,91,0.5)] border border-[rgba(64,64,64,0.7)] rounded-[10px] px-[12px] py-[9px] text-[13px] text-white outline-none cursor-pointer font-manrope">
                         <option value="1:1">1:1</option>
                         <option value="16:9">16:9</option>
                         <option value="9:16">9:16</option>
@@ -151,13 +151,13 @@ export function ChatSettingsPanel({
                     </div>
                   </div>
                   <div>
-                    <p className="font-['Inter',sans-serif] font-medium text-[14px] text-white mb-[8px]">Длительность</p>
+                    <p className="font-manrope font-medium text-[14px] text-white mb-[8px]">Длительность</p>
                     <div className="flex gap-[6px]">
                       {(model.id === 'sora2' ? ['10с', '15с'] : model.id === 'kling' ? ['5с', '10с'] : ['5с', '8с']).map((dur) => (
                         <button
                           key={dur}
                           onClick={() => setVideoDuration(dur)}
-                          className={`flex-1 py-[8px] rounded-[10px] font-['Inter',sans-serif] font-medium text-[13px] transition-colors cursor-pointer ${videoDuration === dur ? 'bg-[#39375b] text-white' : 'bg-[rgba(57,55,91,0.5)] text-[rgba(255,255,255,0.5)] hover:bg-[rgba(57,55,91,0.7)]'}`}
+                          className={`flex-1 py-[8px] rounded-[10px] font-manrope font-medium text-[13px] transition-colors cursor-pointer ${videoDuration === dur ? 'bg-[#39375b] text-white' : 'bg-[rgba(57,55,91,0.5)] text-[rgba(255,255,255,0.5)] hover:bg-[rgba(57,55,91,0.7)]'}`}
                         >
                           {dur}
                         </button>
@@ -167,7 +167,7 @@ export function ChatSettingsPanel({
                   {model.id === 'kling' && selectedVersion.id === 'kling-2.6' && (
                     <div>
                       <div className="flex items-center justify-between">
-                        <p className="font-['Inter',sans-serif] font-medium text-[14px] text-white">Со звуком</p>
+                        <p className="font-manrope font-medium text-[14px] text-white">Со звуком</p>
                         <button
                           onClick={() => setAudioEnabled(!audioEnabled)}
                           className={`relative w-[40px] h-[22px] rounded-full transition-colors cursor-pointer ${audioEnabled ? 'bg-[#888ae5]' : 'bg-[rgba(57,55,91,0.8)]'}`}
@@ -179,7 +179,7 @@ export function ChatSettingsPanel({
                         </button>
                       </div>
                       {audioEnabled && (
-                        <p className="font-['Inter',sans-serif] font-normal text-[11px] text-[rgba(255,255,255,0.3)] mt-[6px]">Генерация видео со звуковой дорожкой</p>
+                        <p className="font-manrope font-normal text-[11px] text-[rgba(255,255,255,0.3)] mt-[6px]">Генерация видео со звуковой дорожкой</p>
                       )}
                     </div>
                   )}
@@ -189,9 +189,9 @@ export function ChatSettingsPanel({
               {!isTextModel && (
                 <div className="mt-[20px] bg-[rgba(136,138,229,0.06)] rounded-[12px] p-[14px] border border-[rgba(136,138,229,0.1)]">
                   <div className="flex items-center justify-between">
-                    <span className="font-['Inter',sans-serif] font-medium text-[12px] text-[rgba(255,255,255,0.4)]">Стоимость генерации</span>
+                    <span className="font-manrope font-medium text-[12px] text-[rgba(255,255,255,0.4)]">Стоимость генерации</span>
                     <div className="flex items-center gap-[4px]">
-                      <span className="font-['Inter',sans-serif] font-bold text-[18px] text-white">{dynamicCost}</span>
+                      <span className="font-manrope font-bold text-[18px] text-white">{dynamicCost}</span>
                       <div className="relative shrink-0 size-[14px]">
                         <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgXsCoin} />
                       </div>
@@ -199,8 +199,8 @@ export function ChatSettingsPanel({
                   </div>
                   {(selectedVersion.price || 5) !== dynamicCost && (
                     <div className="flex items-center justify-between mt-[6px]">
-                      <span className="font-['Inter',sans-serif] font-normal text-[11px] text-[rgba(255,255,255,0.25)]">Базовая цена</span>
-                      <span className="font-['Inter',sans-serif] font-normal text-[11px] text-[rgba(255,255,255,0.25)] line-through">{selectedVersion.price || 5}</span>
+                      <span className="font-manrope font-normal text-[11px] text-[rgba(255,255,255,0.25)]">Базовая цена</span>
+                      <span className="font-manrope font-normal text-[11px] text-[rgba(255,255,255,0.25)] line-through">{selectedVersion.price || 5}</span>
                     </div>
                   )}
                 </div>
@@ -212,7 +212,7 @@ export function ChatSettingsPanel({
                   className="flex items-center justify-center gap-[8px] w-full mt-[24px] py-[10px] rounded-[12px] cursor-pointer transition-colors hover:bg-[rgba(189,70,70,0.1)]"
                 >
                   <Trash2 size={15} className="text-[#bd4646]" />
-                  <span className="font-['Inter',sans-serif] font-semibold text-[14px] text-[#bd4646]">удалить чат</span>
+                  <span className="font-manrope font-semibold text-[14px] text-[#bd4646]">удалить чат</span>
                 </button>
               )}
             </div>

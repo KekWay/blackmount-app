@@ -13,7 +13,7 @@ export function HomeFooter() {
           height={28}
           className="shrink-0 md:w-[32px] md:h-[32px]"
         />
-        <p className="text-[11px] md:text-[12px] text-[rgba(255,255,255,0.25)] font-['DM_Sans',sans-serif]">
+        <p className="text-[11px] md:text-[12px] text-[rgba(255,255,255,0.25)] font-manrope">
           2026 Black Mount. Все права защищены.
         </p>
       </div>

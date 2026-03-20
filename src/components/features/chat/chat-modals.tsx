@@ -52,11 +52,11 @@ export function ChatModals({
                   <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgXsCoin} />
                   <div className="absolute inset-0 rounded-full" style={{ background: 'radial-gradient(circle, rgba(199,168,45,0.15) 0%, transparent 70%)' }} />
                 </div>
-                <p className="font-['Inter',sans-serif] font-extrabold text-[20px] text-white mb-[6px]">Недостаточно айкоинов</p>
-                <p className="font-['Inter',sans-serif] font-normal text-[13px] text-[rgba(255,255,255,0.45)] text-center leading-[20px] mb-[6px]">
+                <p className="font-manrope font-extrabold text-[20px] text-white mb-[6px]">Недостаточно айкоинов</p>
+                <p className="font-manrope font-normal text-[13px] text-[rgba(255,255,255,0.45)] text-center leading-[20px] mb-[6px]">
                   Для запроса к <span className="text-white">{selectedVersion.label}</span> нужно <span className="text-white">{dynamicCost}</span> айкоинов.
                 </p>
-                <p className="font-['Inter',sans-serif] font-normal text-[13px] text-[rgba(255,255,255,0.45)] text-center leading-[20px]">
+                <p className="font-manrope font-normal text-[13px] text-[rgba(255,255,255,0.45)] text-center leading-[20px]">
                   Ваш баланс: <span className="text-[#c7a82d]">{balance}</span> айкоинов
                 </p>
               </div>
@@ -67,13 +67,13 @@ export function ChatModals({
                   style={{ backgroundImage: 'linear-gradient(90deg, rgba(187,170,76,0.5) 0%, rgba(199,168,45,0.8) 50%, rgba(187,170,76,0.5) 100%)' }}
                 >
                   <img alt="" src={imgXsCoin} className="size-[18px] object-contain brightness-0 invert" />
-                  <span className="font-['Inter',sans-serif] font-black text-[15px] text-white">Пополнить баланс</span>
+                  <span className="font-manrope font-black text-[15px] text-white">Пополнить баланс</span>
                 </button>
                 <button
                   onClick={() => setShowLowBalance(false)}
                   className="w-full h-[42px] rounded-[12px] bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255,255,255,0.08)] border border-[rgba(255,255,255,0.06)] cursor-pointer transition-colors"
                 >
-                  <span className="font-['Inter',sans-serif] font-medium text-[13px] text-[rgba(255,255,255,0.5)]">Отмена</span>
+                  <span className="font-manrope font-medium text-[13px] text-[rgba(255,255,255,0.5)]">Отмена</span>
                 </button>
               </div>
             </motion.div>

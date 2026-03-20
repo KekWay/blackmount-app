@@ -52,7 +52,7 @@ export function InputModelDropdown({ currentModel, onSelect }: InputModelDropdow
         className="flex items-center gap-[6px] cursor-pointer hover:bg-[rgba(255,255,255,0.05)] rounded-[8px] px-[6px] py-[2px] transition-colors"
       >
         <ModelIcon modelId={currentModel.id} size={16} />
-        <p className="font-['Inter',sans-serif] font-medium leading-[28px] text-[14px] text-[#919191]">
+        <p className="font-manrope font-medium leading-[28px] text-[14px] text-[#919191]">
           {currentModel.name}
         </p>
         <ChevronDown size={11} className={`text-[#919191] transition-transform ${open ? 'rotate-180' : ''}`} />
@@ -72,7 +72,7 @@ export function InputModelDropdown({ currentModel, onSelect }: InputModelDropdow
               <button
                 key={cat}
                 onClick={(e) => { e.stopPropagation(); setFilterCat(cat) }}
-                className={`font-['Inter',sans-serif] font-medium text-[11px] px-[8px] py-[3px] rounded-[8px] transition-colors cursor-pointer ${filterCat === cat ? 'bg-[rgba(255,255,255,0.12)] text-white' : 'text-[rgba(255,255,255,0.4)] hover:text-white hover:bg-[rgba(255,255,255,0.06)]'}`}
+                className={`font-manrope font-medium text-[11px] px-[8px] py-[3px] rounded-[8px] transition-colors cursor-pointer ${filterCat === cat ? 'bg-[rgba(255,255,255,0.12)] text-white' : 'text-[rgba(255,255,255,0.4)] hover:text-white hover:bg-[rgba(255,255,255,0.06)]'}`}
               >
                 {cat === 'all' ? 'Все' : cat === 'text' ? 'Текст' : cat === 'image' ? 'Фото' : 'Видео'}
               </button>
@@ -88,7 +88,7 @@ export function InputModelDropdown({ currentModel, onSelect }: InputModelDropdow
                   className={`flex items-center gap-[10px] w-full px-[14px] py-[7px] transition-colors ${mLocked ? 'opacity-60 cursor-default' : 'hover:bg-[rgba(136,138,229,0.08)] cursor-pointer'} ${m.id === currentModel.id && !mLocked ? 'bg-[rgba(136,138,229,0.1)]' : ''}`}
                 >
                   <ModelIcon modelId={m.id} size={20} />
-                  <span className="font-['Inter',sans-serif] font-medium text-[13px] text-white">{m.name}</span>
+                  <span className="font-manrope font-medium text-[13px] text-white">{m.name}</span>
                   {mLocked ? (
                     <div className="flex items-center gap-[4px] ml-auto shrink-0">
                       <Lock size={10} className="text-[rgba(255,255,255,0.35)]" />
@@ -98,13 +98,13 @@ export function InputModelDropdown({ currentModel, onSelect }: InputModelDropdow
                         onClick={(e) => { e.stopPropagation(); window.location.href = '/profile?tab=subscription' }}
                       >
                         <Sparkles size={8} className="text-white" />
-                        <span className="font-['Inter',sans-serif] font-semibold text-[9px] text-white">Подписка</span>
+                        <span className="font-manrope font-semibold text-[9px] text-white">Подписка</span>
                       </div>
                     </div>
                   ) : (
                     <>
                       <div className="flex items-center gap-[3px] ml-auto shrink-0">
-                        <span className="font-['Inter',sans-serif] font-semibold text-[11px] text-[rgba(255,255,255,0.4)]">
+                        <span className="font-manrope font-semibold text-[11px] text-[rgba(255,255,255,0.4)]">
                           от {Math.min(...m.versions.map(v => v.price || 0))}
                         </span>
                         <div className="relative shrink-0 size-[10px]">

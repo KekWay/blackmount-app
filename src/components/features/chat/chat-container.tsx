@@ -363,7 +363,7 @@ export function ChatContainer() {
               style={{ background: 'linear-gradient(135deg, #5b5bd6, #7c5cbf)', boxShadow: '0 2px 12px rgba(91,91,214,0.35)' }}
             >
               <Sparkles size={12} className="text-white" />
-              <span className="font-['Inter',sans-serif] font-semibold text-[12px] text-white whitespace-nowrap">Оформить подписку</span>
+              <span className="font-manrope font-semibold text-[12px] text-white whitespace-nowrap">Оформить подписку</span>
             </button>
             <button
               onClick={(e) => { e.stopPropagation(); setSubBannerDismissed(true) }}
@@ -380,7 +380,7 @@ export function ChatContainer() {
             className="flex items-center gap-[6px] cursor-pointer rounded-[12px] px-[14px] py-[7px] transition-all hover:bg-[rgba(136,138,229,0.12)]"
           >
             <Plus size={14} className="text-[rgba(255,255,255,0.6)]" />
-            <p className="font-['Inter',sans-serif] font-medium leading-[20px] text-[13px] text-white">Новый чат</p>
+            <p className="font-manrope font-medium leading-[20px] text-[13px] text-white">Новый чат</p>
           </button>
           <button
             onClick={() => setShareOpen(true)}
@@ -409,8 +409,8 @@ export function ChatContainer() {
                   <Lock size={24} className="text-[#a8a9f0]" />
                 </div>
                 <div className="flex flex-col gap-[6px]">
-                  <p className="font-['Inter',sans-serif] font-semibold text-[18px] text-white">{model.name} доступна по подписке</p>
-                  <p className="font-['Inter',sans-serif] font-normal text-[13px] text-[rgba(255,255,255,0.4)] max-w-[320px]">Оформите подписку BLACK MOUNT PRO, чтобы получить доступ к этой и другим премиум-моделям</p>
+                  <p className="font-manrope font-semibold text-[18px] text-white">{model.name} доступна по подписке</p>
+                  <p className="font-manrope font-normal text-[13px] text-[rgba(255,255,255,0.4)] max-w-[320px]">Оформите подписку BLACK MOUNT PRO, чтобы получить доступ к этой и другим премиум-моделям</p>
                 </div>
                 <button
                   onClick={() => router.push('/profile?tab=subscription')}
@@ -418,13 +418,13 @@ export function ChatContainer() {
                   style={{ background: 'linear-gradient(135deg, rgba(136,138,229,0.3), rgba(168,90,220,0.3))', border: '1px solid rgba(136,138,229,0.25)' }}
                 >
                   <Sparkles size={14} className="text-[#c4b5fd]" />
-                  <span className="font-['Inter',sans-serif] font-semibold text-[13px] text-[#c4b5fd]">Оформить подписку</span>
+                  <span className="font-manrope font-semibold text-[13px] text-[#c4b5fd]">Оформить подписку</span>
                 </button>
               </div>
             ) : (
               <>
                 <p
-                  className="font-['Inter',sans-serif] font-semibold leading-[40px] text-[30px] relative z-[1] bg-clip-text text-transparent"
+                  className="font-manrope font-semibold leading-[40px] text-[30px] relative z-[1] bg-clip-text text-transparent"
                   style={{
                     backgroundImage: 'linear-gradient(90deg, rgba(255,255,255,0.95), rgba(200,200,220,0.7), rgba(255,255,255,0.9))',
                     backgroundSize: '200% 100%',

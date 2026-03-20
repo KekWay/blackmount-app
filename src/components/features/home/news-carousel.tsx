@@ -54,7 +54,7 @@ export function NewsCarousel() {
   return (
     <section className="mb-[40px]" aria-label="News and updates">
       <div className="flex items-center justify-between mb-[16px]">
-        <h2 className="font-['Maven_Pro',sans-serif] font-extrabold text-[24px] text-white">
+        <h2 className="font-maven font-extrabold text-[24px] text-white">
           News &amp; Updates
         </h2>
         <div className="flex gap-[8px]">
@@ -88,10 +88,10 @@ export function NewsCarousel() {
                 className="absolute inset-0 w-full h-full object-cover opacity-80"
               />
             </div>
-            <h3 className="font-['Maven_Pro',sans-serif] font-extrabold text-[20px] text-white">
+            <h3 className="font-maven font-extrabold text-[20px] text-white">
               {item.subtitle}
             </h3>
-            <p className="font-['Maven_Pro',sans-serif] text-[13px] text-[rgba(255,255,255,0.6)] leading-[20px]">
+            <p className="font-maven text-[13px] text-[rgba(255,255,255,0.6)] leading-[20px]">
               {item.description}
             </p>
           </article>

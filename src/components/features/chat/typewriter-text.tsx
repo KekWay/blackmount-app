@@ -22,7 +22,7 @@ export function TypewriterText({ text, onComplete }: { text: string; onComplete?
   }, [text])
 
   return (
-    <p className="font-['Inter',sans-serif] font-normal leading-[22px] text-[14px] text-white whitespace-pre-wrap">
+    <p className="font-manrope font-normal leading-[22px] text-[14px] text-white whitespace-pre-wrap">
       {displayed}
       {displayed.length < text.length && (
         <span className="inline-block w-[2px] h-[14px] bg-[#888ae5] ml-[1px] align-middle" style={{ animation: 'cursorBlink 0.8s step-end infinite' }} />

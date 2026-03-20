@@ -172,7 +172,7 @@ export function ChatMessages({
           ) : (
             <div className="flex flex-col">
               <div className={`max-w-[80%] rounded-[20px] px-[20px] py-[14px] ${msg.role === 'user' ? 'bg-[rgba(61,57,80,0.7)]' : 'bg-[rgba(255,255,255,0.05)]'}`}>
-                <p className="font-['Inter',sans-serif] font-normal leading-[22px] text-[14px] text-white whitespace-pre-wrap">{msg.content}</p>
+                <p className="font-manrope font-normal leading-[22px] text-[14px] text-white whitespace-pre-wrap">{msg.content}</p>
               </div>
               {msg.role === 'assistant' && !msg.isLoading && !msg.isTyping && (
                 <div className="flex items-center gap-[4px] mt-[6px]">
