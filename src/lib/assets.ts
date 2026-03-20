@@ -42,6 +42,10 @@ export const APP_ASSETS = {
   coin: '/assets/models/06a5a3f12f7ccb4092a793253a07d8e11e003ba7.png',
   logo: '/assets/models/e4ed614bc725465a9064a38e53c100a7a89134ee.png',
   settings: '/assets/models/8fee97ff103036ce0fa327530682bcb65c114bce.png',
+  heroAuth: '/assets/models/9f605c2ecceca5ea76112912003926bd0b980430.png',
+  yandex: '/assets/models/54a6d2a7109758545153beed5f2a6ac9679cfb57.png',
+  vk: '/assets/models/460fa900cb854c292c04f912c360cff7cd6d4eb8.png',
+  telegram: '/assets/models/cbf2b9da25b2b070233ad7346c823fff7c77ed58.png',
 } as const
 
 export type ModelId = keyof typeof MODEL_ASSETS
