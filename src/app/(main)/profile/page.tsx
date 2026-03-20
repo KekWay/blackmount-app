@@ -6,7 +6,6 @@ import { LogOut, Users, Clock } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
 import { SidebarItem, SectionLabel } from '@/components/features/profile/profile-sidebar'
 import { AccountTab } from '@/components/features/profile/account-tab'
-import { SubscriptionTab } from '@/components/features/profile/subscription-tab'
 import { TopupTab } from '@/components/features/profile/topup-tab'
 import { ReferralTab } from '@/components/features/profile/referral-tab'
 import { HistoryTab } from '@/components/features/profile/history-tab'
@@ -19,7 +18,10 @@ export default function ProfilePage() {
     if (typeof window === 'undefined') return 'account'
     const params = new URLSearchParams(window.location.search)
     const tab = params.get('tab')
-    if (tab && ['account', 'subscription', 'topup', 'referral', 'history'].includes(tab)) {
+    if (tab === 'subscription') {
+      return 'account'
+    }
+    if (tab && ['account', 'topup', 'referral', 'history'].includes(tab)) {
       return tab as Tab
     }
     return 'account'
@@ -39,7 +41,7 @@ export default function ProfilePage() {
         <div className="px-[12px] flex flex-col gap-[2px]">
           <SectionLabel>Настройки аккаунта</SectionLabel>
           <SidebarItem icon={<div style={{ width: 15, height: 15, backgroundColor: 'currentColor', maskImage: `url('${IMG_PROFILE_MASK}')`, WebkitMaskImage: `url('${IMG_PROFILE_MASK}')`, maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center' }} />} label="Профиль" active={activeTab === 'account'} onClick={() => setActiveTab('account')} />
-          <SidebarItem icon={<img src={IMG_LOGO} alt="" className={`size-[15px] object-contain brightness-0 invert transition-opacity ${activeTab === 'subscription' ? 'opacity-100' : 'opacity-60'}`} />} label="Подписки" active={activeTab === 'subscription'} onClick={() => setActiveTab('subscription')} />
+          <SidebarItem icon={<img src={IMG_LOGO} alt="" className="size-[15px] object-contain brightness-0 invert transition-opacity opacity-60" />} label="Подписки" active={false} onClick={() => router.push('/subscription')} />
           <SidebarItem icon={<img src={IMG_COIN_PHOTOROOM} alt="" className={`size-[15px] object-cover transition-opacity ${activeTab === 'topup' ? 'opacity-100' : 'opacity-60'}`} />} label="Пополнить баланс" active={activeTab === 'topup'} onClick={() => setActiveTab('topup')} />
         </div>
 
@@ -56,7 +58,7 @@ export default function ProfilePage() {
 
       {/* RIGHT CONTENT */}
       <div className="flex-1 overflow-y-auto bg-[#121118]">
-        <div className={`${activeTab === 'subscription' ? 'max-w-[900px]' : 'max-w-[720px]'} mx-auto px-[48px] pt-[32px] pb-[48px]`}>
+        <div className="max-w-[720px] mx-auto px-[48px] pt-[32px] pb-[48px]">
           <div className="flex items-center justify-between mb-[24px]">
             <p className="font-manrope font-semibold leading-[36px] text-[24px] text-white">
               {tabTitles[activeTab]}
@@ -77,8 +79,7 @@ export default function ProfilePage() {
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
             >
-              {activeTab === 'account' && <AccountTab onNavigate={setActiveTab} />}
-              {activeTab === 'subscription' && <SubscriptionTab />}
+              {activeTab === 'account' && <AccountTab onNavigate={(tab) => { if (tab === 'subscription') { router.push('/subscription'); return; } setActiveTab(tab); }} />}
               {activeTab === 'topup' && <TopupTab />}
               {activeTab === 'referral' && <ReferralTab />}
               {activeTab === 'history' && <HistoryTab />}

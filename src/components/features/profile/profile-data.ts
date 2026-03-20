@@ -1,6 +1,7 @@
 import { APP_ASSETS } from '@/lib/assets'
 
 export type Tab = 'account' | 'subscription' | 'topup' | 'referral' | 'history'
+// Note: 'subscription' is kept in type for navigation compatibility but redirects to /subscription page
 export type GenCatFilter = 'all' | 'text' | 'image' | 'video'
 export type Plan = 'basic' | 'pro' | 'max'
 export type Period = 'month' | 'year'
