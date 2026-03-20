@@ -1,17 +1,43 @@
+'use client'
+
+import { useState, createContext, useContext } from 'react'
 import { Sidebar } from '@/components/layout/sidebar'
 import { MobileNav } from '@/components/layout/mobile-nav'
 
+const SidebarContext = createContext({ collapsed: false, setCollapsed: (_: boolean) => {} })
+export const useSidebarContext = () => useContext(SidebarContext)
+
 export default function MainLayout({ children }: { children: React.ReactNode }) {
+  const [collapsed, setCollapsed] = useState(() => {
+    if (typeof window === 'undefined') return false
+    return localStorage.getItem('sidebarCollapsed') === 'true'
+  })
+
+  const sidebarW = collapsed ? 72 : 248
+
   return (
-    <div className="flex min-h-screen bg-background">
-      <Sidebar />
+    <SidebarContext.Provider value={{ collapsed, setCollapsed }}>
+      <div className="flex min-h-screen bg-background">
+        <Sidebar collapsed={collapsed} onToggle={() => {
+          const next = !collapsed
+          setCollapsed(next)
+          localStorage.setItem('sidebarCollapsed', String(next))
+        }} />
 
-      {/* Main content — offset by sidebar width on desktop */}
-      <div className="flex-1 flex flex-col md:ml-[248px] min-h-screen">
-        <main className="flex-1 overflow-y-auto pb-16 md:pb-0">{children}</main>
+        <div
+          className="flex-1 flex flex-col min-h-screen transition-[margin] duration-200 hidden md:flex"
+          style={{ marginLeft: sidebarW }}
+        >
+          <main className="flex-1 overflow-y-auto">{children}</main>
+        </div>
+
+        {/* Mobile: no margin */}
+        <div className="flex-1 flex flex-col min-h-screen md:hidden">
+          <main className="flex-1 overflow-y-auto pb-16">{children}</main>
+        </div>
+
+        <MobileNav />
       </div>
-
-      <MobileNav />
-    </div>
+    </SidebarContext.Provider>
   )
 }

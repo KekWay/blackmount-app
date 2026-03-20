@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { PanelLeftClose, PanelLeftOpen } from 'lucide-react'
@@ -8,9 +7,12 @@ import { APP_ASSETS } from '@/lib/assets'
 import { SidebarNav } from './sidebar-nav'
 import { SidebarUser } from './sidebar-user'
 
-export function Sidebar() {
-  const [collapsed, setCollapsed] = useState(false)
+interface SidebarProps {
+  collapsed: boolean
+  onToggle: () => void
+}
 
+export function Sidebar({ collapsed, onToggle }: SidebarProps) {
   return (
     <aside
       className={`fixed left-0 top-0 bottom-0 z-10 flex flex-col border-r border-sidebar-border bg-sidebar transition-[width] duration-200 ${
@@ -35,7 +37,7 @@ export function Sidebar() {
         </Link>
         {!collapsed && (
           <button
-            onClick={() => setCollapsed(true)}
+            onClick={onToggle}
             className="ml-auto shrink-0 size-[26px] flex items-center justify-center rounded-lg hover:bg-white/[0.06] transition-colors"
             aria-label="Свернуть"
           >
@@ -44,7 +46,7 @@ export function Sidebar() {
         )}
         {collapsed && (
           <button
-            onClick={() => setCollapsed(false)}
+            onClick={onToggle}
             className="absolute top-9 left-1/2 -translate-x-1/2 size-9 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity"
             aria-label="Развернуть"
           >

@@ -56,13 +56,11 @@ export default function HomePage() {
       <AnnouncementBanner />
 
       {/* Header */}
-      <header className="mb-[24px]">
-        <h1 className="font-maven font-extrabold text-[36px] text-white">
-          Библиотека
-        </h1>
-        <p className="text-[15px] text-[rgba(255,255,255,0.4)] mt-[4px]">
-          Выберите нейросеть для работы
-        </p>
+      <header className="flex items-center justify-between mb-[24px]">
+        <div className="flex flex-col gap-[4px]">
+          <h1 className="font-maven font-extrabold leading-[45px] text-[36px] text-white">Библиотека</h1>
+          <p className="font-manrope font-normal leading-[22.5px] text-[15px] text-[rgba(255,255,255,0.4)]">Выберите нейросеть для работы</p>
+        </div>
       </header>
 
       {/* Filters + Search */}

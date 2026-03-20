@@ -31,7 +31,7 @@ export function TrendingModels() {
         <div className="flex items-center gap-[10px]">
           <img src={imgFireIcon} alt="" width={25} height={25} className="object-contain" />
           <div>
-            <h2 className="text-[22px] font-maven font-extrabold text-white">
+            <h2 className="text-[22px] font-bold text-white">
               Популярное
             </h2>
             <p className="text-[12px] text-[rgba(255,255,255,0.35)] font-manrope">

@@ -45,7 +45,7 @@ export function SidebarNav({ collapsed }: SidebarNavProps) {
               {Icon && (
                 <Icon
                   size={20}
-                  strokeWidth={1.8}
+                  strokeWidth={1.5}
                   className={`shrink-0 transition-colors ${
                     isActive ? 'text-white' : 'text-white/50 group-hover:text-white/70'
                   }`}
