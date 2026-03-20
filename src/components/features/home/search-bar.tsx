@@ -9,18 +9,21 @@ interface SearchBarProps {
 
 export function SearchBar({ value, onChange }: SearchBarProps) {
   return (
-    <div className="flex items-center gap-2.5 rounded-[14px] px-4 h-10 w-full max-w-[320px] shrink-0 bg-[rgba(57,55,91,0.25)] border border-white/[0.03]">
-      <Search size={16} className="shrink-0 text-white/40" />
+    <div
+      className="flex items-center gap-[10px] rounded-[14px] px-[16px] h-[40px] w-full max-w-[320px] transition-colors shrink-0"
+      style={{ backgroundColor: 'rgba(57,55,91,0.25)', border: '1px solid rgba(255,255,255,0.03)' }}
+    >
+      <Search size={16} className="shrink-0 text-[rgba(255,255,255,0.4)]" />
       <input
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder="Поиск нейросети..."
-        className="bg-transparent outline-none text-sm text-white w-full placeholder:text-white/30"
+        className="bg-transparent outline-none font-manrope font-medium text-[14px] text-white w-full"
       />
       {value && (
         <button
           onClick={() => onChange('')}
-          className="text-white/40 hover:text-white text-lg cursor-pointer shrink-0"
+          className="text-[rgba(255,255,255,0.4)] hover:text-white text-[18px] cursor-pointer shrink-0"
         >
           &times;
         </button>

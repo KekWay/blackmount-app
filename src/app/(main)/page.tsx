@@ -64,7 +64,7 @@ export default function HomePage() {
       </header>
 
       {/* Filters + Search */}
-      <div className="flex items-center justify-between gap-[16px] mb-[24px] flex-wrap">
+      <div className="flex items-center justify-between gap-[16px] mb-[24px]">
         <FilterTabs activeFilter={activeFilter} onFilterChange={setActiveFilter} />
         <SearchBar value={searchQuery} onChange={setSearchQuery} />
       </div>

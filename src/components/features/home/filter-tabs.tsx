@@ -17,15 +17,15 @@ interface FilterTabsProps {
 
 export function FilterTabs({ activeFilter, onFilterChange }: FilterTabsProps) {
   return (
-    <div className="flex items-center flex-wrap gap-2">
+    <div className="flex items-center flex-wrap gap-[8px]">
       {FILTERS.map((f) => (
         <button
           key={f.key}
           onClick={() => onFilterChange(f.key)}
-          className={`h-9 rounded-xl px-[18px] text-[13px] font-medium transition-colors cursor-pointer ${
+          className={`h-[35.5px] rounded-[12px] px-[18px] font-manrope font-medium text-[13px] transition-colors cursor-pointer ${
             activeFilter === f.key
               ? 'bg-[#39375b] text-white'
-              : 'bg-white/[0.04] text-white/40 hover:bg-white/[0.08] hover:text-white/60'
+              : 'bg-[rgba(255,255,255,0.04)] text-[rgba(255,255,255,0.4)]'
           }`}
         >
           {f.label}

@@ -41,14 +41,14 @@ export function TrendingModels() {
         </div>
         <button
           onClick={() => router.push('/rating')}
-          className="flex items-center gap-[6px] px-[12px] py-[6px] rounded-[12px] bg-[rgba(255,255,255,0.04)] text-[11px] text-[rgba(255,255,255,0.4)] cursor-pointer hover:bg-[rgba(255,255,255,0.08)] transition-colors font-semibold"
+          className="flex items-center gap-[5px] px-[12px] py-[6px] rounded-[10px] bg-[rgba(98,98,99,0.08)] text-[11px] text-[#707071] cursor-pointer hover:bg-[rgba(98,98,99,0.15)] transition-all font-semibold"
         >
           <TrendingUp size={12} /> Рейтинг <ArrowRight size={10} />
         </button>
       </div>
 
       {/* Top 3 podium */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-[16px] mb-[16px]">
+      <div className="grid grid-cols-3 gap-[16px] mb-[16px]">
         {top3.map((tm, idx) => {
           const m = aiModels.find((a) => a.id === tm.id)
           if (!m) return null
@@ -80,10 +80,10 @@ export function TrendingModels() {
                 <div className="flex items-center gap-[6px]">
                   <TrendingUp
                     size={14}
-                    className={tm.change >= 0 ? 'text-green-400' : 'text-red-400'}
+                    className={tm.change >= 0 ? 'text-[#4ade80]' : 'text-[#f87171]'}
                   />
                   <span
-                    className={`text-[12px] font-bold ${tm.change >= 0 ? 'text-green-400' : 'text-red-400'}`}
+                    className={`text-[12px] font-bold ${tm.change >= 0 ? 'text-[#4ade80]' : 'text-[#f87171]'}`}
                   >
                     {Math.abs(tm.change)}%
                   </span>
@@ -99,7 +99,7 @@ export function TrendingModels() {
       </div>
 
       {/* Positions 4-8 */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-[12px]">
+      <div className="grid grid-cols-5 gap-[12px]">
         {rest.map((tm, idx) => {
           const m = aiModels.find((a) => a.id === tm.id)
           if (!m) return null
@@ -112,7 +112,7 @@ export function TrendingModels() {
               onClick={() => router.push(`/chat/${tm.id}`)}
               className="group relative rounded-[14px] p-[12px] border border-[rgba(255,255,255,0.05)] bg-[#1a1924] transition-all duration-300 hover:-translate-y-1 hover:border-[rgba(136,138,229,0.3)] text-left flex flex-col gap-[10px] overflow-hidden"
             >
-              <div className="flex items-center justify-between w-full">
+              <div className="flex items-center justify-between w-full relative z-10">
                 <div className="flex items-center gap-[6px]">
                   <span className="text-[14px] font-extrabold text-[rgba(255,255,255,0.2)]">
                     #{realIdx + 1}
@@ -121,6 +121,7 @@ export function TrendingModels() {
                     {catLabel}
                   </span>
                 </div>
+                <ModelIcon modelId={tm.id} size={20} />
               </div>
               <div className="flex flex-col min-w-0">
                 <p className="text-[13px] font-bold text-white truncate">{tm.versionLabel}</p>
@@ -130,7 +131,7 @@ export function TrendingModels() {
               </div>
               <div className="flex items-center justify-between mt-auto pt-[4px]">
                 <span
-                  className={`text-[10px] font-bold ${tm.change >= 0 ? 'text-green-400' : 'text-red-400'}`}
+                  className={`text-[10px] font-bold ${tm.change >= 0 ? 'text-[#4ade80]' : 'text-[#f87171]'}`}
                 >
                   {tm.change >= 0 ? '↑' : '↓'}
                   {Math.abs(tm.change)}%
