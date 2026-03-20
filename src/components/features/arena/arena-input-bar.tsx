@@ -1,0 +1,66 @@
+'use client'
+
+import { useRef, useEffect } from 'react'
+import { ArrowUp } from 'lucide-react'
+import { IMG_COIN } from './arena-data'
+
+interface Props {
+  prompt: string
+  totalCost: number
+  canSend: boolean
+  onPromptChange: (v: string) => void
+  onSend: () => void
+}
+
+export function ArenaInputBar({ prompt, totalCost, canSend, onPromptChange, onSend }: Props) {
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto'
+      textareaRef.current.style.height = Math.min(textareaRef.current.scrollHeight, 120) + 'px'
+    }
+  }, [prompt])
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); onSend() }
+  }
+
+  return (
+    <div className="flex justify-center pb-[28px] px-[40px] shrink-0 relative z-[20]">
+      <div className="w-full max-w-[620px] flex flex-col gap-[6px]">
+        <div className="bg-[rgba(61,57,80,0.5)] ring-1 ring-[rgba(255,255,255,0.05)] rounded-[30px] w-full flex flex-col relative shadow-lg">
+          <textarea
+            ref={textareaRef}
+            className="bg-transparent resize-none outline-none leading-[22px] text-[14px] text-white placeholder-[#898787] px-[26px] pt-[18px] pb-[6px] w-full"
+            placeholder="Напишите запрос для сравнения моделей"
+            rows={1}
+            value={prompt}
+            onChange={(e) => onPromptChange(e.target.value)}
+            onKeyDown={handleKeyDown}
+            style={{ minHeight: 44, maxHeight: 120 }}
+          />
+          <div className="flex items-center justify-between px-[22px] pb-[14px] relative z-[1]">
+            <div className="flex items-center gap-[8px]">
+              <span className="leading-[22px] text-[15px] text-[#d5d4d4] font-extrabold">{totalCost || 0}</span>
+              <div className="relative size-[14px]">
+                <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={IMG_COIN} />
+              </div>
+            </div>
+            <div className="flex items-center gap-[6px]">
+              {canSend ? (
+                <button onClick={onSend} className="size-[28px] rounded-full bg-[#888ae5] hover:bg-[#9a9cf0] flex items-center justify-center cursor-pointer transition-colors" title="Отправить">
+                  <ArrowUp size={15} className="text-white" />
+                </button>
+              ) : (
+                <div className="size-[28px] rounded-full bg-[rgba(255,255,255,0.06)] flex items-center justify-center">
+                  <ArrowUp size={15} className="text-[rgba(255,255,255,0.15)]" />
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

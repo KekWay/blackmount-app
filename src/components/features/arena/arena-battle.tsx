@@ -1,149 +1,107 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
-import { Swords, RotateCcw } from 'lucide-react'
-import { getModelsByCategory, type ArenaModel } from '@/data/arena-models'
-import { ModelComparison } from './model-comparison'
-import { VoteControls } from './vote-controls'
-import { ArenaSetup } from './arena-setup'
-
-type Phase = 'idle' | 'generating' | 'voting' | 'winner'
-type Category = 'text' | 'image' | 'video'
-
-interface ModelResponse {
-  model: ArenaModel
-  text: string
-}
-
-const CATEGORY_LABELS: Record<Category, string> = {
-  text: 'Текст',
-  image: 'Изображения',
-  video: 'Видео',
-}
-
-const MOCK_RESPONSES = [
-  'Это демо-ответ. В реальном приложении здесь был бы ответ от нейросети на ваш запрос.',
-  'Вот мой ответ на ваш вопрос. Это демонстрационный режим — реальная генерация пока недоступна.',
-  'Ответ сгенерирован в демо-режиме. Полноценная интеграция с моделью будет доступна позже.',
-  'Демонстрационный ответ от модели. Скоро здесь появится настоящая генерация.',
-]
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useAuthStore } from '@/stores/auth'
+import { useBalanceStore } from '@/stores/balance'
+import { useSubscriptionStore } from '@/stores/subscription'
+import { useRequestLimiterStore } from '@/stores/request-limiter'
+import { SubscriptionGateModal } from '@/components/shared/subscription-gate'
+import type { ArenaModel, ArenaCategory } from '@/data/arena-models'
+import type { Phase, ModelResponse } from './arena-data'
+import { ARENA_LOCKED_IDS, getMock } from './arena-data'
+import { ArenaTopBar } from './arena-top-bar'
+import { ArenaIdleView } from './arena-idle-view'
+import { ArenaGeneratingView } from './arena-generating-view'
+import { ArenaVotingView } from './arena-voting-view'
+import { ArenaWinnerView } from './arena-winner-view'
+import { ArenaInputBar } from './arena-input-bar'
+import { ArenaInputHints } from './arena-input-hints'
+import { ArenaLimitModal } from './arena-limit-modal'
 
 export function ArenaBattle() {
-  const [category, setCategory] = useState<Category>('text')
-  const [selected, setSelected] = useState<ArenaModel[]>([])
+  const router = useRouter()
+  const isLoggedIn = useAuthStore((s) => s.isLoggedIn)
+  const { balance, deductBalance } = useBalanceStore()
+  const hasSub = useSubscriptionStore((s) => s.hasActiveSubscription())
+  const { canMakeRequest, consumeRequest, getRemainingRequests } = useRequestLimiterStore()
+
+  const [category, setCategory] = useState<ArenaCategory>('text')
+  const [selectedModels, setSelectedModels] = useState<ArenaModel[]>([])
   const [prompt, setPrompt] = useState('')
   const [phase, setPhase] = useState<Phase>('idle')
   const [responses, setResponses] = useState<ModelResponse[]>([])
   const [winnerId, setWinnerId] = useState<string | null>(null)
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const [savedIds, setSaved] = useState<Set<string>>(new Set())
+  const [ratedId, setRatedId] = useState<string | null>(null)
+  const [currentPrompt, setCurrentPrompt] = useState('')
+  const [showLosers, setShowLosers] = useState(true)
+  const [expandedId, setExpandedId] = useState<string | null>(null)
+  const [showLimitReached, setShowLimitReached] = useState(false)
+  const [gateOpen, setGateOpen] = useState(false)
+  const [gateModelName, setGateModelName] = useState('')
 
-  const models = getModelsByCategory(category)
+  const totalCost = selectedModels.reduce((s, m) => s + m.price, 0)
+  const canAfford = balance >= totalCost
+  const canSend = selectedModels.length >= 2 && prompt.trim().length > 0 && canAfford && phase === 'idle'
+  const gridCols = 2
 
-  const toggleModel = useCallback((model: ArenaModel) => {
-    setSelected((prev) => {
-      const exists = prev.find((m) => m.id === model.id)
-      if (exists) return prev.filter((m) => m.id !== model.id)
-      if (prev.length >= 4) return prev
-      return [...prev, model]
-    })
-  }, [])
+  const toggle = (m: ArenaModel) => {
+    if (!hasSub && ARENA_LOCKED_IDS.has(m.id)) {
+      setGateModelName(m.name); setGateOpen(true); return
+    }
+    setSelectedModels((p) => p.find((x) => x.id === m.id) ? p.filter((x) => x.id !== m.id) : p.length >= 4 ? p : [...p, m])
+  }
 
-  const handleGenerate = useCallback(() => {
-    if (!prompt.trim() || selected.length < 2) return
-    setPhase('generating')
-    setWinnerId(null)
-    setResponses(selected.map((m) => ({ model: m, text: '' })))
-
-    timerRef.current = setTimeout(() => {
-      setResponses(
-        selected.map((m, i) => ({
-          model: m,
-          text: `[${m.name}] ${MOCK_RESPONSES[i % MOCK_RESPONSES.length]}`,
-        })),
-      )
+  const send = () => {
+    if (!canSend) return
+    if (!isLoggedIn) { router.push('/auth'); return }
+    if (!canMakeRequest()) { setShowLimitReached(true); return }
+    consumeRequest()
+    setCurrentPrompt(prompt); setPrompt(''); setPhase('generating')
+    setWinnerId(null); setSaved(new Set()); setRatedId(null); setShowLosers(true)
+    deductBalance(totalCost)
+    setTimeout(() => {
+      setResponses(selectedModels.map((m) => ({ model: m, text: getMock(m) })))
       setPhase('voting')
-    }, 2000)
-  }, [prompt, selected])
+    }, 1200 + Math.random() * 800)
+  }
 
-  const handleVote = useCallback((id: string | null) => {
-    setWinnerId(id)
-    setPhase('winner')
-  }, [])
+  const vote = (modelId: string) => {
+    if (phase !== 'voting') return
+    setWinnerId(modelId); setPhase('winner')
+    setTimeout(() => setShowLosers(false), 600)
+  }
 
-  const handleReset = useCallback(() => {
-    if (timerRef.current) clearTimeout(timerRef.current)
-    setPhase('idle')
-    setPrompt('')
-    setResponses([])
-    setWinnerId(null)
-    setSelected([])
-  }, [])
+  const save = (id: string) => setSaved((p) => new Set(p).add(id))
+  const goChat = (m: ArenaModel) => {
+    const winResp = responses.find((r) => r.model.id === m.id)
+    if (winResp && currentPrompt) {
+      sessionStorage.setItem('arena_continue', JSON.stringify({ prompt: currentPrompt, response: winResp.text, modelName: winResp.model.name }))
+    }
+    router.push(`/chat/${m.aiModelRef || m.id}`)
+  }
+  const toggleExpand = (id: string) => setExpandedId((prev) => prev === id ? null : id)
+  const reset = () => { setPhase('idle'); setResponses([]); setWinnerId(null); setSaved(new Set()); setRatedId(null); setCurrentPrompt(''); setShowLosers(true); setExpandedId(null) }
+  const winnerResponse = responses.find((r) => r.model.id === winnerId)
 
   return (
-    <div className="w-full h-full overflow-y-auto px-6 lg:px-10 pt-8 pb-10">
-      <header className="mb-6">
-        <div className="flex items-center gap-3 mb-1">
-          <Swords size={28} className="text-primary" />
-          <h1 className="font-maven font-extrabold text-4xl text-white">Арена</h1>
-        </div>
-        <p className="text-[15px] text-white/40">
-          Сравните ответы 2–4 моделей на один и тот же запрос
-        </p>
-      </header>
-
-      {/* Category tabs */}
-      <div className="flex gap-2 mb-6">
-        {(Object.keys(CATEGORY_LABELS) as Category[]).map((cat) => (
-          <button
-            key={cat}
-            onClick={() => { setCategory(cat); setSelected([]) }}
-            className={`rounded-xl px-4 py-2 text-sm font-medium transition-all ${
-              category === cat
-                ? 'bg-primary text-white'
-                : 'bg-white/[0.06] text-white/60 hover:bg-white/10'
-            }`}
-          >
-            {CATEGORY_LABELS[cat]}
-          </button>
-        ))}
+    <div className="flex flex-col h-full w-full">
+      <ArenaTopBar selectedModels={selectedModels} totalCost={totalCost} onToggle={toggle} onCategoryChange={setCategory} />
+      <div className="flex-1 overflow-y-auto chat-scrollbar">
+        {phase === 'idle' && <ArenaIdleView selectedModels={selectedModels} gridCols={gridCols} />}
+        {phase === 'generating' && <ArenaGeneratingView currentPrompt={currentPrompt} selectedModels={selectedModels} gridCols={gridCols} />}
+        {phase === 'voting' && <ArenaVotingView currentPrompt={currentPrompt} responses={responses} gridCols={gridCols} expandedId={expandedId} onVote={vote} onToggleExpand={toggleExpand} />}
+        {phase === 'winner' && winnerResponse && <ArenaWinnerView currentPrompt={currentPrompt} responses={responses} winnerResponse={winnerResponse} winnerId={winnerId!} gridCols={gridCols} showLosers={showLosers} savedIds={savedIds} ratedId={ratedId} onSave={save} onRate={setRatedId} onReset={reset} onGoChat={goChat} />}
       </div>
-
-      {(phase === 'idle' || phase === 'generating') && (
-        <ArenaSetup
-          models={models}
-          selected={selected}
-          prompt={prompt}
-          generating={phase === 'generating'}
-          onToggleModel={toggleModel}
-          onPromptChange={setPrompt}
-          onGenerate={handleGenerate}
-        />
+      {(phase === 'idle' || phase === 'winner') && (
+        <>
+          <ArenaInputHints selectedModels={selectedModels} canAfford={canAfford} totalCost={totalCost} balance={balance} />
+          <ArenaInputBar prompt={prompt} totalCost={totalCost} canSend={canSend} onPromptChange={setPrompt} onSend={send} />
+        </>
       )}
-
-      {responses.length > 0 && (
-        <ModelComparison responses={responses} winnerId={winnerId} />
-      )}
-
-      {phase === 'voting' && (
-        <VoteControls models={selected} onVote={handleVote} disabled={false} />
-      )}
-
-      {phase === 'winner' && (
-        <div className="flex flex-col items-center gap-4 mt-6">
-          <p className="text-sm text-white/50">
-            {winnerId
-              ? `Победитель: ${selected.find((m) => m.id === winnerId)?.name}`
-              : 'Ничья!'}
-          </p>
-          <button
-            onClick={handleReset}
-            className="flex items-center gap-2 rounded-xl bg-white/[0.06] px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-white/10"
-          >
-            <RotateCcw size={16} />
-            <span>Новое сравнение</span>
-          </button>
-        </div>
-      )}
+      <ArenaLimitModal open={showLimitReached} onClose={() => setShowLimitReached(false)} />
+      <SubscriptionGateModal open={gateOpen} onClose={() => setGateOpen(false)} modelName={gateModelName} />
     </div>
   )
 }
