@@ -1,116 +1,90 @@
 'use client'
 
-import { useState } from 'react'
-import Image from 'next/image'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { aiModels } from '@/data/ai-models'
-import { MODEL_ASSETS } from '@/lib/assets'
-import type { ModelId } from '@/lib/assets'
-import { ChevronRight } from 'lucide-react'
+import { getModelDocs } from '@/components/features/knowledge/knowledge-data'
+import { KnowledgeSidebar } from '@/components/features/knowledge/knowledge-sidebar'
+import { KnowledgeContent } from '@/components/features/knowledge/knowledge-content'
+import { KnowledgeToc } from '@/components/features/knowledge/knowledge-toc'
 
 export default function KnowledgePage() {
-  const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [selectedModelId, setSelectedModelId] = useState('chatgpt')
+  const [activeInstruction, setActiveInstruction] = useState(0)
+  const [activeSection, setActiveSection] = useState('about')
+  const contentRef = useRef<HTMLDivElement>(null)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({})
 
-  const selectedModel = aiModels.find((m) => m.id === selectedId)
+  const model = aiModels.find((m) => m.id === selectedModelId) || aiModels[0]
+  const docs = getModelDocs(model)
+  const glowColor = model.glowColors[0] || '#888ae5'
+
+  /* scroll to section */
+  const scrollToSection = useCallback((sectionId: string) => {
+    setActiveSection(sectionId)
+    const el = sectionRefs.current[sectionId]
+    if (el && scrollContainerRef.current) {
+      const top = el.offsetTop - (contentRef.current?.offsetTop || 0) - 24
+      scrollContainerRef.current.scrollTo({ top, behavior: 'smooth' })
+    }
+  }, [])
+
+  /* Track scroll position to highlight active section */
+  useEffect(() => {
+    const container = scrollContainerRef.current
+    if (!container) return
+    const handler = () => {
+      const scrollTop = container.scrollTop + 100
+      let current = docs.sections[0]?.id
+      for (const sec of docs.sections) {
+        const el = sectionRefs.current[sec.id]
+        if (el && el.offsetTop - (contentRef.current?.offsetTop || 0) <= scrollTop) {
+          current = sec.id
+        }
+      }
+      if (current) setActiveSection(current)
+    }
+    container.addEventListener('scroll', handler, { passive: true })
+    return () => container.removeEventListener('scroll', handler)
+  }, [docs.sections])
+
+  /* Reset instruction when model changes */
+  useEffect(() => {
+    setActiveInstruction(0)
+    setActiveSection('about')
+    scrollContainerRef.current?.scrollTo({ top: 0 })
+  }, [selectedModelId])
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-8">
-      <h1 className="mb-6 text-2xl font-bold text-foreground">
-        База знаний
-      </h1>
+    <div className="w-full h-full flex overflow-hidden">
+      {/* LEFT SIDEBAR */}
+      <KnowledgeSidebar
+        selectedModelId={selectedModelId}
+        onSelectModel={setSelectedModelId}
+      />
 
-      {!selectedModel ? (
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {aiModels.map((model) => {
-            const assets = MODEL_ASSETS[model.id as ModelId]
-            return (
-              <button
-                key={model.id}
-                onClick={() => setSelectedId(model.id)}
-                className="flex items-center gap-3 rounded-xl bg-card p-4 text-left transition-colors hover:bg-muted"
-              >
-                {assets?.colorLogo && (
-                  <Image
-                    src={assets.colorLogo}
-                    alt=""
-                    width={40}
-                    height={40}
-                    className="size-10 shrink-0 rounded-lg"
-                  />
-                )}
-                <div className="min-w-0 flex-1">
-                  <p className="font-semibold text-foreground">{model.name}</p>
-                  <p className="text-xs capitalize text-muted-foreground">
-                    {model.category} / {model.versions.length} версий
-                  </p>
-                </div>
-                <ChevronRight className="size-4 shrink-0 text-muted-foreground" />
-              </button>
-            )
-          })}
+      {/* MAIN CONTENT */}
+      <div ref={scrollContainerRef} className="flex-1 min-w-0 flex overflow-y-auto chat-scrollbar">
+        <div ref={contentRef} className="flex-1 min-w-0">
+          <KnowledgeContent
+            model={model}
+            docs={docs}
+            glowColor={glowColor}
+            activeInstruction={activeInstruction}
+            onSetActiveInstruction={setActiveInstruction}
+            sectionRefs={sectionRefs}
+          />
         </div>
-      ) : (
-        <div>
-          <button
-            onClick={() => setSelectedId(null)}
-            className="mb-4 text-sm text-primary hover:underline"
-          >
-            &larr; Назад к списку
-          </button>
 
-          <div className="rounded-2xl bg-card p-6">
-            <div className="mb-4 flex items-center gap-3">
-              {MODEL_ASSETS[selectedModel.id as ModelId]?.colorLogo && (
-                <Image
-                  src={MODEL_ASSETS[selectedModel.id as ModelId].colorLogo}
-                  alt=""
-                  width={48}
-                  height={48}
-                  className="size-12 rounded-xl"
-                />
-              )}
-              <div>
-                <h2 className="text-xl font-bold text-foreground">
-                  {selectedModel.name}
-                </h2>
-                <p className="text-sm capitalize text-muted-foreground">
-                  Категория: {selectedModel.category}
-                </p>
-              </div>
-            </div>
-
-            <h3 className="mb-3 text-sm font-semibold text-foreground">
-              Версии
-            </h3>
-            <div className="flex flex-col gap-2">
-              {selectedModel.versions.map((v) => (
-                <div
-                  key={v.id}
-                  className="flex items-center justify-between rounded-xl bg-muted p-3"
-                >
-                  <div>
-                    <p className="text-sm font-medium text-foreground">
-                      {v.label}
-                    </p>
-                    {v.description && (
-                      <p className="text-xs text-muted-foreground">
-                        {v.description}
-                      </p>
-                    )}
-                  </div>
-                  <div className="text-right">
-                    <p className="text-sm font-semibold text-foreground">
-                      {v.price} монет
-                    </p>
-                    <p className="text-xs capitalize text-muted-foreground">
-                      {v.tier}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
+        {/* RIGHT: Table of contents */}
+        <KnowledgeToc
+          sections={docs.sections}
+          activeSection={activeSection}
+          onScrollToSection={scrollToSection}
+          modelId={model.id}
+          modelName={model.name}
+        />
+      </div>
     </div>
   )
 }
