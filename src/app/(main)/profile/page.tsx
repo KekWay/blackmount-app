@@ -64,7 +64,7 @@ export default function ProfilePage() {
               {tabTitles[activeTab]}
             </p>
             <button
-              onClick={() => router.back()}
+              onClick={() => router.push('/')}
               className="text-[rgba(255,255,255,0.35)] hover:text-white transition-colors cursor-pointer font-manrope font-medium text-[13px] flex items-center gap-[6px] bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255,255,255,0.08)] rounded-[10px] px-[14px] py-[7px]"
             >
               {'\u2715'} Закрыть

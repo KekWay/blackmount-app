@@ -44,9 +44,9 @@ export function SidebarUserMenu({ collapsed, hasActiveSub, onClose }: SidebarUse
       <MenuItem onClick={() => go('/profile')} icon={<MaskIcon src={PROFILE_MASK} />} label="Профиль" />
 
       {hasActiveSub ? (
-        <MenuItem onClick={() => go('/profile?tab=subscription')} icon={<Image src={APP_ASSETS.logo} alt="" width={15} height={15} className="opacity-60" />} label="Обновить подписку" />
+        <MenuItem onClick={() => go('/subscription')} icon={<Image src={APP_ASSETS.logo} alt="" width={15} height={15} className="opacity-60" />} label="Обновить подписку" />
       ) : (
-        <SubscribeItem onClick={() => go('/profile?tab=subscription')} />
+        <SubscribeItem onClick={() => go('/subscription')} />
       )}
 
       <TopupItem onClick={() => go('/profile?tab=topup')} />
