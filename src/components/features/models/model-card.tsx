@@ -4,63 +4,72 @@ import { Sparkles } from 'lucide-react'
 import type { AIModel } from '@/types'
 import { isModelNew } from '@/data/ai-models'
 
-const CARD_CONFIGS: Record<string, {
-  whiteLogo: string
-  logoStyle: React.CSSProperties
-  logoSize: { w: number; h: number }
-  textStyle: React.CSSProperties
-  fontSize?: number
-  useMask?: boolean
-}> = {
+/* SVG path for rounded card shape (NanoBanana) */
+const SVG_CARD_PATH = 'M0 20C0 8.95431 8.9543 0 20 0H138C149.046 0 158 8.9543 158 20V93C158 104.046 149.046 113 138 113H20C8.9543 113 0 104.046 0 93V20Z'
+
+/* ── Logo config types matching FigmaModelCard.tsx ── */
+interface LogoImg { type: 'img'; src: string; left: number; top: number; width: number; height: number }
+interface LogoMask { type: 'mask'; src: string; left: number; top: number; width: number; height: number; maskSize: string; maskPosition: string }
+
+interface CardConfig {
+  gradient: string
+  bgType: 'div' | 'svg'
+  bgOpacity: number
+  svgGradientStops?: { offset: number; color: string }[]
+  text: { left: number; top: number; width: number; fontSize: number }
+  logo: LogoImg | LogoMask
+}
+
+/* ── Configs copied from FigmaModelCard.tsx CARD_CONFIGS ── */
+const CONFIGS: Record<string, CardConfig> = {
   chatgpt: {
-    whiteLogo: '/assets/models/876f00be72e92b592aa3ba2811a95ebda9f1bffe.png',
-    logoStyle: { left: 16, top: 37 },
-    logoSize: { w: 28, h: 28 },
-    textStyle: { left: 52, top: 51 },
-    useMask: true,
+    gradient: 'linear-gradient(120.356deg, rgb(75, 219, 82) 1.0121%, rgb(148, 185, 133) 98.988%)',
+    bgType: 'div', bgOpacity: 0.65,
+    text: { left: 52, top: 51, width: 153, fontSize: 20 },
+    logo: { type: 'mask', src: '/assets/models/876f00be72e92b592aa3ba2811a95ebda9f1bffe.png', left: 16, top: 37, width: 35.636, height: 40.727, maskSize: '28px 28px', maskPosition: '3.817px 6.364px' },
   },
   claude: {
-    whiteLogo: '/assets/models/be562ae4a77434313994bd749c7d70c57defe30e.png',
-    logoStyle: { left: 29, top: 43 },
-    logoSize: { w: 28, h: 28 },
-    textStyle: { left: 63, top: 50 },
+    gradient: 'linear-gradient(120.356deg, rgb(255, 200, 123) 1.0121%, rgb(255, 166, 0) 43.678%, rgb(255, 158, 3) 98.988%)',
+    bgType: 'div', bgOpacity: 0.65,
+    text: { left: 63, top: 50, width: 75, fontSize: 20 },
+    logo: { type: 'img', src: '/assets/models/be562ae4a77434313994bd749c7d70c57defe30e.png', left: 29, top: 43, width: 28, height: 28 },
   },
   gemini: {
-    whiteLogo: '/assets/models/a755291aabbac793a93ec93f8895cd304da22fa6.png',
-    logoStyle: { left: 10, top: 31 },
-    logoSize: { w: 46, h: 58 },
-    textStyle: { left: 58, top: 51 },
+    gradient: 'linear-gradient(120.356deg, rgb(96, 151, 228) 1.0121%, rgb(100, 70, 111) 93.807%)',
+    bgType: 'div', bgOpacity: 0.65,
+    text: { left: 58, top: 51, width: 75, fontSize: 20 },
+    logo: { type: 'img', src: '/assets/models/a755291aabbac793a93ec93f8895cd304da22fa6.png', left: 10, top: 31, width: 46, height: 58 },
   },
   nanobanana: {
-    whiteLogo: '/assets/models/e4164d5835b2d0292379d5cc43cd89624200875e.png',
-    logoStyle: { left: 7, top: 43 },
-    logoSize: { w: 28, h: 28 },
-    textStyle: { left: 43, top: 52 },
-    fontSize: 17,
+    gradient: '',
+    bgType: 'svg', bgOpacity: 0.85,
+    svgGradientStops: [{ offset: 0, color: '#CBD03C' }, { offset: 1, color: '#DCCA7A' }],
+    text: { left: 43, top: 52, width: 109, fontSize: 17 },
+    logo: { type: 'img', src: '/assets/models/e4164d5835b2d0292379d5cc43cd89624200875e.png', left: 7, top: 43, width: 28, height: 28 },
   },
   flux: {
-    whiteLogo: '/assets/models/2a08c8247eb8ff9ca7960267e118bd33a85fbaf9.png',
-    logoStyle: { left: 25, top: 32 },
-    logoSize: { w: 50, h: 50 },
-    textStyle: { left: 71, top: 51 },
+    gradient: 'linear-gradient(120.356deg, rgb(230, 15, 19) 1.0121%, rgb(169, 98, 98) 98.988%)',
+    bgType: 'div', bgOpacity: 0.65,
+    text: { left: 71, top: 51, width: 75, fontSize: 20 },
+    logo: { type: 'img', src: '/assets/models/2a08c8247eb8ff9ca7960267e118bd33a85fbaf9.png', left: 25, top: 32, width: 50, height: 50 },
   },
   sora2: {
-    whiteLogo: '/assets/models/608060ad652feef63d189ada2f7bee4e5de1ade7.png',
-    logoStyle: { left: 28, top: 42 },
-    logoSize: { w: 28, h: 28 },
-    textStyle: { left: 64, top: 48 },
+    gradient: 'linear-gradient(120.356deg, rgb(38, 207, 241) 1.0121%, rgb(111, 222, 240) 98.988%)',
+    bgType: 'div', bgOpacity: 0.65,
+    text: { left: 64, top: 48, width: 75, fontSize: 20 },
+    logo: { type: 'img', src: '/assets/models/608060ad652feef63d189ada2f7bee4e5de1ade7.png', left: 28, top: 42, width: 28, height: 28 },
   },
   kling: {
-    whiteLogo: '/assets/models/870622b36d40395068506055c2814966d24d175e.png',
-    logoStyle: { left: 35, top: 42 },
-    logoSize: { w: 28, h: 28 },
-    textStyle: { left: 69, top: 50 },
+    gradient: 'linear-gradient(120.356deg, rgb(27, 254, 39) 1.0121%, rgb(15, 105, 223) 98.988%)',
+    bgType: 'div', bgOpacity: 0.65,
+    text: { left: 69, top: 50, width: 75, fontSize: 20 },
+    logo: { type: 'img', src: '/assets/models/870622b36d40395068506055c2814966d24d175e.png', left: 35, top: 42, width: 28, height: 28 },
   },
   veo31: {
-    whiteLogo: '/assets/models/a755291aabbac793a93ec93f8895cd304da22fa6.png',
-    logoStyle: { left: 11, top: 30 },
-    logoSize: { w: 46, h: 58 },
-    textStyle: { left: 60, top: 49 },
+    gradient: 'linear-gradient(120.356deg, rgb(113, 136, 227) 40.108%, rgb(226, 105, 78) 93.807%)',
+    bgType: 'div', bgOpacity: 0.65,
+    text: { left: 60, top: 49, width: 153, fontSize: 20 },
+    logo: { type: 'img', src: '/assets/models/a755291aabbac793a93ec93f8895cd304da22fa6.png', left: 11, top: 30, width: 46, height: 58 },
   },
 }
 
@@ -71,67 +80,69 @@ interface ModelCardProps {
 }
 
 export function ModelCard({ model, locked, onClick }: ModelCardProps) {
-  const cfg = CARD_CONFIGS[model.id]
+  const cfg = CONFIGS[model.id]
+  if (!cfg) return null
 
   return (
-    <button
+    <div
+      className="h-[113px] w-[158px] cursor-pointer hover:scale-105 transition-transform duration-300 rounded-[20px] relative group will-change-transform"
+      style={{ transform: 'translateZ(0)' }}
       onClick={locked ? undefined : onClick}
-      className="group relative h-[113px] w-[158px] rounded-[20px] overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300 will-change-transform"
     >
+      {/* Subtle outer glow on hover */}
       <div
-        className="absolute -inset-2 rounded-[28px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{
-          background: `radial-gradient(ellipse at center, ${model.glowColors[0] ?? 'rgba(136,138,229,0.15)'}26, transparent 70%)`,
-        }}
+        className="absolute -inset-[8px] rounded-[28px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{ background: `radial-gradient(ellipse at center, ${model.glowColors?.[0] || 'rgba(136,138,229,0.15)'}15, transparent 70%)` }}
       />
+      <article className="relative size-full rounded-[20px] overflow-hidden" style={locked ? { filter: 'brightness(0.6)' } : undefined}>
+        {/* Background — exact original */}
+        {cfg.bgType === 'svg' ? (
+          <svg className="absolute block h-[113px] left-0 top-0 w-[158px]" fill="none" preserveAspectRatio="none" viewBox="0 0 158 113" aria-hidden="true">
+            <path d={SVG_CARD_PATH} fill={`url(#paint_${model.id})`} opacity={cfg.bgOpacity} />
+            <defs>
+              <linearGradient gradientUnits="userSpaceOnUse" id={`paint_${model.id}`} x1="-1.40025e-07" x2="163.546" y1="-1.08207" y2="94.6996">
+                {cfg.svgGradientStops?.map((stop, i) => (<stop key={i} offset={stop.offset} stopColor={stop.color} />))}
+              </linearGradient>
+            </defs>
+          </svg>
+        ) : (
+          <div className="absolute h-[113px] left-0 rounded-[20px] top-0 w-[158px]" style={{ backgroundImage: cfg.gradient, opacity: cfg.bgOpacity }} />
+        )}
 
-      <div
-        className={`relative size-full rounded-[20px] ${locked ? 'brightness-[0.6]' : ''}`}
-        style={{ background: model.gradient, opacity: 0.65 }}
-      />
+        {/* Name — exact original className */}
+        <span
+          className="absolute font-maven font-extrabold h-[29px] leading-[10px] text-white whitespace-pre-wrap"
+          style={{ left: cfg.text.left, top: cfg.text.top, width: cfg.text.width, fontSize: cfg.text.fontSize }}
+        >
+          {model.name}
+        </span>
 
-      {cfg && (
-        <>
-          <img
-            src={cfg.whiteLogo}
-            alt=""
-            className="absolute object-contain brightness-0 invert"
-            style={{
-              ...cfg.logoStyle,
-              width: cfg.logoSize.w,
-              height: cfg.logoSize.h,
-              position: 'absolute',
-            }}
-          />
-          <span
-            className="absolute font-maven font-extrabold text-white"
-            style={{
-              ...cfg.textStyle,
-              fontSize: cfg.fontSize ?? 20,
-              position: 'absolute',
-            }}
-          >
-            {model.name}
-          </span>
-        </>
+        {/* Logo — exact original: mask for chatgpt, img+invert for others */}
+        {cfg.logo.type === 'mask' ? (
+          <div className="absolute bg-white" aria-hidden="true" style={{ left: cfg.logo.left, top: cfg.logo.top, width: cfg.logo.width, height: cfg.logo.height, maskImage: `url('${cfg.logo.src}')`, WebkitMaskImage: `url('${cfg.logo.src}')`, maskSize: cfg.logo.maskSize, WebkitMaskSize: cfg.logo.maskSize, maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: cfg.logo.maskPosition, WebkitMaskPosition: cfg.logo.maskPosition }} />
+        ) : (
+          <img alt="" className="absolute max-w-none object-cover pointer-events-none brightness-0 invert" style={{ left: cfg.logo.left, top: cfg.logo.top, width: cfg.logo.width, height: cfg.logo.height }} src={cfg.logo.src} />
+        )}
+      </article>
+
+      {/* Lock overlay */}
+      {locked && (
+        <div className="absolute inset-0 rounded-[20px] flex flex-col items-center justify-center z-[2] bg-[rgba(0,0,0,0.4)] backdrop-blur-[1px]">
+          <button className="flex items-center gap-[4px] px-[8px] py-[3px] rounded-full cursor-pointer transition-all hover:brightness-110" style={{ background: 'linear-gradient(135deg, rgba(91,91,214,0.7), rgba(124,92,191,0.7))', boxShadow: '0 2px 8px rgba(91,91,214,0.3)' }}>
+            <Sparkles size={9} className="text-white" />
+            <span className="font-manrope font-semibold text-[9px] text-white">Подписка</span>
+          </button>
+        </div>
       )}
 
-      {locked && (
-        <div className="absolute inset-0 rounded-[20px] flex items-center justify-center bg-black/40 backdrop-blur-[1px]">
-          <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-[rgba(91,91,214,0.7)] to-[rgba(124,92,191,0.7)] shadow-[0_2px_8px_rgba(91,91,214,0.3)]">
-            <Sparkles size={9} className="text-white" />
-            <span className="font-semibold text-[9px] text-white">Подписка</span>
+      {/* NEW badge */}
+      {isModelNew(model) && !locked && (
+        <div className="absolute top-[6px] right-[6px] z-[3]">
+          <div className="px-[6px] py-[2px] rounded-[6px] flex items-center gap-[3px]" style={{ background: 'linear-gradient(135deg, rgba(101,222,216,0.9) 0%, rgba(54,180,160,0.9) 100%)', boxShadow: '0 2px 8px rgba(101,222,216,0.4)' }}>
+            <span className="font-manrope text-[8px] text-white tracking-[0.06em] font-extrabold">NEW</span>
           </div>
         </div>
       )}
-
-      {isModelNew(model) && !locked && (
-        <div className="absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded-md bg-gradient-to-br from-accent/90 to-[rgba(54,180,160,0.9)] shadow-[0_2px_8px_rgba(101,222,216,0.4)]">
-          <span className="font-manrope text-[8px] text-white tracking-wider font-extrabold">
-            NEW
-          </span>
-        </div>
-      )}
-    </button>
+    </div>
   )
 }
