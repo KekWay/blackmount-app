@@ -33,7 +33,7 @@ export function ReferralTab() {
   return (
     <>
       <div className="flex flex-col gap-[16px]">
-        <ReferralHero currentTier={currentTier} nextTier={nextTier} tierProgress={tierProgress} />
+        <ReferralHero currentTier={currentTier} nextTier={nextTier} tierProgress={tierProgress} onTierClick={() => setShowTierOverlay(true)} />
         <ReferralBalanceStats onConvert={() => setShowConvert(true)} onWithdraw={() => setShowWithdraw(true)} />
         <ReferralEarningsChart />
         <ReferralHowItWorks currentTier={currentTier} />

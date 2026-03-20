@@ -6,10 +6,11 @@ import { motion } from 'motion/react'
 import { copyToClipboard } from '@/lib/utils'
 import { REFERRAL_LINK, INVITE_CODE, type TierInfo } from './referral-data'
 
-export function ReferralHero({ currentTier, nextTier, tierProgress }: {
+export function ReferralHero({ currentTier, nextTier, tierProgress, onTierClick }: {
   currentTier: TierInfo
   nextTier: TierInfo | undefined
   tierProgress: number
+  onTierClick: () => void
 }) {
   const [copied, setCopied] = useState(false)
 
@@ -44,7 +45,7 @@ export function ReferralHero({ currentTier, nextTier, tierProgress }: {
         <ReferralLinkSection copied={copied} onCopy={handleCopy} />
 
         <div className="grid grid-cols-2 gap-[12px]">
-          <ReferralTierButton currentTier={currentTier} nextTier={nextTier} tierProgress={tierProgress} />
+          <ReferralTierButton currentTier={currentTier} nextTier={nextTier} tierProgress={tierProgress} onClick={onTierClick} />
           <div className="bg-[#121118]/50 rounded-[16px] px-[16px] py-[16px] flex flex-col justify-between">
             <p className="font-manrope font-bold text-[13px] text-[rgba(255,255,255,0.4)] uppercase tracking-[0.06em] mb-[8px]">Код приглашения</p>
             <div className="flex items-center justify-between mt-auto">
@@ -87,9 +88,9 @@ function ReferralLinkSection({ copied, onCopy }: { copied: boolean; onCopy: () =
   )
 }
 
-function ReferralTierButton({ currentTier, nextTier, tierProgress }: { currentTier: TierInfo; nextTier: TierInfo | undefined; tierProgress: number }) {
+function ReferralTierButton({ currentTier, nextTier, tierProgress, onClick }: { currentTier: TierInfo; nextTier: TierInfo | undefined; tierProgress: number; onClick: () => void }) {
   return (
-    <div className="bg-[#121118]/50 rounded-[16px] px-[16px] py-[16px] text-left w-full relative overflow-hidden group">
+    <button onClick={onClick} className="bg-[#121118]/50 rounded-[16px] px-[16px] py-[16px] text-left w-full relative overflow-hidden group cursor-pointer hover:bg-[#121118]/70 transition-colors">
       <div className="flex items-center gap-[10px] mb-[10px] relative z-10">
         <div className="size-[24px] flex items-center justify-center">{currentTier.icon}</div>
         <span className="font-manrope font-bold text-[13px] uppercase tracking-[0.06em]" style={{ color: currentTier.color }}>Уровень: {currentTier.label}</span>
@@ -102,6 +103,6 @@ function ReferralTierButton({ currentTier, nextTier, tierProgress }: { currentTi
           <p className="font-manrope font-medium text-[10px] text-[rgba(255,255,255,0.4)]">12/{nextTier.minRefs} до {nextTier.label} ({nextTier.rate})</p>
         </div>
       )}
-    </div>
+    </button>
   )
 }
