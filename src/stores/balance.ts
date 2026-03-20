@@ -73,7 +73,9 @@ const defaultGenHistory: GenHistoryItem[] = [
   { id: '23', modelId: 'kling', title: 'Городская суета', preview: '', time: '10:30', dateStr: '2026-02-21', type: 'video' },
 ]
 
-let nextId = 100
+function genId(): string {
+  return `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`
+}
 
 export const useBalanceStore = create<BalanceState>()(
   persist(
@@ -96,13 +98,13 @@ export const useBalanceStore = create<BalanceState>()(
       },
 
       addOperation: (type, label, amount) => {
-        const id = String(++nextId)
+        const id = genId()
         const op: OperationItem = { id, type, label, amount, date: nowDateStr() }
         set((s) => ({ operations: [op, ...s.operations] }))
       },
 
       addGenHistoryItem: (item) => {
-        const id = String(++nextId)
+        const id = genId()
         set((s) => ({ genHistory: [{ ...item, id }, ...s.genHistory] }))
       },
 
