@@ -1,0 +1,112 @@
+'use client'
+
+import {
+  Zap, ArrowRight, ThumbsUp, Target, Film, Palette,
+  BrainCircuit, DollarSign, Users, Sparkles, Activity, Info,
+} from 'lucide-react'
+import type { LeaderboardModel } from '@/data/leaderboard'
+import { CustomRadar } from './custom-radar'
+import { UserRating } from './user-rating'
+
+function getMetrics(item: LeaderboardModel) {
+  if (item.category === 'text') return [
+    { id: 'speed', label: 'Скорость', value: item.speed, icon: <Zap size={12} />, color: '#6bc085' },
+    { id: 'accuracy', label: 'Точность', value: item.accuracy, icon: <Target size={12} />, color: '#e07070' },
+    { id: 'costEfficiency', label: 'Выгода', value: item.costEfficiency, icon: <DollarSign size={12} />, color: '#70b8e0' },
+    { id: 'creativity', label: 'Креативность', value: item.creativity, icon: <Palette size={12} />, color: '#e0a34f' },
+    { id: 'reasoning', label: 'Логика', value: item.reasoning, icon: <BrainCircuit size={12} />, color: '#c084fc' },
+    { id: 'analytics', label: 'Аналитика', value: item.analytics, icon: <Activity size={12} />, color: '#818cf8' },
+  ]
+  if (item.category === 'image') return [
+    { id: 'creativity', label: 'Качество', value: item.creativity, icon: <Palette size={12} />, color: '#e0a34f' },
+    { id: 'accuracy', label: 'Детализация', value: item.accuracy, icon: <Target size={12} />, color: '#e07070' },
+    { id: 'speed', label: 'Скорость генерации', value: item.speed, icon: <Zap size={12} />, color: '#6bc085' },
+    { id: 'costEfficiency', label: 'Цена/Качество', value: item.costEfficiency, icon: <DollarSign size={12} />, color: '#70b8e0' },
+    { id: 'score', label: 'Фотореализм', value: item.score, icon: <Film size={12} />, color: '#22d3ee' },
+  ]
+  return [
+    { id: 'creativity', label: 'Кинематографичность', value: item.creativity, icon: <Film size={12} />, color: '#e0a34f' },
+    { id: 'accuracy', label: 'Стабильность кадра', value: item.accuracy, icon: <Target size={12} />, color: '#e07070' },
+    { id: 'speed', label: 'Скорость генерации', value: item.speed, icon: <Zap size={12} />, color: '#6bc085' },
+    { id: 'costEfficiency', label: 'Цена/Качество', value: item.costEfficiency, icon: <DollarSign size={12} />, color: '#70b8e0' },
+    { id: 'score', label: 'Качество видео', value: item.score, icon: <Sparkles size={12} />, color: '#22d3ee' },
+  ]
+}
+
+export function ModelCardExpanded({ item, onOpenChat }: { item: LeaderboardModel; onOpenChat: (item: LeaderboardModel) => void }) {
+  const allMetrics = getMetrics(item)
+  const radarData = allMetrics.map(m => ({ subject: m.label, val: m.value }))
+  const sortedMetrics = [...allMetrics].sort((a, b) => b.value - a.value)
+  const bestMetric = sortedMetrics[0]
+  const worstMetric = sortedMetrics[sortedMetrics.length - 1]
+
+  return (
+    <div className="px-[16px] pb-[16px] pt-[4px]">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-[12px] bg-[#0c0c10]/40 rounded-[12px] p-[16px] border border-[rgba(255,255,255,0.03)] relative">
+        <div className="lg:col-span-5 flex flex-col justify-between">
+          <div>
+            <div className="flex items-center gap-[6px] mb-[10px]">
+              <Info size={12} className="text-[#888ae5]" />
+              <h4 className="text-[11px] text-white font-bold uppercase tracking-wider">О модели</h4>
+            </div>
+            <p className="text-[13px] text-[rgba(255,255,255,0.7)] leading-[1.6] mb-[16px]">{item.description}</p>
+          </div>
+          <UserRating modelId={item.id} baseVotes={item.votes} />
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-[12px] border-t border-[rgba(255,255,255,0.06)] gap-3 sm:gap-0 mt-auto">
+            <div className="flex items-center gap-[16px]">
+              <div className="flex items-center gap-[6px]">
+                <Users size={14} className="text-[rgba(255,255,255,0.3)]" />
+                <div className="flex flex-col">
+                  <span className="text-[9px] text-[rgba(255,255,255,0.4)] font-bold uppercase tracking-wider">Аудитория</span>
+                  <span className="text-[13px] text-white font-black">{item.usagePercent}%</span>
+                </div>
+              </div>
+              <div className="w-[1px] h-[24px] bg-[rgba(255,255,255,0.06)]" />
+              <div className="flex items-center gap-[6px]">
+                <ThumbsUp size={14} className="text-[rgba(255,255,255,0.3)]" />
+                <div className="flex flex-col">
+                  <span className="text-[9px] text-[rgba(255,255,255,0.4)] font-bold uppercase tracking-wider">Оценки</span>
+                  <span className="text-[13px] text-white font-black">{item.votes.toLocaleString('ru-RU')}</span>
+                </div>
+              </div>
+            </div>
+            <button onClick={(e) => { e.stopPropagation(); onOpenChat(item) }} className="w-full sm:w-auto flex items-center justify-center gap-[6px] px-[20px] py-[10px] rounded-[10px] bg-[#888ae5] hover:bg-[#9a9cf0] text-white text-[13px] font-bold transition-all shadow-[0_4px_12px_rgba(136,138,229,0.3)] hover:shadow-[0_4px_16px_rgba(136,138,229,0.4)]">
+              Попробовать <ArrowRight size={14} />
+            </button>
+          </div>
+        </div>
+        <div className="lg:col-span-4 flex flex-col bg-[rgba(255,255,255,0.02)] rounded-[10px] p-[16px] border border-[rgba(255,255,255,0.03)]">
+          <div className="flex items-center justify-between mb-[12px]">
+            <div className="flex items-center gap-[6px]">
+              <Activity size={12} className="text-[#888ae5]" />
+              <h4 className="text-[11px] text-white font-bold uppercase tracking-wider">Подробные оценки</h4>
+            </div>
+          </div>
+          <div className="flex flex-col gap-[10px]">
+            {allMetrics.map(m => (
+              <div key={m.id} className="flex flex-col gap-[4px]">
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-[6px]">
+                    <span style={{ color: m.color }}>{m.icon}</span>
+                    <span className="text-[11px] text-[rgba(255,255,255,0.6)] font-medium">{m.label}</span>
+                  </div>
+                  <div className="flex items-center gap-[6px]">
+                    {m.id === bestMetric.id && <span className="text-[8px] bg-white/10 text-white px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">Топ</span>}
+                    {m.id === worstMetric.id && <span className="text-[8px] bg-red-500/10 text-red-400 px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">Слабо</span>}
+                    <span className="text-[12px] text-white font-bold">{m.value}</span>
+                  </div>
+                </div>
+                <div className="w-full h-[4px] bg-[rgba(255,255,255,0.04)] rounded-full overflow-hidden">
+                  <div className="h-full rounded-full" style={{ width: `${m.value}%`, backgroundColor: m.color }} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="lg:col-span-3 flex flex-col justify-center items-center bg-[rgba(255,255,255,0.02)] rounded-[10px] p-[10px] border border-[rgba(255,255,255,0.03)] min-h-[180px]">
+          <CustomRadar data={radarData} size={160} />
+        </div>
+      </div>
+    </div>
+  )
+}

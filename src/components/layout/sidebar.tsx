@@ -84,10 +84,7 @@ export function Sidebar() {
       {/* Navigation */}
       <nav className="flex-1 min-h-0 overflow-y-auto hidden-scrollbar mt-5">
         <div className={`flex flex-col gap-1 ${collapsed ? 'px-2.5' : 'ml-5 w-[208px]'}`}>
-          {NAV_ITEMS.filter((item) => {
-            if (item.href === '/profile') return isLoggedIn
-            return true
-          }).map((item) => {
+          {NAV_ITEMS.map((item) => {
             const Icon = ICON_MAP[item.icon]
             const isActive =
               item.href === '/'

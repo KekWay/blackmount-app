@@ -19,10 +19,7 @@ export function MobileNav() {
   const pathname = usePathname()
   const isLoggedIn = useAuthStore((s) => s.isLoggedIn)
 
-  const items = MOBILE_NAV_ITEMS.filter((item) => {
-    if (item.href === '/profile') return isLoggedIn
-    return true
-  })
+  const items = MOBILE_NAV_ITEMS
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-20 flex md:hidden items-center justify-around h-16 bg-sidebar border-t border-sidebar-border">

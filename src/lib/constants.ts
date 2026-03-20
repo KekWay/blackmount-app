@@ -8,7 +8,6 @@ export const NAV_ITEMS = [
   { href: '/prompts', label: 'Промпты', icon: 'Lightbulb' },
   { href: '/knowledge', label: 'База знаний', icon: 'BookOpen' },
   { href: '/arena', label: 'Арена', icon: 'Swords' },
-  { href: '/profile', label: 'Профиль', icon: 'User' },
 ] as const
 
 export const MOBILE_NAV_ITEMS = NAV_ITEMS.slice(0, 5)
