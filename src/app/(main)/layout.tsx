@@ -24,24 +24,21 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
           localStorage.setItem('sidebarCollapsed', String(next))
         }} />
 
+        {/* Main area — matches original layout.tsx:549-561 */}
         <div
-          className="flex-1 flex flex-col min-h-screen transition-[margin] duration-200 hidden md:flex"
+          className="flex-1 h-screen relative overflow-hidden hidden md:block"
           style={{ marginLeft: sidebarW }}
         >
-          <main className="flex-1 overflow-y-auto overflow-x-hidden">
-            <div className="w-full max-w-[1400px] px-[24px] lg:px-[40px] py-[24px]">
-              {children}
-            </div>
-          </main>
+          <div className="w-full h-full">
+            {children}
+          </div>
         </div>
 
-        {/* Mobile: no margin */}
-        <div className="flex-1 flex flex-col min-h-screen md:hidden">
-          <main className="flex-1 overflow-y-auto overflow-x-hidden pb-16">
-            <div className="w-full max-w-[1400px] px-[24px] lg:px-[40px] py-[24px]">
-              {children}
-            </div>
-          </main>
+        {/* Mobile: no sidebar offset */}
+        <div className="flex-1 h-screen relative overflow-hidden md:hidden pb-16">
+          <div className="w-full h-full">
+            {children}
+          </div>
         </div>
 
         <MobileNav />

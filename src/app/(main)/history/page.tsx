@@ -69,7 +69,7 @@ export default function HistoryPage() {
     : null
 
   return (
-    <div className="w-full">
+    <div className="w-full h-full overflow-y-auto px-[40px] pt-[32px] pb-[40px]">
       <p className="font-manrope font-extrabold leading-[45px] text-[36px] text-white mb-[24px]">
         История
       </p>
