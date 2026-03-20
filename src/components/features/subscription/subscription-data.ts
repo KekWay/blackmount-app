@@ -1,16 +1,39 @@
+import { APP_ASSETS, MODEL_ASSETS } from '@/lib/assets'
+
 export type Plan = 'basic' | 'pro' | 'max'
 export type Period = 'month' | 'year'
 
 export interface PlanFeature { icon: string; text: string; bold?: string }
 
+export const imgCoin = APP_ASSETS.coin
+export const imgBulletIcon = '/assets/models/0be89c47e57a85ad7ac2ee997812fd7afdf09f8b.png'
+export const imgLockIcon = '/assets/models/e5c74a062b18275f0481b52111b62f3d2d3c22ad.png'
+export const imgDiscountIcon = '/assets/models/ff730e59d60cf57a7d1012fa1e663907b5b10de8.png'
+export const imgRequestsIcon = '/assets/models/875993f4063423eb65de49fadba243c5696f5bfa.png'
+export const imgContextIcon = '/assets/models/eb77d7192867998e47bd03ec20f1d5f07c46b030.png'
+
+export const modelLogos = [
+  MODEL_ASSETS.chatgpt.colorLogo,
+  MODEL_ASSETS.claude.colorLogo,
+  MODEL_ASSETS.gemini.colorLogo,
+  MODEL_ASSETS.flux.colorLogo,
+  MODEL_ASSETS.nanobanana.colorLogo,
+  '/assets/models/13f117ca3aca8f3fbc56c8d15232cab2ea4ac5cf.png',
+  MODEL_ASSETS.kling.colorLogo,
+  MODEL_ASSETS.veo31.colorLogo,
+]
+
+export const featureIconMap: Record<string, string> = {
+  lock: imgLockIcon,
+  discount: imgDiscountIcon,
+  requests: imgRequestsIcon,
+  context: imgContextIcon,
+}
+
 export const planFeatures: Record<Plan, { coins: number; limits: string[]; features: PlanFeature[] }> = {
   basic: {
     coins: 300,
-    limits: [
-      'до 300 текстовых запросов',
-      'до 157 генераций изображений',
-      'до 40 генераций видео',
-    ],
+    limits: ['до 300 текстовых запросов', 'до 157 генераций изображений', 'до 40 генераций видео'],
     features: [
       { icon: 'lock', text: 'Доступ ко всем моделям' },
       { icon: 'discount', text: 'Скидка на покупку айкоинов ', bold: '10%' },
@@ -20,14 +43,10 @@ export const planFeatures: Record<Plan, { coins: number; limits: string[]; featu
   },
   pro: {
     coins: 550,
-    limits: [
-      'до 550 текстовых запросов',
-      'до 280 генераций изображений',
-      'до 75 генераций видео',
-    ],
+    limits: ['до 550 текстовых запросов', 'до 280 генераций изображений', 'до 75 генераций видео'],
     features: [
       { icon: 'lock', text: 'Доступ ко всем моделям' },
-      { icon: 'lock', text: 'Бесплатно: ', bold: 'ChatGPT 5 mini, Gemini 3 Flash, Gemini 2.5 Flash' },
+      { icon: 'lock', text: 'Бесплатно: ', bold: 'GPT 5 mini, Gemini Flash 3, Gemini Flash 2.5' },
       { icon: 'discount', text: 'Скидка на покупку айкоинов ', bold: '15%' },
       { icon: 'requests', text: '', bold: '150 запросов в день' },
       { icon: 'context', text: 'Увеличенный контекст x2' },
@@ -35,14 +54,10 @@ export const planFeatures: Record<Plan, { coins: number; limits: string[]; featu
   },
   max: {
     coins: 1200,
-    limits: [
-      'до 1200 текстовых запросов',
-      'до 600 генераций изображений',
-      'до 160 генераций видео',
-    ],
+    limits: ['до 1200 текстовых запросов', 'до 600 генераций изображений', 'до 160 генераций видео'],
     features: [
       { icon: 'lock', text: 'Доступ ко всем моделям' },
-      { icon: 'lock', text: 'Бесплатно: ', bold: 'ChatGPT 5 mini, Gemini 3 Flash, Gemini 2.5 Flash' },
+      { icon: 'lock', text: 'Бесплатно: ', bold: 'GPT 5 mini, Gemini Flash 3, Gemini Flash 2.5' },
       { icon: 'discount', text: 'Скидка на покупку айкоинов ', bold: '20%' },
       { icon: 'requests', text: '', bold: '200 запросов в день' },
       { icon: 'context', text: 'Максимальный контекст x3' },
@@ -50,56 +65,39 @@ export const planFeatures: Record<Plan, { coins: number; limits: string[]; featu
   },
 }
 
-export const featureIconMap: Record<string, string> = {
-  lock: '/assets/models/e5c74a062b18275f0481b52111b62f3d2d3c22ad.png',
-  discount: '/assets/models/ff730e59d60cf57a7d1012fa1e663907b5b10de8.png',
-  requests: '/assets/models/875993f4063423eb65de49fadba243c5696f5bfa.png',
-  context: '/assets/models/eb77d7192867998e47bd03ec20f1d5f07c46b030.png',
-}
-
-export const MODEL_LOGOS = {
-  chatgpt: '/assets/models/f39f1f5aad4a176c5160005f6b0e3db93b6a10ba.png',
-  claude: '/assets/models/89a56fcb15946b9582fc58d6740a02e12604885b.png',
-  gemini: '/assets/models/464249cfa1e685e13ecdc8b3e4af7cc79b990682.png',
-  flux: '/assets/models/2a08c8247eb8ff9ca7960267e118bd33a85fbaf9.png',
-  nanobanana: '/assets/models/1e85ee9196e56d0b7b7f9ae63141e794a1230a78.png',
-  sora: '/assets/models/13f117ca3aca8f3fbc56c8d15232cab2ea4ac5cf.png',
-  kling: '/assets/models/9a402b089c2c29d5d7e2196840980b3b5e914e3c.png',
-  veo: '/assets/models/d6cc8c54df33e333e22af118845c45c06fa0e4f9.png',
-}
-
-export const COIN_IMG = '/assets/models/06a5a3f12f7ccb4092a793253a07d8e11e003ba7.png'
-export const BULLET_ICON = '/assets/models/0be89c47e57a85ad7ac2ee997812fd7afdf09f8b.png'
-
-export interface PlanInfo {
-  key: Plan
-  label: string
-  priceMonth: number
-  priceYear: number
-  yearTotalMonth: number
-  yearTotalYear: number
-  badge: string | null
-  badgeBg: string
-  cta: string
-}
-
-export const plansArr: PlanInfo[] = [
-  {
-    key: 'basic', label: 'Basic', priceMonth: 499, priceYear: 424,
-    yearTotalMonth: 5988, yearTotalYear: 5088, badge: null, badgeBg: '', cta: 'Оформить Basic',
-  },
-  {
-    key: 'pro', label: 'Pro', priceMonth: 999, priceYear: 849,
-    yearTotalMonth: 11988, yearTotalYear: 10188, badge: 'Лучший выбор',
-    badgeBg: 'linear-gradient(106.083deg, rgb(255, 210, 49) 4.51%, rgb(192, 150, 0) 54.14%, rgb(238, 161, 16) 86.39%)',
-    cta: 'Оформить Pro',
-  },
-  {
-    key: 'max', label: 'Max', priceMonth: 1799, priceYear: 1529,
-    yearTotalMonth: 21588, yearTotalYear: 18348, badge: 'Максимум',
-    badgeBg: 'linear-gradient(112deg, rgb(63, 24, 87) 17%, rgb(3, 215, 226) 99%)',
-    cta: 'Оформить Max',
-  },
+export const plansArr: { key: Plan | 'free'; label: string; priceMonth: number; priceYear: number; badge: string | null; cta: string }[] = [
+  { key: 'free', label: 'Free', priceMonth: 0, priceYear: 0, badge: null, cta: 'Текущий план' },
+  { key: 'basic', label: 'Basic', priceMonth: 499, priceYear: 424, badge: null, cta: 'Выбрать Basic' },
+  { key: 'pro', label: 'Pro', priceMonth: 999, priceYear: 849, badge: 'Лучший выбор', cta: 'Выбрать Pro' },
+  { key: 'max', label: 'Max', priceMonth: 1799, priceYear: 1529, badge: 'Максимум', cta: 'Выбрать Max' },
 ]
 
-export { COMPARE_ROWS, type CompareRow } from './compare-rows'
+export interface CompareRow {
+  section?: string; label?: string; price?: number | null; prices?: number[]
+  basic?: string; pro?: string; max?: string; isCoinValue?: boolean
+}
+
+export const COMPARE_ROWS: CompareRow[] = [
+  { section: 'Видео (в месяц)' },
+  { label: 'Sora 2 Pro', price: 115, basic: '2 видео', pro: '4 видео', max: '10 видео' },
+  { label: 'Sora 2', price: 25, basic: '12 видео', pro: '22 видео', max: '48 видео' },
+  { label: 'Veo 3.1 Quality', price: 185, basic: '1 видео', pro: '2 видео', max: '6 видео' },
+  { label: 'Veo 3.1 Fast', price: 50, basic: '6 видео', pro: '11 видео', max: '24 видео' },
+  { label: 'Kling 2.6', price: 45, basic: '6 видео', pro: '12 видео', max: '26 видео' },
+  { label: 'Kling 2.5 Turbo', price: 35, basic: '8 видео', pro: '15 видео', max: '34 видео' },
+  { section: 'Изображения (в месяц)' },
+  { label: 'Flux 1.1 Pro Ultra', price: 15, basic: '20 изображений', pro: '36 изображений', max: '80 изображений' },
+  { label: 'Flux 1 Pro', price: 7, basic: '42 изображения', pro: '78 изображений', max: '170 изображений' },
+  { label: 'NanoBanana Pro', price: 22, basic: '13 изображений', pro: '25 изображений', max: '54 изображения' },
+  { label: 'NanoBanana', price: 7, basic: '42 изображения', pro: '78 изображений', max: '170 изображений' },
+  { section: 'Текст (в месяц)' },
+  { label: 'ChatGPT 5.2 / Claude Opus 4.5', price: null, prices: [5, 8], basic: '40-60 запросов', pro: '70-110 запросов', max: '150-240 запросов' },
+  { label: 'Claude Sonnet 3.7 / 4.5', price: 5, basic: '60 запросов', pro: '110 запросов', max: '240 запросов' },
+  { label: 'ChatGPT 5 / Gemini 2.5 Pro', price: 3, basic: '100 запросов', pro: '183 запроса', max: '400 запросов' },
+  { label: 'ChatGPT 5 mini / Gemini Flash 3 / Flash 2.5', price: 1, basic: '300 запросов', pro: 'Безлимит*', max: 'Безлимит*' },
+  { section: 'Особенности' },
+  { label: 'Ежемесячные айкоины', price: null, basic: '300', pro: '550', max: '1200', isCoinValue: true },
+  { label: 'Скидка на пополнение', price: null, basic: '10%', pro: '15%', max: '20%' },
+  { label: 'Приоритет в очереди', price: null, basic: 'Обычный', pro: 'Высокий', max: 'Максимальный' },
+  { label: 'Размер контекста', price: null, basic: 'Увеличенный', pro: 'x2', max: 'x3' },
+]
