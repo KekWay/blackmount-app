@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState, useEffect } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { LogOut, Users, Clock } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
 import { SidebarItem, SectionLabel } from '@/components/features/profile/profile-sidebar'
@@ -13,19 +13,20 @@ import { type Tab, tabTitles, IMG_LOGO, IMG_COIN_PHOTOROOM, IMG_PROFILE_MASK } f
 
 export default function ProfilePage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const tabParam = searchParams.get('tab')
 
-  const [activeTab, setActiveTab] = useState<Tab>(() => {
-    if (typeof window === 'undefined') return 'account'
-    const params = new URLSearchParams(window.location.search)
-    const tab = params.get('tab')
-    if (tab === 'subscription') {
-      return 'account'
+  const [activeTab, setActiveTab] = useState<Tab>('account')
+
+  useEffect(() => {
+    if (tabParam === 'subscription') {
+      router.replace('/subscription')
+      return
     }
-    if (tab && ['account', 'topup', 'referral', 'history'].includes(tab)) {
-      return tab as Tab
+    if (tabParam && ['account', 'topup', 'referral', 'history'].includes(tabParam)) {
+      setActiveTab(tabParam as Tab)
     }
-    return 'account'
-  })
+  }, [tabParam, router])
 
   return (
     <div className="bg-[#121118] fixed inset-0 z-50 flex">
