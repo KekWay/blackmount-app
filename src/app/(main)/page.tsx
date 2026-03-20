@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useMemo, useCallback } from 'react'
-import { useRouter } from 'next/navigation'
 import { aiModels } from '@/data/ai-models'
 import { FilterTabs, type FilterCategory } from '@/components/features/home/filter-tabs'
 import { SearchBar } from '@/components/features/home/search-bar'
@@ -12,18 +11,14 @@ import { NewsCarousel } from '@/components/features/home/news-carousel'
 import { PromptsPreview } from '@/components/features/home/prompts-preview'
 import { HomeFooter } from '@/components/features/home/home-footer'
 import { SubscriptionGateModal } from '@/components/shared/subscription-gate'
-import { useSubscriptionStore } from '@/stores/subscription'
 
 export default function HomePage() {
-  const router = useRouter()
   const [activeFilter, setActiveFilter] = useState<FilterCategory>('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [gateModal, setGateModal] = useState<{ open: boolean; modelName: string }>({
     open: false,
     modelName: '',
   })
-
-  const isModelLocked = useSubscriptionStore((s) => s.isModelLocked)
 
   const filteredModels = useMemo(() => {
     return aiModels.filter((m) => {
@@ -38,17 +33,6 @@ export default function HomePage() {
     setSearchQuery('')
     setActiveFilter('all')
   }, [])
-
-  const handleModelClick = useCallback(
-    (modelId: string, modelName: string) => {
-      if (isModelLocked(modelId)) {
-        setGateModal({ open: true, modelName })
-      } else {
-        router.push(`/chat/${modelId}`)
-      }
-    },
-    [isModelLocked, router],
-  )
 
   return (
     <div className="w-full h-full overflow-y-auto px-[40px] pt-[32px] pb-[40px]">

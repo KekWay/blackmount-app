@@ -3,7 +3,6 @@
 import { useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { useBalanceStore } from '@/stores/balance'
-import { useSubscriptionStore } from '@/stores/subscription'
 import { useRequestLimiterStore } from '@/stores/request-limiter'
 import { useAuthStore } from '@/stores/auth'
 import type { Message, AIModel, ModelVersion } from '@/types'

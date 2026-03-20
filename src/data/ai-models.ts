@@ -1,4 +1,3 @@
-import { MODEL_ASSETS } from '@/lib/assets'
 import type { AIModel, ModelCategory } from '@/types/models'
 
 export const aiModels: AIModel[] = [

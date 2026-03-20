@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { TrendingUp, Link2 } from 'lucide-react'
 import { IMG_COIN } from './profile-data'
 

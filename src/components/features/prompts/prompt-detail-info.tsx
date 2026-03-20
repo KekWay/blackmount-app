@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { Copy, Check, ChevronDown, Sparkles } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
-import { Info } from 'lucide-react'
 import { copyToClipboard } from '@/lib/utils'
 import { aiModels } from '@/data/ai-models'
 import { useSubscriptionStore } from '@/stores/subscription'

@@ -24,9 +24,9 @@ export function ArenaBattle() {
   const isLoggedIn = useAuthStore((s) => s.isLoggedIn)
   const { balance, deductBalance } = useBalanceStore()
   const hasSub = useSubscriptionStore((s) => s.hasActiveSubscription())
-  const { canMakeRequest, consumeRequest, getRemainingRequests } = useRequestLimiterStore()
+  const { canMakeRequest, consumeRequest } = useRequestLimiterStore()
 
-  const [category, setCategory] = useState<ArenaCategory>('text')
+  const [, setCategory] = useState<ArenaCategory>('text')
   const [selectedModels, setSelectedModels] = useState<ArenaModel[]>([])
   const [prompt, setPrompt] = useState('')
   const [phase, setPhase] = useState<Phase>('idle')

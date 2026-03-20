@@ -5,7 +5,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const imgGeneratedImage = '/assets/models/46d72ecc2e7de51169acade3de4163e47b0ea22d.png'
 const imgFrame32 = '/assets/models/5f9fde09629f4366a30a9b2273d3ef5eafec1674.png'
-const imgImage31 = '/assets/models/9a402b089c2c29d5d7e2196840980b3b5e914e3c.png'
 
 interface NewsItem {
   id: string

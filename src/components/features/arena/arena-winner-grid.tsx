@@ -31,7 +31,7 @@ export function ArenaWinnerGrid({ responses, winnerId, gridCols }: Props) {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className={`rounded-[16px] overflow-hidden flex flex-col relative ${isW ? 'bg-[rgba(136,138,229,0.06)] ring-2 ring-[#888ae5]/50 shadow-[0_0_40px_rgba(136,138,229,0.15),0_0_80px_rgba(136,138,229,0.05)]' : 'bg-[rgba(255,255,255,0.02)] ring-1 ring-[rgba(255,255,255,0.03)]'}`}
           >
-            {isW && <WinnerGlow medalImg={medalImg} />}
+            {isW && <WinnerGlow />}
             <div className="flex items-center justify-between px-[16px] py-[10px] border-b border-[rgba(255,255,255,0.04)] relative z-[1]">
               <div className="flex items-center gap-[8px]">
                 <MIcon model={r.model} size={22} />
@@ -62,7 +62,7 @@ export function ArenaWinnerGrid({ responses, winnerId, gridCols }: Props) {
   )
 }
 
-function WinnerGlow({ medalImg }: { medalImg: string }) {
+function WinnerGlow() {
   return (
     <>
       <motion.div

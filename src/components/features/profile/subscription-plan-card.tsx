@@ -2,7 +2,7 @@
 
 import { Crown, Info } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
-import { planFeatures, featureIconMap, IMG_COIN, IMG_BULLET_ICON, IMG_CHATGPT_COLOR, IMG_CLAUDE_COLOR, IMG_GEMINI_COLOR, IMG_FLUX_COLOR, type Plan, type Period } from './profile-data'
+import { planFeatures, featureIconMap, IMG_COIN, IMG_BULLET_ICON, IMG_CHATGPT_COLOR, IMG_CLAUDE_COLOR, IMG_GEMINI_COLOR, IMG_FLUX_COLOR, type Period } from './profile-data'
 import { plansArr } from './profile-data'
 
 export function SubscriptionPlanCard({ p, period, onBuy, onShowModels }: {

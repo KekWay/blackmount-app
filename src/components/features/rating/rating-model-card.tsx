@@ -3,17 +3,14 @@
 import { forwardRef } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import {
-  Zap, TrendingUp, TrendingDown, ChevronDown, Sparkles,
-  ArrowRight, ThumbsUp, Target, Film, Palette,
-  BrainCircuit, DollarSign, Users, Activity, Info,
+  TrendingUp, TrendingDown, ChevronDown,
+  Users,
 } from 'lucide-react'
 import { APP_ASSETS } from '@/lib/assets'
 import type { LeaderboardModel } from '@/data/leaderboard'
 import { ScoreRing } from './score-ring'
 import { ScalesIcon } from './scales-icon'
 import { RatingModelIcon } from './rating-model-icon'
-import { CustomRadar } from './custom-radar'
-import { UserRating } from './user-rating'
 import { ModelCardExpanded } from './model-card-expanded'
 
 const imgMedal1 = '/assets/models/66cd1c41a928212fe0f95c7de90dac25cd61828f.png'
