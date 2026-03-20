@@ -51,7 +51,7 @@ export default function HomePage() {
   )
 
   return (
-    <div className="w-full h-full overflow-y-auto px-[24px] lg:px-[40px] pt-[32px] pb-[40px]">
+    <div className="w-full h-full overflow-y-auto px-[40px] pt-[32px] pb-[40px]">
       {/* Announcement */}
       <AnnouncementBanner />
 
