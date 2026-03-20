@@ -3,7 +3,66 @@
 import { Sparkles } from 'lucide-react'
 import type { AIModel } from '@/types'
 import { isModelNew } from '@/data/ai-models'
-import { CARD_CONFIGS, SVG_CARD_PATH } from './model-card-configs'
+
+const CARD_CONFIGS: Record<string, {
+  whiteLogo: string
+  logoStyle: React.CSSProperties
+  logoSize: { w: number; h: number }
+  textStyle: React.CSSProperties
+  fontSize?: number
+  useMask?: boolean
+}> = {
+  chatgpt: {
+    whiteLogo: '/assets/models/876f00be72e92b592aa3ba2811a95ebda9f1bffe.png',
+    logoStyle: { left: 16, top: 37 },
+    logoSize: { w: 28, h: 28 },
+    textStyle: { left: 52, top: 51 },
+    useMask: true,
+  },
+  claude: {
+    whiteLogo: '/assets/models/be562ae4a77434313994bd749c7d70c57defe30e.png',
+    logoStyle: { left: 29, top: 43 },
+    logoSize: { w: 28, h: 28 },
+    textStyle: { left: 63, top: 50 },
+  },
+  gemini: {
+    whiteLogo: '/assets/models/a755291aabbac793a93ec93f8895cd304da22fa6.png',
+    logoStyle: { left: 10, top: 31 },
+    logoSize: { w: 46, h: 58 },
+    textStyle: { left: 58, top: 51 },
+  },
+  nanobanana: {
+    whiteLogo: '/assets/models/e4164d5835b2d0292379d5cc43cd89624200875e.png',
+    logoStyle: { left: 7, top: 43 },
+    logoSize: { w: 28, h: 28 },
+    textStyle: { left: 43, top: 52 },
+    fontSize: 17,
+  },
+  flux: {
+    whiteLogo: '/assets/models/2a08c8247eb8ff9ca7960267e118bd33a85fbaf9.png',
+    logoStyle: { left: 25, top: 32 },
+    logoSize: { w: 50, h: 50 },
+    textStyle: { left: 71, top: 51 },
+  },
+  sora2: {
+    whiteLogo: '/assets/models/608060ad652feef63d189ada2f7bee4e5de1ade7.png',
+    logoStyle: { left: 28, top: 42 },
+    logoSize: { w: 28, h: 28 },
+    textStyle: { left: 64, top: 48 },
+  },
+  kling: {
+    whiteLogo: '/assets/models/870622b36d40395068506055c2814966d24d175e.png',
+    logoStyle: { left: 35, top: 42 },
+    logoSize: { w: 28, h: 28 },
+    textStyle: { left: 69, top: 50 },
+  },
+  veo31: {
+    whiteLogo: '/assets/models/a755291aabbac793a93ec93f8895cd304da22fa6.png',
+    logoStyle: { left: 11, top: 30 },
+    logoSize: { w: 46, h: 58 },
+    textStyle: { left: 60, top: 49 },
+  },
+}
 
 interface ModelCardProps {
   model: AIModel
@@ -13,7 +72,6 @@ interface ModelCardProps {
 
 export function ModelCard({ model, locked, onClick }: ModelCardProps) {
   const cfg = CARD_CONFIGS[model.id]
-  if (!cfg) return null
 
   return (
     <button
@@ -27,86 +85,35 @@ export function ModelCard({ model, locked, onClick }: ModelCardProps) {
         }}
       />
 
-      {/* Background */}
-      {cfg.bgType === 'svg' ? (
-        <svg
-          className="absolute block h-[113px] left-0 top-0 w-[158px]"
-          fill="none"
-          preserveAspectRatio="none"
-          viewBox="0 0 158 113"
-          aria-hidden="true"
-        >
-          <path
-            d={SVG_CARD_PATH}
-            fill={`url(#paint_${model.id})`}
-            opacity={cfg.bgOpacity}
+      <div
+        className={`relative size-full rounded-[20px] ${locked ? 'brightness-[0.6]' : ''}`}
+        style={{ background: model.gradient, opacity: 0.65 }}
+      />
+
+      {cfg && (
+        <>
+          <img
+            src={cfg.whiteLogo}
+            alt=""
+            className="absolute object-contain brightness-0 invert"
+            style={{
+              ...cfg.logoStyle,
+              width: cfg.logoSize.w,
+              height: cfg.logoSize.h,
+              position: 'absolute',
+            }}
           />
-          <defs>
-            <linearGradient
-              gradientUnits="userSpaceOnUse"
-              id={`paint_${model.id}`}
-              x1="-1.40025e-07"
-              x2="163.546"
-              y1="-1.08207"
-              y2="94.6996"
-            >
-              {cfg.svgStops?.map((stop, i) => (
-                <stop key={i} offset={stop.offset} stopColor={stop.color} />
-              ))}
-            </linearGradient>
-          </defs>
-        </svg>
-      ) : (
-        <div
-          className={`absolute h-[113px] left-0 rounded-[20px] top-0 w-[158px] ${locked ? 'brightness-[0.6]' : ''}`}
-          style={{ backgroundImage: model.gradient, opacity: cfg.bgOpacity }}
-        />
-      )}
-
-      {/* Text */}
-      <span
-        className="absolute font-maven font-extrabold h-[29px] leading-[10px] text-white whitespace-pre-wrap"
-        style={{
-          left: cfg.text.left,
-          top: cfg.text.top,
-          width: cfg.text.width,
-          fontSize: cfg.text.fontSize,
-        }}
-      >
-        {model.name}
-      </span>
-
-      {/* Logo */}
-      {cfg.logo.type === 'mask' ? (
-        <div
-          className="absolute bg-white"
-          style={{
-            left: cfg.logo.left,
-            top: cfg.logo.top,
-            width: cfg.logo.width,
-            height: cfg.logo.height,
-            maskImage: `url('${cfg.logo.src}')`,
-            WebkitMaskImage: `url('${cfg.logo.src}')`,
-            maskSize: cfg.logo.maskSize,
-            WebkitMaskSize: cfg.logo.maskSize,
-            maskRepeat: 'no-repeat',
-            WebkitMaskRepeat: 'no-repeat',
-            maskPosition: cfg.logo.maskPosition,
-            WebkitMaskPosition: cfg.logo.maskPosition,
-          }}
-        />
-      ) : (
-        <img
-          alt=""
-          className="absolute max-w-none object-cover pointer-events-none brightness-0 invert"
-          style={{
-            left: cfg.logo.left,
-            top: cfg.logo.top,
-            width: cfg.logo.width,
-            height: cfg.logo.height,
-          }}
-          src={cfg.logo.src}
-        />
+          <span
+            className="absolute font-maven font-extrabold text-white"
+            style={{
+              ...cfg.textStyle,
+              fontSize: cfg.fontSize ?? 20,
+              position: 'absolute',
+            }}
+          >
+            {model.name}
+          </span>
+        </>
       )}
 
       {locked && (
