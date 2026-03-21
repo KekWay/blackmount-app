@@ -6,6 +6,7 @@ export const MODEL_ASSETS = {
     // logoType: "mask", logo: null, maskImage used instead
     maskImage: '/assets/models/776b7a3e178d42a667d9e9145d8e831c5d29592c.png',
     colorLogo: '/assets/models/f39f1f5aad4a176c5160005f6b0e3db93b6a10ba.png',
+    colorIcon: '/assets/models/chatgpt-color.png',
   },
   claude: {
     logo: '/assets/models/be562ae4a77434313994bd749c7d70c57defe30e.png',
@@ -22,6 +23,7 @@ export const MODEL_ASSETS = {
   flux: {
     logo: '/assets/models/2a08c8247eb8ff9ca7960267e118bd33a85fbaf9.png',
     colorLogo: '/assets/models/2a08c8247eb8ff9ca7960267e118bd33a85fbaf9.png',
+    colorIcon: '/assets/models/flux-icon.png',
   },
   sora2: {
     // logoType: "mask", maskImage used as both logo and mask

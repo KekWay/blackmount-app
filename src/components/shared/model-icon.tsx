@@ -12,7 +12,10 @@ export function ModelIcon({ modelId, size }: ModelIconProps) {
   const assets = MODEL_ASSETS[modelId as ModelId]
   if (!assets) return null
 
-  const src = 'colorLogo' in assets ? assets.colorLogo : null
+  // Prefer colorIcon (color version without filter) over colorLogo
+  const src = ('colorIcon' in assets && assets.colorIcon)
+    || ('colorLogo' in assets && assets.colorLogo)
+    || null
   if (!src) return null
 
   return (
@@ -31,7 +34,24 @@ export function ModelIconWhite({ modelId, size }: ModelIconProps) {
   const assets = MODEL_ASSETS[modelId as ModelId]
   if (!assets) return null
 
-  // For mask-based icons (chatgpt, sora2)
+  // If colorIcon exists, render it directly (already colored)
+  if ('colorIcon' in assets && assets.colorIcon) {
+    return (
+      <div
+        className="shrink-0 flex items-center justify-center"
+        style={{ width: size, height: size }}
+      >
+        <img
+          alt={modelId}
+          src={assets.colorIcon}
+          className="max-w-none object-contain pointer-events-none"
+          style={{ width: size, height: size }}
+        />
+      </div>
+    )
+  }
+
+  // For mask-based icons (sora2)
   if ('maskImage' in assets && assets.maskImage) {
     return (
       <div

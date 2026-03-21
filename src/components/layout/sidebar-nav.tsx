@@ -2,15 +2,18 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import {
-  Home, Clock, Image, BookOpen, Trophy, Swords, LogIn,
-} from 'lucide-react'
+import { LogIn } from 'lucide-react'
 import { NAV_ITEMS } from '@/lib/constants'
 import { useAuthStore } from '@/stores/auth'
 import { SidebarPinned } from './sidebar-pinned'
 
-const ICON_MAP: Record<string, typeof Home> = {
-  Home, Clock, Image, BookOpen, Trophy, Swords,
+const ICON_MAP: Record<string, string> = {
+  Home: '/assets/models/home-icon.png',
+  Clock: '/assets/models/history-icon.png',
+  Image: '/assets/models/prompt-icon.png',
+  BookOpen: '/assets/models/knowledge-icon.png',
+  Trophy: '/assets/models/rating-icon.png',
+  Swords: '/assets/models/arena-icon.png',
 }
 
 interface SidebarNavProps {
@@ -28,7 +31,7 @@ export function SidebarNav({ collapsed }: SidebarNavProps) {
     >
       <div className={`flex flex-col gap-1 items-start mt-[21px] ${collapsed ? 'px-[10px] w-full' : 'ml-[20px] w-[208px]'}`}>
         {NAV_ITEMS.map((item) => {
-          const Icon = ICON_MAP[item.icon]
+          const icon = ICON_MAP[item.icon]
           const isActive =
             item.href === '/'
               ? pathname === '/' || pathname === '/home'
@@ -47,14 +50,13 @@ export function SidebarNav({ collapsed }: SidebarNavProps) {
                   : 'hover:bg-[rgba(136,138,229,0.08)]'
               }`}
             >
-              {Icon && (
+              {icon && (
                 <div className="relative shrink-0 size-[20px] flex items-center justify-center">
-                  <Icon
-                    size={18}
-                    strokeWidth={1.8}
-                    className={`transition-colors duration-150 ${
-                      isActive ? 'text-white' : 'text-[rgba(255,255,255,0.5)]'
-                    }`}
+                  <img
+                    src={icon}
+                    alt=""
+                    className="size-[18px] object-contain transition-opacity duration-150"
+                    style={{ filter: 'brightness(0) invert(1)', opacity: isActive ? 1 : 0.5 }}
                   />
                 </div>
               )}

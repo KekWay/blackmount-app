@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { PanelLeftClose, PanelLeftOpen } from 'lucide-react'
+const SIDEBAR_ICON = '/assets/models/sidebar-icon.png'
 import { APP_ASSETS } from '@/lib/assets'
 import { SidebarNav } from './sidebar-nav'
 import { SidebarUser } from './sidebar-user'
@@ -41,7 +41,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
             className="ml-auto shrink-0 size-[26px] flex items-center justify-center rounded-lg hover:bg-white/[0.06] transition-colors"
             aria-label="Свернуть"
           >
-            <PanelLeftClose className="size-[18px] text-white/30" />
+            <img src={SIDEBAR_ICON} alt="" className="size-[18px] object-contain" style={{ filter: 'brightness(0) invert(1)', opacity: 0.3 }} />
           </button>
         )}
         {collapsed && (
@@ -50,7 +50,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
             className="absolute top-9 left-1/2 -translate-x-1/2 size-9 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity"
             aria-label="Развернуть"
           >
-            <PanelLeftOpen className="size-4 text-white/50" />
+            <img src={SIDEBAR_ICON} alt="" className="size-4 object-contain" style={{ filter: 'brightness(0) invert(1)', opacity: 0.5, transform: 'scaleX(-1)' }} />
           </button>
         )}
       </div>
