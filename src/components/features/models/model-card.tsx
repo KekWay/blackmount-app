@@ -9,6 +9,7 @@ const SVG_CARD_PATH = 'M0 20C0 8.95431 8.9543 0 20 0H138C149.046 0 158 8.9543 15
 
 /* ── Logo config types matching FigmaModelCard.tsx ── */
 interface LogoImg { type: 'img'; src: string; left: number; top: number; width: number; height: number }
+interface LogoColor { type: 'color'; src: string; left: number; top: number; width: number; height: number }
 interface LogoMask { type: 'mask'; src: string; left: number; top: number; width: number; height: number; maskSize: string; maskPosition: string }
 
 interface CardConfig {
@@ -17,7 +18,7 @@ interface CardConfig {
   bgOpacity: number
   svgGradientStops?: { offset: number; color: string }[]
   text: { left: number; top: number; width: number; fontSize: number }
-  logo: LogoImg | LogoMask
+  logo: LogoImg | LogoColor | LogoMask
 }
 
 /* ── Configs copied from FigmaModelCard.tsx CARD_CONFIGS ── */
@@ -51,7 +52,7 @@ const CONFIGS: Record<string, CardConfig> = {
     gradient: 'linear-gradient(120.356deg, rgb(230, 15, 19) 1.0121%, rgb(169, 98, 98) 98.988%)',
     bgType: 'div', bgOpacity: 0.65,
     text: { left: 71, top: 51, width: 75, fontSize: 20 },
-    logo: { type: 'img', src: '/assets/models/flux-logo.png', left: 25, top: 32, width: 50, height: 50 },
+    logo: { type: 'color', src: '/assets/models/flux-icon.png', left: 28, top: 36, width: 38, height: 38 },
   },
   sora2: {
     gradient: 'linear-gradient(120.356deg, rgb(38, 207, 241) 1.0121%, rgb(111, 222, 240) 98.988%)',
@@ -120,6 +121,8 @@ export function ModelCard({ model, locked, onClick }: ModelCardProps) {
         {/* Logo — exact original: mask for chatgpt, img+invert for others */}
         {cfg.logo.type === 'mask' ? (
           <div className="absolute bg-white" aria-hidden="true" style={{ left: cfg.logo.left, top: cfg.logo.top, width: cfg.logo.width, height: cfg.logo.height, maskImage: `url('${cfg.logo.src}')`, WebkitMaskImage: `url('${cfg.logo.src}')`, maskSize: cfg.logo.maskSize, WebkitMaskSize: cfg.logo.maskSize, maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: cfg.logo.maskPosition, WebkitMaskPosition: cfg.logo.maskPosition }} />
+        ) : cfg.logo.type === 'color' ? (
+          <img alt="" className="absolute max-w-none object-contain pointer-events-none" style={{ left: cfg.logo.left, top: cfg.logo.top, width: cfg.logo.width, height: cfg.logo.height }} src={cfg.logo.src} />
         ) : (
           <img alt="" className="absolute max-w-none object-cover pointer-events-none brightness-0 invert" style={{ left: cfg.logo.left, top: cfg.logo.top, width: cfg.logo.width, height: cfg.logo.height }} src={cfg.logo.src} />
         )}

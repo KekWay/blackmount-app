@@ -55,10 +55,10 @@ export const IMG_HEADPHONES_MASK = '/assets/models/headphones-mask.png'
 export const IMG_LAPTOP_MASK = '/assets/models/laptop-mask.png'
 export const IMG_PROFILE_MASK = '/assets/models/profile-mask.png'
 
-export const IMG_CHATGPT_COLOR = '/assets/models/chatgpt-color-logo.png'
+export const IMG_CHATGPT_COLOR = '/assets/models/chatgpt-color.png'
 export const IMG_CLAUDE_COLOR = '/assets/models/claude-color-logo.png'
 export const IMG_GEMINI_COLOR = '/assets/models/gemini-color-logo.png'
-export const IMG_FLUX_COLOR = '/assets/models/flux-logo.png'
+export const IMG_FLUX_COLOR = '/assets/models/flux-icon.png'
 
 export const planFeatures: Record<Plan, { coins: number; limits: string[]; features: PlanFeature[] }> = {
   basic: {

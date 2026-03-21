@@ -123,7 +123,7 @@ function PlanFeaturesList({ features, onShowModels }: { features: typeof planFea
                 <div className="flex -space-x-[6px]">
                   {[IMG_CHATGPT_COLOR, IMG_CLAUDE_COLOR, IMG_GEMINI_COLOR, IMG_FLUX_COLOR].map((logo, idx) => (
                     <div key={idx} className="w-[24px] h-[24px] rounded-full bg-[#252336] border border-[#888ae5]/25 p-[3px] flex items-center justify-center relative z-10 shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
-                      <img src={logo} alt="Model" className="w-full h-full object-contain" style={(idx === 0 || idx === 3) ? { filter: 'brightness(0) invert(1)' } : undefined} />
+                      <img src={logo} alt="Model" className="w-full h-full object-contain" />
                     </div>
                   ))}
                 </div>
