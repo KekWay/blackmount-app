@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'motion/react'
 import { InputModelDropdown } from './input-model-dropdown'
 import type { AIModel } from '@/types'
 
-const imgMicMask = '/assets/models/9505d755a8d717e73ecc0c7903ce4f73c5ba426e.png'
+const imgMicMask = '/assets/models/mic-mask.png'
 
 function MicIcon({ size, className }: { size: number; className?: string }) {
   return <div className={className} style={{ width: size, height: size, backgroundColor: 'currentColor', maskImage: `url('${imgMicMask}')`, WebkitMaskImage: `url('${imgMicMask}')`, maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center' }} />

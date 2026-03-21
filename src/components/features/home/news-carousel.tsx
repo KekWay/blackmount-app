@@ -3,8 +3,8 @@
 import { useRef } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-const imgGeneratedImage = '/assets/models/46d72ecc2e7de51169acade3de4163e47b0ea22d.png'
-const imgFrame32 = '/assets/models/5f9fde09629f4366a30a9b2273d3ef5eafec1674.png'
+const imgGeneratedImage = '/assets/models/news-generated.png'
+const imgFrame32 = '/assets/models/news-frame.png'
 
 interface NewsItem {
   id: string

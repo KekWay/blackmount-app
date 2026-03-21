@@ -41,24 +41,24 @@ export const GEN_CATS: { key: GenCatFilter; label: string }[] = [
 
 export const IMG_COIN = APP_ASSETS.coin
 export const IMG_LOGO = APP_ASSETS.logo
-export const IMG_SPARKLES = '/assets/models/4a2526482cd52e33d2dd2cac1322f5104fd9fddc.png'
-export const IMG_WALLET = '/assets/models/97c652444e9429881519599c6bd2ba3aeb131b95.png'
-export const IMG_CHECK_BADGE = '/assets/models/b842143625ddbe6bcc24fb014365949761b50805.png'
-export const IMG_TOPUP_ICON = '/assets/models/aa2f541a755a5bf9ea81fb840a76e662c65c27fc.png'
-export const IMG_BULLET_ICON = '/assets/models/0be89c47e57a85ad7ac2ee997812fd7afdf09f8b.png'
-export const IMG_LOCK_ICON = '/assets/models/e5c74a062b18275f0481b52111b62f3d2d3c22ad.png'
-export const IMG_DISCOUNT_ICON = '/assets/models/ff730e59d60cf57a7d1012fa1e663907b5b10de8.png'
-export const IMG_REQUESTS_ICON = '/assets/models/875993f4063423eb65de49fadba243c5696f5bfa.png'
-export const IMG_CONTEXT_ICON = '/assets/models/eb77d7192867998e47bd03ec20f1d5f07c46b030.png'
-export const IMG_COIN_PHOTOROOM = '/assets/models/b23c6fe36d384684a1ff3a57cf74fd5a09c7e3b1.png'
-export const IMG_HEADPHONES_MASK = '/assets/models/fe52606ba0ca3a2151afba9394e8f382c09b385a.png'
-export const IMG_LAPTOP_MASK = '/assets/models/49a78c9150f296e3b44736c9324c20761f4910eb.png'
-export const IMG_PROFILE_MASK = '/assets/models/02dae5d96f35239ef6f51280aa026881ef59f9c0.png'
+export const IMG_SPARKLES = '/assets/models/sparkles.png'
+export const IMG_WALLET = '/assets/models/wallet.png'
+export const IMG_CHECK_BADGE = '/assets/models/check-badge.png'
+export const IMG_TOPUP_ICON = '/assets/models/topup-icon.png'
+export const IMG_BULLET_ICON = '/assets/models/bullet-icon.png'
+export const IMG_LOCK_ICON = '/assets/models/lock-icon.png'
+export const IMG_DISCOUNT_ICON = '/assets/models/discount-icon.png'
+export const IMG_REQUESTS_ICON = '/assets/models/requests-icon.png'
+export const IMG_CONTEXT_ICON = '/assets/models/context-icon.png'
+export const IMG_COIN_PHOTOROOM = '/assets/models/coin-large.png'
+export const IMG_HEADPHONES_MASK = '/assets/models/headphones-mask.png'
+export const IMG_LAPTOP_MASK = '/assets/models/laptop-mask.png'
+export const IMG_PROFILE_MASK = '/assets/models/profile-mask.png'
 
-export const IMG_CHATGPT_COLOR = '/assets/models/f39f1f5aad4a176c5160005f6b0e3db93b6a10ba.png'
-export const IMG_CLAUDE_COLOR = '/assets/models/89a56fcb15946b9582fc58d6740a02e12604885b.png'
-export const IMG_GEMINI_COLOR = '/assets/models/464249cfa1e685e13ecdc8b3e4af7cc79b990682.png'
-export const IMG_FLUX_COLOR = '/assets/models/2a08c8247eb8ff9ca7960267e118bd33a85fbaf9.png'
+export const IMG_CHATGPT_COLOR = '/assets/models/chatgpt-color-logo.png'
+export const IMG_CLAUDE_COLOR = '/assets/models/claude-color-logo.png'
+export const IMG_GEMINI_COLOR = '/assets/models/gemini-color-logo.png'
+export const IMG_FLUX_COLOR = '/assets/models/flux-logo.png'
 
 export const planFeatures: Record<Plan, { coins: number; limits: string[]; features: PlanFeature[] }> = {
   basic: {

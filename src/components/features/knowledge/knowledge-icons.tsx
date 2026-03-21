@@ -1,7 +1,7 @@
 import { Info, Layers, Lightbulb, Settings } from 'lucide-react'
 
-const imgPuzzlesMask = '/assets/models/dbce83fd7b91426215fd28827bb7c0091aab9755.png'
-const imgHandMask = '/assets/models/f127a884958b5808f0e28ee40e6baee71c140c8a.png'
+const imgPuzzlesMask = '/assets/models/knowledge-puzzles.png'
+const imgHandMask = '/assets/models/knowledge-hand.png'
 
 function MaskIcon({ src }: { src: string }) {
   return (

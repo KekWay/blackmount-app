@@ -13,9 +13,9 @@ import { ScalesIcon } from './scales-icon'
 import { RatingModelIcon } from './rating-model-icon'
 import { ModelCardExpanded } from './model-card-expanded'
 
-const imgMedal1 = '/assets/models/66cd1c41a928212fe0f95c7de90dac25cd61828f.png'
-const imgMedal2 = '/assets/models/04c2e129f17f1838c48e707c252d8c007bcc1741.png'
-const imgMedal3 = '/assets/models/141d170d5ec8c8d082a6c27e88e088f0ec975e4e.png'
+const imgMedal1 = '/assets/models/medal-1.png'
+const imgMedal2 = '/assets/models/medal-2.png'
+const imgMedal3 = '/assets/models/medal-3.png'
 
 export interface ModelCardProps {
   item: LeaderboardModel

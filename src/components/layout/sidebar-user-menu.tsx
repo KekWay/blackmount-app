@@ -13,9 +13,9 @@ interface SidebarUserMenuProps {
   onClose: () => void
 }
 
-const PROFILE_MASK = '/assets/models/02dae5d96f35239ef6f51280aa026881ef59f9c0.png'
-const HEADPHONES_MASK = '/assets/models/fe52606ba0ca3a2151afba9394e8f382c09b385a.png'
-const COIN_IMG = '/assets/models/b23c6fe36d384684a1ff3a57cf74fd5a09c7e3b1.png'
+const PROFILE_MASK = '/assets/models/profile-mask.png'
+const HEADPHONES_MASK = '/assets/models/headphones-mask.png'
+const COIN_IMG = '/assets/models/coin-large.png'
 
 export function SidebarUserMenu({ collapsed, hasActiveSub, onClose }: SidebarUserMenuProps) {
   const router = useRouter()

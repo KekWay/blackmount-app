@@ -7,7 +7,7 @@ import { ModelIcon } from '@/components/shared/model-icon'
 import { aiModels } from '@/data/ai-models'
 import { modelGroups } from './knowledge-data'
 
-const imgFaceMask = '/assets/models/3e2f5ab6a17d39953ebccb53166b7a01d6b344fb.png'
+const imgFaceMask = '/assets/models/knowledge-face.png'
 
 interface KnowledgeSidebarProps {
   selectedModelId: string

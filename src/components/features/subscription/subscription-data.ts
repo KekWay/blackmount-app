@@ -6,11 +6,11 @@ export type Period = 'month' | 'year'
 export interface PlanFeature { icon: string; text: string; bold?: string }
 
 export const imgCoin = APP_ASSETS.coin
-export const imgBulletIcon = '/assets/models/0be89c47e57a85ad7ac2ee997812fd7afdf09f8b.png'
-export const imgLockIcon = '/assets/models/e5c74a062b18275f0481b52111b62f3d2d3c22ad.png'
-export const imgDiscountIcon = '/assets/models/ff730e59d60cf57a7d1012fa1e663907b5b10de8.png'
-export const imgRequestsIcon = '/assets/models/875993f4063423eb65de49fadba243c5696f5bfa.png'
-export const imgContextIcon = '/assets/models/eb77d7192867998e47bd03ec20f1d5f07c46b030.png'
+export const imgBulletIcon = '/assets/models/bullet-icon.png'
+export const imgLockIcon = '/assets/models/lock-icon.png'
+export const imgDiscountIcon = '/assets/models/discount-icon.png'
+export const imgRequestsIcon = '/assets/models/requests-icon.png'
+export const imgContextIcon = '/assets/models/context-icon.png'
 
 export const modelLogos = [
   MODEL_ASSETS.chatgpt.colorLogo,
@@ -18,7 +18,7 @@ export const modelLogos = [
   MODEL_ASSETS.gemini.colorLogo,
   MODEL_ASSETS.flux.colorLogo,
   MODEL_ASSETS.nanobanana.colorLogo,
-  '/assets/models/13f117ca3aca8f3fbc56c8d15232cab2ea4ac5cf.png',
+  '/assets/models/sub-hero.png',
   MODEL_ASSETS.kling.colorLogo,
   MODEL_ASSETS.veo31.colorLogo,
 ]

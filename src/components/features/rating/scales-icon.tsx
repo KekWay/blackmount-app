@@ -1,4 +1,4 @@
-const IMG_SCALES_MASK = '/assets/models/d61ee26f5cda2435e56a3af389505a597dde61b3.png'
+const IMG_SCALES_MASK = '/assets/models/scales-mask.png'
 
 export function ScalesIcon({ size, className }: { size: number; className?: string }) {
   return (

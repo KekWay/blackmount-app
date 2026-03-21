@@ -5,7 +5,7 @@ import { Copy, ThumbsUp, ThumbsDown, RotateCcw } from 'lucide-react'
 import { TypewriterText } from './typewriter-text'
 import type { Message } from '@/types'
 
-const imgShareMask = '/assets/models/4cac838c8c63be713d50762821baa4f75f7efe4e.png'
+const imgShareMask = '/assets/models/share-mask.png'
 
 function ShareIcon({ size, className }: { size: number; className?: string }) {
   return <div className={className} style={{ width: size, height: size, backgroundColor: 'currentColor', maskImage: `url('${imgShareMask}')`, WebkitMaskImage: `url('${imgShareMask}')`, maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center' }} />

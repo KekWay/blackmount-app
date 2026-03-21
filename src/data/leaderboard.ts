@@ -61,13 +61,13 @@ export const SORT_OPTIONS: { key: SortKey; label: string }[] = [
 ]
 
 export const SPOTLIGHTS = [
-  { title: "Лучший для кода", badge: "#1 Code", model: "Claude Sonnet 4.5", score: 92, iconImg: "/assets/models/fbb9d4b9be57bef3908af3d17abe36874c6e2111.png", color: "#888ae5", metric: "Точность", metricValue: "96%", aiModelRef: "claude" },
-  { title: "Креативность", badge: "#1 Creative", model: "Flux 1.1 Pro", score: 94, iconImg: "/assets/models/026801a2483f6336a77345b613dd88dcf3337722.png", color: "#f472b6", metric: "Арт", metricValue: "97", aiModelRef: "flux" },
-  { title: "Доступность", badge: "Best Value", model: "ChatGPT 5 mini", score: 80, iconImg: "/assets/models/5742892e80d7b88b4e03e547ddbc5f12c284fc4f.png", color: "#4ade80", metric: "Цена", metricValue: "1 ₿", aiModelRef: "chatgpt" },
-  { title: "Быстрый ответ", badge: "Fastest", model: "Gemini 2.5 Flash", score: 81, iconImg: "/assets/models/a0cd52f4aadbc233e23bc3a33a8b1622f2522e44.png", color: "#fbbf24", metric: "Скорость", metricValue: "98", aiModelRef: "gemini" },
-  { title: "Лучшее видео", badge: "#1 Video", model: "Sora 2 Pro", score: 95, iconImg: "/assets/models/33c623db4663700c90b844fb79d7d0093e779281.png", color: "#22d3ee", metric: "Качество", metricValue: "94", aiModelRef: "sora2" },
-  { title: "Рассуждения", badge: "#1 Reasoning", model: "Claude Opus 4.5", score: 96, iconImg: "/assets/models/97e7183f4493e47e0f45bb2e873cb0468181f5dc.png", color: "#D4A574", metric: "Логика", metricValue: "99", aiModelRef: "claude" },
-  { title: "Аналитика", badge: "#1 Analytics", model: "Claude Opus 4.5", score: 96, iconImg: "/assets/models/6728adebc3202243c0fac9832d40cb8990aa2b63.png", color: "#818cf8", metric: "Аналитика", metricValue: "99", aiModelRef: "claude" },
+  { title: "Лучший для кода", badge: "#1 Code", model: "Claude Sonnet 4.5", score: 92, iconImg: "/assets/models/leader-claude-code.png", color: "#888ae5", metric: "Точность", metricValue: "96%", aiModelRef: "claude" },
+  { title: "Креативность", badge: "#1 Creative", model: "Flux 1.1 Pro", score: 94, iconImg: "/assets/models/leader-flux-creative.png", color: "#f472b6", metric: "Арт", metricValue: "97", aiModelRef: "flux" },
+  { title: "Доступность", badge: "Best Value", model: "ChatGPT 5 mini", score: 80, iconImg: "/assets/models/leader-chatgpt-value.png", color: "#4ade80", metric: "Цена", metricValue: "1 ₿", aiModelRef: "chatgpt" },
+  { title: "Быстрый ответ", badge: "Fastest", model: "Gemini 2.5 Flash", score: 81, iconImg: "/assets/models/leader-gemini-fast.png", color: "#fbbf24", metric: "Скорость", metricValue: "98", aiModelRef: "gemini" },
+  { title: "Лучшее видео", badge: "#1 Video", model: "Sora 2 Pro", score: 95, iconImg: "/assets/models/leader-sora-video.png", color: "#22d3ee", metric: "Качество", metricValue: "94", aiModelRef: "sora2" },
+  { title: "Рассуждения", badge: "#1 Reasoning", model: "Claude Opus 4.5", score: 96, iconImg: "/assets/models/leader-claude-reasoning.png", color: "#D4A574", metric: "Логика", metricValue: "99", aiModelRef: "claude" },
+  { title: "Аналитика", badge: "#1 Analytics", model: "Claude Opus 4.5", score: 96, iconImg: "/assets/models/leader-claude-analytics.png", color: "#818cf8", metric: "Аналитика", metricValue: "99", aiModelRef: "claude" },
 ]
 
 export const RATING_LOCKED_MAP: Record<string, string> = {

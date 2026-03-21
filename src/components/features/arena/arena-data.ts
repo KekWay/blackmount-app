@@ -5,12 +5,12 @@ export const ARENA_LOCKED_IDS = new Set([
   'nb-pro', 'sora-pro', 'veo31', 'kling26',
 ])
 
-export const IMG_COIN = '/assets/models/06a5a3f12f7ccb4092a793253a07d8e11e003ba7.png'
-export const IMG_LIGHTNING_MASK = '/assets/models/31423b4d4ba2f4b4cfeb98bc6688a1df0ecf6e9e.png'
-export const IMG_MEDAL1 = '/assets/models/66cd1c41a928212fe0f95c7de90dac25cd61828f.png'
-export const IMG_MEDAL2 = '/assets/models/04c2e129f17f1838c48e707c252d8c007bcc1741.png'
-export const IMG_MEDAL3 = '/assets/models/141d170d5ec8c8d082a6c27e88e088f0ec975e4e.png'
-export const IMG_SHARE_MASK = '/assets/models/4cac838c8c63be713d50762821baa4f75f7efe4e.png'
+export const IMG_COIN = '/assets/models/coin.png'
+export const IMG_LIGHTNING_MASK = '/assets/models/lightning-mask.png'
+export const IMG_MEDAL1 = '/assets/models/medal-1.png'
+export const IMG_MEDAL2 = '/assets/models/medal-2.png'
+export const IMG_MEDAL3 = '/assets/models/medal-3.png'
+export const IMG_SHARE_MASK = '/assets/models/share-mask.png'
 
 export const SVG_VS_PATH = 'M17.2501 42.6866L6.09166 8.88346L59.5119 52.7459L71.3332 20.0311'
 

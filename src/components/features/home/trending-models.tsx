@@ -6,7 +6,7 @@ import { trendingModels } from '@/data/trending'
 import { aiModels } from '@/data/ai-models'
 import { ModelIcon } from '@/components/shared/model-icon'
 
-const imgFireIcon = '/assets/models/fb08020829dd75b6763011bb1c5501cbcaed923d.png'
+const imgFireIcon = '/assets/models/fire-icon.png'
 
 const PODIUM_COLORS = [
   { glow: 'rgba(255,215,0,0.15)', num: '#FFD700' },

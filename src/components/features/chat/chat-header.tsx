@@ -6,7 +6,7 @@ import { APP_ASSETS } from '@/lib/assets'
 import { VersionDropdown } from './version-dropdown'
 import type { AIModel, ModelVersion } from '@/types'
 
-const imgShareMask = '/assets/models/4cac838c8c63be713d50762821baa4f75f7efe4e.png'
+const imgShareMask = '/assets/models/share-mask.png'
 const imgFreeIconSetting = APP_ASSETS.settings
 
 function ShareIcon({ size, className }: { size: number; className?: string }) {

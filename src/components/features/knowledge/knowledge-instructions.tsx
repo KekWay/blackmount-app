@@ -4,7 +4,7 @@ import { Play } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
 import type { InstructionStep } from './knowledge-types'
 
-const imgVideoMask = '/assets/models/2e5b2fe881d38d46194918ca4f16ab0d28f3fd25.png'
+const imgVideoMask = '/assets/models/knowledge-video.png'
 
 interface KnowledgeInstructionsProps {
   modelId: string
