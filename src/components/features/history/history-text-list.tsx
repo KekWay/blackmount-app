@@ -3,8 +3,11 @@
 import { useRouter } from 'next/navigation'
 import { Trash2 } from 'lucide-react'
 import { ModelIcon } from '@/components/shared/model-icon'
+import { Loader2 } from 'lucide-react'
 import { useAuthStore } from '@/stores/auth'
 import { useChatSessionsStore } from '@/stores/chat-sessions'
+import { useGenerationStore } from '@/stores/generation'
+import { getModelById } from '@/data/ai-models'
 
 interface HistoryTextListProps {
   selectedModels: string[]
@@ -16,10 +19,14 @@ interface HistoryTextListProps {
 export function HistoryTextList({ selectedModels, hasActiveFilter, onRequestDelete, onClearFilter }: HistoryTextListProps) {
   const router = useRouter()
   const { isLoggedIn } = useAuthStore()
+  const pendingGenerations = useGenerationStore((s) => s.pendingGenerations)
   const sessionsMap = useChatSessionsStore((s) => s.sessions)
-  const allSessions = Object.values(sessionsMap).sort(
-    (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
-  )
+  const allSessions = Object.values(sessionsMap)
+    .filter((s) => {
+      const m = getModelById(s.modelId)
+      return m ? m.category === 'text' : true
+    })
+    .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
 
   const items = allSessions.filter(
     (s) => selectedModels.length === 0 || selectedModels.includes(s.modelId)
@@ -57,6 +64,9 @@ export function HistoryTextList({ selectedModels, hasActiveFilter, onRequestDele
         const preview = lastMsg?.role === 'assistant' ? lastMsg.content.slice(0, 80) : ''
         const date = new Date(session.updatedAt)
         const time = `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`
+        const isPending = pendingGenerations.some(
+          (g) => g.type === 'text' && g.sessionId === session.id && g.status === 'pending'
+        )
         return (
           <div
             key={session.id}
@@ -70,9 +80,20 @@ export function HistoryTextList({ selectedModels, hasActiveFilter, onRequestDele
             </div>
             <div className="flex-1 min-w-0">
               <p className="font-manrope font-semibold text-[14px] text-white leading-[22px] truncate">{session.title}</p>
-              <p className="font-manrope font-normal text-[13px] text-[rgba(255,255,255,0.4)] leading-[20px] truncate">{preview}</p>
+              {isPending ? (
+                <span className="flex items-center gap-[6px]">
+                  <Loader2 size={12} className="text-[#888ae5] animate-spin" />
+                  <span className="font-manrope font-normal text-[13px] text-[#888ae5] leading-[20px] animate-pulse">Генерация...</span>
+                </span>
+              ) : (
+                <p className="font-manrope font-normal text-[13px] text-[rgba(255,255,255,0.4)] leading-[20px] truncate">{preview}</p>
+              )}
             </div>
-            <p className="font-manrope font-normal text-[13px] text-[rgba(255,255,255,0.3)] leading-[20px] shrink-0">{time}</p>
+            {isPending ? (
+              <div className="size-[8px] rounded-full bg-[#888ae5] animate-pulse shrink-0" />
+            ) : (
+              <p className="font-manrope font-normal text-[13px] text-[rgba(255,255,255,0.3)] leading-[20px] shrink-0">{time}</p>
+            )}
             <button
               onClick={(e) => { e.stopPropagation(); onRequestDelete(session.id); }}
               className="shrink-0 size-[32px] rounded-[8px] flex items-center justify-center opacity-0 group-hover:opacity-100 hover:bg-[rgba(248,113,113,0.12)] transition-all cursor-pointer"

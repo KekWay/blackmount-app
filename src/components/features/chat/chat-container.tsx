@@ -7,6 +7,7 @@ import { useBalanceStore } from '@/stores/balance'
 import { useSubscriptionStore } from '@/stores/subscription'
 import { useRequestLimiterStore } from '@/stores/request-limiter'
 import { useChatSessionsStore } from '@/stores/chat-sessions'
+import { useGenerationStore } from '@/stores/generation'
 import type { Message, ModelVersion } from '@/types'
 import { getRandomGreeting, FREE_SUB_VERSIONS, videoPricingMap, hexToRgba } from './chat-constants'
 import { useChatActions } from './use-chat-actions'
@@ -103,6 +104,21 @@ export function ChatContainer() {
     if (model.id === 'sora2') setVideoDuration('10с'); else if (model.id === 'kling') setVideoDuration('5с'); else if (model.id === 'veo31') setVideoDuration('8с')
     setGreeting(getRandomGreeting())
   }, [model.id])
+  useEffect(() => {
+    useGenerationStore.getState().setActiveChat(modelId)
+    return () => { useGenerationStore.getState().setActiveChat(null) }
+  }, [modelId])
+
+  const prevModelIdRef = useRef(modelId)
+  useEffect(() => {
+    if (prevModelIdRef.current !== modelId) {
+      actions.handleStopGeneration()
+      setMessages([])
+      sessionIdRef.current = null
+      prevModelIdRef.current = modelId
+    }
+  }, [modelId]) // eslint-disable-line react-hooks/exhaustive-deps
+
   void typingIdx
 
   return (

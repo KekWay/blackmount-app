@@ -36,10 +36,11 @@ interface HistoryItem {
 interface PendingGen {
   id: string
   modelId: string
-  type: 'image' | 'video'
+  type: 'image' | 'video' | 'text'
   status: 'pending' | 'completed'
   startedAt: number
   prompt: string
+  sessionId?: string
 }
 
 interface HistoryMediaGridProps {

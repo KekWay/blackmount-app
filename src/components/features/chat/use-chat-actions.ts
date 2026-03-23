@@ -54,9 +54,10 @@ export function useChatActions(p: UseChatActionsParams) {
     if (!p.input.trim()) return
     if (!isLoggedIn) { p.setShowAuthGate(true); return }
     if (p.modelLocked) { router.push('/profile?tab=subscription'); return }
-    if (!useRequestLimiterStore.getState().canMakeRequest()) { p.setShowLimitReached(true); return }
+    // TODO: временно отключен лимит запросов
+    // if (!useRequestLimiterStore.getState().canMakeRequest()) { p.setShowLimitReached(true); return }
     if (useBalanceStore.getState().balance < p.dynamicCost) { p.setShowLowBalance(true); return }
-    useRequestLimiterStore.getState().consumeRequest()
+    // useRequestLimiterStore.getState().consumeRequest()
     useBalanceStore.getState().deductBalance(p.dynamicCost)
     useBalanceStore.getState().addOperation('spent', p.selectedVersion.label, -p.dynamicCost)
     const now = new Date()
@@ -77,8 +78,9 @@ export function useChatActions(p: UseChatActionsParams) {
     if (p.isRecording) p.setIsRecording(false)
     p.setIsGenerating(true)
     if (!p.isTextModel) {
+      const mediaGenId = crypto.randomUUID()
       useGenerationStore.getState().addGeneration({
-        id: crypto.randomUUID(),
+        id: mediaGenId,
         modelId: p.model.id,
         type: p.model.category as 'image' | 'video',
         startedAt: Date.now(),
@@ -86,6 +88,7 @@ export function useChatActions(p: UseChatActionsParams) {
       })
       p.setMessages((prev) => [...prev, { role: 'assistant', content: `${p.model.name} генерирует...`, isLoading: true, mediaType: p.model.category as 'image' | 'video' }])
       generationTimerRef.current = setTimeout(() => {
+        useGenerationStore.getState().completeGeneration(mediaGenId)
         let assistantMsg: Message
         if (p.model.category === 'image' && p.imageCount > 1) {
           assistantMsg = { role: 'assistant', content: `Сгенерировано ${p.imageCount} изображений моделью ${p.model.name} (${p.selectedVersion.label})`, mediaType: 'image', mediaSrcs: testImagePool.slice(0, p.imageCount), timestamp: Date.now() }
@@ -101,9 +104,19 @@ export function useChatActions(p: UseChatActionsParams) {
         p.setIsGenerating(false)
       }, 3000)
     } else {
+      const textGenId = crypto.randomUUID()
+      useGenerationStore.getState().addGeneration({
+        id: textGenId,
+        modelId: p.model.id,
+        type: 'text',
+        startedAt: Date.now(),
+        prompt: p.input.trim().slice(0, 100),
+        sessionId,
+      })
       p.setMessages((prev) => [...prev, { role: 'assistant', content: '', isLoading: true }])
       const txt = `Это демо-ответ от ${p.model.name} (${p.selectedVersion.label}).${p.webSearchActive ? ' (с веб-поиском)' : ''}${p.deepResearchActive ? ' (с режимом думать)' : ''} В реальном приложении здесь был бы ответ от нейросети. Модель обрабатывает запрос с учётом контекста диалога и настроек выбранной версии.`
       generationTimerRef.current = setTimeout(() => {
+        useGenerationStore.getState().completeGeneration(textGenId)
         const assistantMsg: Message = { role: 'assistant', content: txt, isTyping: true, timestamp: Date.now() }
         p.setMessages((prev) => {
           const u = [...prev]; const li = u.findIndex((m) => m.isLoading)
