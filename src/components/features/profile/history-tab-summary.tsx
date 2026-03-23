@@ -5,7 +5,7 @@ import { IMG_COIN } from './profile-data'
 
 export function HistoryTabSummary({ totalSpent, totalTopup, opsCount }: { totalSpent: number; totalTopup: number; opsCount: number }) {
   return (
-    <div className="grid grid-cols-3 gap-[12px]">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-[12px]">
       {[
         { label: 'Потрачено', value: totalSpent, icon: <ArrowUpRight size={15} className="text-[#f87171]" />, iconBg: 'rgba(248,113,113,0.1)', noCoins: false },
         { label: 'Пополнено', value: totalTopup, icon: <ArrowDownLeft size={15} className="text-[#6bc085]" />, iconBg: 'rgba(107,192,133,0.1)', noCoins: false },

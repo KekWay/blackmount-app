@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
-import { Search, Home, Clock, Image, Trophy, Zap, BookOpen, MessageSquare, User, CreditCard, Plus } from 'lucide-react'
+import { Home, Clock, Image, Trophy, Zap, BookOpen, MessageSquare, User, CreditCard, Plus } from 'lucide-react'
 import { aiModels } from '@/data/ai-models'
 
 const isMac = typeof navigator !== 'undefined' && /Mac|iPod|iPhone|iPad/.test(navigator.userAgent)
@@ -75,14 +75,19 @@ export function CommandPalette() {
   return (
     <div className="fixed inset-0 z-[300] flex items-start justify-center pt-[20vh]" onClick={() => setOpen(false)}>
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
-      <div className="relative w-[520px] bg-[#1a1926] rounded-2xl border border-white/[0.08] shadow-2xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
+      <div className="relative w-[520px] max-w-[90vw] bg-[#1a1926] rounded-2xl border border-white/[0.08] shadow-2xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center gap-3 px-4 border-b border-white/[0.06]">
-          <Search size={16} className="text-white/30 shrink-0" />
+          <img src="/assets/models/search-icon.png" alt="" className="size-[18px] object-contain shrink-0" style={{ filter: 'brightness(0) invert(1)', opacity: 0.5 }} />
           <input ref={inputRef} value={query} onChange={(e) => { setQuery(e.target.value); setSelectedIdx(0) }} onKeyDown={handleKeyDown} placeholder="Поиск команд..." className="flex-1 bg-transparent py-3.5 text-sm text-white placeholder:text-white/30 outline-none" />
           <kbd className="text-[10px] text-white/20 bg-white/[0.06] px-1.5 py-0.5 rounded">{modKey}K</kbd>
         </div>
         <div className="max-h-[360px] overflow-y-auto py-2">
-          {flatList.length === 0 && <p className="text-sm text-white/30 text-center py-8">Ничего не найдено</p>}
+          {flatList.length === 0 && (
+            <div className="flex flex-col items-center justify-center py-8 gap-[8px]">
+              <img src="/assets/models/search-empty.png" alt="" className="size-[48px] object-contain" style={{ filter: 'brightness(0) invert(1)', opacity: 0.5 }} />
+              <p className="text-sm text-white/30 text-center">По вашему запросу ничего не найдено</p>
+            </div>
+          )}
           {(['navigation', 'models', 'actions'] as const).map((cat) => {
             const items = groups[cat]
             if (items.length === 0) return null

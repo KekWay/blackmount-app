@@ -21,7 +21,7 @@ export function HistoryDeleteModal({ itemTitle, onConfirm, onCancel }: HistoryDe
           onClick={onCancel}
         >
           <motion.div
-            className="bg-[#1a1a22] rounded-[20px] w-[380px] overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.6)] border border-[rgba(255,255,255,0.06)]"
+            className="bg-[#1a1a22] rounded-[20px] w-[380px] max-w-[90vw] overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.6)] border border-[rgba(255,255,255,0.06)]"
             onClick={(e) => e.stopPropagation()}
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -29,9 +29,7 @@ export function HistoryDeleteModal({ itemTitle, onConfirm, onCancel }: HistoryDe
             transition={{ type: 'spring', damping: 28, stiffness: 400 }}
           >
             <div className="px-[24px] pt-[24px] pb-[16px] flex flex-col items-center gap-[12px]">
-              <div className="size-[48px] rounded-full bg-[rgba(248,113,113,0.1)] flex items-center justify-center">
-                <Trash2 size={22} className="text-[#f87171]" />
-              </div>
+              <Trash2 size={28} className="text-[#f87171]" />
               <p className="text-[18px] text-white text-center font-bold">Удалить запись?</p>
               <p className="text-[13px] text-[rgba(255,255,255,0.45)] text-center leading-[20px] max-w-[280px]">
                 «{itemTitle.slice(0, 60)}{itemTitle.length > 60 ? '...' : ''}» будет удалена безвозвратно

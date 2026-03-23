@@ -1,8 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { X } from 'lucide-react'
+import { motion, AnimatePresence } from 'motion/react'
 import { useAuthStore } from '@/stores/auth'
+import { useArenaGuardStore } from '@/stores/arena-guard'
 import { useBalanceStore } from '@/stores/balance'
 import { useSubscriptionStore } from '@/stores/subscription'
 import { useRequestLimiterStore } from '@/stores/request-limiter'
@@ -18,6 +21,7 @@ import { ArenaWinnerView } from './arena-winner-view'
 import { ArenaInputBar } from './arena-input-bar'
 import { ArenaInputHints } from './arena-input-hints'
 import { ArenaLimitModal } from './arena-limit-modal'
+import { ShareModal } from '@/components/features/chat/share-modal'
 
 export function ArenaBattle() {
   const router = useRouter()
@@ -40,6 +44,36 @@ export function ArenaBattle() {
   const [showLimitReached, setShowLimitReached] = useState(false)
   const [gateOpen, setGateOpen] = useState(false)
   const [gateModelName, setGateModelName] = useState('')
+  const [promptOpen, setPromptOpen] = useState(false)
+  const [arenaShareOpen, setArenaShareOpen] = useState(false)
+  const togglePrompt = useCallback(() => setPromptOpen((p) => !p), [])
+
+  const setGuardActive = useArenaGuardStore((s) => s.setActive)
+  const pendingHref = useArenaGuardStore((s) => s.pendingHref)
+  const clearPending = useArenaGuardStore((s) => s.clearPending)
+
+  const hasActiveSession = phase === 'generating' || phase === 'voting' || phase === 'winner'
+
+  useEffect(() => {
+    setGuardActive(hasActiveSession)
+    return () => setGuardActive(false)
+  }, [hasActiveSession, setGuardActive])
+
+  useEffect(() => {
+    if (!hasActiveSession) return
+    const handler = (e: BeforeUnloadEvent) => { e.preventDefault() }
+    window.addEventListener('beforeunload', handler)
+    return () => window.removeEventListener('beforeunload', handler)
+  }, [hasActiveSession])
+
+  const confirmLeave = () => {
+    if (pendingHref) {
+      setGuardActive(false)
+      router.push(pendingHref)
+      clearPending()
+      reset()
+    }
+  }
 
   const totalCost = selectedModels.reduce((s, m) => s + m.price, 0)
   const canAfford = balance >= totalCost
@@ -87,12 +121,45 @@ export function ArenaBattle() {
 
   return (
     <div className="flex flex-col h-full w-full">
-      <ArenaTopBar selectedModels={selectedModels} totalCost={totalCost} onToggle={toggle} onCategoryChange={setCategory} />
-      <div className="flex-1 overflow-y-auto chat-scrollbar">
+      <ArenaTopBar selectedModels={selectedModels} totalCost={totalCost} currentPrompt={currentPrompt} promptOpen={promptOpen} modelsDisabled={hasActiveSession} onTogglePrompt={togglePrompt} onToggle={toggle} onCategoryChange={setCategory} />
+      <div className="flex-1 overflow-y-auto chat-scrollbar relative">
         {phase === 'idle' && <ArenaIdleView selectedModels={selectedModels} gridCols={gridCols} />}
-        {phase === 'generating' && <ArenaGeneratingView currentPrompt={currentPrompt} selectedModels={selectedModels} gridCols={gridCols} />}
-        {phase === 'voting' && <ArenaVotingView currentPrompt={currentPrompt} responses={responses} gridCols={gridCols} expandedId={expandedId} onVote={vote} onToggleExpand={toggleExpand} />}
-        {phase === 'winner' && winnerResponse && <ArenaWinnerView currentPrompt={currentPrompt} responses={responses} winnerResponse={winnerResponse} winnerId={winnerId!} gridCols={gridCols} showLosers={showLosers} savedIds={savedIds} ratedId={ratedId} onSave={save} onRate={setRatedId} onReset={reset} onGoChat={goChat} />}
+        {phase === 'generating' && <ArenaGeneratingView selectedModels={selectedModels} gridCols={gridCols} />}
+        {phase === 'voting' && <ArenaVotingView responses={responses} gridCols={gridCols} expandedId={expandedId} onVote={vote} onToggleExpand={toggleExpand} />}
+        {phase === 'winner' && winnerResponse && <ArenaWinnerView responses={responses} winnerResponse={winnerResponse} winnerId={winnerId!} prompt={currentPrompt} gridCols={gridCols} showLosers={showLosers} savedIds={savedIds} ratedId={ratedId} onSave={save} onRate={setRatedId} onReset={reset} onGoChat={goChat} onShare={() => setArenaShareOpen(true)} />}
+
+        {/* Prompt overlay */}
+        <AnimatePresence>
+          {promptOpen && currentPrompt && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="absolute inset-0 z-[40] flex items-start justify-center bg-[rgba(0,0,0,0.6)] backdrop-blur-[4px]"
+              onClick={() => setPromptOpen(false)}
+            >
+              <motion.div
+                initial={{ opacity: 0, y: -12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.2 }}
+                className="mt-[40px] mx-[20px] w-full max-w-[560px] max-h-[70%] rounded-[16px] bg-[#1e1b2e] shadow-2xl flex flex-col overflow-hidden"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="flex items-center justify-between px-[18px] py-[12px]">
+                  <span className="text-[13px] text-[rgba(255,255,255,0.5)] font-medium">Ваш запрос</span>
+                  <button onClick={() => setPromptOpen(false)} className="text-[rgba(255,255,255,0.3)] hover:text-white transition-colors cursor-pointer p-[4px] rounded-[6px] hover:bg-[rgba(255,255,255,0.06)]">
+                    <X size={16} />
+                  </button>
+                </div>
+                <div className="flex-1 overflow-y-auto chat-scrollbar px-[18px] py-[14px]">
+                  <p className="text-[14px] text-[rgba(255,255,255,0.7)] leading-[22px] whitespace-pre-wrap">{currentPrompt}</p>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
       {(phase === 'idle' || phase === 'winner') && (
         <>
@@ -102,6 +169,52 @@ export function ArenaBattle() {
       )}
       <ArenaLimitModal open={showLimitReached} onClose={() => setShowLimitReached(false)} />
       <SubscriptionGateModal open={gateOpen} onClose={() => setGateOpen(false)} modelName={gateModelName} />
+
+      {winnerResponse && (
+        <ShareModal
+          open={arenaShareOpen}
+          onClose={() => setArenaShareOpen(false)}
+          modelId={winnerResponse.model.aiModelRef || winnerResponse.model.id}
+          modelName={winnerResponse.model.name}
+          prompt={currentPrompt}
+          response={winnerResponse.text}
+        />
+      )}
+
+      {/* Navigation guard modal */}
+      <AnimatePresence>
+        {pendingHref && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-[rgba(0,0,0,0.7)] backdrop-blur-[4px]"
+            onClick={clearPending}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="w-[380px] rounded-[16px] bg-[#1e1b2e] shadow-2xl p-[24px] flex flex-col items-center gap-[16px]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="size-[45px]" style={{ backgroundColor: '#f87171', maskImage: "url('/assets/models/warning-arena.png')", WebkitMaskImage: "url('/assets/models/warning-arena.png')", maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center' }} />
+              <h3 className="text-[16px] text-white font-semibold text-center">Покинуть арену?</h3>
+              <p className="text-[13px] text-[rgba(255,255,255,0.45)] text-center leading-[20px]">
+                Результаты текущей битвы будут потеряны. Вы уверены, что хотите уйти?
+              </p>
+              <div className="flex items-center gap-[10px] w-full mt-[4px]">
+                <button onClick={clearPending} className="flex-1 h-[40px] rounded-[10px] bg-[rgba(255,255,255,0.06)] text-[13px] text-[rgba(255,255,255,0.6)] font-medium hover:bg-[rgba(255,255,255,0.1)] transition-colors cursor-pointer">
+                  Остаться
+                </button>
+                <button onClick={confirmLeave} className="flex-1 h-[40px] rounded-[10px] bg-[#dc2626] text-[13px] text-white font-medium hover:bg-[#ef4444] transition-colors cursor-pointer">
+                  Покинуть
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

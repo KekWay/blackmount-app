@@ -7,7 +7,6 @@ import { IMG_MEDAL1 } from './arena-data'
 import { MIcon } from './arena-micon'
 
 interface Props {
-  currentPrompt: string
   responses: ModelResponse[]
   gridCols: number
   expandedId: string | null
@@ -15,14 +14,9 @@ interface Props {
   onToggleExpand: (id: string) => void
 }
 
-export function ArenaVotingView({ currentPrompt, responses, gridCols, expandedId, onVote, onToggleExpand }: Props) {
+export function ArenaVotingView({ responses, gridCols, expandedId, onVote, onToggleExpand }: Props) {
   return (
     <div className="h-full flex flex-col">
-      <div className="flex justify-center py-[14px] px-[24px]">
-        <div className="max-w-[500px] rounded-[20px] px-[20px] py-[10px] bg-[rgba(61,57,80,0.5)]">
-          <p className="text-[13px] text-white leading-[20px] whitespace-pre-wrap">{currentPrompt}</p>
-        </div>
-      </div>
       <p className="text-[11px] text-[rgba(255,255,255,0.2)] text-center mb-[6px]">
         Нажми на карточку, чтобы выбрать победителя
       </p>
@@ -68,7 +62,7 @@ function ExpandedCard({ responses, expandedId, onVote, onToggleExpand }: { respo
 
 function VotingGrid({ responses, gridCols, onVote, onToggleExpand }: { responses: ModelResponse[]; gridCols: number; onVote: (id: string) => void; onToggleExpand: (id: string) => void }) {
   return (
-    <div className="grid gap-[10px] h-full" style={{ gridTemplateColumns: `repeat(${gridCols}, 1fr)` }}>
+    <div className="flex flex-col md:grid gap-[10px] h-full" style={{ gridTemplateColumns: `repeat(${gridCols}, 1fr)` }}>
       {responses.map((r, i) => (
         <motion.div key={r.model.id} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08 }} onClick={() => onVote(r.model.id)} className="rounded-[16px] bg-[rgba(255,255,255,0.02)] ring-1 ring-[rgba(255,255,255,0.03)] overflow-hidden flex flex-col hover:ring-[#888ae5]/50 hover:bg-[rgba(136,138,229,0.05)] hover:-translate-y-[2px] transition-all duration-300 cursor-pointer group shadow-sm hover:shadow-md">
           <div className="flex items-center justify-between px-[16px] py-[10px] border-b border-[rgba(255,255,255,0.04)]">

@@ -52,7 +52,7 @@ export function PaymentOverlay({ open, onClose, amount, label, onSuccess }: Paym
 
   return (
     <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={onClose}>
-      <div className="bg-[#14131c] rounded-3xl w-[420px] border border-white/[0.08] shadow-2xl" onClick={(e) => e.stopPropagation()}>
+      <div className="bg-[#14131c] rounded-3xl w-[420px] max-w-[90vw] border border-white/[0.08] shadow-2xl" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between p-6 border-b border-white/[0.06]">
           <div className="flex items-center gap-2">
             <CreditCard size={18} className="text-primary" />

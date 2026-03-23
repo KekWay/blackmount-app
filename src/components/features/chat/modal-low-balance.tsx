@@ -27,7 +27,7 @@ export function ModalLowBalance({ show, onClose, selectedVersion, dynamicCost, b
           onClick={onClose}
         >
           <motion.div
-            className="bg-[#1a1a24] rounded-[24px] w-[420px] overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.6)]"
+            className="bg-[#1a1a24] rounded-[24px] w-[420px] max-w-[90vw] overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.6)]"
             initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 350 }}
             onClick={(e) => e.stopPropagation()}

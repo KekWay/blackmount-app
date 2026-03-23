@@ -27,7 +27,7 @@ export function ArenaInputBar({ prompt, totalCost, canSend, onPromptChange, onSe
   }
 
   return (
-    <div className="flex justify-center pb-[28px] px-[40px] shrink-0 relative z-[20]">
+    <div className="flex justify-center pb-[16px] md:pb-[28px] px-[16px] md:px-[24px] lg:px-[40px] shrink-0 sticky bottom-0 relative z-[20] bg-gradient-to-t from-[#121118] via-[#121118] to-transparent pt-[12px]">
       <div className="w-full max-w-[620px] flex flex-col gap-[6px]">
         <div className="bg-[rgba(61,57,80,0.5)] ring-1 ring-[rgba(255,255,255,0.05)] rounded-[30px] w-full flex flex-col relative shadow-lg">
           <textarea

@@ -81,8 +81,8 @@ export function SubscriptionPlanCard({ planKey, label, priceMonth, priceYear, ba
                 <div className="flex items-center gap-[6px] pl-[24px] relative z-10 mt-[2px]">
                   <div className="flex -space-x-[4px]">
                     {modelLogos.map((logo, idx) => (
-                      <div key={idx} className="w-[20px] h-[20px] rounded-full bg-[#252336] border border-[#888ae5]/30 p-[3px] flex items-center justify-center relative z-10 shadow-[0_4px_8px_rgba(0,0,0,0.4)]" style={{ zIndex: 10 - idx }}>
-                        <img src={logo} alt="" className="w-full h-full object-contain" style={(idx === 0 || idx === 3) ? { filter: 'brightness(0) invert(1)' } : undefined} />
+                      <div key={idx} className={`w-[20px] h-[20px] rounded-full bg-[#252336] border border-[#888ae5]/30 p-[3px] flex items-center justify-center relative z-10 shadow-[0_4px_8px_rgba(0,0,0,0.4)]`} style={{ zIndex: 10 - idx }}>
+                        <img src={logo} alt="" className="w-full h-full object-contain" style={idx === 3 ? { filter: 'brightness(0) invert(1)' } : undefined} />
                       </div>
                     ))}
                   </div>

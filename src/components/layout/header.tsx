@@ -2,7 +2,6 @@
 
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { Search } from 'lucide-react'
 import { NAV_ITEMS } from '@/lib/constants'
 import { useAuthStore } from '@/stores/auth'
 
@@ -28,7 +27,7 @@ export function Header() {
           className="size-10 flex items-center justify-center rounded-xl hover:bg-white/[0.06] transition-colors"
           aria-label="Поиск"
         >
-          <Search size={20} className="text-white/50" />
+          <img src="/assets/models/search-icon.png" alt="" className="size-[18px] object-contain" style={{ filter: 'brightness(0) invert(1)', opacity: 0.5 }} />
         </button>
 
         {isLoggedIn && user ? (

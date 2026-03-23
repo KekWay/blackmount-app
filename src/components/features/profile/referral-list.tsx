@@ -13,9 +13,9 @@ export function ReferralList() {
 
   return (
     <div className="rounded-[20px] bg-[#181722]/50 overflow-hidden shadow-sm">
-      <div className="px-[24px] pt-[20px] pb-[16px] flex items-center justify-between border-b border-[#888ae5]/10">
+      <div className="px-[16px] md:px-[24px] pt-[20px] pb-[16px] flex flex-col sm:flex-row items-start sm:items-center gap-[12px] sm:gap-0 justify-between border-b border-[#888ae5]/10">
         <p className="font-manrope font-bold text-[16px] text-white">Ваши рефералы</p>
-        <div className="w-[220px]">
+        <div className="w-full sm:w-[220px]">
           <AnimatedToggle<ReferralView>
             options={[
               { key: 'list', label: 'Список' },

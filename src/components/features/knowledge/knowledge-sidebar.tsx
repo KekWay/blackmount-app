@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Search, ChevronDown } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
 import { ModelIcon } from '@/components/shared/model-icon'
 import { aiModels } from '@/data/ai-models'
@@ -12,9 +12,10 @@ const imgFaceMask = '/assets/models/knowledge-face.png'
 interface KnowledgeSidebarProps {
   selectedModelId: string
   onSelectModel: (id: string) => void
+  mobile?: boolean
 }
 
-export function KnowledgeSidebar({ selectedModelId, onSelectModel }: KnowledgeSidebarProps) {
+export function KnowledgeSidebar({ selectedModelId, onSelectModel, mobile }: KnowledgeSidebarProps) {
   const [searchQuery, setSearchQuery] = useState('')
   const [sidebarCollapsed, setSidebarCollapsed] = useState<Record<string, boolean>>({})
 
@@ -27,7 +28,7 @@ export function KnowledgeSidebar({ selectedModelId, onSelectModel }: KnowledgeSi
     : aiModels
 
   return (
-    <div className="w-[260px] shrink-0 h-full flex flex-col border-r border-[rgba(255,255,255,0.06)] bg-[#121118]">
+    <div className={`${mobile ? 'flex' : 'hidden md:flex'} w-[260px] shrink-0 h-full flex-col border-r border-[rgba(255,255,255,0.06)] bg-[#121118]`}>
       {/* Header */}
       <div className="px-[20px] pt-[24px] pb-[16px]">
         <div className="flex items-center gap-[10px] mb-[16px]">
@@ -42,7 +43,7 @@ export function KnowledgeSidebar({ selectedModelId, onSelectModel }: KnowledgeSi
 
         {/* Search */}
         <div className="relative">
-          <Search size={14} className="absolute left-[10px] top-1/2 -translate-y-1/2 text-[rgba(255,255,255,0.25)]" />
+          <img src="/assets/models/search-icon.png" alt="" className="absolute left-[10px] top-1/2 -translate-y-1/2 size-[18px] object-contain" style={{ filter: 'brightness(0) invert(1)', opacity: 0.5 }} />
           <input
             className="w-full bg-[rgba(255,255,255,0.04)] rounded-[10px] pl-[32px] pr-[12px] py-[8px] text-[12px] text-white placeholder-[rgba(255,255,255,0.25)] outline-none focus:bg-[rgba(255,255,255,0.06)] transition-colors"
             placeholder="Поиск модели..."

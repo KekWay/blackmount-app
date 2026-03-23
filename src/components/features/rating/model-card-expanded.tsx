@@ -1,8 +1,8 @@
 'use client'
 
 import {
-  Zap, ArrowRight, ThumbsUp, Target, Film, Palette,
-  BrainCircuit, DollarSign, Users, Sparkles, Activity, Info,
+  ArrowRight, ThumbsUp,
+  Users, Activity, Info,
 } from 'lucide-react'
 import type { LeaderboardModel } from '@/data/leaderboard'
 import { CustomRadar } from './custom-radar'
@@ -10,35 +10,32 @@ import { UserRating } from './user-rating'
 
 function getMetrics(item: LeaderboardModel) {
   if (item.category === 'text') return [
-    { id: 'speed', label: 'Скорость', value: item.speed, icon: <Zap size={12} />, color: '#6bc085' },
-    { id: 'accuracy', label: 'Точность', value: item.accuracy, icon: <Target size={12} />, color: '#e07070' },
-    { id: 'costEfficiency', label: 'Выгода', value: item.costEfficiency, icon: <DollarSign size={12} />, color: '#70b8e0' },
-    { id: 'creativity', label: 'Креативность', value: item.creativity, icon: <Palette size={12} />, color: '#e0a34f' },
-    { id: 'reasoning', label: 'Логика', value: item.reasoning, icon: <BrainCircuit size={12} />, color: '#c084fc' },
-    { id: 'analytics', label: 'Аналитика', value: item.analytics, icon: <Activity size={12} />, color: '#818cf8' },
+    { id: 'speed', label: 'Скорость', value: item.speed, color: '#6bc085' },
+    { id: 'accuracy', label: 'Точность', value: item.accuracy, color: '#e07070' },
+    { id: 'costEfficiency', label: 'Выгода', value: item.costEfficiency, color: '#70b8e0' },
+    { id: 'creativity', label: 'Креативность', value: item.creativity, color: '#e0a34f' },
+    { id: 'reasoning', label: 'Логика', value: item.reasoning, color: '#c084fc' },
+    { id: 'analytics', label: 'Аналитика', value: item.analytics, color: '#818cf8' },
   ]
   if (item.category === 'image') return [
-    { id: 'creativity', label: 'Качество', value: item.creativity, icon: <Palette size={12} />, color: '#e0a34f' },
-    { id: 'accuracy', label: 'Детализация', value: item.accuracy, icon: <Target size={12} />, color: '#e07070' },
-    { id: 'speed', label: 'Скорость генерации', value: item.speed, icon: <Zap size={12} />, color: '#6bc085' },
-    { id: 'costEfficiency', label: 'Цена/Качество', value: item.costEfficiency, icon: <DollarSign size={12} />, color: '#70b8e0' },
-    { id: 'score', label: 'Фотореализм', value: item.score, icon: <Film size={12} />, color: '#22d3ee' },
+    { id: 'creativity', label: 'Качество', value: item.creativity, color: '#e0a34f' },
+    { id: 'accuracy', label: 'Детализация', value: item.accuracy, color: '#e07070' },
+    { id: 'speed', label: 'Скорость генерации', value: item.speed, color: '#6bc085' },
+    { id: 'costEfficiency', label: 'Цена/Качество', value: item.costEfficiency, color: '#70b8e0' },
+    { id: 'score', label: 'Фотореализм', value: item.score, color: '#22d3ee' },
   ]
   return [
-    { id: 'creativity', label: 'Кинематографичность', value: item.creativity, icon: <Film size={12} />, color: '#e0a34f' },
-    { id: 'accuracy', label: 'Стабильность кадра', value: item.accuracy, icon: <Target size={12} />, color: '#e07070' },
-    { id: 'speed', label: 'Скорость генерации', value: item.speed, icon: <Zap size={12} />, color: '#6bc085' },
-    { id: 'costEfficiency', label: 'Цена/Качество', value: item.costEfficiency, icon: <DollarSign size={12} />, color: '#70b8e0' },
-    { id: 'score', label: 'Качество видео', value: item.score, icon: <Sparkles size={12} />, color: '#22d3ee' },
+    { id: 'creativity', label: 'Кинематографичность', value: item.creativity, color: '#e0a34f' },
+    { id: 'accuracy', label: 'Стабильность кадра', value: item.accuracy, color: '#e07070' },
+    { id: 'speed', label: 'Скорость генерации', value: item.speed, color: '#6bc085' },
+    { id: 'costEfficiency', label: 'Цена/Качество', value: item.costEfficiency, color: '#70b8e0' },
+    { id: 'score', label: 'Качество видео', value: item.score, color: '#22d3ee' },
   ]
 }
 
 export function ModelCardExpanded({ item, onOpenChat }: { item: LeaderboardModel; onOpenChat: (item: LeaderboardModel) => void }) {
   const allMetrics = getMetrics(item)
   const radarData = allMetrics.map(m => ({ subject: m.label, val: m.value }))
-  const sortedMetrics = [...allMetrics].sort((a, b) => b.value - a.value)
-  const bestMetric = sortedMetrics[0]
-  const worstMetric = sortedMetrics[sortedMetrics.length - 1]
 
   return (
     <div className="px-[16px] pb-[16px] pt-[4px]">
@@ -86,15 +83,8 @@ export function ModelCardExpanded({ item, onOpenChat }: { item: LeaderboardModel
             {allMetrics.map(m => (
               <div key={m.id} className="flex flex-col gap-[4px]">
                 <div className="flex justify-between items-center">
-                  <div className="flex items-center gap-[6px]">
-                    <span style={{ color: m.color }}>{m.icon}</span>
-                    <span className="text-[11px] text-[rgba(255,255,255,0.6)] font-medium">{m.label}</span>
-                  </div>
-                  <div className="flex items-center gap-[6px]">
-                    {m.id === bestMetric.id && <span className="text-[8px] bg-white/10 text-white px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">Топ</span>}
-                    {m.id === worstMetric.id && <span className="text-[8px] bg-red-500/10 text-red-400 px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">Слабо</span>}
-                    <span className="text-[12px] text-white font-bold">{m.value}</span>
-                  </div>
+                  <span className="text-[11px] text-[rgba(255,255,255,0.6)] font-medium">{m.label}</span>
+                  <span className="text-[12px] text-white font-bold">{m.value}</span>
                 </div>
                 <div className="w-full h-[4px] bg-[rgba(255,255,255,0.04)] rounded-full overflow-hidden">
                   <div className="h-full rounded-full" style={{ width: `${m.value}%`, backgroundColor: m.color }} />

@@ -9,15 +9,17 @@ import { MIcon } from './arena-micon'
 
 interface Props {
   winnerResponse: ModelResponse
+  prompt: string
   savedIds: Set<string>
   ratedId: string | null
   onSave: (id: string) => void
   onRate: (id: string) => void
   onReset: () => void
   onGoChat: (m: ArenaModel) => void
+  onShare: () => void
 }
 
-export function ArenaWinnerCard({ winnerResponse, savedIds, ratedId, onSave, onRate, onReset, onGoChat }: Props) {
+export function ArenaWinnerCard({ winnerResponse, prompt, savedIds, ratedId, onSave, onRate, onReset, onGoChat, onShare }: Props) {
   const isSaved = savedIds.has(winnerResponse.model.id)
 
   return (
@@ -48,7 +50,7 @@ export function ArenaWinnerCard({ winnerResponse, savedIds, ratedId, onSave, onR
           {isSaved ? <Check size={12} /> : <Save size={12} />}
           {isSaved ? 'Сохранено' : 'Сохранить'}
         </button>
-        <button className="flex items-center gap-[5px] px-[12px] py-[7px] rounded-[10px] bg-[rgba(255,255,255,0.04)] text-[11px] text-[rgba(255,255,255,0.4)] hover:bg-[rgba(255,255,255,0.08)] transition-all cursor-pointer border border-transparent font-medium">
+        <button onClick={onShare} className="flex items-center gap-[5px] px-[12px] py-[7px] rounded-[10px] bg-[rgba(255,255,255,0.04)] text-[11px] text-[rgba(255,255,255,0.4)] hover:bg-[rgba(255,255,255,0.08)] transition-all cursor-pointer border border-transparent font-medium">
           <div className="w-[12px] h-[12px]" style={{ backgroundColor: 'currentColor', maskImage: `url('${IMG_SHARE_MASK}')`, WebkitMaskImage: `url('${IMG_SHARE_MASK}')`, maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center' }} /> Поделиться
         </button>
         <div className="flex items-center gap-[4px]">

@@ -1,8 +1,10 @@
 'use client'
 
-import { Sparkles } from 'lucide-react'
+import { Sparkles, Star } from 'lucide-react'
+import { motion, AnimatePresence } from 'motion/react'
 import type { AIModel } from '@/types'
 import { isModelNew } from '@/data/ai-models'
+import { useFavoritesStore } from '@/stores/favorites'
 
 /* SVG path for rounded card shape (NanoBanana) */
 const SVG_CARD_PATH = 'M0 20C0 8.95431 8.9543 0 20 0H138C149.046 0 158 8.9543 158 20V93C158 104.046 149.046 113 138 113H20C8.9543 113 0 104.046 0 93V20Z'
@@ -82,6 +84,8 @@ interface ModelCardProps {
 
 export function ModelCard({ model, locked, onClick }: ModelCardProps) {
   const cfg = CONFIGS[model.id]
+  const isFav = useFavoritesStore((s) => s.isFavorite(model.id))
+  const toggle = useFavoritesStore((s) => s.toggleFavorite)
   if (!cfg) return null
 
   return (
@@ -127,6 +131,30 @@ export function ModelCard({ model, locked, onClick }: ModelCardProps) {
           <img alt="" className="absolute max-w-none object-cover pointer-events-none brightness-0 invert" style={{ left: cfg.logo.left, top: cfg.logo.top, width: cfg.logo.width, height: cfg.logo.height }} src={cfg.logo.src} />
         )}
       </article>
+
+      {/* Favorite star */}
+      {!locked && (
+        <button
+          onClick={(e) => { e.stopPropagation(); toggle(model.id) }}
+          className="absolute top-[6px] left-[6px] z-[4] size-[24px] rounded-full flex items-center justify-center cursor-pointer transition-all duration-200 opacity-0 group-hover:opacity-100 bg-[rgba(0,0,0,0.3)] hover:bg-[rgba(0,0,0,0.5)]"
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={isFav ? 'filled' : 'empty'}
+              initial={{ scale: 0.5 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.5 }}
+              transition={{ type: 'spring', stiffness: 500, damping: 15, duration: 0.2 }}
+            >
+              <Star
+                size={12}
+                className={isFav ? 'text-[#f5a623]' : 'text-white/70'}
+                fill={isFav ? '#f5a623' : 'none'}
+              />
+            </motion.div>
+          </AnimatePresence>
+        </button>
+      )}
 
       {/* Lock overlay */}
       {locked && (

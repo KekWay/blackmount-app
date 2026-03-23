@@ -19,7 +19,7 @@ export function SubscriptionGateModal({ open, onClose, modelName }: Subscription
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
 
       <div
-        className="relative w-[400px] overflow-hidden rounded-[20px] bg-[#14131c] border border-primary/[0.12] shadow-[0_24px_64px_rgba(0,0,0,0.55)]"
+        className="relative w-[400px] max-w-[90vw] overflow-hidden rounded-[20px] bg-[#14131c] border border-primary/[0.12] shadow-[0_24px_64px_rgba(0,0,0,0.55)]"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />

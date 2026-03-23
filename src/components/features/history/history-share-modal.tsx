@@ -1,18 +1,44 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { X } from 'lucide-react'
-import { copyToClipboard } from '@/lib/utils'
+import { X, Check } from 'lucide-react'
+import { useSharedStore } from '@/stores/shared'
 
 interface HistoryShareModalProps {
   open: boolean
   itemId: string
   itemTitle: string
+  itemModelId: string
+  itemModelName: string
+  itemType: 'text' | 'image' | 'video'
   onClose: () => void
 }
 
-export function HistoryShareModal({ open, itemId, itemTitle, onClose }: HistoryShareModalProps) {
-  const shareUrl = `https://blackmount.ai/history/shared/${itemId}`
+export function HistoryShareModal({ open, itemTitle, itemModelId, itemModelName, itemType, onClose }: HistoryShareModalProps) {
+  const [copied, setCopied] = useState(false)
+  const [shareUrl, setShareUrl] = useState('')
+  const shareItem = useSharedStore((s) => s.shareItem)
+
+  useEffect(() => {
+    if (!open) { setShareUrl(''); setCopied(false); return }
+    const id = shareItem({
+      prompt: itemTitle,
+      response: '',
+      modelId: itemModelId,
+      modelName: itemModelName,
+      type: itemType,
+      createdAt: new Date().toISOString(),
+    })
+    setShareUrl(`${window.location.origin}/share/${id}`)
+  }, [open]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(shareUrl).catch(() => {})
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
   const shareTitle = `Генерация «${itemTitle}» — Black Mount AI`
 
   return (
@@ -20,16 +46,17 @@ export function HistoryShareModal({ open, itemId, itemTitle, onClose }: HistoryS
       {open && (
         <motion.div className="fixed inset-0 z-[200] flex items-center justify-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
           <div className="absolute inset-0 bg-[rgba(0,0,0,0.6)] backdrop-blur-[4px]" />
-          <motion.div className="relative bg-[#1a1a22] rounded-[24px] w-[440px] overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.6)]" onClick={(e) => e.stopPropagation()} initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }}>
+          <motion.div className="relative bg-[#1a1a22] rounded-[24px] w-[440px] max-w-[90vw] overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.6)]" onClick={(e) => e.stopPropagation()} initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }}>
             <div className="flex items-center justify-between px-[28px] pt-[24px] pb-[16px]">
               <p className="text-[20px] text-white font-extrabold">Поделиться</p>
               <button onClick={onClose} className="bg-[rgba(255,255,255,0.06)] rounded-[12px] size-[36px] flex items-center justify-center cursor-pointer hover:bg-[rgba(136,138,229,0.1)] transition-colors"><X size={16} className="text-[rgba(255,255,255,0.6)]" /></button>
             </div>
             <div className="flex items-center justify-center gap-[20px] px-[28px] pb-[28px]">
               <ShareButton
-                onClick={() => { copyToClipboard(shareUrl); }}
-                icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /></svg>}
-                label="Копировать"
+                onClick={handleCopy}
+                icon={copied ? <Check size={20} className="text-[#888ae5]" /> : <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /></svg>}
+                label={copied ? 'Скопировано!' : 'Копировать'}
+                active={copied}
               />
               <ShareLink
                 href={`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareTitle)}`}
@@ -54,10 +81,10 @@ export function HistoryShareModal({ open, itemId, itemTitle, onClose }: HistoryS
   )
 }
 
-function ShareButton({ onClick, icon, label }: { onClick: () => void; icon: React.ReactNode; label: string }) {
+function ShareButton({ onClick, icon, label, active }: { onClick: () => void; icon: React.ReactNode; label: string; active?: boolean }) {
   return (
     <button onClick={onClick} className="flex flex-col items-center gap-[8px] group cursor-pointer">
-      <div className="size-[56px] rounded-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.1)] flex items-center justify-center group-hover:bg-[rgba(255,255,255,0.1)] transition-colors">
+      <div className={`size-[56px] rounded-full border flex items-center justify-center transition-all ${active ? 'bg-[rgba(136,138,229,0.2)] border-[rgba(136,138,229,0.4)]' : 'bg-[rgba(255,255,255,0.06)] border-[rgba(255,255,255,0.1)] group-hover:bg-[rgba(255,255,255,0.1)]'}`}>
         {icon}
       </div>
       <span className="text-[11px] text-[rgba(255,255,255,0.5)] font-medium">{label}</span>

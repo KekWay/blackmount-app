@@ -40,9 +40,9 @@ export function SubscriptionPageContent() {
         <ArrowLeft size={18} /><span className="font-manrope font-bold text-[14px]">В профиль</span>
       </button>
 
-      <div className="max-w-[900px] mx-auto py-[48px] px-[20px] relative z-10 flex flex-col items-center">
+      <div className="max-w-[900px] mx-auto py-[32px] md:py-[48px] px-[16px] md:px-[20px] relative z-10 flex flex-col items-center">
         <div className="text-center mb-[32px] flex flex-col items-center">
-          <h1 className="font-manrope font-extrabold text-[36px] text-white leading-[1.1] mb-[12px] tracking-tight">
+          <h1 className="font-manrope font-extrabold text-[24px] md:text-[36px] text-white leading-[1.1] mb-[12px] tracking-tight">
             Выберите свою <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-[#888ae5] to-[#c4b5fd]">мощность генераций</span>
           </h1>
           <p className="font-manrope text-[14px] text-[rgba(255,255,255,0.5)] max-w-[500px] leading-relaxed mb-[28px]">Откройте доступ к лучшим нейросетям мира. Одна подписка — все возможности: тексты, код, изображения и видео.</p>

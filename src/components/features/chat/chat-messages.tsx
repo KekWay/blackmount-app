@@ -23,9 +23,9 @@ export function ChatMessages({
   setViewerMedia, setTypingIdx, setIsGenerating, setMessages, setInput,
 }: ChatMessagesProps) {
   return (
-    <div className="w-full max-w-[620px] flex flex-col gap-[16px] py-[20px] mx-auto px-[40px]">
+    <div className="w-full max-w-[620px] flex flex-col gap-[16px] py-[20px] mx-auto px-[12px] md:px-[24px] lg:px-[40px]">
       {messages.map((msg, i) => (
-        <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+        <div key={i} data-role={msg.role} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
           {msg.isLoading && !msg.mediaType ? (
             <TextLoadingBubble model={model} />
           ) : msg.isLoading && msg.mediaType ? (

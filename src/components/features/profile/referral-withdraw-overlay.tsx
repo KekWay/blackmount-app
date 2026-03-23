@@ -15,7 +15,7 @@ export function ReferralWithdrawOverlay({ onClose }: { onClose: () => void }) {
 
   return (
     <motion.div className="fixed inset-0 z-[100] flex items-center justify-center bg-[rgba(0,0,0,0.6)] backdrop-blur-[4px]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
-      <motion.div className="bg-[#19181e] rounded-[20px] w-[420px] overflow-hidden max-h-[90vh] overflow-y-auto shadow-2xl" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} onClick={(e) => e.stopPropagation()}>
+      <motion.div className="bg-[#19181e] rounded-[20px] w-[420px] max-w-[90vw] overflow-hidden max-h-[90vh] overflow-y-auto shadow-2xl" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} onClick={(e) => e.stopPropagation()}>
         {!withdrawDone ? (
           <div className="px-[32px] py-[28px]">
             <div className="flex items-center justify-between mb-[24px]">

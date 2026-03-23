@@ -53,7 +53,7 @@ export function NewsCarousel() {
   return (
     <section className="mb-[40px]" aria-label="News and updates">
       <div className="flex items-center justify-between mb-[16px]">
-        <h2 className="font-manrope font-semibold leading-[30px] not-italic text-[24px] text-white">
+        <h2 className="font-manrope font-semibold leading-[30px] not-italic text-[20px] md:text-[24px] text-white">
           News &amp; Updates
         </h2>
         <div className="flex gap-[8px]">
@@ -76,11 +76,11 @@ export function NewsCarousel() {
 
       <div
         ref={scrollRef}
-        className="flex gap-[20px] overflow-x-auto pb-[8px] hidden-scrollbar"
+        className="flex gap-[20px] overflow-x-auto pb-[8px] hidden-scrollbar snap-x snap-mandatory sm:snap-none"
       >
         {newsItems.map((item) => (
-          <article key={item.id} className="shrink-0 w-[420px] flex flex-col gap-[12px]">
-            <div className="relative h-[240px] w-full rounded-[20px] overflow-hidden">
+          <article key={item.id} className="shrink-0 w-[calc(100vw-64px)] sm:w-[340px] lg:w-[420px] flex flex-col gap-[12px] snap-start">
+            <div className="relative h-[180px] sm:h-[210px] lg:h-[240px] w-full rounded-[20px] overflow-hidden">
               <img
                 src={item.image}
                 alt={item.subtitle}

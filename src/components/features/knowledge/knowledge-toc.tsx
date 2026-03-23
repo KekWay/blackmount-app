@@ -10,6 +10,7 @@ interface KnowledgeTocProps {
   onScrollToSection: (sectionId: string) => void
   modelId: string
   modelName: string
+  mobile?: boolean
 }
 
 export function KnowledgeToc({
@@ -18,11 +19,12 @@ export function KnowledgeToc({
   onScrollToSection,
   modelId,
   modelName,
+  mobile,
 }: KnowledgeTocProps) {
   const router = useRouter()
 
   return (
-    <div className="w-[190px] shrink-0 sticky top-0 self-start pt-[100px] pr-[20px] pl-[8px]">
+    <div className={`${mobile ? 'block' : 'hidden lg:block'} w-[190px] shrink-0 ${mobile ? '' : 'sticky top-0 self-start'} pt-[24px] lg:pt-[100px] pr-[20px] pl-[8px]`}>
       <p className="text-[10px] text-[rgba(255,255,255,0.25)] uppercase tracking-[0.08em] mb-[12px] px-[8px] font-semibold">
         На этой странице
       </p>

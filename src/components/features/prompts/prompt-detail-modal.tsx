@@ -53,7 +53,7 @@ export function PromptDetailModal({ item, onClose }: PromptDetailModalProps) {
       onClick={onClose}
     >
       <motion.div
-        className="flex gap-[16px] max-w-[1100px] w-[95vw] max-h-[85vh] items-stretch"
+        className="flex flex-col md:flex-row gap-[16px] max-w-[1100px] w-[95vw] max-h-[85vh] items-stretch overflow-y-auto md:overflow-visible"
         initial={{ scale: 0.92, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.92, opacity: 0 }}
@@ -61,7 +61,7 @@ export function PromptDetailModal({ item, onClose }: PromptDetailModalProps) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Left: Image/Video */}
-        <div className="flex-1 min-w-0 bg-[#111018] flex items-center justify-center relative rounded-[20px] overflow-hidden">
+        <div className="shrink-0 md:flex-1 min-w-0 bg-[#111018] flex items-center justify-center relative rounded-[20px] overflow-hidden h-[250px] md:h-auto">
           <img alt="" className="w-full h-full object-cover max-h-[85vh]" src={item.src} />
           {item.type === 'video' && (
             <div className="absolute inset-0 flex items-center justify-center">
@@ -83,7 +83,7 @@ export function PromptDetailModal({ item, onClose }: PromptDetailModalProps) {
         </div>
 
         {/* Right: Info Panel */}
-        <div className="w-[360px] shrink-0 flex flex-col bg-[#19181e] rounded-[20px] overflow-hidden">
+        <div className="w-full md:w-[360px] shrink-0 flex flex-col bg-[#19181e] rounded-[20px] overflow-hidden">
           {/* Header */}
           <div className="flex items-center justify-between px-[20px] pt-[20px] pb-[14px]">
             <div className="flex items-center gap-[8px]">

@@ -8,10 +8,10 @@ import { ArenaWinnerCelebration } from './arena-winner-celebration'
 import { ArenaWinnerCard } from './arena-winner-card'
 
 interface Props {
-  currentPrompt: string
   responses: ModelResponse[]
   winnerResponse: ModelResponse
   winnerId: string
+  prompt: string
   gridCols: number
   showLosers: boolean
   savedIds: Set<string>
@@ -20,21 +20,15 @@ interface Props {
   onRate: (id: string) => void
   onReset: () => void
   onGoChat: (m: ArenaModel) => void
+  onShare: () => void
 }
 
 export function ArenaWinnerView({
-  currentPrompt, responses, winnerResponse, winnerId, gridCols,
-  showLosers, savedIds, ratedId, onSave, onRate, onReset, onGoChat,
+  responses, winnerResponse, winnerId, prompt, gridCols,
+  showLosers, savedIds, ratedId, onSave, onRate, onReset, onGoChat, onShare,
 }: Props) {
   return (
     <div className="h-full flex flex-col">
-      {/* User prompt */}
-      <div className="flex justify-center py-[14px] px-[24px]">
-        <div className="max-w-[500px] rounded-[20px] px-[20px] py-[10px] bg-[rgba(61,57,80,0.5)]">
-          <p className="text-[13px] text-white leading-[20px] whitespace-pre-wrap">{currentPrompt}</p>
-        </div>
-      </div>
-
       <div className="flex-1 px-[20px] pb-[16px]">
         {showLosers ? (
           <ArenaWinnerGrid responses={responses} winnerId={winnerId} gridCols={gridCols} />
@@ -48,12 +42,14 @@ export function ArenaWinnerView({
             <ArenaWinnerCelebration winnerResponse={winnerResponse} />
             <ArenaWinnerCard
               winnerResponse={winnerResponse}
+              prompt={prompt}
               savedIds={savedIds}
               ratedId={ratedId}
               onSave={onSave}
               onRate={onRate}
               onReset={onReset}
               onGoChat={onGoChat}
+              onShare={onShare}
             />
           </motion.div>
         )}

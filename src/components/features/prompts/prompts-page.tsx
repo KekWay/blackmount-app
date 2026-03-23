@@ -33,11 +33,11 @@ export function PromptsPage() {
   })
 
   return (
-    <div className="w-full h-full overflow-y-auto px-[40px] pt-[32px] pb-[40px]">
+    <div className="w-full h-full overflow-y-auto px-[16px] md:px-[24px] lg:px-[40px] pt-[24px] md:pt-[32px] pb-[40px]">
       {/* Header */}
       <div className="mb-[24px]">
         <p
-          className="font-semibold leading-[45px] text-[36px]"
+          className="font-semibold leading-[45px] text-[24px] md:text-[36px]"
           style={{
             background: 'linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,255,255,1), rgba(255,255,255,0.6), rgba(255,255,255,1), rgba(255,255,255,0.6))',
             backgroundSize: '400% 100%',
@@ -63,7 +63,7 @@ export function PromptsPage() {
       />
 
       {/* Gallery grid */}
-      <div className="grid grid-cols-5 auto-rows-[180px] gap-[10px]">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 auto-rows-[180px] gap-[10px]">
         {filtered.map((item) => (
           <PromptCard key={item.id} item={item} onOpen={() => setSelectedItem(item)} />
         ))}

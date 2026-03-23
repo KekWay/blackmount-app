@@ -46,7 +46,7 @@ export function ChatMediaLightbox({ media, onClose }: ChatMediaLightboxProps) {
         onMouseMove={isVideo ? resetControls : undefined}
       >
         <motion.div
-          className="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center"
+          className="relative max-w-[95vw] md:max-w-[90vw] max-h-[90vh] flex flex-col items-center"
           initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
           onClick={e => e.stopPropagation()}

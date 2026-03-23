@@ -5,7 +5,7 @@ import { IMG_COIN } from './profile-data'
 
 export function ReferralBalanceStats({ onConvert, onWithdraw }: { onConvert: () => void; onWithdraw: () => void }) {
   return (
-    <div className="grid grid-cols-[1fr_1fr] gap-[16px]">
+    <div className="grid grid-cols-1 sm:grid-cols-[1fr_1fr] gap-[16px]">
       <div className="rounded-[20px] overflow-hidden relative bg-[#181722]">
         <div className="absolute top-0 right-0 w-[150px] h-[150px] bg-[#888ae5]/5 blur-[60px] rounded-full pointer-events-none" />
         <div className="px-[24px] py-[20px] relative z-10">

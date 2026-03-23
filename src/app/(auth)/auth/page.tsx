@@ -5,7 +5,7 @@ import { AuthHero } from '@/components/features/auth/auth-hero'
 
 export default function AuthPage() {
   return (
-    <main className="fixed inset-0 bg-[#0d0d0f] flex">
+    <main className="fixed inset-0 bg-[#0d0d0f] flex flex-col md:flex-row">
       <AuthForm />
       <AuthHero />
     </main>

@@ -12,7 +12,7 @@ export function ReferralConvertOverlay({ onClose }: { onClose: () => void }) {
 
   return (
     <motion.div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#000000]/80 backdrop-blur-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
-      <motion.div className="bg-[#181722] rounded-[24px] w-[460px] overflow-hidden border border-[#888ae5]/20 shadow-[0_12px_48px_rgba(0,0,0,0.4)]" initial={{ scale: 0.95, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0, y: 20 }} onClick={(e) => e.stopPropagation()} transition={{ type: 'spring', stiffness: 300, damping: 30 }}>
+      <motion.div className="bg-[#181722] rounded-[24px] w-[460px] max-w-[90vw] overflow-hidden border border-[#888ae5]/20 shadow-[0_12px_48px_rgba(0,0,0,0.4)]" initial={{ scale: 0.95, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0, y: 20 }} onClick={(e) => e.stopPropagation()} transition={{ type: 'spring', stiffness: 300, damping: 30 }}>
         {!convertDone ? (
           <div className="px-[32px] py-[32px]">
             <div className="flex items-center justify-between mb-[24px]">

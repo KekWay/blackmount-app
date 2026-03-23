@@ -9,7 +9,7 @@ export function PricingInfoOverlay({ onClose }: { onClose: () => void }) {
   return (
     <AnimatePresence>
       <motion.div className="fixed inset-0 z-[100] flex items-center justify-center bg-[rgba(0,0,0,0.6)] backdrop-blur-[4px]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
-        <motion.div className="bg-[#1e1d26] rounded-[20px] w-[560px] max-h-[80vh] overflow-y-auto" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} onClick={(e) => e.stopPropagation()}>
+        <motion.div className="bg-[#1e1d26] rounded-[20px] w-[560px] max-w-[90vw] max-h-[80vh] overflow-y-auto" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} onClick={(e) => e.stopPropagation()}>
           <div className="px-[28px] py-[22px]">
             <div className="flex items-center justify-between mb-[20px]">
               <p className="font-manrope font-extrabold text-[18px] text-white">Стоимость генерации</p>

@@ -30,8 +30,8 @@ export function CompareOverlay({ models, onClose }: CompareOverlayProps) {
 
   return (
     <motion.div className="fixed inset-0 z-[100] flex items-center justify-center bg-[rgba(0,0,0,0.6)] backdrop-blur-[4px]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
-      <motion.div className="bg-[#19181e] rounded-[20px] w-[600px] max-h-[85vh] overflow-y-auto border border-[rgba(255,255,255,0.08)] chat-scrollbar shadow-2xl" initial={{ scale: 0.95, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0, y: 20 }} onClick={(e) => e.stopPropagation()}>
-        <div className="px-[24px] py-[24px]">
+      <motion.div className="bg-[#19181e] rounded-[20px] w-[600px] max-w-[95vw] max-h-[85vh] overflow-y-auto border border-[rgba(255,255,255,0.08)] chat-scrollbar shadow-2xl" initial={{ scale: 0.95, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0, y: 20 }} onClick={(e) => e.stopPropagation()}>
+        <div className="px-[16px] md:px-[24px] py-[20px] md:py-[24px] overflow-x-auto">
           <div className="flex items-center justify-between mb-[20px]">
             <div className="flex items-center gap-[8px]">
               <div className="p-1.5 bg-[#888ae5]/20 rounded-lg"><ScalesIcon size={16} className="text-[#888ae5]" /></div>

@@ -26,17 +26,17 @@ export function ReferralHero({ currentTier, nextTier, tierProgress, onTierClick 
         <motion.div className="absolute w-[250px] h-[250px] rounded-full opacity-[0.08] blur-[80px] top-[-50px] right-[-50px] bg-[#888ae5]" animate={{ x: [0, -20, 10, 0], y: [0, 15, -10, 0] }} transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }} />
         <motion.div className="absolute w-[200px] h-[200px] rounded-full opacity-[0.05] blur-[80px] bottom-[-20px] left-[10%] bg-white" animate={{ x: [0, 25, -15, 0], y: [0, -20, 10, 0] }} transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }} />
       </div>
-      <div className="relative z-[1] px-[32px] pt-[32px] pb-[28px]">
+      <div className="relative z-[1] px-[16px] md:px-[32px] pt-[24px] md:pt-[32px] pb-[20px] md:pb-[28px]">
         <div className="flex items-start justify-between mb-[16px]">
           <div className="flex-1">
-            <p className="font-manrope font-extrabold text-[28px] text-white leading-[34px] tracking-tight mb-[6px]">
+            <p className="font-manrope font-extrabold text-[22px] md:text-[28px] text-white leading-[28px] md:leading-[34px] tracking-tight mb-[6px]">
               Приглашай друзей<br/><span style={{ color: currentTier.color }}>и получай бонусы</span>
             </p>
             <p className="font-manrope font-medium text-[14px] text-[rgba(255,255,255,0.6)] leading-[22px] max-w-[380px]">
               Получайте {currentTier.rate} с каждой покупки и подписки ваших друзей. Чем больше рефералов — тем выше процент вознаграждения.
             </p>
           </div>
-          <motion.div className="shrink-0 flex flex-col items-center justify-center p-[16px] ml-[20px]" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.6, ease: 'easeOut' }}>
+          <motion.div className="shrink-0 flex-col items-center justify-center p-[16px] ml-[20px] hidden sm:flex" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.6, ease: 'easeOut' }}>
             <p className="font-manrope font-black text-[48px] leading-[48px] text-white" style={{ textShadow: `0 0 20px ${currentTier.color}22` }}>{currentTier.rate}</p>
             <p className="font-manrope font-bold text-[11px] text-[rgba(255,255,255,0.5)] uppercase tracking-[0.08em] mt-[8px]">Текущий бонус</p>
           </motion.div>
@@ -44,7 +44,7 @@ export function ReferralHero({ currentTier, nextTier, tierProgress, onTierClick 
 
         <ReferralLinkSection copied={copied} onCopy={handleCopy} />
 
-        <div className="grid grid-cols-2 gap-[12px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-[12px]">
           <ReferralTierButton currentTier={currentTier} nextTier={nextTier} tierProgress={tierProgress} onClick={onTierClick} />
           <div className="bg-[#121118]/50 rounded-[16px] px-[16px] py-[16px] flex flex-col justify-between">
             <p className="font-manrope font-bold text-[13px] text-[rgba(255,255,255,0.4)] uppercase tracking-[0.06em] mb-[8px]">Код приглашения</p>

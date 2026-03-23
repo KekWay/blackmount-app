@@ -9,7 +9,7 @@ export function AccountTabHeader() {
   const [email, setEmail] = useState('k3kway@gmail.com')
 
   return (
-    <div className="bg-[rgba(57,55,91,0.45)] rounded-[16px] px-[28px] py-[22px]">
+    <div className="bg-[rgba(57,55,91,0.45)] rounded-[16px] px-[16px] md:px-[28px] py-[22px]">
       <div className={`flex items-center justify-between ${editing ? 'mb-[20px]' : ''}`}>
         <div className="flex items-center gap-[18px]">
           <div className="bg-[#b93d3d] rounded-full shrink-0 size-[56px] flex items-center justify-center">
@@ -35,7 +35,7 @@ export function AccountTabHeader() {
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="bg-[rgba(57,55,91,0.5)] border border-[rgba(64,64,64,0.7)] rounded-[10px] px-[12px] py-[8px] font-manrope font-medium text-[14px] text-white outline-none focus:border-[#888ae5] transition-colors w-full max-w-[360px] placeholder-[#898787]"
+              className="bg-[rgba(57,55,91,0.5)] border border-[rgba(64,64,64,0.7)] rounded-[10px] px-[12px] py-[8px] font-manrope font-medium text-[14px] text-white outline-none focus:border-[#888ae5] transition-colors w-full max-w-full sm:max-w-[360px] placeholder-[#898787]"
             />
           </div>
           <div className="flex flex-col gap-[3px]">
@@ -43,7 +43,7 @@ export function AccountTabHeader() {
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="bg-[rgba(57,55,91,0.5)] border border-[rgba(64,64,64,0.7)] rounded-[10px] px-[12px] py-[8px] font-manrope font-normal text-[14px] text-white outline-none focus:border-[#888ae5] transition-colors w-full max-w-[360px] placeholder-[#898787]"
+              className="bg-[rgba(57,55,91,0.5)] border border-[rgba(64,64,64,0.7)] rounded-[10px] px-[12px] py-[8px] font-manrope font-normal text-[14px] text-white outline-none focus:border-[#888ae5] transition-colors w-full max-w-full sm:max-w-[360px] placeholder-[#898787]"
             />
           </div>
           <div className="flex gap-[8px] mt-[4px]">

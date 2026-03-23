@@ -25,7 +25,7 @@ export function ModalLimitReached({ show, onClose, hasSub, dailyLimit }: ModalLi
         >
           <div className="absolute inset-0 bg-[rgba(0,0,0,0.6)] backdrop-blur-[8px]" />
           <motion.div
-            className="relative w-[400px] overflow-hidden rounded-[20px]"
+            className="relative w-[400px] max-w-[90vw] overflow-hidden rounded-[20px]"
             initial={{ scale: 0.92, opacity: 0, y: 10 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.92, opacity: 0, y: 10 }}
             transition={{ type: 'spring', damping: 28, stiffness: 380 }}
             onClick={(e) => e.stopPropagation()}

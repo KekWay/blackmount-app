@@ -24,25 +24,25 @@ export function AuthForm() {
   }
 
   return (
-    <section className="w-[50%] flex flex-col h-screen">
-      {/* Logo top-left — pinned */}
-      <header className="flex items-center gap-[8px] px-[24px] py-[16px] 2xl:px-[40px] 2xl:py-[24px]">
+    <section className="w-full md:w-[50%] flex flex-col h-screen">
+      {/* Logo top — centered on mobile, left on desktop */}
+      <header className="flex items-center justify-center md:justify-start gap-[8px] px-[16px] py-[32px] md:px-[24px] md:py-[16px] 2xl:px-[40px] 2xl:py-[24px]">
         <img alt="Black Mount logo" className="shrink-0 size-[24px] 2xl:size-[30px] object-contain" src={APP_ASSETS.logo} />
         <span className="font-bakbak leading-[16px] text-[13px] 2xl:text-[16px] text-white">BLACK MOUNT</span>
       </header>
 
       {/* Form centered in remaining space */}
-      <div className="flex-1 flex items-center justify-center px-[48px] 2xl:px-[80px]">
+      <div className="flex-1 flex items-center justify-center px-[16px] md:px-[48px] 2xl:px-[80px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={mode}
-            className="w-full max-w-[300px] 2xl:max-w-[380px]"
+            className="w-full max-w-[320px] md:max-w-[300px] 2xl:max-w-[380px]"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
           >
-            <h1 className="font-manrope font-extrabold text-[20px] 2xl:text-[26px] text-white mb-[3px] 2xl:mb-[6px]">
+            <h1 className="font-manrope font-extrabold text-[24px] md:text-[20px] 2xl:text-[26px] text-white mb-[3px] 2xl:mb-[6px]">
               {mode === 'login' ? 'Войти в аккаунт' : 'Создать аккаунт'}
             </h1>
             <p className="font-manrope font-normal text-[11px] 2xl:text-[13px] text-[rgba(255,255,255,0.45)] mb-[20px] 2xl:mb-[28px]">

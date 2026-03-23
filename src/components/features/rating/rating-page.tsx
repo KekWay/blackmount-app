@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'motion/react'
-import { ChevronDown, Search } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import { useBalanceStore } from '@/stores/balance'
 import { useSubscriptionStore, LOCKED_VERSION_IDS } from '@/stores/subscription'
 import { SubscriptionGateModal } from '@/components/shared/subscription-gate'
@@ -74,7 +74,7 @@ export function RatingPage() {
         <motion.div className="mb-[24px] relative" initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
           <div className="absolute top-[-40px] right-[15%] w-[250px] h-[250px] bg-[#888ae5] opacity-[0.06] blur-[100px] pointer-events-none rounded-full" />
           <div className="flex items-center gap-[10px] mb-[6px]">
-            <h1 className="text-[28px] text-white leading-[36px] font-extrabold">Рейтинг моделей</h1>
+            <h1 className="text-[22px] md:text-[28px] text-white leading-[30px] md:leading-[36px] font-extrabold">Рейтинг моделей</h1>
           </div>
           <p className="text-[13px] text-[rgba(255,255,255,0.4)] max-w-[600px] leading-relaxed">
             Подробная аналитика и сравнение ИИ-моделей. Выбирайте идеальный инструмент по скорости, точности и стоимости.
@@ -104,11 +104,9 @@ export function RatingPage() {
           </motion.div>
         )}
         {filtered.length === 0 && (
-          <motion.div className="flex flex-col items-center justify-center py-[60px]" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            <div className="w-[60px] h-[60px] rounded-full bg-[rgba(255,255,255,0.02)] flex items-center justify-center mb-[12px]">
-              <Search size={24} className="text-[rgba(255,255,255,0.2)]" />
-            </div>
-            <h3 className="text-[16px] text-white font-bold mb-[6px]">Ничего не найдено</h3>
+          <motion.div className="flex flex-col items-center justify-center py-[60px] gap-[8px]" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <img src="/assets/models/search-empty.png" alt="" className="size-[48px] object-contain" style={{ filter: 'brightness(0) invert(1)', opacity: 0.5 }} />
+            <h3 className="text-[16px] text-white font-bold">По вашему запросу ничего не найдено</h3>
             <p className="text-[13px] text-[rgba(255,255,255,0.4)]">Попробуйте изменить параметры поиска или фильтры</p>
           </motion.div>
         )}

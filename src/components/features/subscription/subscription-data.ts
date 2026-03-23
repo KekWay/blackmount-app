@@ -13,12 +13,12 @@ export const imgRequestsIcon = '/assets/models/requests-icon.png'
 export const imgContextIcon = '/assets/models/context-icon.png'
 
 export const modelLogos = [
-  MODEL_ASSETS.chatgpt.colorLogo,
+  '/assets/models/chatgpt-color.png',
   MODEL_ASSETS.claude.colorLogo,
   MODEL_ASSETS.gemini.colorLogo,
   MODEL_ASSETS.flux.colorLogo,
   MODEL_ASSETS.nanobanana.colorLogo,
-  '/assets/models/sub-hero.png',
+  '/assets/models/sora2-icon-color.png',
   MODEL_ASSETS.kling.colorLogo,
   MODEL_ASSETS.veo31.colorLogo,
 ]

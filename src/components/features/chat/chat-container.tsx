@@ -1,14 +1,14 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useParams, useSearchParams } from 'next/navigation'
 import { aiModels } from '@/data/ai-models'
 import { useBalanceStore } from '@/stores/balance'
 import { useSubscriptionStore } from '@/stores/subscription'
 import { useRequestLimiterStore } from '@/stores/request-limiter'
+import { useChatSessionsStore } from '@/stores/chat-sessions'
 import type { Message, ModelVersion } from '@/types'
 import { getRandomGreeting, FREE_SUB_VERSIONS, videoPricingMap, hexToRgba } from './chat-constants'
-import type { PinnedChat } from './chat-constants'
 import { useChatActions } from './use-chat-actions'
 import { ChatHeader } from './chat-header'
 import { ChatEmptyState } from './chat-empty-state'
@@ -27,7 +27,6 @@ export function ChatContainer() {
   const [showAuthGate, setShowAuthGate] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
-  const [isPinned, setIsPinned] = useState(false)
   const [selectedVersionId, setSelectedVersionId] = useState<string | null>(null)
   const [attachOpen, setAttachOpen] = useState(false)
   const [shareOpen, setShareOpen] = useState(false)
@@ -51,6 +50,7 @@ export function ChatContainer() {
   const [viewerMedia, setViewerMedia] = useState<{ type: 'image' | 'video'; src: string; srcs?: string[] } | null>(null)
   const [showLimitReached, setShowLimitReached] = useState(false)
   const [greeting, setGreeting] = useState(getRandomGreeting)
+  const sessionIdRef = useRef<string | null>(null)
 
   const balance = useBalanceStore((s) => s.balance)
   const hasSub = useSubscriptionStore((s) => s.hasActiveSubscription())
@@ -79,10 +79,19 @@ export function ChatContainer() {
     model, selectedVersion, isTextModel, modelLocked, dynamicCost, input, setInput,
     messages, setMessages, isGenerating, setIsGenerating, isRecording, setIsRecording,
     setTypingIdx, setShowAuthGate, setShowLowBalance, setShowLimitReached, setGreeting,
-    webSearchActive, deepResearchActive, imageCount,
+    webSearchActive, deepResearchActive, imageCount, sessionIdRef,
   })
 
   useEffect(() => { const p = searchParams.get('prompt'); if (p) setInput(p) }, [searchParams])
+  useEffect(() => {
+    const sid = searchParams.get('session')
+    if (sid) {
+      const session = useChatSessionsStore.getState().getSession(sid)
+      if (session) { sessionIdRef.current = sid; setMessages(session.messages) }
+    } else {
+      sessionIdRef.current = null
+    }
+  }, [searchParams]) // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
     const raw = sessionStorage.getItem('arena_continue')
     if (raw) { sessionStorage.removeItem('arena_continue'); try { const a = JSON.parse(raw) as { prompt: string; response: string }; if (a.prompt && a.response) setMessages([{ role: 'user', content: a.prompt }, { role: 'assistant', content: a.response }]) } catch { /* empty */ } }
@@ -94,14 +103,6 @@ export function ChatContainer() {
     if (model.id === 'sora2') setVideoDuration('10с'); else if (model.id === 'kling') setVideoDuration('5с'); else if (model.id === 'veo31') setVideoDuration('8с')
     setGreeting(getRandomGreeting())
   }, [model.id])
-  useEffect(() => { const s = localStorage.getItem('pinnedChats'); if (s) { try { setIsPinned((JSON.parse(s) as PinnedChat[]).some((c) => c.modelId === modelId)) } catch { /* empty */ } } }, [modelId])
-
-  const togglePin = () => {
-    const s = localStorage.getItem('pinnedChats'); let c: PinnedChat[] = []; if (s) { try { c = JSON.parse(s) } catch { /* empty */ } }
-    if (isPinned) c = c.filter((x) => x.modelId !== modelId); else if (!c.some((x) => x.modelId === modelId)) c.push({ modelId: modelId!, modelName: model.name })
-    localStorage.setItem('pinnedChats', JSON.stringify(c)); setIsPinned(!isPinned); window.dispatchEvent(new Event('pinnedChatsChanged'))
-  }
-
   void typingIdx
 
   return (
@@ -109,16 +110,41 @@ export function ChatContainer() {
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute left-1/2" style={{ top: '38%', transform: 'translateX(-50%) translateY(-50%)', width: '80%', height: '55%', background: `radial-gradient(ellipse 70% 55% at 50% 50%, ${hexToRgba(model.glowColors[0] || '#3e993e', 0.28)} 0%, ${hexToRgba(model.glowColors[1] || model.glowColors[0] || '#3e993e', 0.15)} 30%, ${hexToRgba(model.glowColors[0] || '#3e993e', 0.06)} 55%, transparent 75%)`, filter: 'blur(140px)' }} />
       </div>
-      <ChatHeader model={model} selectedVersion={selectedVersion} onSelectVersion={(v: ModelVersion) => setSelectedVersionId(v.id)} isPinned={isPinned} togglePin={togglePin} hasSub={hasSub} subBannerDismissed={subBannerDismissed} setSubBannerDismissed={setSubBannerDismissed} handleNewChat={actions.handleNewChat} setShareOpen={setShareOpen} settingsOpen={settingsOpen} setSettingsOpen={setSettingsOpen} />
+      <ChatHeader model={model} selectedVersion={selectedVersion} onSelectVersion={(v: ModelVersion) => setSelectedVersionId(v.id)} hasSub={hasSub} subBannerDismissed={subBannerDismissed} setSubBannerDismissed={setSubBannerDismissed} handleNewChat={actions.handleNewChat} setShareOpen={setShareOpen} settingsOpen={settingsOpen} setSettingsOpen={setSettingsOpen} />
       <div className="flex-1 flex flex-col items-center relative min-h-0 overflow-y-auto z-[1] chat-scrollbar">
         {messages.length === 0 ? (
-          <div className="flex-1 flex items-center justify-center px-[40px]"><ChatEmptyState model={model} modelLocked={modelLocked} greeting={greeting} /></div>
+          <div className="flex-1 flex items-center justify-center px-[16px] md:px-[24px] lg:px-[40px]"><ChatEmptyState model={model} modelLocked={modelLocked} greeting={greeting} /></div>
         ) : (
           <ChatMessages messages={messages} model={model} msgRatings={msgRatings} setMsgRatings={setMsgRatings} setMsgShareIdx={setMsgShareIdx} setViewerMedia={setViewerMedia} setTypingIdx={setTypingIdx} setIsGenerating={setIsGenerating} setMessages={setMessages} setInput={setInput} />
         )}
       </div>
       <ChatInput input={input} setInput={setInput} handleSend={actions.handleSend} handleStopGeneration={actions.handleStopGeneration} handleModelSwitch={actions.handleModelSwitch} model={model} isTextModel={isTextModel} isGenerating={isGenerating} isRecording={isRecording} toggleRecording={actions.toggleRecording} cancelRecording={actions.cancelRecording} modelLocked={modelLocked} messagesLength={messages.length} dynamicCost={dynamicCost} webSearchActive={webSearchActive} setWebSearchActive={setWebSearchActive} deepResearchActive={deepResearchActive} setDeepResearchActive={setDeepResearchActive} attachOpen={attachOpen} setAttachOpen={setAttachOpen} />
-      <ShareModal open={shareOpen || msgShareIdx !== null} onClose={() => { setShareOpen(false); setMsgShareIdx(null) }} modelName={model.name} />
+      <ShareModal
+        open={shareOpen || msgShareIdx !== null}
+        onClose={() => { setShareOpen(false); setMsgShareIdx(null) }}
+        modelId={model.id}
+        modelName={model.name}
+        {...(() => {
+          if (msgShareIdx !== null) {
+            const msg = messages[msgShareIdx]
+            const userMsg = messages.slice(0, msgShareIdx).reverse().find((m) => m.role === 'user')
+            return {
+              prompt: userMsg?.content || '',
+              response: msg?.content || '',
+              mediaType: (msg?.mediaType || 'text') as 'text' | 'image' | 'video',
+              mediaUrl: msg?.mediaSrc,
+            }
+          }
+          const lastUser = [...messages].reverse().find((m) => m.role === 'user')
+          const lastAssistant = [...messages].reverse().find((m) => m.role === 'assistant')
+          return {
+            prompt: lastUser?.content || '',
+            response: lastAssistant?.content || '',
+            mediaType: (lastAssistant?.mediaType || 'text') as 'text' | 'image' | 'video',
+            mediaUrl: lastAssistant?.mediaSrc,
+          }
+        })()}
+      />
       <ChatSettingsPanel settingsOpen={settingsOpen} setSettingsOpen={setSettingsOpen} model={model} selectedVersion={selectedVersion} isTextModel={isTextModel} systemPrompt={systemPrompt} setSystemPrompt={setSystemPrompt} toneSetting={toneSetting} setToneSetting={setToneSetting} aspectRatio={aspectRatio} setAspectRatio={setAspectRatio} quality={quality} setQuality={setQuality} imageCount={imageCount} setImageCount={setImageCount} videoDuration={videoDuration} setVideoDuration={setVideoDuration} audioEnabled={audioEnabled} setAudioEnabled={setAudioEnabled} dynamicCost={dynamicCost} messagesLength={messages.length} handleNewChat={actions.handleNewChat} />
       <ChatModals showLowBalance={showLowBalance} setShowLowBalance={setShowLowBalance} showLimitReached={showLimitReached} setShowLimitReached={setShowLimitReached} showAuthGate={showAuthGate} setShowAuthGate={setShowAuthGate} selectedVersion={selectedVersion} dynamicCost={dynamicCost} balance={balance} hasSub={hasSub} dailyLimit={dailyLimit} />
       {viewerMedia && <ChatMediaLightbox media={viewerMedia} onClose={() => setViewerMedia(null)} />}

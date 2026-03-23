@@ -34,7 +34,7 @@ export function KnowledgeContent({
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.3 }}
-        className="max-w-[720px] mx-auto px-[48px] py-[36px]"
+        className="max-w-[720px] mx-auto px-[16px] md:px-[24px] lg:px-[48px] py-[24px] md:py-[36px]"
       >
         {/* Hero header */}
         <KnowledgeHero model={model} intro={docs.intro} />

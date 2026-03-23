@@ -5,7 +5,7 @@ import { APP_ASSETS } from '@/lib/assets'
 
 export function AuthHero() {
   return (
-    <aside className="w-[50%] relative overflow-hidden">
+    <aside className="hidden md:block w-[50%] relative overflow-hidden">
       <img
         alt="Black Mount AI"
         className="absolute inset-0 w-full h-full object-cover"

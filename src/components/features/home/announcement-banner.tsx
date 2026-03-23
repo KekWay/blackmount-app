@@ -28,7 +28,7 @@ export function AnnouncementBanner() {
           >
             <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[rgba(136,138,229,0.5)] to-transparent" />
 
-            <div className="absolute left-[-6px] top-[-20px] flex items-center justify-center w-[107px] h-[91px]">
+            <div className="absolute left-[-6px] top-[-20px] hidden sm:flex items-center justify-center w-[107px] h-[91px]">
               <div className="rotate-[-38.53deg]">
                 <div className="bg-[rgba(136,138,229,0.2)] flex font-manrope font-bold h-[19px] items-center rounded-[6px] text-[10px] tracking-[0.4px] whitespace-nowrap overflow-hidden w-[122px]">
                   <div className="flex items-center gap-[16px]" style={{ animation: 'bannerMarquee 4s linear infinite' }}>
@@ -41,7 +41,7 @@ export function AnnouncementBanner() {
               </div>
             </div>
 
-            <div className="flex-1 min-w-0 ml-[60px]">
+            <div className="flex-1 min-w-0 ml-0 sm:ml-[60px]">
               <p className="text-[13px] text-[rgba(255,255,255,0.85)] font-manrope leading-[19px] font-semibold">
                 Добавлена модель <span className="text-white font-extrabold">ChatGPT 5.4</span> — новейшая версия с улучшенным рассуждением и скоростью
               </p>
@@ -49,7 +49,7 @@ export function AnnouncementBanner() {
 
             <button
               onClick={() => router.push('/chat/chatgpt')}
-              className="shrink-0 flex items-center gap-[6px] px-[14px] py-[8px] rounded-[10px] text-[12px] text-white cursor-pointer transition-all hover:brightness-110 active:scale-[0.98] font-manrope font-bold shadow-[0_2px_10px_rgba(136,138,229,0.35)]"
+              className="hidden sm:flex shrink-0 items-center gap-[6px] px-[14px] py-[8px] rounded-[10px] text-[12px] text-white cursor-pointer transition-all hover:brightness-110 active:scale-[0.98] font-manrope font-bold shadow-[0_2px_10px_rgba(136,138,229,0.35)]"
               style={{ background: 'linear-gradient(103.2deg, rgb(101,222,216) 8%, rgb(54,120,117) 100%)' }}
             >
               Попробовать

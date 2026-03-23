@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { Heart, Search, Sparkles } from 'lucide-react'
+import { Star, Sparkles } from 'lucide-react'
 import type { AIModel } from '@/types'
 import { ModelCard } from '@/components/features/models/model-card'
 import { useSubscriptionStore } from '@/stores/subscription'
@@ -21,18 +21,20 @@ export function ModelGrid({ models, activeFilter, searchQuery, onResetFilters }:
   if (models.length === 0) {
     return (
       <div className="w-full py-[60px] flex flex-col items-center justify-center gap-3">
-        <div className="size-14 rounded-full flex items-center justify-center mb-1 bg-primary/[0.08]">
-          {activeFilter === 'favorites' ? (
-            <Heart size={24} className="text-primary/35" />
-          ) : searchQuery ? (
-            <Search size={24} className="text-primary/35" />
-          ) : (
-            <Sparkles size={24} className="text-primary/35" />
-          )}
-        </div>
+        {searchQuery ? (
+          <img src="/assets/models/search-empty.png" alt="" className="size-[48px] object-contain" style={{ filter: 'brightness(0) invert(1)', opacity: 0.5 }} />
+        ) : (
+          <div className="size-14 rounded-full flex items-center justify-center mb-1 bg-primary/[0.08]">
+            {activeFilter === 'favorites' ? (
+              <Star size={24} className="text-[#f5a623]/50" />
+            ) : (
+              <Sparkles size={24} className="text-primary/35" />
+            )}
+          </div>
+        )}
         <p className="text-[15px] text-white/50 font-semibold">
           {searchQuery
-            ? 'Ничего не найдено'
+            ? 'По вашему запросу ничего не найдено'
             : activeFilter === 'favorites'
               ? 'Нет избранных моделей'
               : 'Нет моделей в этой категории'}
@@ -41,7 +43,7 @@ export function ModelGrid({ models, activeFilter, searchQuery, onResetFilters }:
           {searchQuery
             ? `По запросу "${searchQuery}" не найдено нейросетей.`
             : activeFilter === 'favorites'
-              ? 'Закрепите модель в чате, и она появится здесь'
+              ? 'Добавьте модели в избранное нажав ★ на карточке'
               : 'Модели этой категории скоро появятся'}
         </p>
         {(searchQuery || activeFilter !== 'all') && (
@@ -57,14 +59,15 @@ export function ModelGrid({ models, activeFilter, searchQuery, onResetFilters }:
   }
 
   return (
-    <div className="flex flex-wrap gap-5">
+    <div className="flex flex-wrap justify-center gap-[20px] sm:justify-start sm:gap-[20px] md:gap-5">
       {models.map((model) => (
-        <ModelCard
-          key={model.id}
-          model={model}
-          locked={isModelLocked(model.id)}
-          onClick={() => router.push(`/chat/${model.id}`)}
-        />
+        <div key={model.id}>
+          <ModelCard
+            model={model}
+            locked={isModelLocked(model.id)}
+            onClick={() => router.push(`/chat/${model.id}`)}
+          />
+        </div>
       ))}
     </div>
   )

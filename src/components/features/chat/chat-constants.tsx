@@ -29,11 +29,6 @@ export const videoPricingMap: Record<string, Record<string, number>> = {
   'veo-3.1-fast': { '8с': 50, '5с': 35 },
 }
 
-export interface PinnedChat {
-  modelId: string
-  modelName: string
-}
-
 export function hexToRgba(hex: string, alpha: number): string {
   const h = hex.replace('#', '')
   const r = parseInt(h.substring(0, 2), 16)

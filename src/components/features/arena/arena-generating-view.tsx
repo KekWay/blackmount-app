@@ -5,21 +5,14 @@ import type { ArenaModel } from '@/data/arena-models'
 import { MIcon } from './arena-micon'
 
 interface Props {
-  currentPrompt: string
   selectedModels: ArenaModel[]
   gridCols: number
 }
 
-export function ArenaGeneratingView({ currentPrompt, selectedModels, gridCols }: Props) {
+export function ArenaGeneratingView({ selectedModels, gridCols }: Props) {
   return (
     <div className="h-full flex flex-col">
-      {/* User prompt bubble */}
-      <div className="flex justify-center py-[16px] px-[24px]">
-        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="max-w-[500px] rounded-[20px] px-[20px] py-[12px] bg-[rgba(61,57,80,0.6)]">
-          <p className="text-[13px] text-white leading-[20px] whitespace-pre-wrap">{currentPrompt}</p>
-        </motion.div>
-      </div>
-      <div className="flex-1 p-[20px] pt-0">
+      <div className="flex-1 p-[20px]">
         <div className="grid gap-[10px] h-full" style={{ gridTemplateColumns: `repeat(${gridCols}, 1fr)` }}>
           {selectedModels.map((m, i) => (
             <motion.div key={m.id} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} className="rounded-[16px] bg-[rgba(255,255,255,0.02)] ring-1 ring-[rgba(255,255,255,0.03)] overflow-hidden flex flex-col">

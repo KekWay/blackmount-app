@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { Pin, PinOff, Plus, X, Sparkles } from 'lucide-react'
+import { ChevronLeft, Plus, X, Sparkles } from 'lucide-react'
 import { APP_ASSETS } from '@/lib/assets'
 import { VersionDropdown } from './version-dropdown'
 import type { AIModel, ModelVersion } from '@/types'
@@ -17,8 +17,6 @@ interface ChatHeaderProps {
   model: AIModel
   selectedVersion: ModelVersion
   onSelectVersion: (v: ModelVersion) => void
-  isPinned: boolean
-  togglePin: () => void
   hasSub: boolean
   subBannerDismissed: boolean
   setSubBannerDismissed: (v: boolean) => void
@@ -30,30 +28,30 @@ interface ChatHeaderProps {
 
 export function ChatHeader({
   model, selectedVersion, onSelectVersion,
-  isPinned, togglePin, hasSub, subBannerDismissed, setSubBannerDismissed,
+  hasSub, subBannerDismissed, setSubBannerDismissed,
   handleNewChat, setShareOpen, settingsOpen, setSettingsOpen,
 }: ChatHeaderProps) {
   const router = useRouter()
 
   return (
-    <div className="flex items-center justify-between pt-[24px] pb-[8px] px-[40px] shrink-0 relative z-[20]">
-      <div className="flex items-center gap-[8px]">
+    <div className="flex items-center justify-between pt-[12px] md:pt-[24px] pb-[8px] px-[12px] md:px-[24px] lg:px-[40px] shrink-0 relative z-[20]">
+      <div className="flex items-center gap-[6px] md:gap-[8px] min-w-0">
+        <button
+          onClick={() => router.back()}
+          className="md:hidden shrink-0 size-[32px] flex items-center justify-center rounded-[8px] text-white/50 hover:bg-white/[0.06] transition-colors cursor-pointer"
+          aria-label="Назад"
+        >
+          <ChevronLeft size={20} />
+        </button>
         <VersionDropdown
           currentModel={model}
           selectedVersion={selectedVersion}
           onSelectVersion={onSelectVersion}
         />
-        <button
-          onClick={togglePin}
-          className={`p-[7px] rounded-[10px] transition-all cursor-pointer ${isPinned ? 'bg-[rgba(136,138,229,0.15)] text-white' : 'text-[rgba(255,255,255,0.4)] hover:bg-[rgba(136,138,229,0.12)] hover:text-white'}`}
-          title={isPinned ? 'Открепить чат' : 'Закрепить чат'}
-        >
-          {isPinned ? <PinOff size={15} /> : <Pin size={15} />}
-        </button>
       </div>
 
       {!hasSub && !subBannerDismissed && (
-        <div className="absolute left-1/2 -translate-x-1/2 flex items-center z-[2]">
+        <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center z-[2]">
           <button
             onClick={() => router.push('/profile?tab=subscription')}
             className="flex items-center gap-[6px] px-[14px] py-[6px] rounded-full cursor-pointer transition-all hover:brightness-110 group/pill"
@@ -77,7 +75,7 @@ export function ChatHeader({
           className="flex items-center gap-[6px] cursor-pointer rounded-[12px] px-[14px] py-[7px] transition-all hover:bg-[rgba(136,138,229,0.12)]"
         >
           <Plus size={14} className="text-[rgba(255,255,255,0.6)]" />
-          <p className="font-manrope font-medium leading-[20px] text-[13px] text-white">Новый чат</p>
+          <p className="font-manrope font-medium leading-[20px] text-[13px] text-white hidden sm:block">Новый чат</p>
         </button>
         <button
           onClick={() => setShareOpen(true)}

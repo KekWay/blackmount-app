@@ -6,7 +6,7 @@ import type { TierInfo } from './referral-data'
 
 export function ReferralHowItWorks({ currentTier }: { currentTier: TierInfo }) {
   return (
-    <div className="rounded-[20px] border border-[#888ae5]/10 bg-[#181722]/50 px-[28px] py-[28px] shadow-sm">
+    <div className="rounded-[20px] border border-[#888ae5]/10 bg-[#181722]/50 px-[16px] md:px-[28px] py-[20px] md:py-[28px] shadow-sm">
       <div className="text-center mb-[28px]">
         <p className="font-manrope font-bold text-[18px] text-white leading-[26px]">
           Наш реферальный <span className="italic text-[#888ae5]">процесс.</span>
@@ -15,7 +15,7 @@ export function ReferralHowItWorks({ currentTier }: { currentTier: TierInfo }) {
           Участвуйте в реферальной программе за несколько простых шагов.
         </p>
       </div>
-      <div className="grid grid-cols-3 gap-[20px]">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-[20px]">
         {[
           {
             icon: <img src={IMG_SPARKLES} alt="" className="size-[26px] object-contain" />,

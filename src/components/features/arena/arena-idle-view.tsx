@@ -39,7 +39,7 @@ export function ArenaIdleView({ selectedModels, gridCols }: Props) {
 
 function ArenaWelcome() {
   return (
-    <div className="flex-1 flex flex-col items-center justify-center px-[40px]">
+    <div className="flex-1 flex flex-col items-center justify-center px-[16px] md:px-[24px] lg:px-[40px]">
       <motion.div className="flex flex-col items-center" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
         {/* VS Logo */}
         <div className="relative w-[95px] h-[77px] mb-[4px]">

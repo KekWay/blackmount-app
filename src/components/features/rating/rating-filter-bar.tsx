@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { Search } from 'lucide-react'
 import { ScalesIcon } from './scales-icon'
 import { APP_ASSETS } from '@/lib/assets'
 import {
@@ -48,7 +47,7 @@ export function RatingFilterBar({
           })}
         </div>
         <div className="relative flex-1 min-w-[160px] max-w-[240px]">
-          <Search size={14} className="absolute left-[10px] top-1/2 -translate-y-1/2 text-[rgba(255,255,255,0.3)]" />
+          <img src="/assets/models/search-icon.png" alt="" className="absolute left-[10px] top-1/2 -translate-y-1/2 size-[18px] object-contain" style={{ filter: 'brightness(0) invert(1)', opacity: 0.5 }} />
           <input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Искать модель..." className="w-full bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] rounded-[10px] pl-[30px] pr-[10px] py-[7px] text-[12px] text-white placeholder-[rgba(255,255,255,0.3)] outline-none focus:border-[#888ae5]/50 focus:bg-[rgba(255,255,255,0.06)] transition-all" />
         </div>
         <button onClick={() => setOnlyAffordable(!onlyAffordable)} className={`flex items-center gap-[6px] px-[12px] py-[6px] rounded-[7px] text-[10px] font-manrope font-semibold text-center whitespace-nowrap transition-all cursor-pointer ${onlyAffordable ? "bg-[#39375b] text-white" : "bg-[rgba(255,255,255,0.03)] text-[rgba(255,255,255,0.4)] hover:text-[rgba(255,255,255,0.7)] hover:bg-[rgba(255,255,255,0.05)]"}`}>

@@ -41,7 +41,7 @@ export function HistoryViewer({ item, onClose, onDelete, onShare }: HistoryViewe
             onClick={onClose}
           >
             <motion.div
-              className="flex gap-[16px] max-w-[1100px] w-[95vw] max-h-[85vh] items-stretch"
+              className="flex flex-col md:flex-row gap-[16px] max-w-[1100px] w-[95vw] max-h-[85vh] items-stretch overflow-y-auto md:overflow-visible"
               initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.92, opacity: 0 }}
@@ -49,8 +49,8 @@ export function HistoryViewer({ item, onClose, onDelete, onShare }: HistoryViewe
               onClick={(e) => e.stopPropagation()}
             >
               {/* Left: Preview */}
-              <div className="flex-1 min-w-0 bg-[#111018] flex items-center justify-center relative rounded-[20px] overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-[rgba(136,138,229,0.15)] to-[rgba(101,222,216,0.1)] flex items-center justify-center min-h-[400px]">
+              <div className="shrink-0 md:flex-1 min-w-0 bg-[#111018] flex items-center justify-center relative rounded-[20px] overflow-hidden h-[250px] md:h-auto">
+                <div className="w-full h-full bg-gradient-to-br from-[rgba(136,138,229,0.15)] to-[rgba(101,222,216,0.1)] flex items-center justify-center min-h-0 md:min-h-[400px]">
                   {item.type === 'video' ? <Play size={64} className="text-[rgba(255,255,255,0.15)]" /> : <ImageIcon size={64} className="text-[rgba(255,255,255,0.15)]" />}
                 </div>
                 {item.type === 'video' && (
@@ -63,7 +63,7 @@ export function HistoryViewer({ item, onClose, onDelete, onShare }: HistoryViewe
               </div>
 
               {/* Right: Info panel */}
-              <div className="w-[360px] shrink-0 flex flex-col bg-[#19181e] rounded-[20px] overflow-hidden">
+              <div className="w-full md:w-[360px] shrink-0 flex flex-col bg-[#19181e] rounded-[20px] overflow-hidden">
                 <div className="flex items-center justify-between px-[20px] pt-[20px] pb-[14px]">
                   <div className="flex items-center gap-[8px]">
                     <Info size={16} className="text-[#888ae5]" />

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Search, Clock, X } from 'lucide-react'
+import { Clock, X } from 'lucide-react'
 import { AnimatedToggle } from '@/components/shared/animated-toggle'
 import { useBalanceStore } from '@/stores/balance'
 import { groupByDate, type HistoryItem } from './history-tab-utils'
@@ -51,8 +51,8 @@ export function HistoryTab() {
     <div className="flex flex-col gap-[16px]">
       <HistoryTabSummary totalSpent={totalSpent} totalTopup={totalTopup} opsCount={opsCount} />
 
-      <div className="flex items-center gap-[10px]">
-        <div className="w-[320px]">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-[10px]">
+        <div className="w-full sm:w-[320px]">
           <AnimatedToggle<HistoryFilter>
             options={filterOptions}
             value={filter}
@@ -61,7 +61,7 @@ export function HistoryTab() {
           />
         </div>
         <div className="flex-1 flex items-center gap-[8px] bg-[rgba(57,55,91,0.5)] border border-[rgba(64,64,64,0.7)] rounded-[10px] px-[12px] py-[8px] focus-within:border-[#888ae5] transition-colors">
-          <Search size={14} className="text-[#898787] shrink-0" />
+          <img src="/assets/models/search-icon.png" alt="" className="size-[18px] object-contain shrink-0" style={{ filter: 'brightness(0) invert(1)', opacity: 0.5 }} />
           <input
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -88,11 +88,15 @@ export function HistoryTab() {
 
       {filtered.length === 0 && (
         <div className="bg-[rgba(57,55,91,0.45)] rounded-[16px] flex flex-col items-center justify-center py-[60px] gap-[12px]">
-          <div className="size-[48px] rounded-full bg-[rgba(136,138,229,0.08)] flex items-center justify-center mb-[4px]">
-            {searchQuery ? <Search size={22} className="text-[rgba(136,138,229,0.4)]" /> : <Clock size={22} className="text-[rgba(136,138,229,0.4)]" />}
-          </div>
+          {searchQuery ? (
+            <img src="/assets/models/search-empty.png" alt="" className="size-[48px] object-contain" style={{ filter: 'brightness(0) invert(1)', opacity: 0.5 }} />
+          ) : (
+            <div className="size-[48px] rounded-full bg-[rgba(136,138,229,0.08)] flex items-center justify-center mb-[4px]">
+              <Clock size={22} className="text-[rgba(136,138,229,0.4)]" />
+            </div>
+          )}
           <p className="font-manrope font-semibold text-[15px] text-[rgba(255,255,255,0.4)]">
-            {searchQuery ? 'Ничего не найдено' : 'Пока пусто'}
+            {searchQuery ? 'По вашему запросу ничего не найдено' : 'Пока пусто'}
           </p>
           <p className="font-manrope font-normal text-[13px] text-[rgba(255,255,255,0.2)] text-center max-w-[300px]">
             {searchQuery

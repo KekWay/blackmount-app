@@ -27,14 +27,14 @@ export function SidebarItem({
       }`}
     >
       {icon}
-      <span className="font-manrope font-medium text-[13px] leading-[20px]">{label}</span>
+      <span className="font-manrope font-medium text-[13px] leading-[20px] whitespace-nowrap">{label}</span>
     </button>
   )
 }
 
-export function SectionLabel({ children }: { children: React.ReactNode }) {
+export function SectionLabel({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <p className="font-manrope font-normal text-[11px] text-[rgba(255,255,255,0.25)] uppercase tracking-[0.06em] mb-[6px] px-[14px]">
+    <p className={`font-manrope font-normal text-[11px] text-[rgba(255,255,255,0.25)] uppercase tracking-[0.06em] mb-[6px] px-[14px] ${className || ''}`}>
       {children}
     </p>
   )
