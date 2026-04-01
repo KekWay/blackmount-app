@@ -52,7 +52,7 @@ export const aiModels: AIModel[] = [
     gradient: 'linear-gradient(120.356deg, rgb(203, 208, 60) 0%, rgb(220, 202, 122) 100%)',
     versions: [
       { id: 'nanobanana-2', label: 'NanoBanana 2', description: 'Лучшее качество', price: { '1k': 13, '2k': 19, '4k': 26 }, tier: 'ultra' },
-      { id: 'nb-pro', label: 'NanoBanana Pro', description: 'Максимальная детализация', price: 22, tier: 'ultra' },
+      { id: 'nb-pro', label: 'NanoBanana Pro', description: 'Максимальная детализация', price: { '1k': 22, '2k': 22, '4k': 43 }, tier: 'ultra' },
       { id: 'nb-2.0', label: 'NanoBanana', description: 'Классическая генерация', price: 7, tier: 'pro' },
     ],
     glowColors: ['#C8A000', '#B89A20', '#DAB830'],
