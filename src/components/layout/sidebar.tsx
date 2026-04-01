@@ -26,7 +26,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
       {/* Logo row */}
       {!collapsed ? (
         <div className="flex items-center mt-[36px] ml-[20px] pr-[12px] gap-[8px]">
-          <Link href="/home" className="flex gap-[10px] items-center cursor-pointer flex-1 min-w-0" aria-label="Go to home page">
+          <Link href="/" className="flex gap-[10px] items-center cursor-pointer flex-1 min-w-0" aria-label="Go to home page">
             <Image src={APP_ASSETS.logo} alt="Black Mount logo" width={36} height={36} className="shrink-0 object-contain" />
             <span className="font-bakbak leading-[22px] not-italic text-[16px] text-white whitespace-nowrap">BLACK MOUNT</span>
           </Link>

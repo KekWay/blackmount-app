@@ -8,6 +8,9 @@ export interface ArenaModel {
 }
 
 export const TEXT_MODELS: ArenaModel[] = [
+  { id: 'gpt-5.4', name: 'ChatGPT 5.4', category: 'text', price: 6, aiModelRef: 'chatgpt', gradient: 'linear-gradient(135deg,#4ade80,#22c55e)' },
+  { id: 'claude-opus-4.6', name: 'Claude Opus 4.6', category: 'text', price: 8, aiModelRef: 'claude', gradient: 'linear-gradient(135deg,#D4A574,#8B5E3C)' },
+  { id: 'gemini-3.1-pro', name: 'Gemini 3.1 Pro', category: 'text', price: 5, aiModelRef: 'gemini', gradient: 'linear-gradient(135deg,#6097e4,#644670)' },
   { id: 'claude-opus', name: 'Claude Opus 4.5', category: 'text', price: 8, aiModelRef: 'claude', gradient: 'linear-gradient(135deg,#D4A574,#8B5E3C)' },
   { id: 'chatgpt-5.2', name: 'ChatGPT 5.2', category: 'text', price: 5, aiModelRef: 'chatgpt', gradient: 'linear-gradient(135deg,#4ade80,#22c55e)' },
   { id: 'gemini-3-pro', name: 'Gemini 3 Pro', category: 'text', price: 5, aiModelRef: 'gemini', gradient: 'linear-gradient(135deg,#6097e4,#644670)' },
@@ -22,6 +25,7 @@ export const TEXT_MODELS: ArenaModel[] = [
 ]
 
 export const IMAGE_MODELS: ArenaModel[] = [
+  { id: 'nb2', name: 'NanoBanana 2', category: 'image', price: 13, aiModelRef: 'nanobanana', gradient: 'linear-gradient(135deg,#CBD03C,#DCCA7A)' },
   { id: 'flux-ultra', name: 'Flux 1.1 Pro Ultra', category: 'image', price: 15, aiModelRef: 'flux', gradient: 'linear-gradient(135deg,#ef4444,#b91c1c)' },
   { id: 'nb-pro', name: 'NanoBanana Pro', category: 'image', price: 22, aiModelRef: 'nanobanana', gradient: 'linear-gradient(135deg,#CBD03C,#DCCA7A)' },
   { id: 'flux-pro', name: 'Flux 1 Pro', category: 'image', price: 7, aiModelRef: 'flux', gradient: 'linear-gradient(135deg,#ef4444,#b91c1c)' },
@@ -29,9 +33,9 @@ export const IMAGE_MODELS: ArenaModel[] = [
 ]
 
 export const VIDEO_MODELS: ArenaModel[] = [
-  { id: 'sora-pro', name: 'Sora 2 Pro', category: 'video', price: 115, aiModelRef: 'sora2', gradient: 'linear-gradient(135deg,#22d3ee,#06b6d4)' },
+  { id: 'kling30-pro', name: 'Kling 3.0 Pro', category: 'video', price: 85, aiModelRef: 'kling', gradient: 'linear-gradient(135deg,#1bfe27,#0f69df)' },
+  { id: 'kling30', name: 'Kling 3.0', category: 'video', price: 55, aiModelRef: 'kling', gradient: 'linear-gradient(135deg,#1bfe27,#0f69df)' },
   { id: 'veo31', name: 'Veo 3.1', category: 'video', price: 50, aiModelRef: 'veo31', gradient: 'linear-gradient(135deg,#7188e3,#e2694e)' },
-  { id: 'sora2', name: 'Sora 2', category: 'video', price: 25, aiModelRef: 'sora2', gradient: 'linear-gradient(135deg,#22d3ee,#06b6d4)' },
   { id: 'kling26', name: 'Kling 2.6', category: 'video', price: 45, aiModelRef: 'kling', gradient: 'linear-gradient(135deg,#1bfe27,#0f69df)' },
   { id: 'kling25t', name: 'Kling 2.5 Turbo', category: 'video', price: 35, aiModelRef: 'kling', gradient: 'linear-gradient(135deg,#1bfe27,#0f69df)' },
 ]

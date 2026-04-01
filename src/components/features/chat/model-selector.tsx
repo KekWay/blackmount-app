@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { ChevronDown, Check, Lock, Sparkles } from 'lucide-react'
+import { getBasePrice } from '@/types/models'
 import type { AIModel, ModelVersion } from '@/types'
 import { MODEL_ASSETS } from '@/lib/assets'
 import { APP_ASSETS } from '@/lib/assets'
@@ -92,7 +93,7 @@ export function ModelSelector({ model, selectedVersion, onSelectVersion }: Model
                   <>
                     {v.price != null && (
                       <div className="flex items-center gap-1 shrink-0">
-                        <span className="text-xs text-white/50 font-semibold">{v.price}</span>
+                        <span className="text-xs text-white/50 font-semibold">{typeof v.price === 'object' ? `от ${getBasePrice(v.price)}` : v.price}</span>
                         <Image src={APP_ASSETS.coin} alt="" width={12} height={12} />
                       </div>
                     )}

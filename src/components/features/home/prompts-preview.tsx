@@ -5,13 +5,13 @@ import { ArrowRight, Heart, Play } from 'lucide-react'
 
 const promptItems = [
   { id: 1, src: 'https://images.unsplash.com/photo-1765410849364-56b49c81c657?w=600&q=80', type: 'image', prompt: 'Surreal portrait of a woman', modelId: 'nanobanana', theme: 'portrait', span: 'col-span-1 row-span-2' },
-  { id: 2, src: 'https://images.unsplash.com/photo-1688377051459-aebb99b42bff?w=600&q=80', type: 'video', prompt: 'Abstract fluid motion', modelId: 'sora2', theme: 'abstract', span: 'col-span-1 row-span-1' },
+  { id: 2, src: 'https://images.unsplash.com/photo-1688377051459-aebb99b42bff?w=600&q=80', type: 'video', prompt: 'Abstract fluid motion', modelId: 'veo31', theme: 'abstract', span: 'col-span-1 row-span-1' },
   { id: 3, src: 'https://images.unsplash.com/photo-1644328293665-a783b37f25d4?w=600&q=80', type: 'image', prompt: 'Cyberpunk cityscape', modelId: 'flux', theme: 'cityscape', span: 'col-span-1 sm:col-span-2 row-span-1 sm:row-span-2' },
   { id: 4, src: 'https://images.unsplash.com/photo-1616651181620-9906d6e43fc3?w=600&q=80', type: 'image', prompt: 'Fantasy landscape', modelId: 'nanobanana', theme: 'landscape', span: 'col-span-1 row-span-1' },
   { id: 5, src: 'https://images.unsplash.com/photo-1768400730812-039f5971185d?w=600&q=80', type: 'video', prompt: 'Ocean waves cinematic', modelId: 'kling', theme: 'nature', span: 'col-span-1 row-span-1' },
   { id: 6, src: 'https://images.unsplash.com/photo-1769118717400-69c5b0933e4d?w=600&q=80', type: 'image', prompt: 'Neon portrait', modelId: 'flux', theme: 'portrait', span: 'col-span-1 row-span-2 hidden sm:block' },
   { id: 7, src: 'https://images.unsplash.com/photo-1761920521457-ce2b0dbb67aa?w=600&q=80', type: 'image', prompt: 'Minimalist architecture', modelId: 'nanobanana', theme: 'architecture', span: 'col-span-1 row-span-1' },
-  { id: 8, src: 'https://images.unsplash.com/flagged/photo-1564783750566-e2d08c2bf293?w=600&q=80', type: 'video', prompt: 'Dancing lights', modelId: 'sora2', theme: 'abstract', span: 'col-span-1 row-span-1 hidden sm:block' },
+  { id: 8, src: 'https://images.unsplash.com/flagged/photo-1564783750566-e2d08c2bf293?w=600&q=80', type: 'video', prompt: 'Dancing lights', modelId: 'veo31', theme: 'abstract', span: 'col-span-1 row-span-1 hidden sm:block' },
 ] as const
 
 export function PromptsPreview() {

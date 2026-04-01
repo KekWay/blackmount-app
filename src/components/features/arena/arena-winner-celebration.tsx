@@ -1,5 +1,6 @@
 'use client'
 
+import { useMemo } from 'react'
 import { motion } from 'motion/react'
 import type { ModelResponse } from './arena-data'
 import { MIcon } from './arena-micon'
@@ -8,7 +9,24 @@ interface Props {
   winnerResponse: ModelResponse
 }
 
+const PARTICLE_COLORS = ['#c4b5fd', '#888ae5', '#e06fe2', '#FFD700', '#4ade80', '#f472b6']
+
 export function ArenaWinnerCelebration({ winnerResponse }: Props) {
+  const particles = useMemo(() =>
+    Array.from({ length: 12 }, (_, pi) => ({
+      width: 4 + Math.random() * 4,
+      height: 4 + Math.random() * 4,
+      left: `${15 + Math.random() * 70}%`,
+      top: `${-5 + Math.random() * 15}%`,
+      color: PARTICLE_COLORS[pi % 6],
+      yMid: 60 + Math.random() * 120,
+      yEnd: 150 + Math.random() * 100,
+      xStart: -20 + Math.random() * 40,
+      xEnd: -30 + Math.random() * 60,
+      rotate: 180 + Math.random() * 360,
+      duration: 2 + Math.random() * 1.5,
+    })), [])
+
   return (
     <>
       {/* Background celebration glows */}
@@ -35,26 +53,26 @@ export function ArenaWinnerCelebration({ winnerResponse }: Props) {
       />
 
       {/* Confetti particles */}
-      {[...Array(12)].map((_, pi) => (
+      {particles.map((p, pi) => (
         <motion.div
           key={`particle-${pi}`}
           className="absolute pointer-events-none rounded-full"
           style={{
-            width: 4 + Math.random() * 4,
-            height: 4 + Math.random() * 4,
-            left: `${15 + Math.random() * 70}%`,
-            top: `${-5 + Math.random() * 15}%`,
-            backgroundColor: ['#c4b5fd', '#888ae5', '#e06fe2', '#FFD700', '#4ade80', '#f472b6'][pi % 6],
+            width: p.width,
+            height: p.height,
+            left: p.left,
+            top: p.top,
+            backgroundColor: p.color,
           }}
           initial={{ opacity: 0, y: -20, scale: 0 }}
           animate={{
             opacity: [0, 0.8, 0.6, 0],
-            y: [0, 60 + Math.random() * 120, 150 + Math.random() * 100],
-            x: [-20 + Math.random() * 40, -30 + Math.random() * 60],
+            y: [0, p.yMid, p.yEnd],
+            x: [p.xStart, p.xEnd],
             scale: [0, 1.2, 0.8, 0],
-            rotate: [0, 180 + Math.random() * 360],
+            rotate: [0, p.rotate],
           }}
-          transition={{ duration: 2 + Math.random() * 1.5, delay: 0.2 + pi * 0.08, ease: 'easeOut' }}
+          transition={{ duration: p.duration, delay: 0.2 + pi * 0.08, ease: 'easeOut' }}
         />
       ))}
 

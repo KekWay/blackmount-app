@@ -85,16 +85,6 @@ export const CARD_CONFIGS: Record<string, CardConfig> = {
       left: 25, top: 32, width: 50, height: 50,
     },
   },
-  sora2: {
-    bgType: 'div',
-    bgOpacity: 0.65,
-    text: { left: 64, top: 48, width: 75, fontSize: 20 },
-    logo: {
-      type: 'img',
-      src: '/assets/models/sora-logo.png',
-      left: 28, top: 42, width: 28, height: 28,
-    },
-  },
   kling: {
     bgType: 'div',
     bgOpacity: 0.65,

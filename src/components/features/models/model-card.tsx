@@ -56,12 +56,6 @@ const CONFIGS: Record<string, CardConfig> = {
     text: { left: 71, top: 51, width: 75, fontSize: 20 },
     logo: { type: 'color', src: '/assets/models/flux-icon.png', left: 28, top: 36, width: 38, height: 38 },
   },
-  sora2: {
-    gradient: 'linear-gradient(120.356deg, rgb(38, 207, 241) 1.0121%, rgb(111, 222, 240) 98.988%)',
-    bgType: 'div', bgOpacity: 0.65,
-    text: { left: 64, top: 48, width: 75, fontSize: 20 },
-    logo: { type: 'img', src: '/assets/models/sora-logo.png', left: 28, top: 42, width: 28, height: 28 },
-  },
   kling: {
     gradient: 'linear-gradient(120.356deg, rgb(27, 254, 39) 1.0121%, rgb(15, 105, 223) 98.988%)',
     bgType: 'div', bgOpacity: 0.65,

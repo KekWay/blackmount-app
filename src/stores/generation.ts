@@ -39,15 +39,22 @@ export const useGenerationStore = create<GenerationState>((set) => ({
     })),
 
   completeGeneration: (id) =>
-    set((s) => ({
-      pendingGenerations: s.pendingGenerations.map((g) =>
-        g.id === id ? { ...g, status: 'completed' } : g
-      ),
-      completedButNotNotified: s.completedButNotNotified.includes(id)
-        ? s.completedButNotNotified
-        : [...s.completedButNotNotified, id],
-      hasNewGenerations: true,
-    })),
+    set((s) => {
+      const gen = s.pendingGenerations.find((g) => g.id === id)
+      const isInActiveChat = gen != null && s.activeChat === gen.modelId
+
+      return {
+        pendingGenerations: s.pendingGenerations.map((g) =>
+          g.id === id ? { ...g, status: 'completed' } : g
+        ),
+        completedButNotNotified: isInActiveChat
+          ? s.completedButNotNotified
+          : s.completedButNotNotified.includes(id)
+            ? s.completedButNotNotified
+            : [...s.completedButNotNotified, id],
+        hasNewGenerations: isInActiveChat ? s.hasNewGenerations : true,
+      }
+    }),
 
   removeGeneration: (id) =>
     set((s) => ({

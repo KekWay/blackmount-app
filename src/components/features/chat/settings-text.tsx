@@ -13,7 +13,7 @@ export function SettingsText({ systemPrompt, setSystemPrompt, toneSetting, setTo
       <div>
         <p className="font-manrope font-medium text-[14px] text-white mb-[8px]">Системный промпт</p>
         <textarea
-          className="w-full bg-[rgba(57,55,91,0.5)] border border-[rgba(64,64,64,0.7)] rounded-[10px] px-[12px] py-[10px] text-[12px] text-white placeholder-[rgba(166,166,166,0.6)] outline-none resize-none font-manrope"
+          className="w-full bg-[rgba(57,55,91,0.5)] rounded-[10px] px-[12px] py-[10px] text-[12px] text-white placeholder-[rgba(166,166,166,0.6)] outline-none resize-none font-manrope"
           rows={4}
           placeholder="Напишите пользовательскую инструкцию для ИИ"
           value={systemPrompt}
@@ -26,7 +26,7 @@ export function SettingsText({ systemPrompt, setSystemPrompt, toneSetting, setTo
           <select
             value={toneSetting}
             onChange={(e) => setToneSetting(e.target.value)}
-            className="w-full appearance-none bg-[rgba(57,55,91,0.5)] border border-[rgba(64,64,64,0.7)] rounded-[10px] px-[12px] py-[9px] text-[13px] text-white outline-none cursor-pointer font-manrope"
+            className="w-full appearance-none bg-[rgba(57,55,91,0.5)] rounded-[10px] px-[12px] py-[9px] text-[13px] text-white outline-none cursor-pointer font-manrope"
           >
             <option value="default">по умолчанию</option>
             <option value="formal">формальный</option>

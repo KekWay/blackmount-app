@@ -4,6 +4,7 @@ import { X, Trash2 } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
 import { APP_ASSETS } from '@/lib/assets'
 import type { AIModel, ModelVersion } from '@/types'
+import { getBasePrice } from '@/types/models'
 import { SettingsText } from './settings-text'
 import { SettingsImage, SettingsVideo } from './settings-media'
 
@@ -84,6 +85,7 @@ export function ChatSettingsPanel({
                   setQuality={setQuality}
                   imageCount={imageCount}
                   setImageCount={setImageCount}
+                  selectedVersion={selectedVersion}
                 />
               ) : (
                 <SettingsVideo
@@ -109,10 +111,10 @@ export function ChatSettingsPanel({
                       </div>
                     </div>
                   </div>
-                  {(selectedVersion.price || 5) !== dynamicCost && (
+                  {getBasePrice(selectedVersion.price || 5) !== dynamicCost && (
                     <div className="flex items-center justify-between mt-[6px]">
                       <span className="font-manrope font-normal text-[11px] text-[rgba(255,255,255,0.25)]">Базовая цена</span>
-                      <span className="font-manrope font-normal text-[11px] text-[rgba(255,255,255,0.25)] line-through">{selectedVersion.price || 5}</span>
+                      <span className="font-manrope font-normal text-[11px] text-[rgba(255,255,255,0.25)] line-through">{getBasePrice(selectedVersion.price || 5)}</span>
                     </div>
                   )}
                 </div>

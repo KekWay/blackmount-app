@@ -3,6 +3,7 @@
 import { motion } from 'motion/react'
 import { X, Zap, Layers } from 'lucide-react'
 import { aiModels } from '@/data/ai-models'
+import { getBasePrice } from '@/types/models'
 import { ModelIcon } from '@/components/shared/model-icon'
 import { imgCoin } from './subscription-data'
 
@@ -42,11 +43,11 @@ export function AllModelsOverlay({ onClose }: { onClose: () => void }) {
                   </div>
                   <div className="p-[12px] flex flex-col gap-[6px] bg-[rgba(0,0,0,0.1)] flex-1">
                     {model.versions.map((v) => {
-                      const isFree = v.price === 1
+                      const isFree = getBasePrice(v.price) === 1
                       return (
                         <div key={v.id} className="flex items-center justify-between px-[12px] py-[8px] rounded-[10px] bg-[rgba(255,255,255,0.02)] hover:bg-[rgba(255,255,255,0.04)] transition-colors">
                           <div className="flex items-center gap-[8px]"><Zap size={12} className={isFree ? 'text-[#6bc085]' : 'text-[#888ae5]'} /><span className="text-[13px] text-[rgba(255,255,255,0.9)] font-manrope font-medium">{v.label}</span></div>
-                          <div className="flex items-center gap-[4px] bg-[rgba(255,255,255,0.05)] px-[8px] py-[4px] rounded-[6px]"><span className="text-[11px] text-white font-manrope font-bold">{v.price}</span><img src={imgCoin} alt="" className="size-[10px]" /></div>
+                          <div className="flex items-center gap-[4px] bg-[rgba(255,255,255,0.05)] px-[8px] py-[4px] rounded-[6px]"><span className="text-[11px] text-white font-manrope font-bold">{typeof v.price === 'object' ? `от ${getBasePrice(v.price)}` : v.price}</span><img src={imgCoin} alt="" className="size-[10px]" /></div>
                         </div>
                       )
                     })}

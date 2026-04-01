@@ -163,7 +163,7 @@ export function HistoryMediaGrid({
       {items.map((item) => (
         <div
           key={item.id}
-          onClick={() => { if (!isLoggedIn) { router.push('/auth'); return; } router.push(`/chat/${item.modelId}?session=${item.id}`); }}
+          onClick={() => { if (!isLoggedIn) { router.push('/auth'); return; } onViewItem(item); }}
           className="aspect-square rounded-[14px] overflow-hidden cursor-pointer hover:ring-2 hover:ring-[#888ae5]/50 transition-all duration-300 relative group hover:scale-[1.02] hover:shadow-lg bg-[rgba(255,255,255,0.03)]"
         >
           <div className="w-full h-full bg-gradient-to-br from-[rgba(136,138,229,0.15)] to-[rgba(101,222,216,0.1)] flex items-center justify-center">

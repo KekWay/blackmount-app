@@ -3,9 +3,10 @@
 import { X, Layers } from 'lucide-react'
 import { motion } from 'motion/react'
 import { aiModels } from '@/data/ai-models'
+import { getBasePrice } from '@/types/models'
 import { MODEL_ASSETS } from '@/lib/assets'
 
-const lockedVersionIds = new Set(['chatgpt-5.2', 'claude-opus-4.5', 'gemini-3-pro', 'sora-2-pro', 'nb-pro', 'flux-1.1-pro-ultra', 'kling-2.6', 'veo-3.1-quality', 'veo-3.1-fast'])
+const lockedVersionIds = new Set(['chatgpt-5.2', 'claude-opus-4.5', 'gemini-3-pro', 'nb-pro', 'flux-1.1-pro-ultra', 'kling-2.6', 'veo-3.1-quality', 'veo-3.1-fast'])
 const lockedModelIds = new Set(['veo31'])
 const catColors: Record<string, string> = { text: '#888ae5', image: '#ef4444', video: '#22d3ee' }
 const catLabels: Record<string, string> = { text: 'Текст', image: 'Изображение', video: 'Видео' }
@@ -125,7 +126,7 @@ function AllModelsList() {
                       </div>
                     </div>
                     <div className="flex items-center gap-[8px] shrink-0">
-                      <span className="text-[10px] text-[rgba(255,255,255,0.4)] font-manrope font-semibold">{v.price} ₿/запрос</span>
+                      <span className="text-[10px] text-[rgba(255,255,255,0.4)] font-manrope font-semibold">{typeof v.price === 'object' ? `от ${getBasePrice(v.price)}` : v.price} ₿/запрос</span>
                       {isLocked ? (
                         <span className="text-[8px] font-manrope px-[5px] py-[1px] rounded-[3px] bg-[#888ae5]/15 text-[#888ae5] font-bold">PRO</span>
                       ) : (

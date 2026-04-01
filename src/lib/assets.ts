@@ -25,11 +25,6 @@ export const MODEL_ASSETS = {
     colorLogo: '/assets/models/flux-logo.png',
     colorIcon: '/assets/models/flux-icon.png',
   },
-  sora2: {
-    // logoType: "mask", maskImage used as both logo and mask
-    maskImage: '/assets/models/sora-logo.png',
-    colorLogo: '/assets/models/sora-color-logo.png',
-  },
   kling: {
     logo: '/assets/models/kling-logo.png',
     colorLogo: '/assets/models/kling-color-logo.png',

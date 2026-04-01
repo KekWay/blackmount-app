@@ -33,9 +33,9 @@ const newsItems: NewsItem[] = [
     image: imgGeneratedImage,
   },
   {
-    id: 'sora2news',
-    subtitle: 'Sora 2.0 HD',
-    description: 'Генерация видео в 1080p стала доступна всем пользователям!',
+    id: 'veo31news',
+    subtitle: 'Veo 3.1',
+    description: 'Кинематографичная генерация видео до 4K от Google DeepMind уже доступна!',
     image: imgFrame32,
   },
 ]

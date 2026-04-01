@@ -28,7 +28,7 @@ const bakbakOne = Bakbak_One({
 export const metadata: Metadata = {
   title: 'Blackmount — AI Aggregator',
   description:
-    'Пробуй и сравнивай AI-модели — ChatGPT, Claude, Gemini, Flux, Sora, Kling, Veo, NanoBanana — через единый интерфейс.',
+    'Пробуй и сравнивай AI-модели — ChatGPT, Claude, Gemini, Flux, Kling, Veo, NanoBanana — через единый интерфейс.',
 }
 
 export default function RootLayout({

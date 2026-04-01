@@ -60,7 +60,6 @@
   --gradient-claude: linear-gradient(135deg, #d4a574, #c8956b);
   --gradient-gemini: linear-gradient(135deg, #4285f4, #34a853);
   --gradient-flux: linear-gradient(135deg, #a259ff, #ff6b6b);
-  --gradient-sora: linear-gradient(135deg, #00d2ff, #7b2ff7);
   --gradient-kling: linear-gradient(135deg, #ff4081, #ff9100);
   --gradient-veo: linear-gradient(135deg, #1de9b6, #00b0ff);
   --gradient-nanobanana: linear-gradient(135deg, #ffd600, #ff9100);
@@ -189,6 +188,25 @@
 }
 .chat-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(136, 138, 229, 0.35);
+}
+
+/* Version dropdown scrollbar */
+.version-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(136, 138, 229, 0.15) transparent;
+}
+.version-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.version-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.version-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(136, 138, 229, 0.15);
+  border-radius: 2px;
+}
+.version-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(136, 138, 229, 0.3);
 }
 
 /* Hidden scrollbar utility */

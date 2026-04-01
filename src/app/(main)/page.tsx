@@ -1,7 +1,8 @@
 'use client'
 
-import { useState, useMemo, useCallback, useEffect } from 'react'
+import { Suspense, useState, useMemo, useCallback, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
+import { toast } from 'sonner'
 import { aiModels } from '@/data/ai-models'
 import { useFavoritesStore } from '@/stores/favorites'
 import { FilterTabs, type FilterCategory } from '@/components/features/home/filter-tabs'
@@ -20,7 +21,7 @@ const FILTER_MAP: Record<string, FilterCategory> = {
   video: 'video',
 }
 
-export default function HomePage() {
+function HomePageContent() {
   const searchParams = useSearchParams()
   const [activeFilter, setActiveFilter] = useState<FilterCategory>('all')
   const [searchQuery, setSearchQuery] = useState('')
@@ -32,6 +33,14 @@ export default function HomePage() {
   useEffect(() => {
     const f = searchParams.get('filter')
     if (f && FILTER_MAP[f]) setActiveFilter(FILTER_MAP[f])
+  }, [searchParams])
+
+  useEffect(() => {
+    const ref = searchParams.get('ref')
+    if (ref) {
+      localStorage.setItem('pendingReferralCode', ref.toUpperCase())
+      toast.info('Вас пригласил друг!')
+    }
   }, [searchParams])
 
   const favorites = useFavoritesStore((s) => s.favorites)
@@ -106,5 +115,13 @@ export default function HomePage() {
         modelName={gateModal.modelName}
       />
     </div>
+  )
+}
+
+export default function HomePage() {
+  return (
+    <Suspense fallback={null}>
+      <HomePageContent />
+    </Suspense>
   )
 }

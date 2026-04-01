@@ -51,7 +51,7 @@ export function ModelIconWhite({ modelId, size }: ModelIconProps) {
     )
   }
 
-  // For mask-based icons (sora2)
+  // For mask-based icons
   if ('maskImage' in assets && assets.maskImage) {
     return (
       <div

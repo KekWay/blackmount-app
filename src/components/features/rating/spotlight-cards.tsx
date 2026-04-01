@@ -7,7 +7,7 @@ import { ScoreRing } from './score-ring'
 import { SPOTLIGHTS, leaderboardData } from '@/data/leaderboard'
 import type { LeaderboardModel } from '@/data/leaderboard'
 
-const IMG_SPOT_VIDEO = '/assets/models/leader-sora-video.png'
+const IMG_SPOT_VIDEO = '/assets/models/leader-veo-video.png'
 
 interface SpotlightCardsProps {
   onNavigate: (item: LeaderboardModel) => void

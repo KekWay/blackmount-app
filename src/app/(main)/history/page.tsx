@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback, useEffect } from 'react'
+import { Suspense, useState, useCallback, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useBalanceStore } from '@/stores/balance'
 import { useAuthStore } from '@/stores/auth'
@@ -26,7 +26,7 @@ const tabs: { key: HistoryTab; label: string }[] = [
 
 const VALID_TABS: HistoryTab[] = ['text', 'images', 'video']
 
-export default function HistoryPage() {
+function HistoryPageContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { isLoggedIn } = useAuthStore()
@@ -181,5 +181,13 @@ export default function HistoryPage() {
         onCancel={() => setConfirmDeleteId(null)}
       />
     </div>
+  )
+}
+
+export default function HistoryPage() {
+  return (
+    <Suspense fallback={null}>
+      <HistoryPageContent />
+    </Suspense>
   )
 }

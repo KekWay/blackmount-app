@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { Suspense, useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { LogOut, Users, Clock, Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
@@ -50,7 +50,7 @@ function ProfileSidebarContent({ activeTab, setActiveTab, router, logout, onClos
   )
 }
 
-export default function ProfilePage() {
+function ProfilePageContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const logout = useAuthStore((s) => s.logout)
@@ -139,5 +139,13 @@ export default function ProfilePage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function ProfilePage() {
+  return (
+    <Suspense fallback={null}>
+      <ProfilePageContent />
+    </Suspense>
   )
 }

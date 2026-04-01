@@ -11,7 +11,7 @@ import { PromptsFilters } from './prompts-filters'
 export function PromptsPage() {
   const [selectedItem, setSelectedItem] = useState<PromptItem | null>(null)
   const [activeModelFilter, setActiveModelFilter] = useState<string>('all')
-  const [activeThemeFilter, setActiveThemeFilter] = useState<string>('all')
+  const [activeCategoryFilter, setActiveCategoryFilter] = useState<string>('all')
   const [favIds, setFavIds] = useState<number[]>(() => {
     try { return JSON.parse(localStorage.getItem('promptFavs') || '[]') } catch { return [] }
   })
@@ -26,9 +26,11 @@ export function PromptsPage() {
   }, [])
 
   const filtered = promptItems.filter((p) => {
-    if (activeThemeFilter === 'favorites') return favIds.includes(p.id)
+    if (activeCategoryFilter === 'favorites') return favIds.includes(p.id)
     if (activeModelFilter !== 'all' && p.modelId !== activeModelFilter) return false
-    if (activeThemeFilter !== 'all' && p.theme !== activeThemeFilter) return false
+    // Category filtering: when items have category field, filter by it.
+    // For now all items show in every category (no category mapping yet).
+    if (activeCategoryFilter !== 'all' && p.category && p.category !== activeCategoryFilter) return false
     return true
   })
 
@@ -50,15 +52,15 @@ export function PromptsPage() {
         >Промпты</p>
         <style>{`@keyframes promptPageShimmer { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }`}</style>
         <p className="text-[15px] text-[rgba(255,255,255,0.4)] mt-[4px]">
-          Лучшие промпты и генерации сообщества Black Mount
+          Идеи и шаблоны для Ваших генераций
         </p>
       </div>
 
       <PromptsFilters
-        activeThemeFilter={activeThemeFilter}
+        activeCategoryFilter={activeCategoryFilter}
         activeModelFilter={activeModelFilter}
         favCount={favIds.length}
-        onThemeChange={setActiveThemeFilter}
+        onCategoryChange={setActiveCategoryFilter}
         onModelChange={setActiveModelFilter}
       />
 

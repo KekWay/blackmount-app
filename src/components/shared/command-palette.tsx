@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { Home, Clock, Image, Trophy, Zap, BookOpen, MessageSquare, User, CreditCard, Plus } from 'lucide-react'
 import { aiModels } from '@/data/ai-models'
@@ -25,7 +25,7 @@ export function CommandPalette() {
   const [selectedIdx, setSelectedIdx] = useState(0)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const commands: CommandItem[] = [
+  const commands: CommandItem[] = useMemo(() => [
     { id: 'home', label: 'Главная', description: 'Библиотека моделей', icon: <Home size={16} />, action: () => router.push('/'), category: 'navigation', keywords: ['home', 'главная'] },
     { id: 'history', label: 'История', icon: <Clock size={16} />, action: () => router.push('/history'), category: 'navigation', keywords: ['history', 'история'] },
     { id: 'prompts', label: 'Промпты', icon: <Image size={16} />, action: () => router.push('/prompts'), category: 'navigation', keywords: ['prompts', 'промпты'] },
@@ -39,17 +39,18 @@ export function CommandPalette() {
       action: () => router.push(`/chat/${m.id}`), category: 'models' as const, keywords: [m.name.toLowerCase(), m.id],
     })),
     { id: 'new-chat', label: 'Новый чат', icon: <Plus size={16} />, action: () => router.push('/'), category: 'actions', keywords: ['new', 'новый'] },
-  ]
+  ], [router])
 
-  const filtered = query.trim()
-    ? commands.filter((c) => {
-        const q = query.toLowerCase()
-        return c.label.toLowerCase().includes(q) || c.description?.toLowerCase().includes(q) || c.keywords?.some((k) => k.includes(q))
-      })
-    : commands
-
-  const groups = { navigation: filtered.filter((c) => c.category === 'navigation'), models: filtered.filter((c) => c.category === 'models'), actions: filtered.filter((c) => c.category === 'actions') }
-  const flatList = [...groups.navigation, ...groups.models, ...groups.actions]
+  const { groups, flatList } = useMemo(() => {
+    const filtered = query.trim()
+      ? commands.filter((c) => {
+          const q = query.toLowerCase()
+          return c.label.toLowerCase().includes(q) || c.description?.toLowerCase().includes(q) || c.keywords?.some((k) => k.includes(q))
+        })
+      : commands
+    const g = { navigation: filtered.filter((c) => c.category === 'navigation'), models: filtered.filter((c) => c.category === 'models'), actions: filtered.filter((c) => c.category === 'actions') }
+    return { groups: g, flatList: [...g.navigation, ...g.models, ...g.actions] }
+  }, [commands, query])
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {

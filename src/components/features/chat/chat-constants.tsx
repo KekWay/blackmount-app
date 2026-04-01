@@ -20,13 +20,15 @@ export const testImagePool = [
 export const FREE_SUB_VERSIONS = ['chatgpt-5-mini', 'gemini-3-flash', 'gemini-2.5-flash']
 
 export const videoPricingMap: Record<string, Record<string, number>> = {
-  'sora-2': { '10с': 25, '15с': 30 },
-  'sora-2-pro': { '10с': 115, '15с': 215 },
-  'kling-2.6': { '5с': 45, '10с': 85 },
-  'kling-2.6-audio': { '5с': 85, '10с': 170 },
-  'kling-2.5-turbo': { '5с': 35, '10с': 65 },
-  'veo-3.1-quality': { '8с': 185, '5с': 120 },
-  'veo-3.1-fast': { '8с': 50, '5с': 35 },
+  'kling-2.6': { '5s': 45, '10s': 85 },
+  'kling-2.6-audio': { '5s': 85, '10s': 170 },
+  'kling-2.5-turbo': { '5s': 35, '10s': 65 },
+  'veo-3.1-quality': { '8s': 185, '5s': 120 },
+  'veo-3.1-fast': { '8s': 50, '5s': 35 },
+}
+
+export const DURATION_KEY_MAP: Record<string, string> = {
+  '5с': '5s', '10с': '10s', '8с': '8s',
 }
 
 export function hexToRgba(hex: string, alpha: number): string {

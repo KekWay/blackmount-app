@@ -51,7 +51,7 @@ export function useChatActions(p: UseChatActionsParams) {
   }
 
   const handleSend = () => {
-    if (!p.input.trim()) return
+    if (!p.input.trim() || p.isGenerating) return
     if (!isLoggedIn) { p.setShowAuthGate(true); return }
     if (p.modelLocked) { router.push('/profile?tab=subscription'); return }
     // TODO: временно отключен лимит запросов
@@ -87,6 +87,9 @@ export function useChatActions(p: UseChatActionsParams) {
         prompt: p.input.trim().slice(0, 100),
       })
       p.setMessages((prev) => [...prev, { role: 'assistant', content: `${p.model.name} генерирует...`, isLoading: true, mediaType: p.model.category as 'image' | 'video' }])
+      const mediaDelay = p.model.category === 'video'
+        ? Math.random() * (18000 - 12000) + 12000
+        : Math.random() * (10000 - 6000) + 6000
       generationTimerRef.current = setTimeout(() => {
         useGenerationStore.getState().completeGeneration(mediaGenId)
         let assistantMsg: Message
@@ -102,7 +105,7 @@ export function useChatActions(p: UseChatActionsParams) {
         })
         useChatSessionsStore.getState().addMessages(sessionId, [assistantMsg])
         p.setIsGenerating(false)
-      }, 3000)
+      }, mediaDelay)
     } else {
       const textGenId = crypto.randomUUID()
       useGenerationStore.getState().addGeneration({
@@ -115,6 +118,7 @@ export function useChatActions(p: UseChatActionsParams) {
       })
       p.setMessages((prev) => [...prev, { role: 'assistant', content: '', isLoading: true }])
       const txt = `Это демо-ответ от ${p.model.name} (${p.selectedVersion.label}).${p.webSearchActive ? ' (с веб-поиском)' : ''}${p.deepResearchActive ? ' (с режимом думать)' : ''} В реальном приложении здесь был бы ответ от нейросети. Модель обрабатывает запрос с учётом контекста диалога и настроек выбранной версии.`
+      const textDelay = Math.random() * (4000 - 2000) + 2000
       generationTimerRef.current = setTimeout(() => {
         useGenerationStore.getState().completeGeneration(textGenId)
         const assistantMsg: Message = { role: 'assistant', content: txt, isTyping: true, timestamp: Date.now() }
@@ -124,7 +128,7 @@ export function useChatActions(p: UseChatActionsParams) {
           return u
         })
         useChatSessionsStore.getState().addMessages(sessionId, [{ role: 'assistant', content: txt, timestamp: Date.now() }])
-      }, 2000)
+      }, textDelay)
     }
   }
 

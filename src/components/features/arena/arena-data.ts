@@ -2,7 +2,7 @@ import type { ArenaModel } from '@/data/arena-models'
 
 export const ARENA_LOCKED_IDS = new Set([
   'claude-opus', 'chatgpt-5.2', 'gemini-3-pro', 'flux-ultra',
-  'nb-pro', 'sora-pro', 'veo31', 'kling26',
+  'nb-pro', 'veo31', 'kling26',
 ])
 
 export const IMG_COIN = '/assets/models/coin.png'

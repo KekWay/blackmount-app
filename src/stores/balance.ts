@@ -43,7 +43,7 @@ const defaultOperations: OperationItem[] = [
   { id: '5', type: 'spent', label: 'Claude Sonnet 4.5', amount: -5, date: '22.02.26 16:15:12' },
   { id: '6', type: 'topup', label: 'Пополнение счета', amount: 90, date: '22.02.26 14:30:00' },
   { id: '7', type: 'spent', label: 'Flux 1.1 Pro', amount: -10, date: '21.02.26 12:10:45' },
-  { id: '8', type: 'spent', label: 'Sora 2.0 HD', amount: -20, date: '21.02.26 11:05:22' },
+  { id: '8', type: 'spent', label: 'Kling 2.6', amount: -45, date: '21.02.26 11:05:22' },
   { id: '9', type: 'topup', label: 'Пополнение счета', amount: 350, date: '20.02.26 09:00:00' },
 ]
 
@@ -63,13 +63,13 @@ const defaultGenHistory: GenHistoryItem[] = [
   { id: '13', modelId: 'flux', title: 'Космический корабль', preview: '', time: '08:25', dateStr: '2026-02-22', type: 'image' },
   { id: '14', modelId: 'nanobanana', title: 'Подводный мир', preview: '', time: '08:10', dateStr: '2026-02-22', type: 'image' },
   { id: '15', modelId: 'flux', title: 'Ретро плакат', preview: '', time: '07:55', dateStr: '2026-02-22', type: 'image' },
-  { id: '16', modelId: 'sora2', title: 'Полёт дрона над городом', preview: '', time: '16:00', dateStr: '2026-02-21', type: 'video' },
+  { id: '16', modelId: 'veo31', title: 'Полёт дрона над городом', preview: '', time: '16:00', dateStr: '2026-02-21', type: 'video' },
   { id: '17', modelId: 'kling', title: 'Танец робота', preview: '', time: '15:20', dateStr: '2026-02-21', type: 'video' },
   { id: '18', modelId: 'veo31', title: 'Морские волны', preview: '', time: '14:40', dateStr: '2026-02-21', type: 'video' },
-  { id: '19', modelId: 'sora2', title: 'Лес из будущего', preview: '', time: '13:00', dateStr: '2026-02-21', type: 'video' },
+  { id: '19', modelId: 'veo31', title: 'Лес из будущего', preview: '', time: '13:00', dateStr: '2026-02-21', type: 'video' },
   { id: '20', modelId: 'kling', title: 'Бегущий огонь', preview: '', time: '12:30', dateStr: '2026-02-21', type: 'video' },
   { id: '21', modelId: 'veo31', title: 'Северное сияние', preview: '', time: '11:50', dateStr: '2026-02-21', type: 'video' },
-  { id: '22', modelId: 'sora2', title: 'Закат таймлапс', preview: '', time: '11:10', dateStr: '2026-02-21', type: 'video' },
+  { id: '22', modelId: 'kling', title: 'Закат таймлапс', preview: '', time: '11:10', dateStr: '2026-02-21', type: 'video' },
   { id: '23', modelId: 'kling', title: 'Городская суета', preview: '', time: '10:30', dateStr: '2026-02-21', type: 'video' },
 ]
 

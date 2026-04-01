@@ -8,7 +8,14 @@ import { aiModels } from '@/data/ai-models'
 import { useSubscriptionStore } from '@/stores/subscription'
 import { ModelIcon } from '@/components/shared/model-icon'
 import type { PromptItem } from './prompts-data'
-import { themeTags } from './prompts-data'
+import { promptCategories } from './prompts-data'
+
+const themeLabelMap: Record<string, string> = {
+  portrait: 'Портреты', cyberpunk: 'Киберпанк', fantasy: 'Фэнтези',
+  abstract: 'Абстракция', scifi: 'Sci-Fi', dark: 'Тёмное',
+  nature: 'Природа', space: 'Космос', sea: 'Море', retro: 'Ретро',
+  animals: 'Животные', architecture: 'Архитектура',
+}
 
 interface PromptDetailInfoProps {
   item: PromptItem
@@ -24,7 +31,7 @@ export function PromptDetailInfo({ item, selectedModelId, onSelectModel, onGate 
 
   const model = aiModels.find((m) => m.id === item.modelId)
   const selectedModel = aiModels.find((m) => m.id === selectedModelId)
-  const themeTag = themeTags.find((t) => t.id === item.theme)
+  const themeLabel = themeLabelMap[item.theme] ?? promptCategories.find((c) => c.id === item.theme)?.name ?? item.theme
   const generationModels = aiModels.filter((m) => m.category === item.type)
 
   const handleCopy = () => {
@@ -44,7 +51,7 @@ export function PromptDetailInfo({ item, selectedModelId, onSelectModel, onGate 
             <div>
               <p className="text-[14px] text-white">{model?.name || 'Unknown'}</p>
               <p className="text-[11px] text-[rgba(255,255,255,0.35)]">
-                {item.type === 'video' ? 'Видео' : 'Изображение'} • {themeTag?.label || item.theme}
+                {item.type === 'video' ? 'Видео' : 'Изображение'} • {themeLabel}
               </p>
             </div>
           </div>

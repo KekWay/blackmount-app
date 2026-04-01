@@ -5,13 +5,17 @@ import type { SubscriptionData, SubscriptionTier } from '@/types'
 export const LOCKED_MODEL_IDS = new Set(['veo31'])
 
 export const LOCKED_VERSION_IDS = new Set([
-  'chatgpt-5.2',
+  'gpt-5.4',
+  'gpt-5.3',
+  'claude-opus-4.6',
+  'gemini-3.1-pro',
+  'nanobanana-2',
+  'kling-3.0-pro',
+  'kling-3.0',
+  'kling-2.6-pro',
   'claude-opus-4.5',
-  'gemini-3-pro',
-  'sora-2-pro',
   'nb-pro',
   'flux-1.1-pro-ultra',
-  'kling-2.6',
   'veo-3.1-quality',
   'veo-3.1-fast',
 ])

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { ChevronDown, Check, Lock, Sparkles } from 'lucide-react'
+import { getBasePrice } from '@/types/models'
 import { motion } from 'motion/react'
 import { ModelIcon } from '@/components/shared/model-icon'
 import { useSubscriptionStore } from '@/stores/subscription'
@@ -105,7 +106,7 @@ export function InputModelDropdown({ currentModel, onSelect }: InputModelDropdow
                     <>
                       <div className="flex items-center gap-[3px] ml-auto shrink-0">
                         <span className="font-manrope font-semibold text-[11px] text-[rgba(255,255,255,0.4)]">
-                          от {Math.min(...m.versions.map(v => v.price || 0))}
+                          от {Math.min(...m.versions.map(v => getBasePrice(v.price)))}
                         </span>
                         <div className="relative shrink-0 size-[10px]">
                           <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgXsCoin} />

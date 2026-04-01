@@ -3,6 +3,7 @@
 import { X } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
 import { aiModels } from '@/data/ai-models'
+import { getBasePrice } from '@/types/models'
 import { IMG_COIN } from './profile-data'
 
 export function PricingInfoOverlay({ onClose }: { onClose: () => void }) {
@@ -27,7 +28,7 @@ export function PricingInfoOverlay({ onClose }: { onClose: () => void }) {
                     <span className="font-manrope font-medium text-[12px] text-white">{vi === 0 ? m.name : ''}</span>
                     <span className="font-manrope font-normal text-[12px] text-[rgba(255,255,255,0.6)]">{v.label}</span>
                     <div className="flex items-center gap-[3px] justify-end">
-                      <span className="font-manrope font-semibold text-[12px] text-white">{v.price}</span>
+                      <span className="font-manrope font-semibold text-[12px] text-white">{typeof v.price === 'object' ? `от ${getBasePrice(v.price)}` : v.price}</span>
                       <div className="relative shrink-0 size-[11px]"><img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={IMG_COIN} /></div>
                     </div>
                   </div>

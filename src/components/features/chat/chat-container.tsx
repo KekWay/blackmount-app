@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { Suspense, useState, useEffect, useRef } from 'react'
 import { useParams, useSearchParams } from 'next/navigation'
 import { aiModels } from '@/data/ai-models'
 import { useBalanceStore } from '@/stores/balance'
@@ -9,7 +9,8 @@ import { useRequestLimiterStore } from '@/stores/request-limiter'
 import { useChatSessionsStore } from '@/stores/chat-sessions'
 import { useGenerationStore } from '@/stores/generation'
 import type { Message, ModelVersion } from '@/types'
-import { getRandomGreeting, FREE_SUB_VERSIONS, videoPricingMap, hexToRgba } from './chat-constants'
+import { getBasePrice, hasAudioPricing } from '@/types/models'
+import { getRandomGreeting, FREE_SUB_VERSIONS, videoPricingMap, DURATION_KEY_MAP, hexToRgba } from './chat-constants'
 import { useChatActions } from './use-chat-actions'
 import { ChatHeader } from './chat-header'
 import { ChatEmptyState } from './chat-empty-state'
@@ -20,7 +21,7 @@ import { ChatModals } from './chat-modals'
 import { ChatMediaLightbox } from './chat-media-lightbox'
 import { ShareModal } from './share-modal'
 
-export function ChatContainer() {
+function ChatContainerInner() {
   const params = useParams<{ modelId: string }>()
   const searchParams = useSearchParams()
   const modelId = params.modelId
@@ -58,7 +59,7 @@ export function ChatContainer() {
   const model = aiModels.find((m) => m.id === modelId) || aiModels[0]
   const modelLocked = useSubscriptionStore.getState().isModelLocked(model.id)
   const defaultVersion = (() => {
-    const s = [...model.versions].sort((a, b) => (a.price || 0) - (b.price || 0))
+    const s = [...model.versions].sort((a, b) => getBasePrice(a.price) - getBasePrice(b.price))
     if (hasSub) return s[0]
     return s.find(v => !useSubscriptionStore.getState().isVersionLocked(v.id)) || s[0]
   })()
@@ -67,13 +68,29 @@ export function ChatContainer() {
   const dailyLimit = useRequestLimiterStore.getState().getDailyLimit()
 
   const dynamicCost = (() => {
-    const bp = selectedVersion.price || 5
+    const p = selectedVersion.price
+    const bp = getBasePrice(p)
     if (hasSub && FREE_SUB_VERSIONS.includes(selectedVersion.id)) return 0
     const fc = isTextModel ? ((webSearchActive ? 5 : 0) + (deepResearchActive ? 5 : 0)) : 0
     if (isTextModel) return bp + fc
+    if (p != null && typeof p === 'object') {
+      const dk = DURATION_KEY_MAP[videoDuration]
+      const qk = quality.toLowerCase()
+      if (model.category === 'video' && dk) {
+        const key = audioEnabled && hasAudioPricing(p) ? `${dk}_audio` : dk
+        return (p[key] ?? p[dk] ?? bp) * (model.category === 'video' ? 1 : imageCount)
+      }
+      if (model.category === 'image') {
+        return (p[qk] ?? bp) * imageCount
+      }
+    }
     if (model.category === 'image') return Math.round(bp * (quality === '4K' ? 2.5 : quality === '2K' ? 1.5 : 1) * imageCount)
-    const vk = selectedVersion.id === 'kling-2.6' && audioEnabled ? 'kling-2.6-audio' : selectedVersion.id
-    return videoPricingMap[vk]?.[videoDuration] ?? bp
+    const vk = selectedVersion.id
+    const audioVk = `${vk}-audio`
+    if (audioEnabled && videoPricingMap[audioVk]) {
+      return videoPricingMap[audioVk]?.[DURATION_KEY_MAP[videoDuration]] ?? bp
+    }
+    return videoPricingMap[vk]?.[DURATION_KEY_MAP[videoDuration]] ?? bp
   })()
 
   const actions = useChatActions({
@@ -98,12 +115,16 @@ export function ChatContainer() {
     if (raw) { sessionStorage.removeItem('arena_continue'); try { const a = JSON.parse(raw) as { prompt: string; response: string }; if (a.prompt && a.response) setMessages([{ role: 'user', content: a.prompt }, { role: 'assistant', content: a.response }]) } catch { /* empty */ } }
   }, [model.id])
   useEffect(() => {
-    const s = [...model.versions].sort((a, b) => (a.price || 0) - (b.price || 0))
+    const s = [...model.versions].sort((a, b) => getBasePrice(a.price) - getBasePrice(b.price))
     setSelectedVersionId(s[0]?.id || null); setWebSearchActive(false); setDeepResearchActive(false)
-    setIsRecording(false); setSettingsOpen(false); setAudioEnabled(false)
-    if (model.id === 'sora2') setVideoDuration('10с'); else if (model.id === 'kling') setVideoDuration('5с'); else if (model.id === 'veo31') setVideoDuration('8с')
+    setIsRecording(false); setSettingsOpen(false)
     setGreeting(getRandomGreeting())
   }, [model.id])
+  useEffect(() => {
+    setAudioEnabled(false)
+    setQuality('1K')
+    if (model.id === 'kling') setVideoDuration('5с'); else if (model.id === 'veo31') setVideoDuration('8с')
+  }, [model.id, selectedVersion.id]) // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
     useGenerationStore.getState().setActiveChat(modelId)
     return () => { useGenerationStore.getState().setActiveChat(null) }
@@ -166,5 +187,13 @@ export function ChatContainer() {
       {viewerMedia && <ChatMediaLightbox media={viewerMedia} onClose={() => setViewerMedia(null)} />}
       <style>{`@keyframes micPulseViolet { 0%, 100% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.35); opacity: 0; } } @keyframes shimmerBar { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }`}</style>
     </div>
+  )
+}
+
+export function ChatContainer() {
+  return (
+    <Suspense fallback={null}>
+      <ChatContainerInner />
+    </Suspense>
   )
 }

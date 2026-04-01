@@ -65,7 +65,7 @@ export function ChatInput({
               disabled={modelLocked}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
+                if (e.key === 'Enter' && !e.shiftKey && !isGenerating) {
                   e.preventDefault()
                   handleSend()
                 }
