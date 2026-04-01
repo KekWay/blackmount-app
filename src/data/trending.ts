@@ -9,7 +9,7 @@ export interface TrendingModel {
 
 export const trendingModels: TrendingModel[] = [
   { id: 'chatgpt', versionId: 'gpt-5.4', versionLabel: 'ChatGPT 5.4', usage: 38.1, change: +12.3, desc: 'Новинка — флагман OpenAI, объединяет Codex+GPT' },
-  { id: 'claude', versionId: 'claude-opus-4.5', versionLabel: 'Claude Opus 4.5', usage: 28.5, change: +3.8, desc: 'Глубокое рассуждение и точность' },
+  { id: 'claude', versionId: 'claude-opus-4.6', versionLabel: 'Claude Opus 4.6', usage: 28.5, change: +3.8, desc: 'Максимальный интеллект и точность' },
   { id: 'nanobanana', versionId: 'nanobanana-2', versionLabel: 'NanoBanana 2', usage: 21.4, change: +15.8, desc: 'Новинка — яркие цвета, точный текст, до 4K' },
   { id: 'flux', versionId: 'flux-1.1-pro-ultra', versionLabel: 'Flux 1.1 Pro Ultra', usage: 18.7, change: +7.2, desc: 'Топ-1 генератор изображений' },
   { id: 'kling', versionId: 'kling-3.0-pro', versionLabel: 'Kling 3.0 Pro', usage: 16.2, change: +18.4, desc: 'Новинка — профессиональное видео нового поколения' },

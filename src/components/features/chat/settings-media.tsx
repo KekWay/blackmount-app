@@ -14,7 +14,8 @@ interface SettingsImageProps {
   selectedVersion: ModelVersion
 }
 
-export function SettingsImage({ aspectRatio, setAspectRatio, quality, setQuality, imageCount, setImageCount }: SettingsImageProps) {
+export function SettingsImage({ aspectRatio, setAspectRatio, quality, setQuality, imageCount, setImageCount, selectedVersion }: SettingsImageProps) {
+  const hasResolutionPricing = selectedVersion.price != null && typeof selectedVersion.price === 'object' && Object.keys(selectedVersion.price).some((k) => ['1k', '2k', '4k'].includes(k))
   return (
     <div className="flex flex-col gap-[16px]">
       <div>
@@ -30,6 +31,7 @@ export function SettingsImage({ aspectRatio, setAspectRatio, quality, setQuality
           <ChevronDown size={14} className="absolute right-[12px] top-1/2 -translate-y-1/2 text-[rgba(255,255,255,0.3)] pointer-events-none" />
         </div>
       </div>
+      {hasResolutionPricing && (
       <div>
         <p className="font-manrope font-medium text-[14px] text-white mb-[8px]">Разрешение</p>
         <div className="flex gap-[6px]">
@@ -44,6 +46,7 @@ export function SettingsImage({ aspectRatio, setAspectRatio, quality, setQuality
           ))}
         </div>
       </div>
+      )}
       <div>
         <p className="font-manrope font-medium text-[14px] text-white mb-[8px]">Количество</p>
         <div className="flex items-center bg-[rgba(57,55,91,0.5)] rounded-[10px] px-[4px] py-[4px]">
