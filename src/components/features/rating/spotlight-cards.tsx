@@ -7,8 +7,6 @@ import { ScoreRing } from './score-ring'
 import { SPOTLIGHTS, leaderboardData } from '@/data/leaderboard'
 import type { LeaderboardModel } from '@/data/leaderboard'
 
-const IMG_SPOT_VIDEO = '/assets/models/leader-veo-video.png'
-
 interface SpotlightCardsProps {
   onNavigate: (item: LeaderboardModel) => void
 }
@@ -43,8 +41,6 @@ export function SpotlightCards({ onNavigate }: SpotlightCardsProps) {
 }
 
 function SpotlightCard({ spot, onNavigate }: { spot: typeof SPOTLIGHTS[number]; onNavigate: (item: LeaderboardModel) => void }) {
-  const isVideo = spot.iconImg === IMG_SPOT_VIDEO
-
   return (
     <motion.div
       className="snap-start shrink-0 w-[220px] h-[170px] rounded-[16px] bg-[rgba(255,255,255,0.02)] ring-1 ring-[rgba(255,255,255,0.02)] hover:ring-[rgba(255,255,255,0.08)] hover:bg-[rgba(255,255,255,0.04)] hover:-translate-y-[2px] transition-all duration-300 cursor-pointer group relative overflow-hidden"
@@ -55,25 +51,12 @@ function SpotlightCard({ spot, onNavigate }: { spot: typeof SPOTLIGHTS[number]; 
     >
       <div className="absolute top-[-32px] left-[50%] -translate-x-1/2 w-[100px] h-[100px] rounded-full blur-[40px] pointer-events-none transition-opacity group-hover:opacity-40 opacity-20" style={{ backgroundColor: spot.color }} />
       <div className="absolute left-[-10px] top-[30px] pointer-events-none transition-all duration-500 group-hover:scale-110 group-hover:rotate-[5deg]" style={{ width: 90, height: 90 }}>
-        {isVideo ? (
-          <svg width="90" height="90" viewBox="0 0 90 90" className="w-full h-full opacity-[0.25] group-hover:opacity-[0.5] transition-opacity duration-500">
-            <defs>
-              <filter id="spot-video-invert"><feColorMatrix type="matrix" values="-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0" /></filter>
-              <linearGradient id="spot-video-gold" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="#FFD700"/><stop offset="30%" stopColor="#FFC247"/><stop offset="50%" stopColor="#FFFACD"/><stop offset="70%" stopColor="#FFD700"/><stop offset="100%" stopColor="#DAA520"/>
-              </linearGradient>
-              <mask id="spot-video-mask"><image href={spot.iconImg} width="90" height="90" filter="url(#spot-video-invert)" preserveAspectRatio="xMidYMid meet" /></mask>
-            </defs>
-            <rect fill="url(#spot-video-gold)" mask="url(#spot-video-mask)" width="90" height="90" />
-          </svg>
-        ) : (
-          <div className="w-full h-full opacity-[0.25] group-hover:opacity-[0.5] transition-opacity duration-500" style={{
-            background: "linear-gradient(135deg, #FFD700 0%, #FFC247 30%, #FFFACD 50%, #FFD700 70%, #DAA520 100%)",
-            maskImage: `url('${spot.iconImg}')`, WebkitMaskImage: `url('${spot.iconImg}')`,
-            maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat',
-            maskPosition: 'center', WebkitMaskPosition: 'center',
-          }} />
-        )}
+        <div className="w-full h-full opacity-[0.25] group-hover:opacity-[0.5] transition-opacity duration-500" style={{
+          background: "linear-gradient(135deg, #FFD700 0%, #FFC247 30%, #FFFACD 50%, #FFD700 70%, #DAA520 100%)",
+          maskImage: `url('${spot.iconImg}')`, WebkitMaskImage: `url('${spot.iconImg}')`,
+          maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat',
+          maskPosition: 'center', WebkitMaskPosition: 'center',
+        }} />
       </div>
       <div className="relative z-10 flex flex-col h-full p-[16px]">
         <p className="text-[14px] text-white font-extrabold ml-[72px] mt-[4px]">{spot.model}</p>
