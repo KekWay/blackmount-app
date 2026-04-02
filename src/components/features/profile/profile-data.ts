@@ -32,12 +32,10 @@ export const GEN_MODELS = [
   { model: 'Flux 1 Pro', price: 7, cat: 'image' as const },
   { model: 'NanoBanana', price: 7, cat: 'image' as const },
   { model: 'Veo 3.1 Quality', price: 185, cat: 'video' as const },
-  { model: 'Veo 3 Quality', price: 120, cat: 'video' as const },
   { model: 'Kling 3.0 Pro', price: 85, cat: 'video' as const },
   { model: 'Kling 3.0', price: 55, cat: 'video' as const },
   { model: 'Veo 3.1 Fast', price: 50, cat: 'video' as const },
   { model: 'Kling 2.6', price: 45, cat: 'video' as const },
-  { model: 'Veo 3 Fast', price: 35, cat: 'video' as const },
   { model: 'Kling 2.5 Turbo', price: 35, cat: 'video' as const },
 ]
 
