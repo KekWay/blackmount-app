@@ -25,7 +25,7 @@ export function ReferralConvertOverlay({ onClose }: { onClose: () => void }) {
             </div>
             <div className="mb-[20px]">
               <p className="font-manrope font-bold text-[13px] text-white mb-[8px]">Сумма ({'\u20BD'})</p>
-              <input type="number" value={convertAmount} onChange={(e) => setConvertAmount(e.target.value)} placeholder="0 \u20BD" className="w-full bg-[rgba(57,55,91,0.5)] border border-[rgba(64,64,64,0.7)] focus:border-[#888ae5] transition-colors rounded-[14px] px-[16px] py-[14px] font-manrope font-bold text-[16px] text-white placeholder-[#898787] outline-none" />
+              <input type="number" value={convertAmount} onChange={(e) => setConvertAmount(e.target.value)} placeholder="0 \u20BD" className="w-full bg-transparent border-b border-[rgba(255,255,255,0.1)] focus:border-[#888ae5] transition-colors px-[4px] py-[14px] font-manrope font-bold text-[16px] text-white placeholder-[#898787] outline-none" />
             </div>
             <div className="mb-[32px]">
               <p className="font-manrope font-bold text-[13px] text-white mb-[8px]">Вы получите</p>
@@ -40,7 +40,7 @@ export function ReferralConvertOverlay({ onClose }: { onClose: () => void }) {
           <div className="px-[32px] py-[48px] flex flex-col items-center">
             <div className="bg-[#121118]/50 border border-[#6bc085]/20 rounded-[20px] px-[32px] py-[32px] flex flex-col items-center mb-[24px] w-full relative overflow-hidden">
               <div className="absolute top-0 right-0 w-[150px] h-[150px] bg-[#6bc085]/10 blur-[50px] rounded-full" />
-              <div className="flex gap-[8px] mb-[20px] relative z-10 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">{[1,2,3].map((ii) => (<div key={ii} className={`relative size-[56px] ${ii === 2 ? 'scale-125 z-10 -mt-[10px]' : ''}`}><img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={IMG_COIN} /></div>))}</div>
+              <div className="mb-[20px] relative z-10 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"><div className="relative size-[64px]"><img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={IMG_COIN} /></div></div>
               <p className="font-manrope font-black text-[22px] text-white mb-[8px] text-center relative z-10">Зачислено {convertedCoins} айкоинов</p>
               <p className="font-manrope font-medium text-[13px] text-[#6bc085] bg-[#6bc085]/10 px-[12px] py-[4px] rounded-full relative z-10">Конвертация прошла успешно!</p>
             </div>

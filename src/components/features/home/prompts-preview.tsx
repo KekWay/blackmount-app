@@ -1,9 +1,13 @@
 'use client'
 
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { AnimatePresence } from 'motion/react'
 import { ArrowRight, Heart, Play } from 'lucide-react'
+import { PromptDetailModal } from '@/components/features/prompts/prompt-detail-modal'
+import type { PromptItem } from '@/components/features/prompts/prompts-data'
 
-const promptItems = [
+const promptItems: PromptItem[] = [
   { id: 1, src: 'https://images.unsplash.com/photo-1765410849364-56b49c81c657?w=600&q=80', type: 'image', prompt: 'Surreal portrait of a woman', modelId: 'nanobanana', theme: 'portrait', span: 'col-span-1 row-span-2' },
   { id: 2, src: 'https://images.unsplash.com/photo-1688377051459-aebb99b42bff?w=600&q=80', type: 'video', prompt: 'Abstract fluid motion', modelId: 'veo31', theme: 'abstract', span: 'col-span-1 row-span-1' },
   { id: 3, src: 'https://images.unsplash.com/photo-1644328293665-a783b37f25d4?w=600&q=80', type: 'image', prompt: 'Cyberpunk cityscape', modelId: 'flux', theme: 'cityscape', span: 'col-span-1 sm:col-span-2 row-span-1 sm:row-span-2' },
@@ -12,10 +16,11 @@ const promptItems = [
   { id: 6, src: 'https://images.unsplash.com/photo-1769118717400-69c5b0933e4d?w=600&q=80', type: 'image', prompt: 'Neon portrait', modelId: 'flux', theme: 'portrait', span: 'col-span-1 row-span-2 hidden sm:block' },
   { id: 7, src: 'https://images.unsplash.com/photo-1761920521457-ce2b0dbb67aa?w=600&q=80', type: 'image', prompt: 'Minimalist architecture', modelId: 'nanobanana', theme: 'architecture', span: 'col-span-1 row-span-1' },
   { id: 8, src: 'https://images.unsplash.com/flagged/photo-1564783750566-e2d08c2bf293?w=600&q=80', type: 'video', prompt: 'Dancing lights', modelId: 'veo31', theme: 'abstract', span: 'col-span-1 row-span-1 hidden sm:block' },
-] as const
+]
 
 export function PromptsPreview() {
   const router = useRouter()
+  const [selectedItem, setSelectedItem] = useState<PromptItem | null>(null)
 
   return (
     <section className="mb-[32px] md:mb-[40px]">
@@ -52,6 +57,7 @@ export function PromptsPreview() {
             <div
               key={item.id}
               className={`${item.span} rounded-[12px] overflow-hidden relative group cursor-pointer`}
+              onClick={() => setSelectedItem(item)}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -76,6 +82,12 @@ export function PromptsPreview() {
           style={{ background: 'linear-gradient(to top, var(--background), transparent)' }}
         />
       </div>
+
+      <AnimatePresence>
+        {selectedItem && (
+          <PromptDetailModal item={selectedItem} onClose={() => setSelectedItem(null)} />
+        )}
+      </AnimatePresence>
     </section>
   )
 }
