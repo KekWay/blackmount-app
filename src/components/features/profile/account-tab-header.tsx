@@ -49,9 +49,9 @@ export function AccountTabHeader() {
           <div className="flex gap-[8px] mt-[4px]">
             <button
               onClick={() => setEditing(false)}
-              className="bg-white hover:bg-[rgba(255,255,255,0.9)] rounded-[10px] px-[18px] py-[7px] cursor-pointer transition-colors"
+              className="bg-[#888ae5] hover:bg-[#7678d0] rounded-[10px] px-[18px] py-[7px] cursor-pointer transition-colors"
             >
-              <span className="font-manrope font-semibold text-[13px] text-[#19181e]">Сохранить</span>
+              <span className="font-manrope font-semibold text-[13px] text-white">Сохранить</span>
             </button>
             <button
               onClick={() => setEditing(false)}
