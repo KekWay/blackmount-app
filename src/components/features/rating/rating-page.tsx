@@ -72,7 +72,6 @@ export function RatingPage() {
     <div className="w-full h-full overflow-y-auto chat-scrollbar bg-[#121118]">
       <div className="w-full max-w-[1100px] mx-auto px-[16px] sm:px-[24px] lg:px-[32px] pt-[24px] pb-[60px]">
         <motion.div className="mb-[24px] relative" initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
-          <div className="absolute top-[-40px] right-[15%] w-[250px] h-[250px] bg-[#888ae5] opacity-[0.06] blur-[100px] pointer-events-none rounded-full" />
           <div className="flex items-center gap-[10px] mb-[6px]">
             <h1 className="text-[22px] md:text-[28px] text-white leading-[30px] md:leading-[36px] font-extrabold">Рейтинг моделей</h1>
           </div>

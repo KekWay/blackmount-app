@@ -69,7 +69,7 @@ export const SORT_OPTIONS: { key: SortKey; label: string }[] = [
 export const SPOTLIGHTS = [
   { title: "Лучший для кода", badge: "#1 Code", model: "Claude Sonnet 4.5", score: 92, iconImg: "/assets/models/leader-claude-code.png", color: "#888ae5", metric: "Точность", metricValue: "96%", aiModelRef: "claude" },
   { title: "Креативность", badge: "#1 Creative", model: "Flux 1.1 Pro", score: 94, iconImg: "/assets/models/leader-flux-creative.png", color: "#f472b6", metric: "Арт", metricValue: "97", aiModelRef: "flux" },
-  { title: "Доступность", badge: "Best Value", model: "ChatGPT 5 mini", score: 80, iconImg: "/assets/models/leader-chatgpt-value.png", color: "#4ade80", metric: "Цена", metricValue: "1 ₿", aiModelRef: "chatgpt" },
+  { title: "Доступность", badge: "Best Value", model: "ChatGPT 5 mini", score: 80, iconImg: "/assets/models/leader-chatgpt-value.png", color: "#4ade80", metric: "Цена", metricValue: "1", showCoin: true, aiModelRef: "chatgpt" },
   { title: "Быстрый ответ", badge: "Fastest", model: "Gemini 2.5 Flash", score: 81, iconImg: "/assets/models/leader-gemini-fast.png", color: "#fbbf24", metric: "Скорость", metricValue: "98", aiModelRef: "gemini" },
   { title: "Лучшее видео", badge: "#1 Video", model: "Veo 3.1", score: 91, iconImg: "/assets/models/leader-veo-video.png", color: "#7188e3", metric: "Качество", metricValue: "90", aiModelRef: "veo31" },
   { title: "Рассуждения", badge: "#1 Reasoning", model: "Claude Opus 4.5", score: 96, iconImg: "/assets/models/leader-claude-reasoning.png", color: "#D4A574", metric: "Логика", metricValue: "99", aiModelRef: "claude" },

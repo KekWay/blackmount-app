@@ -3,7 +3,9 @@
 import { useRef } from 'react'
 import { motion } from 'motion/react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import Image from 'next/image'
 import { ScoreRing } from './score-ring'
+import { APP_ASSETS } from '@/lib/assets'
 import { SPOTLIGHTS, leaderboardData } from '@/data/leaderboard'
 import type { LeaderboardModel } from '@/data/leaderboard'
 
@@ -68,7 +70,7 @@ function SpotlightCard({ spot, onNavigate }: { spot: typeof SPOTLIGHTS[number]; 
         <div className="flex items-end justify-between mt-auto">
           <div className="flex flex-col gap-[1px] ml-[82px]">
             <p className="text-[9px] text-[rgba(255,255,255,0.3)] font-medium">{spot.metric}</p>
-            <p className="text-[16px] text-white font-extrabold">{spot.metricValue}</p>
+            <p className="text-[16px] text-white font-extrabold flex items-center gap-[3px]">{spot.metricValue}{'showCoin' in spot && spot.showCoin && <Image src={APP_ASSETS.coin} alt="айкоин" width={14} height={14} className="shrink-0" />}</p>
           </div>
           <ScoreRing score={spot.score} size={30} strokeWidth={3} color={spot.color} />
         </div>

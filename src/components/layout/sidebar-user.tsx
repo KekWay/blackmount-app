@@ -50,7 +50,7 @@ export function SidebarUser({ collapsed }: SidebarUserProps) {
       <div className="border-t border-white/[0.06] pt-3">
         {isLoggedIn && user ? (
           <div className="cursor-pointer" onClick={() => setMenuOpen((v) => !v)}>
-            <div className={`flex items-center gap-3 rounded-xl py-1.5 transition-colors ${
+            <div className={`flex items-center gap-3 rounded-xl py-1.5 transition-colors hover:bg-[rgba(255,255,255,0.08)] ${
               collapsed ? 'justify-center px-1 pt-3' : 'px-2 pt-3'
             }`}>
               <div className="bg-[#b93d3d] rounded-full shrink-0 size-9 flex items-center justify-center">
