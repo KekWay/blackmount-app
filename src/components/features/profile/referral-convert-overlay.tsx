@@ -25,7 +25,7 @@ export function ReferralConvertOverlay({ onClose }: { onClose: () => void }) {
             </div>
             <div className="mb-[20px]">
               <p className="font-manrope font-bold text-[13px] text-white mb-[8px]">Сумма ({'\u20BD'})</p>
-              <input type="number" value={convertAmount} onChange={(e) => setConvertAmount(e.target.value)} placeholder="0 \u20BD" className="w-full bg-transparent border-b border-[rgba(255,255,255,0.1)] focus:border-[#888ae5] transition-colors px-[4px] py-[14px] font-manrope font-bold text-[16px] text-white placeholder-[#898787] outline-none" />
+              <input type="number" value={convertAmount} onChange={(e) => setConvertAmount(e.target.value)} placeholder="0 \u20BD" className="w-full bg-[rgba(57,55,91,0.5)] border-none focus:ring-0 transition-colors rounded-[14px] px-[16px] py-[14px] font-manrope font-bold text-[16px] text-white placeholder-[#898787] outline-none" />
             </div>
             <div className="mb-[32px]">
               <p className="font-manrope font-bold text-[13px] text-white mb-[8px]">Вы получите</p>
