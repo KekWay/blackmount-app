@@ -33,9 +33,6 @@ export function AuthHero() {
         </motion.div>
       </div>
 
-      {/* Subtle animated glow */}
-      <div className="absolute top-[30%] left-[40%] w-[300px] h-[300px] rounded-full blur-[120px] opacity-15 pointer-events-none bg-[#888ae5] animate-pulse" aria-hidden="true" />
-      <div className="absolute bottom-[20%] right-[30%] w-[200px] h-[200px] rounded-full blur-[100px] opacity-10 pointer-events-none bg-[#c27c0a] animate-pulse" aria-hidden="true" />
     </aside>
   )
 }

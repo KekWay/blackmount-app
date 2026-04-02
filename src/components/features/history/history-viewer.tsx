@@ -7,11 +7,13 @@ import { ModelIcon } from '@/components/shared/model-icon'
 import { useAuthStore } from '@/stores/auth'
 import { copyToClipboard } from '@/lib/utils'
 import { getModelById } from '@/data/ai-models'
+import { toast } from 'sonner'
 
 interface ViewerItem {
   id: string
   modelId: string
   title: string
+  prompt?: string
   type: 'text' | 'image' | 'video'
   time: string
 }
@@ -95,10 +97,10 @@ export function HistoryViewer({ item, onClose, onDelete, onShare }: HistoryViewe
                   <div>
                     <p className="text-[11px] text-[rgba(255,255,255,0.3)] uppercase tracking-wider mb-[8px]">Промпт</p>
                     <div className="bg-[#13121a] rounded-[12px] p-[14px]">
-                      <p className="text-[13px] text-[rgba(255,255,255,0.65)] leading-[20px]">{item.title}</p>
+                      <p className="text-[13px] text-[rgba(255,255,255,0.65)] leading-[20px]">{item.prompt ?? item.title}</p>
                     </div>
                     <button
-                      onClick={() => { copyToClipboard(item.title); }}
+                      onClick={() => { copyToClipboard(item.prompt ?? item.title); toast('Промпт скопирован') }}
                       className="mt-[8px] flex items-center gap-[6px] text-[12px] text-[rgba(255,255,255,0.35)] hover:text-[#888ae5] transition-colors cursor-pointer"
                     >
                       <Copy size={13} />
@@ -110,7 +112,7 @@ export function HistoryViewer({ item, onClose, onDelete, onShare }: HistoryViewe
                 {/* Actions */}
                 <div className="px-[20px] pb-[20px] pt-[8px] flex flex-col gap-[8px] border-t border-[rgba(255,255,255,0.06)]">
                   <button
-                    onClick={() => { if (!isLoggedIn) { router.push('/auth'); return; } router.push(`/chat/${item.modelId}?prompt=${encodeURIComponent(item.title)}`); }}
+                    onClick={() => { if (!isLoggedIn) { router.push('/auth'); return; } router.push(`/chat/${item.modelId}?prompt=${encodeURIComponent(item.prompt ?? item.title)}`); }}
                     className="w-full bg-[#888ae5] hover:bg-[#9a9cf0] rounded-[12px] py-[12px] flex items-center justify-center gap-[8px] cursor-pointer transition-colors"
                   >
                     <ArrowUpRight size={18} className="text-white" />

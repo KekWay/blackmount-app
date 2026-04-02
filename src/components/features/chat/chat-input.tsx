@@ -74,7 +74,7 @@ export function ChatInput({
           </div>
           <div className="flex items-center justify-between px-[22px] pb-[14px] relative z-[1]">
             <div className="flex items-center gap-[8px]">
-              <div ref={attachRef} className="relative">
+              <div ref={attachRef} className="relative flex items-center">
                 <button onClick={() => setAttachOpen(!attachOpen)} className="opacity-50 hover:opacity-80 transition-opacity cursor-pointer">
                   <Plus size={20} className="text-white" />
                 </button>

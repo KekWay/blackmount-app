@@ -64,7 +64,7 @@ export function useChatActions(p: UseChatActionsParams) {
     const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`
     const dateStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
     if (!p.isTextModel) {
-      useBalanceStore.getState().addGenHistoryItem({ modelId: p.model.id, title: p.input.trim().slice(0, 100), preview: '', time: timeStr, dateStr, type: p.model.category })
+      useBalanceStore.getState().addGenHistoryItem({ modelId: p.model.id, title: p.input.trim().slice(0, 100), prompt: p.input.trim(), preview: '', time: timeStr, dateStr, type: p.model.category })
     }
 
     const prefix = p.webSearchActive ? '\u{1F310} ' : ''
