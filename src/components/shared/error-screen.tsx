@@ -24,7 +24,7 @@ export function ErrorScreen({ type = 'generic', title, message, onRetry, onGoHom
   const Icon = config.icon
 
   return (
-    <div className="flex-1 flex items-center justify-center" role="alert">
+    <div className="min-h-screen flex-1 flex items-center justify-center" role="alert">
       <div className="flex flex-col items-center text-center px-6 max-w-[480px]">
         <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.04] border border-white/[0.08] mb-4">
           <Icon size={20} className="text-red-500" />
