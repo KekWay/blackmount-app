@@ -86,6 +86,8 @@ export function ChatInput({
                       setWebSearchActive={setWebSearchActive}
                       deepResearchActive={deepResearchActive}
                       setDeepResearchActive={setDeepResearchActive}
+                      inputText={input}
+                      setInputText={setInput}
                       onClose={() => setAttachOpen(false)}
                     />
                   )}

@@ -34,24 +34,7 @@ export function ModelIconWhite({ modelId, size }: ModelIconProps) {
   const assets = MODEL_ASSETS[modelId as ModelId]
   if (!assets) return null
 
-  // If colorIcon exists, render it directly (already colored)
-  if ('colorIcon' in assets && assets.colorIcon) {
-    return (
-      <div
-        className="shrink-0 flex items-center justify-center"
-        style={{ width: size, height: size }}
-      >
-        <img
-          alt={modelId}
-          src={assets.colorIcon}
-          className="max-w-none object-contain pointer-events-none"
-          style={{ width: size, height: size }}
-        />
-      </div>
-    )
-  }
-
-  // For mask-based icons
+  // For mask-based icons — prefer this for white rendering
   if ('maskImage' in assets && assets.maskImage) {
     return (
       <div

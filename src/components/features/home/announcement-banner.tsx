@@ -6,7 +6,9 @@ import { ArrowRight, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
 
 export function AnnouncementBanner() {
-  const [dismissed, setDismissed] = useState(false)
+  const [dismissed, setDismissed] = useState(() => {
+    try { return sessionStorage.getItem('banner-dismissed') === 'true' } catch { return false }
+  })
   const router = useRouter()
 
   return (
@@ -57,7 +59,7 @@ export function AnnouncementBanner() {
             </button>
 
             <button
-              onClick={() => setDismissed(true)}
+              onClick={() => { sessionStorage.setItem('banner-dismissed', 'true'); setDismissed(true) }}
               aria-label="Dismiss announcement"
               className="shrink-0 size-[28px] rounded-[8px] flex items-center justify-center text-[rgba(255,255,255,0.3)] hover:text-white hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"
             >
