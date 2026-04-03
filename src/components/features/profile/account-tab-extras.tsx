@@ -1,9 +1,12 @@
 'use client'
 
+import { useState } from 'react'
 import { Trash2 } from 'lucide-react'
 import { IMG_HEADPHONES_MASK, IMG_LAPTOP_MASK } from './profile-data'
+import { SupportChoiceModal } from '@/components/features/support/support-choice-modal'
 
 export function AccountTabExtras() {
+  const [supportModal, setSupportModal] = useState(false)
   return (
     <>
       {/* Support */}
@@ -15,10 +18,11 @@ export function AccountTabExtras() {
             <p className="font-manrope font-normal text-[12px] text-[rgba(255,255,255,0.3)] leading-[18px]">Свяжитесь с нами если возникли вопросы</p>
           </div>
         </div>
-        <button className="bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.1)] rounded-[10px] px-[14px] h-[38px] flex items-center cursor-pointer transition-colors">
+        <button onClick={() => setSupportModal(true)} className="bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.1)] rounded-[10px] px-[14px] h-[38px] flex items-center cursor-pointer transition-colors">
           <span className="font-manrope font-medium text-[13px] text-white">Написать</span>
         </button>
       </div>
+      <SupportChoiceModal show={supportModal} onClose={() => setSupportModal(false)} />
 
       {/* Sign out all sessions */}
       <div className="bg-[rgba(57,55,91,0.45)] rounded-[16px] px-[29px] py-[18px] flex items-center justify-between">

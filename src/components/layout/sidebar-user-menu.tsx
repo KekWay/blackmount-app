@@ -11,13 +11,14 @@ interface SidebarUserMenuProps {
   collapsed: boolean
   hasActiveSub: boolean
   onClose: () => void
+  onSupport: () => void
 }
 
 const PROFILE_MASK = '/assets/models/profile-mask.png'
 const HEADPHONES_MASK = '/assets/models/headphones-mask.png'
 const COIN_IMG = '/assets/models/coin-large.png'
 
-export function SidebarUserMenu({ collapsed, hasActiveSub, onClose }: SidebarUserMenuProps) {
+export function SidebarUserMenu({ collapsed, hasActiveSub, onClose, onSupport }: SidebarUserMenuProps) {
   const router = useRouter()
   const logout = useAuthStore((s) => s.logout)
 
@@ -53,7 +54,7 @@ export function SidebarUserMenu({ collapsed, hasActiveSub, onClose }: SidebarUse
 
       <MenuItem onClick={() => go('/profile?tab=referral')} icon={<img src={APP_ASSETS.referralIcon} alt="" className="size-[15px] object-contain brightness-0 invert opacity-50" />} label="Реферальная программа" />
 
-      <MenuItem onClick={onClose} icon={<MaskIcon src={HEADPHONES_MASK} />} label="Поддержка" />
+      <MenuItem onClick={() => { onClose(); onSupport() }} icon={<MaskIcon src={HEADPHONES_MASK} />} label="Поддержка" />
 
       <div className="my-1 border-t border-white/[0.06]" />
 

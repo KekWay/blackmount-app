@@ -10,6 +10,7 @@ import { useAuthStore } from '@/stores/auth'
 import { useBalanceStore } from '@/stores/balance'
 import { useSubscriptionStore } from '@/stores/subscription'
 import { SidebarUserMenu } from './sidebar-user-menu'
+import { SupportChoiceModal } from '@/components/features/support/support-choice-modal'
 
 interface SidebarUserProps {
   collapsed: boolean
@@ -21,6 +22,7 @@ export function SidebarUser({ collapsed }: SidebarUserProps) {
   const balance = useBalanceStore((s) => s.balance)
   const hasActiveSub = useSubscriptionStore((s) => s.hasActiveSubscription())
   const [menuOpen, setMenuOpen] = useState(false)
+  const [supportModal, setSupportModal] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -42,6 +44,7 @@ export function SidebarUser({ collapsed }: SidebarUserProps) {
               collapsed={collapsed}
               hasActiveSub={hasActiveSub}
               onClose={() => setMenuOpen(false)}
+              onSupport={() => setSupportModal(true)}
             />
           )}
         </AnimatePresence>
@@ -95,6 +98,7 @@ export function SidebarUser({ collapsed }: SidebarUserProps) {
           </button>
         )}
       </div>
+      <SupportChoiceModal show={supportModal} onClose={() => setSupportModal(false)} />
     </div>
   )
 }
