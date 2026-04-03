@@ -258,6 +258,14 @@ CREATE TABLE referrals (
 3. Покупка referred → referrer получает bonus_percent%
 4. Бонус: Free 15%, Basic 20%, Pro 25%, Max 30%
 
+### Система уровней
+| Уровень | Бонус | Рефералов |
+|---------|-------|-----------|
+| Bronze | 15% | 0 (старт) |
+| Silver | 20% | 5 |
+| Gold | 25% | 15 |
+| Diamond | 30% | 35 |
+
 ---
 
 ## Модуль 7: Shared

@@ -212,7 +212,7 @@ User → /api/chat → [авторизация] → [баланс >= cost?] → 
 
 ### 6.4 Реферальная программа
 Бонус от покупок приглашённых: Free 15%, Basic 20%, Pro 25%, Max 30%.
-Система уровней: Bronze (10%), Silver (15%, от 5 рефералов), Gold (20%, от 15), Diamond (25%, от 50).
+Система уровней: Bronze (15%, от 0 рефералов), Silver (20%, от 5), Gold (25%, от 15), Diamond (30%, от 35).
 
 ---
 
@@ -326,12 +326,12 @@ blackmount-app/
 │   │   ├── ui/                  # shadcn/ui компоненты
 │   │   ├── layout/              # Sidebar, MobileSidebar, MobileNav
 │   │   ├── features/            # Chat, Home, Arena, Rating, Profile, Subscription,
-│   │   │                        # History, Prompts, Knowledge, Auth, Models
+│   │   │                        # History, Prompts, Knowledge, Auth, Models, Support
 │   │   └── shared/              # ErrorScreen, MediaViewer, PaymentOverlay,
 │   │                            # SubscriptionGate, AnimatedToggle, ModelIcon
 │   ├── lib/                     # utils, supabase (client/server), assets, constants
 │   ├── stores/                  # Zustand: auth, balance, subscription, favorites,
-│   │                            # generation, chat-sessions, request-limiter, shared, arena-guard
+│   │                            # generation, chat-sessions, request-limiter, shared, arena-guard, support
 │   ├── types/                   # TypeScript: models, chat, subscription
 │   └── data/                    # Данные: ai-models, arena-models, leaderboard, trending
 ├── public/assets/models/        # Изображения моделей и UI
@@ -368,4 +368,5 @@ security_logs  (id uuid PK, user_id, action, ip_address, details, created_at)
 | История | `/history` | Текст/фото/видео, фильтрация по моделям |
 | Профиль | `/profile` | 5 вкладок: аккаунт, пополнение, реферальная, история операций |
 | Подписки | `/subscription` | 3 плана, сравнительная таблица |
+| Поддержка | `/support` | Чат с поддержкой, тикеты, история обращений |
 | Авторизация | `/auth` | Email/Google/VK/Telegram |
