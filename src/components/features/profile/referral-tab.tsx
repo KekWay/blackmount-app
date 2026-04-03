@@ -20,10 +20,10 @@ export function ReferralTab() {
   const [activeTier] = useState(1)
 
   const tiers: TierInfo[] = [
-    { name: 'Bronze', label: 'Бронза', rate: '10%', color: '#9d6a4f', minRefs: 0, icon: <TierIcon gradientClass="from-[#9d6a4f] to-black" size={32} /> },
-    { name: 'Silver', label: 'Серебро', rate: '15%', color: '#C0C0C0', minRefs: 5, icon: <TierIcon gradientClass="from-white to-black" size={32} /> },
-    { name: 'Gold', label: 'Золото', rate: '20%', color: '#FFD700', minRefs: 15, icon: <TierIcon gradientClass="from-[#fc0] to-black" size={32} /> },
-    { name: 'Diamond', label: 'Алмаз', rate: '25%', color: '#1fcbed', minRefs: 50, icon: <TierIcon gradientClass="from-[#1fcbed] via-[#45848e] to-[#002c2d]" size={32} /> },
+    { name: 'Bronze', label: 'Бронза', rate: '15%', color: '#9d6a4f', minRefs: 0, icon: <TierIcon gradientClass="from-[#9d6a4f] to-black" size={32} /> },
+    { name: 'Silver', label: 'Серебро', rate: '20%', color: '#C0C0C0', minRefs: 5, icon: <TierIcon gradientClass="from-white to-black" size={32} /> },
+    { name: 'Gold', label: 'Золото', rate: '25%', color: '#FFD700', minRefs: 15, icon: <TierIcon gradientClass="from-[#fc0] to-black" size={32} /> },
+    { name: 'Diamond', label: 'Алмаз', rate: '30%', color: '#1fcbed', minRefs: 35, icon: <TierIcon gradientClass="from-[#1fcbed] via-[#45848e] to-[#002c2d]" size={32} /> },
   ]
 
   const currentTier = tiers[activeTier]
