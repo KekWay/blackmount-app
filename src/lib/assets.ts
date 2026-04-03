@@ -54,6 +54,10 @@ export const APP_ASSETS = {
   support1: '/assets/models/support_1.png',
   arrowIcon: '/assets/models/arrow_icon.png',
   padlockIcon: '/assets/models/padlock_icon.png',
+  photoChat: '/assets/models/photo_chat.png',
+  fileChat: '/assets/models/file_chat.png',
+  webpoiskChat: '/assets/models/webpoisk_chat.png',
+  brainChat: '/assets/models/brain_chat.png',
 } as const
 
 export type ModelId = keyof typeof MODEL_ASSETS

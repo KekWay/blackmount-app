@@ -71,7 +71,7 @@ function ChatContainerInner() {
     const p = selectedVersion.price
     const bp = getBasePrice(p)
     if (hasSub && FREE_SUB_VERSIONS.includes(selectedVersion.id)) return 0
-    const fc = isTextModel ? ((webSearchActive ? 5 : 0) + (deepResearchActive ? 5 : 0)) : 0
+    const fc = isTextModel ? ((webSearchActive ? 3 : 0) + (deepResearchActive ? 3 : 0)) : 0
     if (isTextModel) return bp + fc
     if (p != null && typeof p === 'object') {
       const dk = DURATION_KEY_MAP[videoDuration]

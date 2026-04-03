@@ -1,6 +1,6 @@
 'use client'
 
-import { ImageIcon, FileText, Brain, Globe, Check, Sparkles } from 'lucide-react'
+import { Check, Sparkles } from 'lucide-react'
 import { motion } from 'motion/react'
 import { toast } from 'sonner'
 import { APP_ASSETS } from '@/lib/assets'
@@ -42,14 +42,14 @@ export function InputAttachMenu({
       transition={{ type: 'spring', damping: 24, stiffness: 400 }}
     >
       <button onClick={onClose} className="flex items-center gap-[10px] w-full px-[14px] py-[9px] transition-colors hover:bg-[rgba(136,138,229,0.08)] cursor-pointer">
-        <ImageIcon size={15} className="text-[rgba(255,255,255,0.5)] shrink-0" />
+        <img src={APP_ASSETS.photoChat} alt="" className="size-[15px] object-contain opacity-50 shrink-0" />
         <span className="font-manrope font-medium text-[13px] text-white flex-1 text-left">Прикрепить фото</span>
-        {isTextModel && <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">5 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>}
+        <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">3 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>
       </button>
       <button onClick={onClose} className="flex items-center gap-[10px] w-full px-[14px] py-[9px] transition-colors hover:bg-[rgba(136,138,229,0.08)] cursor-pointer">
-        <FileText size={15} className="text-[rgba(255,255,255,0.5)] shrink-0" />
+        <img src={APP_ASSETS.fileChat} alt="" className="size-[15px] object-contain opacity-50 shrink-0" />
         <span className="font-manrope font-medium text-[13px] text-white flex-1 text-left">Прикрепить файл</span>
-        {isTextModel && <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">5 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>}
+        <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">3 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>
       </button>
       {isTextModel && (
         <>
@@ -58,25 +58,25 @@ export function InputAttachMenu({
             onClick={() => { setWebSearchActive(!webSearchActive); onClose() }}
             className={`flex items-center gap-[10px] w-full px-[14px] py-[9px] hover:bg-[rgba(136,138,229,0.08)] transition-colors cursor-pointer ${webSearchActive ? 'bg-[rgba(136,138,229,0.12)]' : ''}`}
           >
-            <Globe size={15} className={`shrink-0 ${webSearchActive ? 'text-[#888ae5]' : 'text-[rgba(255,255,255,0.5)]'}`} />
+            <img src={APP_ASSETS.webpoiskChat} alt="" className={`size-[15px] object-contain shrink-0 ${webSearchActive ? 'opacity-100' : 'opacity-50'}`} style={webSearchActive ? { filter: 'brightness(0) saturate(100%) invert(55%) sepia(50%) saturate(600%) hue-rotate(210deg)' } : undefined} />
             <span className="font-manrope font-medium text-[13px] text-white flex-1 text-left">Веб-поиск</span>
-            {webSearchActive ? <Check size={12} className="text-[#888ae5] shrink-0" /> : <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">5 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>}
+            {webSearchActive ? <Check size={12} className="text-[#888ae5] shrink-0" /> : <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">3 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>}
           </button>
           <button
             onClick={() => { setDeepResearchActive(!deepResearchActive); onClose() }}
             className={`flex items-center gap-[10px] w-full px-[14px] py-[9px] hover:bg-[rgba(136,138,229,0.08)] transition-colors cursor-pointer ${deepResearchActive ? 'bg-[rgba(136,138,229,0.12)]' : ''}`}
           >
-            <Brain size={15} className={`shrink-0 ${deepResearchActive ? 'text-[#888ae5]' : 'text-[rgba(255,255,255,0.5)]'}`} />
+            <img src={APP_ASSETS.brainChat} alt="" className={`size-[15px] object-contain shrink-0 ${deepResearchActive ? 'opacity-100' : 'opacity-50'}`} style={deepResearchActive ? { filter: 'brightness(0) saturate(100%) invert(55%) sepia(50%) saturate(600%) hue-rotate(210deg)' } : undefined} />
             <span className="font-manrope font-medium text-[13px] text-white flex-1 text-left">Думать</span>
-            {deepResearchActive ? <Check size={12} className="text-[#888ae5] shrink-0" /> : <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">5 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>}
-          </button>
-          <div className="border-t border-[rgba(255,255,255,0.06)] my-[4px]" />
-          <button onClick={handleImprovePrompt} className="flex items-center gap-[10px] w-full px-[14px] py-[9px] transition-colors hover:bg-[rgba(136,138,229,0.08)] cursor-pointer">
-            <Sparkles size={15} className="text-[rgba(255,255,255,0.5)] shrink-0" />
-            <span className="font-manrope font-medium text-[13px] text-white flex-1 text-left">Улучшить промпт</span>
+            {deepResearchActive ? <Check size={12} className="text-[#888ae5] shrink-0" /> : <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">3 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>}
           </button>
         </>
       )}
+      <button onClick={handleImprovePrompt} className="flex items-center gap-[10px] w-full px-[14px] py-[9px] transition-colors hover:bg-[rgba(136,138,229,0.08)] cursor-pointer">
+        <Sparkles size={15} className="text-[rgba(255,255,255,0.5)] shrink-0" />
+        <span className="font-manrope font-medium text-[13px] text-white flex-1 text-left">Улучшить промпт</span>
+        <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">1 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>
+      </button>
     </motion.div>
   )
 }

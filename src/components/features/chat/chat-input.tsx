@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useEffect } from 'react'
-import { Plus, Brain, X, Globe } from 'lucide-react'
+import { Plus, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
 import { APP_ASSETS } from '@/lib/assets'
 import { AnimatedPlaceholder } from './animated-placeholder'
@@ -101,7 +101,7 @@ export function ChatInput({
                 {isTextModel && webSearchActive && (
                   <motion.div initial={{ opacity: 0, scale: 0.9, width: 0 }} animate={{ opacity: 1, scale: 1, width: 'auto' }} exit={{ opacity: 0, scale: 0.9, width: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden ml-[4px]">
                     <div className="group flex items-center gap-[5px] rounded-[12px] px-[8px] py-[3px] cursor-default transition-all hover:bg-[rgba(136,138,229,0.12)]">
-                      <Globe size={13} className="text-[#888ae5]" />
+                      <img src={APP_ASSETS.webpoiskChat} alt="" className="size-[13px] object-contain" style={{ filter: 'brightness(0) saturate(100%) invert(55%) sepia(50%) saturate(600%) hue-rotate(210deg)' }} />
                       <span className="text-[13px] text-[#888ae5] whitespace-nowrap font-semibold">Веб-поиск</span>
                       <button onClick={() => setWebSearchActive(false)} className="opacity-0 group-hover:opacity-100 transition-all cursor-pointer text-[#888ae5] hover:text-white"><X size={12} /></button>
                     </div>
@@ -112,7 +112,7 @@ export function ChatInput({
                 {isTextModel && deepResearchActive && (
                   <motion.div initial={{ opacity: 0, scale: 0.9, width: 0 }} animate={{ opacity: 1, scale: 1, width: 'auto' }} exit={{ opacity: 0, scale: 0.9, width: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden ml-[2px]">
                     <div className="group flex items-center gap-[5px] rounded-[12px] px-[8px] py-[3px] cursor-default transition-all hover:bg-[rgba(136,138,229,0.12)]">
-                      <Brain size={13} className="text-[#888ae5]" />
+                      <img src={APP_ASSETS.brainChat} alt="" className="size-[13px] object-contain" style={{ filter: 'brightness(0) saturate(100%) invert(55%) sepia(50%) saturate(600%) hue-rotate(210deg)' }} />
                       <span className="text-[13px] text-[#888ae5] whitespace-nowrap font-semibold">Думать</span>
                       <button onClick={() => setDeepResearchActive(false)} className="opacity-0 group-hover:opacity-100 transition-all cursor-pointer text-[#888ae5] hover:text-white"><X size={12} /></button>
                     </div>
