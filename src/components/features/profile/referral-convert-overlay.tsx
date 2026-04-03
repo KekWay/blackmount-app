@@ -5,6 +5,7 @@ import { X } from 'lucide-react'
 import { APP_ASSETS } from '@/lib/assets'
 import { motion } from 'motion/react'
 import { IMG_COIN } from './profile-data'
+import { useReferralStore } from '@/stores/referral-store'
 
 const CONVERT_MIN = 100
 const CONVERT_BALANCE = 1000
@@ -12,6 +13,7 @@ const CONVERT_BALANCE = 1000
 export function ReferralConvertOverlay({ onClose }: { onClose: () => void }) {
   const [convertAmount, setConvertAmount] = useState('200')
   const [convertDone, setConvertDone] = useState(false)
+  const createConversion = useReferralStore((s) => s.createConversion)
   const amount = parseFloat(convertAmount || '0')
   const convertedCoins = Math.round(amount * 1.275)
   const amountTooLow = convertAmount.trim() !== '' && amount < CONVERT_MIN
@@ -44,7 +46,7 @@ export function ReferralConvertOverlay({ onClose }: { onClose: () => void }) {
                 <span className="font-manrope font-black text-[16px] text-white">{convertedCoins} <span className="font-medium text-[14px] text-[rgba(255,255,255,0.5)]">айкоинов</span></span>
               </div>
             </div>
-            <button onClick={() => setConvertDone(true)} disabled={!isFormValid} className={`w-full rounded-[14px] py-[16px] transition-colors shadow-[0_4px_16px_rgba(136,138,229,0.25)] ${isFormValid ? 'bg-[#888ae5] hover:bg-[#9a9cf0] cursor-pointer' : 'bg-[rgba(136,138,229,0.3)] cursor-not-allowed'}`}><span className="font-manrope font-bold text-[15px] text-white">Конвертировать</span></button>
+            <button onClick={() => { createConversion(amount, convertedCoins); setConvertDone(true) }} disabled={!isFormValid} className={`w-full rounded-[14px] py-[16px] transition-colors shadow-[0_4px_16px_rgba(136,138,229,0.25)] ${isFormValid ? 'bg-[#888ae5] hover:bg-[#9a9cf0] cursor-pointer' : 'bg-[rgba(136,138,229,0.3)] cursor-not-allowed'}`}><span className="font-manrope font-bold text-[15px] text-white">Конвертировать</span></button>
           </div>
         ) : (
           <div className="px-[32px] py-[48px] flex flex-col items-center">

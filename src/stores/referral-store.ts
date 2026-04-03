@@ -14,10 +14,19 @@ export interface WithdrawalRequest {
   updatedAt: string
 }
 
+export interface ConversionRecord {
+  id: string
+  amount: number
+  coins: number
+  createdAt: string
+}
+
 interface ReferralState {
   withdrawals: WithdrawalRequest[]
+  conversions: ConversionRecord[]
   createWithdrawal: (amount: number, method: 'card' | 'sbp', details: string) => string
   updateWithdrawalStatus: (id: string, status: WithdrawalStatus, reason?: string) => void
+  createConversion: (amount: number, coins: number) => string
 }
 
 function genId(): string {
@@ -68,6 +77,15 @@ export const useReferralStore = create<ReferralState>()(
   persist(
     (set) => ({
       withdrawals: defaultWithdrawals,
+      conversions: [],
+
+      createConversion: (amount, coins) => {
+        const id = genId()
+        const now = new Date().toISOString()
+        const rec: ConversionRecord = { id, amount, coins, createdAt: now }
+        set((s) => ({ conversions: [rec, ...s.conversions] }))
+        return id
+      },
 
       createWithdrawal: (amount, method, details) => {
         const id = genId()

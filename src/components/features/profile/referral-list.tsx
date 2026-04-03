@@ -7,7 +7,7 @@ import { APP_ASSETS } from '@/lib/assets'
 import { motion, AnimatePresence } from 'motion/react'
 import { AnimatedToggle } from '@/components/shared/animated-toggle'
 import { useReferralStore, type WithdrawalStatus } from '@/stores/referral-store'
-import { referrals, transactions } from './referral-data'
+import { referrals, transactions, type ReferralTransaction } from './referral-data'
 
 type ReferralView = 'list' | 'transactions'
 
@@ -85,18 +85,40 @@ function ReferralListView() {
   )
 }
 
+function formatDateShort(iso: string): string {
+  const d = new Date(iso)
+  const pad = (n: number) => String(n).padStart(2, '0')
+  return `${pad(d.getDate())}.${pad(d.getMonth() + 1)}.${String(d.getFullYear()).slice(2)}`
+}
+
+function useMergedTransactions(): ReferralTransaction[] {
+  const withdrawals = useReferralStore((s) => s.withdrawals)
+  const conversions = useReferralStore((s) => s.conversions)
+
+  const staticWdIds = new Set(transactions.filter((t) => t.withdrawalId).map((t) => t.withdrawalId))
+  const dynamicWd: ReferralTransaction[] = withdrawals
+    .filter((w) => !staticWdIds.has(w.id))
+    .map((w) => ({ label: 'Вывод средств', date: formatDateShort(w.createdAt), amount: `-${w.amount}\u20BD`, icon: 'withdraw', withdrawalId: w.id }))
+
+  const dynamicConv: ReferralTransaction[] = conversions
+    .map((c) => ({ label: `Конвертация в ${c.coins} айкоинов`, date: formatDateShort(c.createdAt), amount: `-${c.amount}\u20BD`, icon: 'convert' }))
+
+  return [...dynamicWd, ...dynamicConv, ...transactions]
+}
+
 function ReferralTransactionsView() {
   const withdrawals = useReferralStore((s) => s.withdrawals)
+  const allTx = useMergedTransactions()
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
-      {transactions.map((tx, i) => {
+      {allTx.map((tx, i) => {
         const wd = tx.withdrawalId ? withdrawals.find((w) => w.id === tx.withdrawalId) : null
         const isWaiting = wd && (wd.status === 'pending' || wd.status === 'processing')
 
         return (
           <motion.div key={i} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}
-            className={`px-[24px] py-[14px] hover:bg-white/5 transition-colors ${i < transactions.length - 1 ? 'border-b border-white/5' : ''}`}
+            className={`px-[24px] py-[14px] hover:bg-white/5 transition-colors ${i < allTx.length - 1 ? 'border-b border-white/5' : ''}`}
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-[14px]">
