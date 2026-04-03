@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowLeft } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useSupportStore } from '@/stores/support-store'
 import { SupportTicketList } from './support-ticket-list'
@@ -39,15 +38,7 @@ export function SupportPage() {
     <div className="bg-[#121118] fixed inset-0 z-50 flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between px-[16px] md:px-[24px] py-[14px] border-b border-[rgba(255,255,255,0.06)] shrink-0">
-        <div className="flex items-center gap-[10px]">
-          <button
-            onClick={() => router.back()}
-            className="size-[34px] flex items-center justify-center rounded-[10px] hover:bg-white/[0.06] transition-colors cursor-pointer"
-          >
-            <ArrowLeft size={20} className="text-white/60" />
-          </button>
-          <p className="font-manrope font-semibold text-[20px] text-white">Поддержка</p>
-        </div>
+        <p className="font-manrope font-semibold text-[20px] text-white">Поддержка</p>
         <button
           onClick={() => router.push('/')}
           className="text-[rgba(255,255,255,0.35)] hover:text-white transition-colors cursor-pointer font-manrope font-medium text-[13px] flex items-center gap-[6px] bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255,255,255,0.08)] rounded-[10px] px-[14px] py-[7px]"
@@ -100,7 +91,7 @@ function EmptyState({ onNew }: { onNew: () => void }) {
       <p className="text-[14px] text-[rgba(255,255,255,0.25)] font-manrope">Выберите обращение или создайте новое</p>
       <button
         onClick={onNew}
-        className="px-[16px] py-[8px] rounded-[10px] bg-[rgba(136,138,229,0.12)] hover:bg-[rgba(136,138,229,0.2)] text-[13px] text-[#888ae5] font-medium cursor-pointer transition-colors"
+        className="px-[18px] h-[35.5px] rounded-[12px] bg-[#888ae5] hover:bg-[#7678d0] text-[13px] text-white font-manrope font-semibold cursor-pointer transition-colors"
       >
         Новое обращение
       </button>

@@ -1,7 +1,8 @@
 'use client'
 
 import { useRef, useEffect, useState } from 'react'
-import { Send, Lock, ArrowLeft } from 'lucide-react'
+import { Lock, ArrowLeft } from 'lucide-react'
+import { APP_ASSETS } from '@/lib/assets'
 import type { SupportTicket } from '@/stores/support-store'
 import { useSupportStore } from '@/stores/support-store'
 
@@ -35,7 +36,7 @@ export function SupportChat({ ticket, onBack }: SupportChatProps) {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex items-center gap-[10px] px-[16px] py-[12px] border-b border-[rgba(255,255,255,0.06)]">
+      <div className="flex items-center gap-[10px] px-[16px] py-[12px]">
         {onBack && (
           <button onClick={onBack} className="size-[32px] rounded-[10px] hover:bg-[rgba(255,255,255,0.06)] flex items-center justify-center cursor-pointer transition-colors">
             <ArrowLeft size={18} className="text-white/50" />
@@ -90,7 +91,7 @@ export function SupportChat({ ticket, onBack }: SupportChatProps) {
               disabled={!input.trim()}
               className="size-[32px] rounded-[10px] bg-[#888ae5] hover:brightness-110 flex items-center justify-center cursor-pointer transition-all disabled:opacity-30 disabled:cursor-default shrink-0"
             >
-              <Send size={14} className="text-white" />
+              <img src={APP_ASSETS.sendIcon} alt="" className="size-[14px] object-contain" />
             </button>
           </div>
         )}

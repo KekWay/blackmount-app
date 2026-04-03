@@ -50,6 +50,8 @@ export const APP_ASSETS = {
   wallet3: '/assets/models/wallet_3.png',
   referralIcon: '/assets/models/referall_icon.png',
   pencilIcon: '/assets/models/pencil_icon.png',
+  sendIcon: '/assets/models/send_icon.png',
+  support1: '/assets/models/support_1.png',
 } as const
 
 export type ModelId = keyof typeof MODEL_ASSETS

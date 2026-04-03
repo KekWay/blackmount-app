@@ -42,15 +42,15 @@ export function SupportNewTicket({ onCreated, onBack }: SupportNewTicketProps) {
       <div className="flex-1 overflow-y-auto px-[16px] py-[20px] flex flex-col gap-[16px]">
         <div className="flex flex-col gap-[6px]">
           <label className="font-manrope text-[12px] text-[rgba(255,255,255,0.35)] font-medium">Категория</label>
-          <div className="flex flex-wrap gap-[6px]">
+          <div className="flex flex-wrap gap-[8px]">
             {categories.map((c) => (
               <button
                 key={c.key}
                 onClick={() => setCategory(c.key)}
-                className={`px-[12px] py-[6px] rounded-[10px] text-[12px] font-medium cursor-pointer transition-colors ${
+                className={`h-[35.5px] rounded-[12px] px-[18px] font-manrope font-medium text-[13px] transition-colors cursor-pointer ${
                   category === c.key
-                    ? 'bg-[rgba(136,138,229,0.2)] text-[#888ae5] border border-[rgba(136,138,229,0.3)]'
-                    : 'bg-[rgba(255,255,255,0.04)] text-[rgba(255,255,255,0.4)] border border-transparent hover:bg-[rgba(255,255,255,0.06)]'
+                    ? 'bg-[#39375b] text-white'
+                    : 'bg-[rgba(255,255,255,0.04)] text-[rgba(255,255,255,0.4)]'
                 }`}
               >
                 {c.label}

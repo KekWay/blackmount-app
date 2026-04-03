@@ -1,8 +1,9 @@
 'use client'
 
-import { X, MessageCircle, Send } from 'lucide-react'
+import { X } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
 import { useRouter } from 'next/navigation'
+import { APP_ASSETS } from '@/lib/assets'
 
 interface SupportChoiceModalProps {
   show: boolean
@@ -46,7 +47,7 @@ export function SupportChoiceModal({ show, onClose }: SupportChoiceModalProps) {
               <div className="relative mb-[20px]">
                 <div className="absolute -inset-[12px] rounded-full opacity-40 blur-[20px]" style={{ background: 'radial-gradient(circle, rgba(136,138,229,0.5), transparent 70%)' }} />
                 <div className="relative size-[56px] flex items-center justify-center rounded-[16px]" style={{ background: 'linear-gradient(135deg, rgba(136,138,229,0.12), rgba(91,91,214,0.08))', border: '1px solid rgba(136,138,229,0.15)' }}>
-                  <MessageCircle size={24} className="text-[#888ae5]" />
+                  <img src={APP_ASSETS.support1} alt="" className="size-[28px] object-contain" />
                 </div>
               </div>
               <p className="text-[18px] text-white mb-[6px] text-center font-bold">Поддержка</p>
@@ -58,14 +59,14 @@ export function SupportChoiceModal({ show, onClose }: SupportChoiceModalProps) {
                 className="w-full h-[46px] rounded-[12px] cursor-pointer transition-all flex items-center justify-center gap-[8px] hover:brightness-110 active:scale-[0.98]"
                 style={{ background: '#888ae5', boxShadow: '0 2px 12px rgba(136,138,229,0.3), inset 0 1px 0 rgba(255,255,255,0.1)' }}
               >
-                <MessageCircle size={15} className="text-white" />
+                <img src={APP_ASSETS.support1} alt="" className="size-[16px] object-contain brightness-0 invert" />
                 <span className="text-[14px] text-white font-bold">Чат поддержки</span>
               </button>
               <button
                 onClick={() => { onClose(); window.open(TELEGRAM_URL, '_blank') }}
                 className="w-full h-[46px] rounded-[12px] bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(136,138,229,0.08)] border border-[rgba(255,255,255,0.06)] cursor-pointer transition-colors active:scale-[0.98] flex items-center justify-center gap-[8px]"
               >
-                <Send size={15} className="text-[rgba(255,255,255,0.5)]" />
+                <img src={APP_ASSETS.telegram} alt="" className="size-[16px] object-contain" />
                 <span className="text-[13px] text-[rgba(255,255,255,0.5)] font-medium">Написать в Telegram</span>
               </button>
             </div>
