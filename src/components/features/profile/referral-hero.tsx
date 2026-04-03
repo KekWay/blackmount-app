@@ -12,12 +12,19 @@ export function ReferralHero({ currentTier, nextTier, tierProgress, onTierClick 
   tierProgress: number
   onTierClick: () => void
 }) {
-  const [copied, setCopied] = useState(false)
+  const [copiedLink, setCopiedLink] = useState(false)
+  const [copiedCode, setCopiedCode] = useState(false)
 
-  const handleCopy = () => {
+  const handleCopyLink = () => {
     copyToClipboard(REFERRAL_LINK).catch(() => {})
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    setCopiedLink(true)
+    setTimeout(() => setCopiedLink(false), 2000)
+  }
+
+  const handleCopyCode = () => {
+    copyToClipboard(INVITE_CODE).catch(() => {})
+    setCopiedCode(true)
+    setTimeout(() => setCopiedCode(false), 2000)
   }
 
   return (
@@ -42,7 +49,7 @@ export function ReferralHero({ currentTier, nextTier, tierProgress, onTierClick 
           </motion.div>
         </div>
 
-        <ReferralLinkSection copied={copied} onCopy={handleCopy} />
+        <ReferralLinkSection copied={copiedLink} onCopy={handleCopyLink} />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-[12px]">
           <ReferralTierButton currentTier={currentTier} nextTier={nextTier} tierProgress={tierProgress} onClick={onTierClick} />
@@ -50,7 +57,7 @@ export function ReferralHero({ currentTier, nextTier, tierProgress, onTierClick 
             <p className="font-manrope font-bold text-[13px] text-[rgba(255,255,255,0.4)] uppercase tracking-[0.06em] mb-[8px]">Код приглашения</p>
             <div className="flex items-center justify-between mt-auto">
               <p className="font-manrope font-black text-[18px] text-white tracking-[0.02em]">{INVITE_CODE}</p>
-              <button onClick={handleCopy} className="text-[rgba(255,255,255,0.35)] hover:text-white bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.1)] p-[8px] rounded-[8px] transition-colors cursor-pointer"><Copy size={14} /></button>
+              <button onClick={handleCopyCode} className="text-[rgba(255,255,255,0.35)] hover:text-white bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.1)] p-[8px] rounded-[8px] transition-colors cursor-pointer">{copiedCode ? <Check size={14} className="text-[#6bc085]" /> : <Copy size={14} />}</button>
             </div>
           </div>
         </div>
