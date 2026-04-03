@@ -4,6 +4,7 @@ import { motion } from 'motion/react'
 import type { ModelResponse } from './arena-data'
 import { IMG_MEDAL1, IMG_MEDAL2, IMG_MEDAL3 } from './arena-data'
 import { MIcon } from './arena-micon'
+import { MarkdownRenderer } from '@/components/shared/markdown-renderer'
 
 interface Props {
   responses: ModelResponse[]
@@ -53,7 +54,7 @@ export function ArenaWinnerGrid({ responses, winnerId, gridCols }: Props) {
               </div>
             </div>
             <div className="flex-1 px-[16px] py-[14px] overflow-y-auto chat-scrollbar relative z-[1]">
-              <p className="text-[13px] text-[rgba(255,255,255,0.65)] leading-[21px] whitespace-pre-wrap">{r.text}</p>
+              <MarkdownRenderer content={r.text} />
             </div>
           </motion.div>
         )

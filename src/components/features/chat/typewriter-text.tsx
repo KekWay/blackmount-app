@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import { MarkdownRenderer } from '@/components/shared/markdown-renderer'
 
 export function TypewriterText({ text, onComplete }: { text: string; onComplete?: () => void }) {
   const [displayed, setDisplayed] = useState('')
@@ -22,11 +23,11 @@ export function TypewriterText({ text, onComplete }: { text: string; onComplete?
   }, [text])
 
   return (
-    <p className="font-manrope font-normal leading-[22px] text-[14px] text-white whitespace-pre-wrap">
-      {displayed}
+    <div className="relative">
+      <MarkdownRenderer content={displayed} />
       {displayed.length < text.length && (
         <span className="inline-block w-[2px] h-[14px] bg-[#888ae5] ml-[1px] align-middle" style={{ animation: 'cursorBlink 0.8s step-end infinite' }} />
       )}
-    </p>
+    </div>
   )
 }

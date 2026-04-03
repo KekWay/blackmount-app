@@ -5,6 +5,7 @@ import { motion } from 'motion/react'
 import type { ModelResponse } from './arena-data'
 import { IMG_MEDAL1 } from './arena-data'
 import { MIcon } from './arena-micon'
+import { MarkdownRenderer } from '@/components/shared/markdown-renderer'
 
 interface Props {
   responses: ModelResponse[]
@@ -49,7 +50,7 @@ function ExpandedCard({ responses, expandedId, onVote, onToggleExpand }: { respo
           </div>
         </div>
         <div className="flex-1 px-[16px] py-[14px] overflow-y-auto chat-scrollbar">
-          <p className="text-[13px] text-[rgba(255,255,255,0.65)] leading-[21px] whitespace-pre-wrap">{r.text}</p>
+          <MarkdownRenderer content={r.text} />
         </div>
         <div onClick={() => onVote(r.model.id)} className="px-[16px] py-[10px] border-t border-[rgba(255,255,255,0.04)] flex items-center justify-center gap-[6px] bg-[rgba(136,138,229,0.04)] hover:bg-[rgba(136,138,229,0.08)] transition-all cursor-pointer">
           <div className="shrink-0 w-[12px] h-[12px] bg-[#888ae5]" style={{ maskImage: `url('${IMG_MEDAL1}')`, WebkitMaskImage: `url('${IMG_MEDAL1}')`, maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center' }} />
@@ -75,7 +76,7 @@ function VotingGrid({ responses, gridCols, onVote, onToggleExpand }: { responses
             </button>
           </div>
           <div className="flex-1 px-[16px] py-[14px] overflow-y-auto chat-scrollbar">
-            <p className="text-[13px] text-[rgba(255,255,255,0.65)] leading-[21px] whitespace-pre-wrap">{r.text}</p>
+            <MarkdownRenderer content={r.text} />
           </div>
           <div className="px-[16px] py-[8px] border-t border-[rgba(255,255,255,0.04)] opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center gap-[6px] bg-[rgba(136,138,229,0.04)]">
             <div className="shrink-0 w-[12px] h-[12px] bg-[#888ae5]" style={{ maskImage: `url('${IMG_MEDAL1}')`, WebkitMaskImage: `url('${IMG_MEDAL1}')`, maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center' }} />

@@ -54,10 +54,9 @@ export function useChatActions(p: UseChatActionsParams) {
     if (!p.input.trim() || p.isGenerating) return
     if (!isLoggedIn) { p.setShowAuthGate(true); return }
     if (p.modelLocked) { router.push('/profile?tab=subscription'); return }
-    // TODO: временно отключен лимит запросов
-    // if (!useRequestLimiterStore.getState().canMakeRequest()) { p.setShowLimitReached(true); return }
+    if (!useRequestLimiterStore.getState().canMakeRequest()) { p.setShowLimitReached(true); return }
     if (useBalanceStore.getState().balance < p.dynamicCost) { p.setShowLowBalance(true); return }
-    // useRequestLimiterStore.getState().consumeRequest()
+    useRequestLimiterStore.getState().consumeRequest()
     useBalanceStore.getState().deductBalance(p.dynamicCost)
     useBalanceStore.getState().addOperation('spent', p.selectedVersion.label, -p.dynamicCost)
     const now = new Date()
@@ -117,7 +116,12 @@ export function useChatActions(p: UseChatActionsParams) {
         sessionId,
       })
       p.setMessages((prev) => [...prev, { role: 'assistant', content: '', isLoading: true }])
-      const txt = `Это демо-ответ от ${p.model.name} (${p.selectedVersion.label}).${p.webSearchActive ? ' (с веб-поиском)' : ''}${p.deepResearchActive ? ' (с режимом думать)' : ''} В реальном приложении здесь был бы ответ от нейросети. Модель обрабатывает запрос с учётом контекста диалога и настроек выбранной версии.`
+      const demoResponses = [
+        `## Ответ от ${p.model.name}\n\nИспользуется версия **${p.selectedVersion.label}** (стоимость: ${p.dynamicCost}₽).\n\n### Пример кода\n\n\`\`\`python\ndef analyze(query: str) -> dict:\n    tokens = query.split()\n    result = {"count": len(tokens), "unique": len(set(tokens))}\n    return result\n\`\`\`\n\n| Параметр | Значение |\n|---|---|\n| Модель | ${p.model.name} |\n| Версия | ${p.selectedVersion.label} |\n| Веб-поиск | ${p.webSearchActive ? 'Включён' : 'Выключен'} |`,
+        `## Анализ запроса\n\nМодель **${p.model.name}** (${p.selectedVersion.label}) обработала ваш запрос.\n\n### Этапы обработки\n\n1. **Токенизация** — разбиение текста на элементы\n2. **Семантический анализ** — определение смысла\n3. **Генерация ответа** — формирование результата\n\nСтоимость запроса: \`${p.dynamicCost}₽\`${p.webSearchActive ? ' (с веб-поиском)' : ''}.\n\n---\n\nГотов продолжить диалог с учётом контекста.`,
+        `## Результат\n\nВерсия **${p.selectedVersion.label}** модели *${p.model.name}* сгенерировала ответ.\n\n### Пример обработки\n\n\`\`\`javascript\nconst response = await model.generate({\n  prompt: userInput,\n  temperature: 0.7,\n  maxTokens: 2048\n});\n\`\`\`\n\n- **Контекст**: учтён полностью\n- **Формат**: структурированный\n- **Стоимость**: ${p.dynamicCost}₽\n\n> Модель ${p.model.name} оптимизирована для сложных задач с учётом контекста диалога.`,
+      ]
+      const txt = demoResponses[Math.floor(Math.random() * demoResponses.length)]
       const textDelay = Math.random() * (4000 - 2000) + 2000
       generationTimerRef.current = setTimeout(() => {
         useGenerationStore.getState().completeGeneration(textGenId)

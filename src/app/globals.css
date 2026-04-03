@@ -238,3 +238,32 @@ select option {
   background: #1e1d26;
   color: #fff;
 }
+
+/* Markdown ul bullets */
+.md-ul li {
+  position: relative;
+  padding-left: 14px;
+}
+.md-ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #888ae5;
+}
+
+/* Highlight.js — кастомная тёмная тема Blackmount */
+.hljs { background: transparent !important; color: rgba(255, 255, 255, 0.8); }
+.hljs-keyword, .hljs-selector-tag, .hljs-literal, .hljs-section, .hljs-link { color: #c4b5fd; }
+.hljs-string, .hljs-attr, .hljs-addition { color: #6bc085; }
+.hljs-number, .hljs-regexp, .hljs-meta { color: #f5a623; }
+.hljs-comment, .hljs-quote { color: rgba(255, 255, 255, 0.25); font-style: italic; }
+.hljs-title, .hljs-title.function_ { color: #65ded8; }
+.hljs-built_in, .hljs-type, .hljs-class .hljs-title { color: #888ae5; }
+.hljs-variable, .hljs-template-variable { color: #f472b6; }
+.hljs-deletion { color: #f87171; }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: bold; }

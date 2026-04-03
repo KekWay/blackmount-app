@@ -6,6 +6,7 @@ import type { ArenaModel } from '@/data/arena-models'
 import type { ModelResponse } from './arena-data'
 import { IMG_COIN, IMG_SHARE_MASK } from './arena-data'
 import { MIcon } from './arena-micon'
+import { MarkdownRenderer } from '@/components/shared/markdown-renderer'
 
 interface Props {
   winnerResponse: ModelResponse
@@ -43,7 +44,7 @@ export function ArenaWinnerCard({ winnerResponse, prompt, savedIds, ratedId, onS
         </div>
       </div>
       <div className="flex-1 px-[20px] py-[16px] overflow-y-auto chat-scrollbar">
-        <p className="text-[14px] text-white leading-[23px] whitespace-pre-wrap">{winnerResponse.text}</p>
+        <MarkdownRenderer content={winnerResponse.text} />
       </div>
       <div className="px-[20px] py-[12px] border-t border-[rgba(255,255,255,0.05)] flex items-center gap-[8px] flex-wrap">
         <button onClick={() => onSave(winnerResponse.model.id)} className={`flex items-center gap-[5px] px-[12px] py-[7px] rounded-[10px] text-[11px] transition-all cursor-pointer ${isSaved ? 'bg-[rgba(74,222,128,0.08)] text-[#4ade80] border border-[rgba(74,222,128,0.15)]' : 'bg-[rgba(255,255,255,0.04)] text-[rgba(255,255,255,0.4)] hover:bg-[rgba(255,255,255,0.08)] border border-transparent'}`}>
