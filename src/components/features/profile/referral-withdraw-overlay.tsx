@@ -5,6 +5,7 @@ import { X, CreditCard, Check } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'motion/react'
 import { APP_ASSETS } from '@/lib/assets'
+import { useReferralStore } from '@/stores/referral-store'
 
 function formatCardNumber(value: string): string {
   const digits = value.replace(/\D/g, '').slice(0, 16)
@@ -41,6 +42,7 @@ export function ReferralWithdrawOverlay({ onClose }: { onClose: () => void }) {
   const [withdrawBank, setWithdrawBank] = useState('')
   const [withdrawMethod, setWithdrawMethod] = useState<'card' | 'sbp'>('card')
   const router = useRouter()
+  const createWithdrawal = useReferralStore((s) => s.createWithdrawal)
 
   const amount = parseFloat(withdrawAmount || '0')
   const amountTooLow = withdrawAmount.trim() !== '' && amount < WITHDRAW_MIN
@@ -104,17 +106,20 @@ export function ReferralWithdrawOverlay({ onClose }: { onClose: () => void }) {
             )}
             <p className="font-manrope font-extrabold text-[15px] text-white mb-[8px]">Название банка</p>
             <input value={withdrawBank} onChange={(e) => setWithdrawBank(e.target.value)} placeholder="Сбербанк" className="w-full bg-[rgba(57,55,91,0.5)] border-none rounded-[10px] px-[16px] py-[12px] font-manrope font-medium text-[14px] text-white placeholder-[#898787] outline-none transition-colors mb-[24px]" />
-            <button onClick={() => setWithdrawDone(true)} disabled={!isFormValid} className={`w-full rounded-[12px] py-[14px] transition-colors ${isFormValid ? 'bg-[#888ae5] hover:bg-[#9a9cf0] cursor-pointer' : 'bg-[rgba(136,138,229,0.3)] cursor-not-allowed'}`}><span className="font-manrope font-extrabold text-[16px] text-white">Отправить заявку</span></button>
+            <button onClick={() => { const details = withdrawMethod === 'card' ? withdrawCard : withdrawPhone; createWithdrawal(amount, withdrawMethod, details); setWithdrawDone(true) }} disabled={!isFormValid} className={`w-full rounded-[12px] py-[14px] transition-colors ${isFormValid ? 'bg-[#888ae5] hover:bg-[#9a9cf0] cursor-pointer' : 'bg-[rgba(136,138,229,0.3)] cursor-not-allowed'}`}><span className="font-manrope font-extrabold text-[16px] text-white">Отправить заявку</span></button>
           </div>
         ) : (
           <div className="px-[32px] py-[40px] flex flex-col items-center">
             <div className="bg-[#121118]/80 rounded-[14px] px-[32px] py-[28px] flex flex-col items-center mb-[20px] w-full">
               <div className="mb-[14px]"><img src={APP_ASSETS.rocketIcon} alt="" className="size-[50px] object-contain" /></div>
-              <p className="font-manrope font-extrabold text-[16px] text-white text-center mb-[12px] leading-[22px]">Заявка была успешно отправлена!</p>
-              <p className="font-manrope font-medium text-[12px] text-[rgba(255,255,255,0.5)] text-center leading-[18px] mb-[6px]">Обработка запроса занимает 24-72 часа</p>
-              <p className="font-manrope font-medium text-[12px] text-[rgba(255,255,255,0.5)] text-center leading-[18px]">Ответ будет прислан в чат бота</p>
+              <p className="font-manrope font-extrabold text-[16px] text-white text-center mb-[10px] leading-[22px]">Заявка создана</p>
+              <span className="text-[11px] font-semibold px-[8px] py-[3px] rounded-[8px] mb-[12px]" style={{ color: '#f5a623', background: 'rgba(245,166,35,0.12)' }}>На проверке</span>
+              <p className="font-manrope font-medium text-[12px] text-[rgba(255,255,255,0.5)] text-center leading-[18px]">Обычно обработка занимает до 24 часов. Если возникнут вопросы — обратитесь в поддержку.</p>
             </div>
-            <button onClick={() => { onClose(); router.push('/'); }} className="w-full bg-[#888ae5] hover:bg-[#9a9cf0] rounded-[12px] py-[12px] cursor-pointer transition-colors"><span className="font-manrope font-extrabold text-[14px] text-white">Вернуться в главное меню</span></button>
+            <div className="flex flex-col gap-[8px] w-full">
+              <button onClick={() => { onClose(); router.push('/support') }} className="w-full bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(136,138,229,0.08)] border border-[rgba(255,255,255,0.06)] rounded-[12px] py-[12px] cursor-pointer transition-colors"><span className="font-manrope font-semibold text-[14px] text-[rgba(255,255,255,0.5)]">Написать в поддержку</span></button>
+              <button onClick={onClose} className="w-full bg-[#888ae5] hover:bg-[#9a9cf0] rounded-[12px] py-[12px] cursor-pointer transition-colors"><span className="font-manrope font-extrabold text-[14px] text-white">Закрыть</span></button>
+            </div>
           </div>
         )}
       </motion.div>

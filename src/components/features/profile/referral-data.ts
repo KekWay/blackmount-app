@@ -37,12 +37,23 @@ export const referrals = [
   { name: 'Елена Смирнова', date: '10.02.26', totalEarned: 0, status: 'inactive' as const, color: '#64748b', letter: 'Е', lastActive: '2 недели назад' },
 ]
 
-export const transactions = [
+export interface ReferralTransaction {
+  label: string
+  date: string
+  amount: string
+  icon: string
+  withdrawalId?: string
+}
+
+export const transactions: ReferralTransaction[] = [
+  { label: 'Вывод средств', date: '02.04.26', amount: '-500₽', icon: 'withdraw', withdrawalId: 'wd-4' },
+  { label: 'Вывод средств', date: '30.03.26', amount: '-700₽', icon: 'withdraw', withdrawalId: 'wd-3' },
   { label: 'Реферальный бонус от Иван К.', date: '22.02.26', amount: '+150₽', icon: 'bonus' },
   { label: 'Реферальный бонус от Мария С.', date: '20.02.26', amount: '+200₽', icon: 'bonus' },
-  { label: 'Вывод средств', date: '19.02.26', amount: '-300₽', icon: 'withdraw' },
+  { label: 'Вывод средств', date: '19.02.26', amount: '-300₽', icon: 'withdraw', withdrawalId: 'wd-2' },
   { label: 'Конвертация в айкоины', date: '18.02.26', amount: '-200₽', icon: 'convert' },
   { label: 'Реферальный бонус от Алексей В.', date: '18.02.26', amount: '+100₽', icon: 'bonus' },
+  { label: 'Вывод средств', date: '15.02.26', amount: '-500₽', icon: 'withdraw', withdrawalId: 'wd-1' },
   { label: 'Реферальный бонус от Дмитрий Н.', date: '15.02.26', amount: '+80₽', icon: 'bonus' },
 ]
 

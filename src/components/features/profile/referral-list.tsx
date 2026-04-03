@@ -2,12 +2,28 @@
 
 import { useState } from 'react'
 import { RussianRuble } from 'lucide-react'
+import Link from 'next/link'
 import { APP_ASSETS } from '@/lib/assets'
 import { motion, AnimatePresence } from 'motion/react'
 import { AnimatedToggle } from '@/components/shared/animated-toggle'
+import { useReferralStore, type WithdrawalStatus } from '@/stores/referral-store'
 import { referrals, transactions } from './referral-data'
 
 type ReferralView = 'list' | 'transactions'
+
+const wdStatusLabels: Record<WithdrawalStatus, string> = {
+  pending: 'На проверке',
+  processing: 'Обрабатывается',
+  completed: 'Выполнено',
+  rejected: 'Отклонено',
+}
+
+const wdStatusColors: Record<WithdrawalStatus, { color: string; bg: string }> = {
+  pending: { color: '#f5a623', bg: 'rgba(245,166,35,0.12)' },
+  processing: { color: '#888ae5', bg: 'rgba(136,138,229,0.12)' },
+  completed: { color: '#4ade80', bg: 'rgba(74,222,128,0.12)' },
+  rejected: { color: '#e85d5d', bg: 'rgba(232,93,93,0.12)' },
+}
 
 export function ReferralList() {
   const [referralView, setReferralView] = useState<ReferralView>('list')
@@ -70,24 +86,68 @@ function ReferralListView() {
 }
 
 function ReferralTransactionsView() {
+  const withdrawals = useReferralStore((s) => s.withdrawals)
+
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
-      {transactions.map((tx, i) => (
-        <motion.div key={i} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}
-          className={`px-[24px] py-[14px] flex items-center justify-between hover:bg-white/5 transition-colors cursor-pointer ${i < transactions.length - 1 ? 'border-b border-white/5' : ''}`}
-        >
-          <div className="flex items-center gap-[14px]">
-            <div className={`rounded-[12px] size-[36px] flex items-center justify-center shrink-0 shadow-sm ${tx.icon === 'bonus' ? 'bg-[#6bc085]/10' : tx.icon === 'withdraw' ? 'bg-[#f87171]/10' : 'bg-[#888ae5]/10'}`}>
-              {tx.icon === 'bonus' ? <img src={APP_ASSETS.wallet3} alt="" className="size-[18px] object-contain" style={{ filter: 'brightness(0) saturate(100%) invert(67%) sepia(20%) saturate(700%) hue-rotate(100deg) brightness(92%) contrast(87%)' }} /> : tx.icon === 'withdraw' ? <RussianRuble size={16} className="text-[#f87171]" /> : tx.icon === 'convert' ? <div className="relative size-[18px]"><img src={APP_ASSETS.coinLarge} alt="" className="size-full object-contain brightness-[0.8] sepia hue-rotate-[210deg] saturate-[3]" /></div> : <RussianRuble size={16} className="text-[#888ae5]" />}
+      {transactions.map((tx, i) => {
+        const wd = tx.withdrawalId ? withdrawals.find((w) => w.id === tx.withdrawalId) : null
+        const isWaiting = wd && (wd.status === 'pending' || wd.status === 'processing')
+
+        return (
+          <motion.div key={i} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}
+            className={`px-[24px] py-[14px] hover:bg-white/5 transition-colors ${i < transactions.length - 1 ? 'border-b border-white/5' : ''}`}
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-[14px]">
+                <TxIcon icon={tx.icon} />
+                <div>
+                  <div className="flex items-center gap-[8px]">
+                    <p className="font-manrope font-bold text-[13px] text-white leading-[18px]">{tx.label}</p>
+                    {wd && <WithdrawalBadge status={wd.status} />}
+                  </div>
+                  <p className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.4)] mt-[2px]">{tx.date}</p>
+                </div>
+              </div>
+              <span className={`font-manrope font-black text-[14px] shrink-0 ${tx.amount.startsWith('+') ? 'text-[#6bc085]' : 'text-white'}`}>{tx.amount}</span>
             </div>
-            <div>
-              <p className="font-manrope font-bold text-[13px] text-white leading-[18px]">{tx.label}</p>
-              <p className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.4)] mt-[2px]">{tx.date}</p>
-            </div>
-          </div>
-          <span className={`font-manrope font-black text-[14px] ${tx.amount.startsWith('+') ? 'text-[#6bc085]' : 'text-white'}`}>{tx.amount}</span>
-        </motion.div>
-      ))}
+            {wd?.status === 'rejected' && wd.reason && (
+              <p className="font-manrope text-[12px] text-[rgba(255,255,255,0.5)] mt-[6px] ml-[50px] leading-[17px]">
+                Причина: {wd.reason}
+              </p>
+            )}
+            {isWaiting && (
+              <p className="font-manrope text-[12px] text-[rgba(255,255,255,0.35)] mt-[6px] ml-[50px]">
+                Вопросы?{' '}
+                <Link href="/support" className="text-[#888ae5] hover:underline">Написать в поддержку</Link>
+              </p>
+            )}
+          </motion.div>
+        )
+      })}
     </motion.div>
+  )
+}
+
+function WithdrawalBadge({ status }: { status: WithdrawalStatus }) {
+  const s = wdStatusColors[status]
+  return (
+    <span
+      className="text-[10px] font-semibold px-[6px] py-[2px] rounded-[8px] shrink-0"
+      style={{ color: s.color, background: s.bg }}
+    >
+      {wdStatusLabels[status]}
+    </span>
+  )
+}
+
+function TxIcon({ icon }: { icon: string }) {
+  const bg = icon === 'bonus' ? 'bg-[#6bc085]/10' : icon === 'withdraw' ? 'bg-[#f87171]/10' : 'bg-[#888ae5]/10'
+  return (
+    <div className={`rounded-[12px] size-[36px] flex items-center justify-center shrink-0 shadow-sm ${bg}`}>
+      {icon === 'bonus' && <img src={APP_ASSETS.wallet3} alt="" className="size-[18px] object-contain" style={{ filter: 'brightness(0) saturate(100%) invert(67%) sepia(20%) saturate(700%) hue-rotate(100deg) brightness(92%) contrast(87%)' }} />}
+      {icon === 'withdraw' && <RussianRuble size={16} className="text-[#f87171]" />}
+      {icon === 'convert' && <div className="relative size-[18px]"><img src={APP_ASSETS.coinLarge} alt="" className="size-full object-contain brightness-[0.8] sepia hue-rotate-[210deg] saturate-[3]" /></div>}
+    </div>
   )
 }
