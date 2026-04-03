@@ -75,7 +75,7 @@ export function SupportChat({ ticket, onBack }: SupportChatProps) {
       <div className="px-[16px] pb-[16px] pt-[8px]">
         {isClosed ? (
           <div className="flex items-center justify-center gap-[6px] h-[46px] rounded-[14px] bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)]">
-            <img src={APP_ASSETS.padlockIcon} alt="" className="size-[14px] object-contain grayscale opacity-30" />
+            <img src={APP_ASSETS.padlockIcon} alt="" className="size-[14px] object-contain brightness-0 invert opacity-25" />
             <span className="text-[13px] text-[rgba(255,255,255,0.25)] font-medium">Обращение закрыто</span>
           </div>
         ) : (
