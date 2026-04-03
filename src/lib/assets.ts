@@ -37,12 +37,18 @@ export const MODEL_ASSETS = {
 
 export const APP_ASSETS = {
   coin: '/assets/models/coin.png',
+  coinLarge: '/assets/models/coin-large.png',
   logo: '/assets/models/logo.png',
   settings: '/assets/models/settings.png',
   heroAuth: '/assets/models/hero-auth.png',
   yandex: '/assets/models/yandex.png',
   vk: '/assets/models/vk.png',
   telegram: '/assets/models/telegram.png',
+  sbpLogo: '/assets/models/sbp-logo.png',
+  rocketIcon: '/assets/models/rocket_icon.png',
+  wallet1: '/assets/models/wallet_1.png',
+  wallet3: '/assets/models/wallet_3.png',
+  referralIcon: '/assets/models/referall_icon.png',
 } as const
 
 export type ModelId = keyof typeof MODEL_ASSETS

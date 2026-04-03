@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { X, Wallet } from 'lucide-react'
+import { X } from 'lucide-react'
+import { APP_ASSETS } from '@/lib/assets'
 import { motion } from 'motion/react'
 import { IMG_COIN } from './profile-data'
 
@@ -20,7 +21,7 @@ export function ReferralConvertOverlay({ onClose }: { onClose: () => void }) {
               <button onClick={onClose} className="text-[rgba(255,255,255,0.4)] hover:text-white bg-white/5 hover:bg-white/10 p-[8px] rounded-[10px] transition-colors cursor-pointer"><X size={18} /></button>
             </div>
             <div className="border border-[#888ae5]/30 bg-[#888ae5]/5 rounded-[16px] px-[20px] py-[16px] flex items-center gap-[16px] mb-[24px]">
-              <div className="bg-[#888ae5]/20 p-[10px] rounded-[12px]"><Wallet size={20} className="text-[#888ae5]" /></div>
+              <div className="bg-[#888ae5]/20 p-[10px] rounded-[12px]"><img src={APP_ASSETS.wallet1} alt="" className="size-[20px] object-contain" /></div>
               <div><p className="font-manrope font-medium text-[12px] text-[rgba(255,255,255,0.5)]">Доступно для конвертации</p><p className="font-manrope font-black text-[20px] text-white">1000{'\u20BD'}</p></div>
             </div>
             <div className="mb-[20px]">

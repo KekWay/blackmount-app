@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import { Users, LogOut, Sparkles } from 'lucide-react'
+import { LogOut, Sparkles } from 'lucide-react'
 import { motion } from 'motion/react'
 import { APP_ASSETS } from '@/lib/assets'
 import { useAuthStore } from '@/stores/auth'
@@ -51,7 +51,7 @@ export function SidebarUserMenu({ collapsed, hasActiveSub, onClose }: SidebarUse
 
       <TopupItem onClick={() => go('/profile?tab=topup')} />
 
-      <MenuItem onClick={() => go('/profile?tab=referral')} icon={<Users size={15} className="text-white/50" />} label="Реферальная программа" />
+      <MenuItem onClick={() => go('/profile?tab=referral')} icon={<img src={APP_ASSETS.referralIcon} alt="" className="size-[15px] object-contain brightness-0 invert opacity-50" />} label="Реферальная программа" />
 
       <MenuItem onClick={onClose} icon={<MaskIcon src={HEADPHONES_MASK} />} label="Поддержка" />
 
