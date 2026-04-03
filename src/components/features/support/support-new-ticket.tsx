@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowLeft, Send } from 'lucide-react'
+import { APP_ASSETS } from '@/lib/assets'
 import { useSupportStore, type TicketCategory } from '@/stores/support-store'
 
 interface SupportNewTicketProps {
@@ -32,9 +32,9 @@ export function SupportNewTicket({ onCreated, onBack }: SupportNewTicketProps) {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex items-center gap-[10px] px-[16px] py-[12px] border-b border-[rgba(255,255,255,0.06)]">
+      <div className="flex items-center gap-[10px] px-[16px] py-[12px]">
         <button onClick={onBack} className="size-[32px] rounded-[10px] hover:bg-[rgba(255,255,255,0.06)] flex items-center justify-center cursor-pointer transition-colors">
-          <ArrowLeft size={18} className="text-white/50" />
+          <img src={APP_ASSETS.arrowIcon} alt="" className="size-[18px] object-contain brightness-0 invert opacity-50" />
         </button>
         <p className="font-manrope font-semibold text-[15px] text-white">Новое обращение</p>
       </div>
@@ -88,7 +88,7 @@ export function SupportNewTicket({ onCreated, onBack }: SupportNewTicketProps) {
           className="w-full h-[46px] rounded-[12px] cursor-pointer transition-all flex items-center justify-center gap-[8px] hover:brightness-110 active:scale-[0.98] disabled:opacity-30 disabled:cursor-default"
           style={{ background: '#888ae5', boxShadow: '0 2px 12px rgba(136,138,229,0.3)' }}
         >
-          <Send size={15} className="text-white" />
+          <img src={APP_ASSETS.sendIcon} alt="" className="size-[15px] object-contain brightness-0 invert" />
           <span className="text-[14px] text-white font-bold">Отправить</span>
         </button>
       </div>

@@ -1,6 +1,5 @@
 'use client'
 
-import { Plus } from 'lucide-react'
 import type { SupportTicket, TicketStatus } from '@/stores/support-store'
 
 interface SupportTicketListProps {
@@ -33,13 +32,15 @@ export function SupportTicketList({ tickets, activeId, onSelect, onNew }: Suppor
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex items-center justify-between px-[16px] py-[14px] border-b border-[rgba(255,255,255,0.06)]">
-        <p className="font-manrope font-semibold text-[15px] text-white">Обращения</p>
+      <div className="px-[16px] py-[14px]">
+        <div className="flex items-center justify-between mb-[12px]">
+          <p className="font-manrope font-semibold text-[15px] text-white">Обращения</p>
+        </div>
         <button
           onClick={onNew}
-          className="size-[32px] rounded-[10px] bg-[rgba(136,138,229,0.12)] hover:bg-[rgba(136,138,229,0.2)] flex items-center justify-center cursor-pointer transition-colors"
+          className="w-full h-[36px] rounded-[12px] bg-[#888ae5] hover:bg-[#7678d0] text-[13px] text-white font-manrope font-semibold cursor-pointer transition-colors flex items-center justify-center"
         >
-          <Plus size={16} className="text-[#888ae5]" />
+          Новое обращение
         </button>
       </div>
       <div className="flex-1 overflow-y-auto">

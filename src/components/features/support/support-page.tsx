@@ -2,6 +2,9 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { MessageCircle } from 'lucide-react'
+import { motion, AnimatePresence } from 'motion/react'
+import { APP_ASSETS } from '@/lib/assets'
 import { useSupportStore } from '@/stores/support-store'
 import { SupportTicketList } from './support-ticket-list'
 import { SupportChat } from './support-chat'
@@ -37,8 +40,12 @@ export function SupportPage() {
   return (
     <div className="bg-[#121118] fixed inset-0 z-50 flex flex-col">
       {/* Header */}
-      <div className="flex items-center justify-between px-[16px] md:px-[24px] py-[14px] border-b border-[rgba(255,255,255,0.06)] shrink-0">
-        <p className="font-manrope font-semibold text-[20px] text-white">Поддержка</p>
+      <div className="relative flex items-center justify-between px-[16px] md:px-[24px] py-[14px] shrink-0">
+        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[rgba(136,138,229,0.15)] to-transparent" />
+        <div className="flex items-center gap-[10px]">
+          <img src={APP_ASSETS.support1} alt="" className="size-[22px] object-contain brightness-0 invert opacity-40" />
+          <p className="font-manrope font-semibold text-[20px] text-white">Поддержка</p>
+        </div>
         <button
           onClick={() => router.push('/')}
           className="text-[rgba(255,255,255,0.35)] hover:text-white transition-colors cursor-pointer font-manrope font-medium text-[13px] flex items-center gap-[6px] bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255,255,255,0.08)] rounded-[10px] px-[14px] py-[7px]"
@@ -52,34 +59,48 @@ export function SupportPage() {
         <div className="w-[300px] shrink-0 border-r border-[rgba(255,255,255,0.06)] bg-[#181724]">
           <SupportTicketList tickets={tickets} activeId={activeId} onSelect={handleSelect} onNew={handleNew} />
         </div>
-        <div className="flex-1 bg-[#121118]">
-          {view === 'new' ? (
-            <SupportNewTicket onCreated={handleCreated} onBack={handleBack} />
-          ) : activeTicket ? (
-            <SupportChat ticket={activeTicket} />
-          ) : (
-            <EmptyState onNew={handleNew} />
-          )}
+        <div className="flex-1 bg-[#121118] relative">
+          <div className="absolute top-0 right-0 w-[300px] h-[200px] bg-[#888ae5] opacity-[0.03] blur-[120px] pointer-events-none" />
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={view === 'new' ? 'new' : activeId ?? 'empty'}
+              className="h-full"
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: 0.18 }}
+            >
+              {view === 'new' ? (
+                <SupportNewTicket onCreated={handleCreated} onBack={handleBack} />
+              ) : activeTicket ? (
+                <SupportChat ticket={activeTicket} />
+              ) : (
+                <EmptyState onNew={handleNew} />
+              )}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
 
       {/* Mobile: single view */}
       <div className="flex md:hidden flex-1 overflow-hidden">
-        {view === 'list' && (
-          <div className="w-full bg-[#181724]">
-            <SupportTicketList tickets={tickets} activeId={null} onSelect={handleSelect} onNew={handleNew} />
-          </div>
-        )}
-        {view === 'chat' && activeTicket && (
-          <div className="w-full bg-[#121118]">
-            <SupportChat ticket={activeTicket} onBack={handleBack} />
-          </div>
-        )}
-        {view === 'new' && (
-          <div className="w-full bg-[#121118]">
-            <SupportNewTicket onCreated={handleCreated} onBack={handleBack} />
-          </div>
-        )}
+        <AnimatePresence mode="wait">
+          {view === 'list' && (
+            <motion.div key="list" className="w-full bg-[#181724]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
+              <SupportTicketList tickets={tickets} activeId={null} onSelect={handleSelect} onNew={handleNew} />
+            </motion.div>
+          )}
+          {view === 'chat' && activeTicket && (
+            <motion.div key="chat" className="w-full bg-[#121118]" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.2 }}>
+              <SupportChat ticket={activeTicket} onBack={handleBack} />
+            </motion.div>
+          )}
+          {view === 'new' && (
+            <motion.div key="new" className="w-full bg-[#121118]" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.2 }}>
+              <SupportNewTicket onCreated={handleCreated} onBack={handleBack} />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   )
@@ -87,11 +108,21 @@ export function SupportPage() {
 
 function EmptyState({ onNew }: { onNew: () => void }) {
   return (
-    <div className="flex flex-col items-center justify-center h-full gap-[12px]">
-      <p className="text-[14px] text-[rgba(255,255,255,0.25)] font-manrope">Выберите обращение или создайте новое</p>
+    <div className="flex flex-col items-center justify-center h-full gap-[16px] relative">
+      <div className="absolute top-[30%] left-1/2 -translate-x-1/2 w-[300px] h-[200px] bg-[#888ae5] opacity-[0.04] blur-[100px] pointer-events-none" />
+      <div className="relative">
+        <div className="absolute -inset-[16px] rounded-full opacity-30 blur-[24px]" style={{ background: 'radial-gradient(circle, rgba(136,138,229,0.4), transparent 70%)' }} />
+        <div className="relative size-[52px] flex items-center justify-center rounded-[16px]" style={{ background: 'linear-gradient(135deg, rgba(136,138,229,0.1), rgba(91,91,214,0.06))', border: '1px solid rgba(136,138,229,0.12)' }}>
+          <MessageCircle size={22} className="text-[#888ae5] opacity-60" />
+        </div>
+      </div>
+      <div className="flex flex-col items-center gap-[6px]">
+        <p className="text-[15px] text-[rgba(255,255,255,0.4)] font-manrope font-medium">Выберите обращение</p>
+        <p className="text-[13px] text-[rgba(255,255,255,0.2)] font-manrope">или создайте новое, чтобы начать</p>
+      </div>
       <button
         onClick={onNew}
-        className="px-[18px] h-[35.5px] rounded-[12px] bg-[#888ae5] hover:bg-[#7678d0] text-[13px] text-white font-manrope font-semibold cursor-pointer transition-colors"
+        className="px-[18px] h-[38px] rounded-[12px] bg-[#888ae5] hover:bg-[#7678d0] text-[13px] text-white font-manrope font-semibold cursor-pointer transition-colors"
       >
         Новое обращение
       </button>
