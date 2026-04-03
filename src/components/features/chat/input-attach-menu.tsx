@@ -44,12 +44,12 @@ export function InputAttachMenu({
       <button onClick={onClose} className="flex items-center gap-[10px] w-full px-[14px] py-[9px] transition-colors hover:bg-[rgba(136,138,229,0.08)] cursor-pointer">
         <img src={APP_ASSETS.photoChat} alt="" className="size-[15px] object-contain brightness-0 invert opacity-50 shrink-0" />
         <span className="font-manrope font-medium text-[13px] text-white flex-1 text-left">Прикрепить фото</span>
-        <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">3 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>
+        {isTextModel && <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">3 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>}
       </button>
       <button onClick={onClose} className="flex items-center gap-[10px] w-full px-[14px] py-[9px] transition-colors hover:bg-[rgba(136,138,229,0.08)] cursor-pointer">
         <img src={APP_ASSETS.fileChat} alt="" className="size-[15px] object-contain brightness-0 invert opacity-50 shrink-0" />
         <span className="font-manrope font-medium text-[13px] text-white flex-1 text-left">Прикрепить файл</span>
-        <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">3 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>
+        {isTextModel && <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">3 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>}
       </button>
       {isTextModel && (
         <>
