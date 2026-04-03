@@ -357,6 +357,88 @@ shared_items   (id text PK, user_id, type, model_id, prompt, response, media_url
 security_logs  (id uuid PK, user_id, action, ip_address, details, created_at)
 ```
 
+### Веб-поиск (TODO — бэкенд)
+
+Тогл "Веб-поиск" уже есть в UI (webSearchActive). OpenRouter предоставляет веб-поиск из коробки для ВСЕХ текстовых моделей.
+
+Способы активации:
+1. Добавить `:online` к slug модели (например `anthropic/claude-sonnet-4.6:online`)
+2. Использовать `openrouter:web_search` server tool (рекомендуется — модель сама решает когда искать)
+
+Стоимость: $4 за 1000 результатов (по умолчанию 5 = ~$0.02 за запрос).
+- Anthropic, OpenAI — нативный поиск провайдера
+- Остальные — через Exa
+
+Веб-поиск доступен для ВСЕХ текстовых моделей ниже. Не применим к image/video моделям (NanoBanana, Flux, Kling, Veo).
+
+Бэкенд-логика:
+1. Пользователь включает тогл → webSearchActive = true
+2. API route добавляет web_search tool или `:online` к slug
+3. OpenRouter выполняет поиск и добавляет результаты в контекст
+4. Модель отвечает с учётом найденной информации
+
+Ценообразование: +0.5–1 айкоин к базовой цене запроса.
+
+### Режим думанья / Thinking (TODO — бэкенд)
+
+Тогл "Глубокое исследование" в UI (deepResearchActive). OpenRouter предоставляет единый параметр `reasoning` для управления thinking.
+
+#### Полная таблица поддержки:
+
+**ChatGPT (OpenRouter):**
+| Версия | Thinking | Механизм | Effort |
+|--------|---------|----------|--------|
+| ChatGPT 5.4 | ✅ | Reasoning tokens (GPT-5 серия) | none, low, medium, high |
+| ChatGPT 5.3 | ✅ | Adaptive reasoning | none, low, medium, high |
+| ChatGPT 5.2 | ✅ | Adaptive reasoning | none, low, medium, high |
+| ChatGPT 5 | ✅ | Dynamic reasoning ("think hard about this") | low, medium, high |
+| ChatGPT 5 Mini | ✅ | Reasoning (наследник o4-mini) | low, medium, high |
+
+**Claude (OpenRouter):**
+| Версия | Thinking | Механизм | Effort |
+|--------|---------|----------|--------|
+| Claude Opus 4.6 | ✅ | Adaptive Thinking (сам решает глубину) | low, medium, high, max |
+| Claude Sonnet 4.6 | ✅ | Adaptive Thinking | low, medium, high, max |
+| Claude Opus 4.5 | ✅ | Extended Thinking (budget_tokens) | low, medium, high |
+| Claude Sonnet 4.5 | ✅ | Extended Thinking (budget_tokens) | low, medium, high |
+| Claude Sonnet 3.7 | ✅ | Extended Thinking (:thinking вариант) | low, medium, high |
+| Claude Haiku 4.5 | ✅ | Extended Thinking (первый Haiku с thinking) | low, medium, high |
+
+**Gemini (OpenRouter):**
+| Версия | Thinking | Механизм | Effort |
+|--------|---------|----------|--------|
+| Gemini 3.1 Pro | ✅ | thinkingLevel (через reasoning.effort) | low, medium, high |
+| Gemini 3 Pro | ✅ | thinkingLevel (нельзя отключить thinking) | low, high |
+| Gemini 2.5 Pro | ✅ | thinkingBudget (старый API) | low, medium, high |
+| Gemini 3 Flash | ✅ | thinkingLevel | minimal, low, medium, high |
+| Gemini 2.5 Flash | ✅ | thinkingBudget | low, medium, high |
+
+Итого: ВСЕ 16 версий текстовых моделей поддерживают thinking через OpenRouter.
+
+Бэкенд-логика:
+1. Пользователь включает тогл → deepResearchActive = true
+2. API route добавляет `reasoning: { effort: "high" }` в запрос
+3. OpenRouter передаёт параметр провайдеру нативно
+4. API возвращает: reasoning_details[] (рассуждение) + content (ответ)
+5. Фронтенд: reasoning → сворачиваемый блок "Ход мысли", content → MarkdownRenderer
+
+Особенности по провайдерам:
+- Claude 4.6 (Opus/Sonnet): Adaptive Thinking по умолчанию, effort "max" только для них
+- Claude 4.5 и старше: budget_tokens, effort "max" не поддерживается
+- ChatGPT 5.2+: effort "none" доступен (отключает thinking полностью)
+- Gemini 3 Pro: thinking нельзя отключить (минимум "low")
+
+UI компонент (TODO — фронтенд):
+- Сворачиваемый блок перед ответом assistant
+- Заголовок: "Ход мысли" с иконкой Brain
+- Текст thinking приглушённым цветом rgba(255,255,255,0.4)
+- По умолчанию свёрнут
+- Анимация раскрытия (Framer Motion)
+
+Ценообразование: thinking-токены = output-токены. Запрос с thinking стоит дороже.
+
+Не применимо к: NanoBanana, Flux (fal.ai — изображения), Kling, Veo (kie.ai — видео).
+
 ### Страницы приложения (10):
 | Страница | Путь | Описание |
 |----------|------|----------|
