@@ -42,7 +42,7 @@ export function SupportPage() {
       <div className="relative flex items-center justify-between px-[16px] md:px-[24px] py-[14px] shrink-0">
         <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[rgba(136,138,229,0.15)] to-transparent" />
         <div className="flex items-center gap-[8px]">
-          <img src={APP_ASSETS.logo} alt="" className="size-[28px] object-contain brightness-0 invert -mt-[1px]" />
+          <img src={APP_ASSETS.logo} alt="" className="size-[28px] object-contain brightness-0 invert mt-[2px]" />
           <p className="font-manrope font-semibold text-[20px] text-white">Поддержка</p>
         </div>
         <button
