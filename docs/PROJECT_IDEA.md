@@ -1,6 +1,7 @@
 # PROJECT_IDEA.md — Blackmount AI Aggregator
 
 > Документ идеи по методологии Spec-First. Входные данные для генерации спецификации и конфигурации Claude Code.
+> Последнее обновление: Апрель 2026.
 
 ---
 
@@ -8,7 +9,7 @@
 
 Пользователи в России и СНГ сталкиваются с тремя барьерами при работе с AI-моделями:
 
-- **Фрагментация доступа.** ChatGPT, Claude, Gemini, Midjourney, Sora — 5+ аккаунтов, 5+ подписок, VPN для каждого. Суммарно $100–200/мес.
+- **Фрагментация доступа.** ChatGPT, Claude, Gemini, Midjourney, Kling — 5+ аккаунтов, 5+ подписок, VPN для каждого. Суммарно $100–200/мес.
 - **Невозможность сравнения.** Нельзя отправить один промпт в две модели и сравнить. Нет A/B-тестирования.
 - **Ценовая непрозрачность.** У каждого сервиса своя система (токены, кредиты, минуты). Пользователь не понимает реальную стоимость.
 
@@ -18,34 +19,33 @@
 
 ## 2. Решение
 
-**Blackmount** — веб-платформа (AI-агрегатор), 8 моделей в едином интерфейсе.
+**Blackmount** — веб-платформа (AI-агрегатор), 7 нейросетей в едином интерфейсе.
 
 ### Процесс пользователя:
-1. Регистрация (email/Google) → 20 бесплатных айкоинов
+1. Регистрация (email/Google/VK/Telegram) → 20 бесплатных айкоинов
 2. Библиотека моделей → выбор → чат (текст/изображения/видео)
 3. Арена → один промпт, два ответа, голосование
 4. Рейтинг моделей на основе голосов
 5. Пополнение баланса (пакеты айкоинов) или подписка
 6. Библиотека промптов + база знаний
 
-### Модели (8 моделей, 25+ версий):
+### Модели (7 нейросетей, 30+ версий):
 
-| Категория | Модели | Версии |
-|-----------|--------|--------|
-| Текст | ChatGPT | 5.2, 5, 5 mini |
-| Текст | Claude | Opus 4.5, Sonnet 4.5, Sonnet 3.7, Haiku 4.5 |
-| Текст | Gemini | 3 Pro, 2.5 Pro, 3 Flash, 2.5 Flash |
-| Изображения | NanoBanana | Pro, Standard |
-| Изображения | Flux | 1.1 Pro Ultra, 1 Pro |
-| Видео | Sora 2 | Pro 10с/15с, Standard 10с/15с |
-| Видео | Kling | 2.6 5с/10с ±звук, 2.5 Turbo 5с/10с |
-| Видео | Veo 3.1 | Quality, Fast |
+| Категория | Модель | Провайдер | Версии |
+|-----------|--------|-----------|--------|
+| Текст | ChatGPT | OpenRouter | 5.4, 5.3, 5.2, 5, 5 mini |
+| Текст | Claude | OpenRouter | Opus 4.6, Sonnet 4.6, Opus 4.5, Sonnet 4.5, Sonnet 3.7, Haiku 4.5 |
+| Текст | Gemini | OpenRouter | 3.1 Pro, 3 Pro, 2.5 Pro, 3 Flash, 2.5 Flash |
+| Изображения | NanoBanana | fal.ai | 2 (1K/2K/4K), Pro (1K/2K/4K), стандартная |
+| Изображения | Flux | fal.ai | 1.1 Pro Ultra, 1 Pro |
+| Видео | Kling | kie.ai | 3.0 Pro, 3.0, 2.6 Pro, 2.6, 2.5 Turbo |
+| Видео | Veo 3.1 | kie.ai | Quality, Fast |
 
 ---
 
 ## 3. Почему сейчас
 
-- Взрывной рост моделей (Sora 2, Veo 3.1, Kling 2.6, ChatGPT 5) — перегрузка выбором
+- Взрывной рост моделей (ChatGPT 5.4, Claude Opus 4.6, Kling 3.0, Veo 3.1) — перегрузка выбором
 - Блокировки в РФ → спрос на агрегаторы без VPN
 - Рынок агрегаторов формируется — Study24/SyntX показали жизнеспособность
 - Снижение стоимости API → маржинальность растёт
@@ -80,14 +80,20 @@
 │  История, Промпты, База знаний, Авторизация          │
 ├─────────────────────────────────────────────────────┤
 │              API LAYER (Next.js API Routes)           │
-│  /api/chat       → OpenRouter proxy + streaming      │
+│  /api/chat       → роутинг по провайдерам + streaming│
 │  /api/balance    → Supabase RPC                      │
 │  /api/arena      → Параллельный запрос 2 моделей     │
 │  /api/webhooks   → ЮKassa вебхуки                    │
 ├─────────────────────────────────────────────────────┤
+│              AI ПРОВАЙДЕРЫ                            │
+│  OpenRouter  — единый API для текстовых моделей      │
+│  fal.ai      — генерация изображений (NanoBanana,    │
+│                Flux)                                  │
+│  kie.ai      — генерация видео (Kling, Veo)          │
+├─────────────────────────────────────────────────────┤
 │              BACKEND SERVICES                         │
-│  Supabase (Auth + PostgreSQL + RLS + Realtime)       │
-│  OpenRouter (единый API для AI-моделей)              │
+│  Supabase (Auth + PostgreSQL + RLS + Realtime +      │
+│            Storage)                                   │
 │  ЮKassa (платежи в рублях)                           │
 ├─────────────────────────────────────────────────────┤
 │              INFRASTRUCTURE                           │
@@ -103,10 +109,29 @@
 | TypeScript strict | Типобезопасность |
 | Tailwind CSS 4 | Тёмная тема через CSS-переменные |
 | shadcn/ui + Radix | Кастомизируемые компоненты |
-| Supabase | Auth + PostgreSQL + RLS + Realtime |
-| OpenRouter | Единый API для всех AI-моделей |
+| Framer Motion | Анимации и переходы |
+| Supabase | Auth + PostgreSQL + RLS + Realtime + Storage |
+| OpenRouter | Единый API для текстовых AI-моделей |
+| fal.ai | API для генерации изображений |
+| kie.ai | API для генерации видео |
 | Zustand | Легковесный state management |
+| ЮKassa | Платежи в рублях |
 | Railway | Деплой full-stack (Next.js + background jobs) |
+
+### Дизайн-система:
+- Шрифты: Manrope (body), Maven Pro (headings), Bakbak One (accent)
+- Тема: тёмная (#121118 фон, #888AE5 акцент, #65DED8 CTA)
+- Sidebar: #181724
+- Анимации: Framer Motion
+
+### AI-пайплайн:
+```
+User → /api/chat → [авторизация] → [баланс >= cost?] → [лимит?] → [подписка?]
+  → Текст:        OpenRouter API (streaming) → UI
+  → Изображения:  fal.ai API (async/sync) → UI
+  → Видео:        kie.ai API (async + polling/webhook) → UI
+  → [списание айкоинов] → [запись операции] → [инкремент счётчика]
+```
 
 ---
 
@@ -114,40 +139,55 @@
 
 ### 6.1 Айкоины (1 айкоин = 1₽)
 
-**Текстовые модели:**
+**Текстовые модели (OpenRouter):**
 
-| Модель | API In/Out | Себестоимость | Цена (айкоины) |
-|--------|-----------|---------------|----------------|
-| ChatGPT 5.2 | $1.75/$14/M | $0.024 | 5 |
-| ChatGPT 5 | $1.25/$10/M | $0.0175 | 3 |
-| ChatGPT 5 mini | $0.25/$2/M | $0.0035 | 1 |
-| Claude Opus 4.5 | $5/$25/M | $0.0475 | 8 |
-| Claude Sonnet 4.5 | $3/$15/M | $0.0285 | 5 |
-| Claude Haiku 4.5 | $1/$5/M | $0.0095 | 1.5 |
-| Gemini 3 Pro | $2/$12/M | $0.022 | 5 |
-| Gemini 2.5 Pro | $1.25/$10/M | $0.0175 | 3 |
-| Gemini 3 Flash | $0.50/$3/M | $0.0055 | 1 |
-| Gemini 2.5 Flash | $0.30/$2.50/M | $0.0044 | 1 |
+| Модель | Цена (айкоины) | Подписка |
+|--------|---------------|----------|
+| ChatGPT 5.4 | 6 | subscriptionOnly |
+| ChatGPT 5.3 | 5 | subscriptionOnly |
+| ChatGPT 5.2 | 5 | subscriptionOnly |
+| ChatGPT 5 | 3 | pro |
+| ChatGPT 5 mini | 1 | free (бесплатна для Pro/Max) |
+| Claude Opus 4.6 | 8 | subscriptionOnly |
+| Claude Sonnet 4.6 | 5 | доступна без подписки |
+| Claude Opus 4.5 | 8 | subscriptionOnly |
+| Claude Sonnet 4.5 | 5 | pro |
+| Claude Sonnet 3.7 | 5 | pro |
+| Claude Haiku 4.5 | 1.5 | free |
+| Gemini 3.1 Pro | 5 | subscriptionOnly |
+| Gemini 3 Pro | 5 | pro |
+| Gemini 2.5 Pro | 3 | pro |
+| Gemini 3 Flash | 1 | free (бесплатна для Pro/Max) |
+| Gemini 2.5 Flash | 1 | free (бесплатна для Pro/Max) |
 
-**Изображения:**
+**Изображения (fal.ai):**
 
-| Модель | API | Цена (айкоины) |
-|--------|-----|----------------|
-| NanoBanana | $0.039/img | 7 |
-| NanoBanana Pro | $0.15/img | 22 |
-| Flux 1 Pro | $0.04/MP | 7 |
-| Flux 1.1 Pro Ultra | $0.06/img | 15 |
+| Модель | Цена (айкоины) | Подписка |
+|--------|---------------|----------|
+| NanoBanana 2 (1K/2K/4K) | 13 / 19 / 26 | subscriptionOnly |
+| NanoBanana Pro (1K/2K/4K) | 22 / 22 / 43 | subscriptionOnly |
+| NanoBanana (стандартная) | 7 | pro |
+| Flux 1.1 Pro Ultra | 15 | subscriptionOnly |
+| Flux 1 Pro | 7 | pro |
 
-**Видео:**
+Динамические цены NanoBanana 2 и Pro — через настройку разрешения (1K/2K/4K).
 
-| Модель | Длит. | API | Цена (айкоины) |
-|--------|-------|-----|----------------|
-| Veo 3.1 Fast | 8с | $0.30 | 50 |
-| Veo 3.1 Quality | 8с | $1.25 | 185 |
-| Sora 2 | 10с | $0.15 | 25 |
-| Sora 2 Pro | 10с | $0.75 | 115 |
-| Kling 2.5 Turbo | 5с | $0.21 | 35 |
-| Kling 2.6 (со звуком) | 10с | $1.10 | 170 |
+**Видео (kie.ai):**
+
+| Модель | Длит. | Цена (айкоины) | Подписка |
+|--------|-------|---------------|----------|
+| Kling 3.0 Pro | 5с / 10с | 85 / 170 | subscriptionOnly |
+| Kling 3.0 | 5с / 10с | 55 / 110 | subscriptionOnly |
+| Kling 2.6 Pro | 5с / 10с | 45–85 / 85–170 | subscriptionOnly |
+| Kling 2.6 | 5с / 10с | 45–85 / 85–170 | pro |
+| Kling 2.5 Turbo | 5с / 10с | 35 / 65 | pro |
+| Veo 3.1 Quality | 8с | 185 | subscriptionOnly |
+| Veo 3.1 Fast | 8с | 50 | pro |
+
+Динамические цены Kling — через длительность (5с/10с) + звук.
+- Kling 3.0 / 3.0 Pro — звук всегда включён (нет toggle).
+- Kling 2.6 / 2.6 Pro — звук опциональный (toggle в настройках, с/без аудио разная цена).
+- Kling 2.5 Turbo — звука нет.
 
 ### 6.2 Пакеты айкоинов
 
@@ -161,15 +201,18 @@
 
 ### 6.3 Подписки
 
-| План | Цена/мес | Айкоины | Запросы/день | Скидка | Бесплатные модели | Реф. бонус |
-|------|---------|---------|-------------|--------|-------------------|------------|
+| План | Цена/мес | Айкоины/мес | Запросы/день | Скидка | Бесплатные модели | Реф. бонус |
+|------|---------|------------|-------------|--------|-------------------|------------|
 | Free | 0₽ | 20 (единоразово) | 50 | — | — | 15% |
-| Basic | 499₽ | 350 | 100 | 10% | — | 20% |
-| Pro ⭐ | 999₽ | 600 | 150 | 10% | GPT-5 mini, Gemini 2.5 Flash | 25% |
-| Max | 1799₽ | 1200 | 200 | 15% | GPT-5 mini, Gemini 2.5 Flash | 30% |
+| Basic | 499₽ | 300 | 100 | 10% | — | 20% |
+| Pro ⭐ | 999₽ | 550 | 150 | 15% | ChatGPT 5 mini, Gemini 3 Flash, Gemini 2.5 Flash | 25% |
+| Max | 1799₽ | 1200 | 200 | 20% | ChatGPT 5 mini, Gemini 3 Flash, Gemini 2.5 Flash | 30% |
+
+Все новые модели `subscriptionOnly: true` кроме Claude Sonnet 4.6 (доступна всем без подписки).
 
 ### 6.4 Реферальная программа
-Бонус от покупок приглашённых: Free 15%, Basic 20%, Pro 25%, Max 30%. Нарастание +5% с каждым уровнем подписки.
+Бонус от покупок приглашённых: Free 15%, Basic 20%, Pro 25%, Max 30%.
+Система уровней: Bronze (10%), Silver (15%, от 5 рефералов), Gold (20%, от 15), Diamond (25%, от 50).
 
 ---
 
@@ -177,43 +220,64 @@
 
 | Критерий | **Blackmount** | **SyntX.AI** | **Study24.ai** |
 |----------|---------------|-------------|----------------|
-| Моделей | 8 (фокус качество) | 90+ (количество) | 11+ |
-| Текст | ChatGPT 5, Claude 4.5, Gemini 3 | +DeepSeek, Grok | +YandexGPT |
-| Изображения | NanoBanana, Flux | +Midjourney, DALL-E | Midjourney, DALL-E |
-| Видео | Sora 2, Kling 2.6, Veo 3.1 | +Hailuo | Kling, Veo |
+| Моделей | 7 (фокус качество) | 90+ (количество) | 11+ |
+| Текст | ChatGPT 5.4, Claude 4.6, Gemini 3.1 | +DeepSeek, Grok | +YandexGPT |
+| Изображения | NanoBanana 2, Flux | +Midjourney, DALL-E | Midjourney, DALL-E |
+| Видео | Kling 3.0, Veo 3.1 | +Hailuo | Kling, Veo |
 | Арена сравнения | ✅ | ❌ | ❌ |
-| Рейтинг моделей | ✅ (голоса) | ❌ | ❌ |
-| Библиотека промптов | ✅ | ❌ | Шаблоны |
-| База знаний | ✅ | ❌ | Обучающие |
+| Рейтинг моделей | ✅ (голоса + ELO) | ❌ | ❌ |
+| Библиотека промптов | ✅ (30 категорий) | ❌ | Шаблоны |
+| База знаний | ✅ (7 моделей) | ❌ | Обучающие |
 | Мин. подписка | 499₽/мес | ~$15/мес | ~290₽/мес |
 | Telegram-бот | ❌ (v2) | ✅ | ✅ |
 | UX/Дизайн | Премиум тёмная тема | Утилитарный | Стандартный |
 
 ### Уникальные преимущества:
 1. **Арена** — A/B сравнение в реальном времени (нет у конкурентов)
-2. **Рейтинг** — органический лидерборд от голосов
+2. **Рейтинг** — органический лидерборд от голосов (ELO-система)
 3. **1 айкоин = 1₽** — максимально прозрачно
-4. **Премиум UI** — тёмная тема, градиенты, анимации
+4. **Премиум UI** — тёмная тема, градиенты, анимации Framer Motion
 5. **Промпты + база знаний** — обучение работе с AI
+6. **Claude Sonnet 4.6 без подписки** — единственная топовая модель доступна бесплатно
 
 ---
 
 ## 8. План запуска
 
+### Текущий статус (Апрель 2026):
+- [x] Фронтенд готов — 10 страниц, полностью мигрированы с Figma на Next.js 14
+- [x] Моковые данные (Zustand + localStorage)
+- [x] Дизайн-система (Manrope/Maven Pro/Bakbak One, тёмная тема, Framer Motion)
+- [x] Obsidian vault (43 заметки) для управления знаниями
+- [ ] Бэкенд — Supabase Auth, RLS, API Routes
+- [ ] Платежи — ЮKassa интеграция
+- [ ] AI-интеграции — OpenRouter, fal.ai, kie.ai
+
 ### MVP (v1.0) — полный функционал:
-- [x] Авторизация (email + Google)
+- [x] Авторизация UI (email + Google + VK + Telegram)
 - [x] Главная с библиотекой моделей
-- [x] Чат с 8 моделями через OpenRouter
-- [x] Система айкоинов (баланс, списание)
-- [x] Покупка пакетов (ЮKassa)
-- [x] Подписки (Basic/Pro/Max)
-- [x] Арена сравнения моделей
-- [x] Рейтинг моделей
-- [x] Реферальная программа
-- [x] Библиотека промптов
-- [x] База знаний
-- [x] История чатов
-- [x] Профиль + настройки
+- [x] Чат с 7 нейросетями (UI + демо-режим)
+- [x] Система айкоинов (UI баланса, пакеты, PaymentOverlay)
+- [x] Подписки (Basic/Pro/Max) — UI + гейтинг
+- [x] Арена сравнения моделей (2-4 модели)
+- [x] Рейтинг моделей (26 версий, spotlight, radar chart)
+- [x] Реферальная программа (полный UI: уровни, график, список)
+- [x] Библиотека промптов (30 категорий, 18 промптов)
+- [x] База знаний (7 моделей, 3-колоночный layout)
+- [x] История чатов (текст/фото/видео, фильтрация)
+- [x] Профиль + настройки (5 вкладок)
+- [x] Горячие клавиши (Cmd+K, навигация)
+- [x] Уведомления о генерации (toast + badge)
+- [x] Шаринг (Telegram/VK/Reddit + публичная страница)
+- [ ] Supabase Auth (Email/Google/VK/Telegram OAuth)
+- [ ] Supabase RLS + миграции
+- [ ] API Routes + серверная валидация
+- [ ] OpenRouter интеграция (streaming)
+- [ ] fal.ai интеграция (NanoBanana, Flux)
+- [ ] kie.ai интеграция (Kling, Veo)
+- [ ] ЮKassa (пакеты + подписки)
+- [ ] Rate limiting (серверный)
+- [ ] Деплой на Railway
 - **Цель:** 500 регистраций, конверсия > 5%, MRR > 50k₽
 
 ### v2.0 — расширение:
@@ -231,9 +295,11 @@
 |------|------------|---------|-----------|
 | OpenRouter изменит цены | Средняя | Высокое | Прямые API-ключи как fallback |
 | Блокировка OpenRouter в РФ | Низкая | Критическое | Прокси на Railway |
-| Низкая конверсия free→paid | Высокая | Высокое | A/B тесты цен, триалы |
+| Блокировка fal.ai/kie.ai | Низкая | Высокое | Альтернативные провайдеры (Replicate) |
+| Низкая конверсия free→paid | Высокая | Высокое | A/B тесты цен, триалы, Claude Sonnet бесплатно |
 | Конкуренты снизят цены | Высокая | Среднее | Фокус на Арену и рейтинг |
-| DDoS/злоупотребление | Средняя | Среднее | Rate limiting, captcha |
+| DDoS/злоупотребление | Средняя | Среднее | Rate limiting, captcha, серверный лимит |
+| Фарминг айкоинов (мульти-аккаунты) | Высокая | Среднее | Лимит регистраций с IP, email confirmation |
 
 ---
 
@@ -242,43 +308,64 @@
 ### Структура репозитория:
 ```
 blackmount-app/
-├── CLAUDE.md                    # Правила для AI-агентов (≤120 строк)
-├── .cursorrules                 # Правила для Cursor
+├── CLAUDE.md                    # Правила для AI-агентов
 ├── .claude/
-│   ├── agents/                  # Субагенты (database, backend, frontend, qa)
-│   ├── rules/                   # Контекстные правила (glob-привязка)
-│   └── skills/                  # Навыки (implement-feature, create-migration)
+│   └── agents/                  # Субагенты (security, code-quality, testing, payments, frontend)
 ├── docs/
 │   ├── PROJECT_IDEA.md          # Этот документ
-│   └── SPECIFICATION.md         # Техническая спецификация
+│   ├── SPECIFICATION.md         # Техническая спецификация
+│   ├── modules/                 # Документация модулей (16 файлов)
+│   ├── security/                # Безопасность (3 файла)
+│   └── integrations/            # Интеграции (5 файлов: openrouter, fal-ai, kie-ai, supabase, yukassa)
 ├── src/
-│   ├── app/(main)/              # Страницы с sidebar
+│   ├── app/(main)/              # Страницы с sidebar (10 страниц)
 │   ├── app/(auth)/              # Авторизация
-│   ├── app/api/                 # API Routes
-│   ├── components/              # UI, layout, features, shared
-│   ├── lib/                     # Utils, Supabase, assets, constants
-│   ├── stores/                  # Zustand (auth, balance, subscription)
-│   ├── types/                   # TypeScript интерфейсы
-│   └── data/                    # Данные моделей
-├── public/assets/models/        # Изображения моделей
-└── supabase/migrations/         # SQL-миграции
+│   ├── app/api/                 # API Routes (TODO)
+│   ├── app/share/               # Публичная страница шаринга
+│   ├── components/
+│   │   ├── ui/                  # shadcn/ui компоненты
+│   │   ├── layout/              # Sidebar, MobileSidebar, MobileNav
+│   │   ├── features/            # Chat, Home, Arena, Rating, Profile, Subscription,
+│   │   │                        # History, Prompts, Knowledge, Auth, Models
+│   │   └── shared/              # ErrorScreen, MediaViewer, PaymentOverlay,
+│   │                            # SubscriptionGate, AnimatedToggle, ModelIcon
+│   ├── lib/                     # utils, supabase (client/server), assets, constants
+│   ├── stores/                  # Zustand: auth, balance, subscription, favorites,
+│   │                            # generation, chat-sessions, request-limiter, shared, arena-guard
+│   ├── types/                   # TypeScript: models, chat, subscription
+│   └── data/                    # Данные: ai-models, arena-models, leaderboard, trending
+├── public/assets/models/        # Изображения моделей и UI
+├── ../blackmount-vault/         # Obsidian Knowledge Vault (43 заметки)
+└── supabase/migrations/         # SQL-миграции (TODO)
 ```
 
-### Ключевые таблицы:
+### Ключевые таблицы Supabase:
 ```sql
-profiles       (id uuid PK, email, name, avatar_url, referral_code, referred_by, created_at)
+profiles       (id uuid PK, email, name, avatar_url, referral_code, referred_by, is_blocked, created_at)
 balances       (user_id uuid PK, coins int DEFAULT 20, updated_at)
-operations     (id uuid PK, user_id, type, amount, label, model_id, created_at)
-subscriptions  (id uuid PK, user_id, tier, starts_at, expires_at, is_active)
-chat_sessions  (id uuid PK, user_id, model_id, version_id, title, created_at)
+operations     (id uuid PK, user_id, type, amount, label, model_id, version_id, created_at)
+subscriptions  (id uuid PK, user_id, tier, starts_at, expires_at, is_active, auto_renew, created_at)
+chat_sessions  (id uuid PK, user_id, model_id, version_id, title, created_at, updated_at)
 messages       (id uuid PK, session_id, role, content, media_type, media_url, cost_coins, created_at)
-arena_votes    (id uuid PK, user_id, prompt, model_a, model_b, winner, created_at)
-model_ratings  (model_id text PK, wins, losses, elo_score)
+arena_votes    (id uuid PK, user_id, prompt, model_a, response_a, model_b, response_b, winner, created_at)
+model_ratings  (model_id text PK, wins, losses, ties, total_votes, elo_score)
 referrals      (id uuid PK, referrer_id, referred_id, bonus_percent, total_earned, created_at)
+daily_requests (id uuid PK, user_id, date, count)
+favorite_models(user_id, model_id — composite PK)
+shared_items   (id text PK, user_id, type, model_id, prompt, response, media_url, is_active, views_count, created_at)
+security_logs  (id uuid PK, user_id, action, ip_address, details, created_at)
 ```
 
-### AI-пайплайн:
-```
-User → /api/chat → [баланс?] → [лимит?] → [подписка?] → OpenRouter (stream) → UI
-                                                          → [списание] → [операция]
-```
+### Страницы приложения (10):
+| Страница | Путь | Описание |
+|----------|------|----------|
+| Главная | `/` | Библиотека моделей, trending, промпты, новости |
+| Чат | `/chat/[modelId]` | Чат с выбранной моделью (текст/фото/видео) |
+| Арена | `/arena` | A/B сравнение 2-4 моделей |
+| Рейтинг | `/rating` | Лидерборд, spotlight, radar chart, сравнение |
+| Промпты | `/prompts` | 30 категорий, 18+ промптов, фильтрация |
+| База знаний | `/knowledge` | 7 моделей, 3-колоночный layout |
+| История | `/history` | Текст/фото/видео, фильтрация по моделям |
+| Профиль | `/profile` | 5 вкладок: аккаунт, пополнение, реферальная, история операций |
+| Подписки | `/subscription` | 3 плана, сравнительная таблица |
+| Авторизация | `/auth` | Email/Google/VK/Telegram |
