@@ -21,7 +21,6 @@ function formatTime(iso: string): string {
 export function SupportChat({ ticket, onBack }: SupportChatProps) {
   const [input, setInput] = useState('')
   const sendMessage = useSupportStore((s) => s.sendMessage)
-  const closeTicket = useSupportStore((s) => s.closeTicket)
   const bottomRef = useRef<HTMLDivElement>(null)
   const isClosed = ticket.status === 'closed'
 
@@ -47,14 +46,6 @@ export function SupportChat({ ticket, onBack }: SupportChatProps) {
         <div className="flex-1 min-w-0">
           <p className="font-manrope font-semibold text-[14px] text-white truncate">{ticket.subject}</p>
         </div>
-        {!isClosed && (
-          <button
-            onClick={() => closeTicket(ticket.id)}
-            className="text-[12px] text-[rgba(255,255,255,0.3)] hover:text-[rgba(255,255,255,0.5)] font-medium cursor-pointer transition-colors px-[10px] py-[5px] rounded-[8px] hover:bg-[rgba(255,255,255,0.04)]"
-          >
-            Закрыть
-          </button>
-        )}
       </div>
 
       <div className="flex-1 overflow-y-auto px-[16px] py-[16px] flex flex-col gap-[8px]">
@@ -84,7 +75,7 @@ export function SupportChat({ ticket, onBack }: SupportChatProps) {
       <div className="px-[16px] pb-[16px] pt-[8px]">
         {isClosed ? (
           <div className="flex items-center justify-center gap-[6px] h-[46px] rounded-[14px] bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)]">
-            <img src={APP_ASSETS.padlockIcon} alt="" className="size-[14px] object-contain opacity-40" />
+            <img src={APP_ASSETS.padlockIcon} alt="" className="size-[14px] object-contain grayscale opacity-30" />
             <span className="text-[13px] text-[rgba(255,255,255,0.25)] font-medium">Обращение закрыто</span>
           </div>
         ) : (
