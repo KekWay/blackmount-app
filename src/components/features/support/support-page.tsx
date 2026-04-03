@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { MessageCircle } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
 import { APP_ASSETS } from '@/lib/assets'
 import { useSupportStore } from '@/stores/support-store'
@@ -43,7 +42,7 @@ export function SupportPage() {
       <div className="relative flex items-center justify-between px-[16px] md:px-[24px] py-[14px] shrink-0">
         <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[rgba(136,138,229,0.15)] to-transparent" />
         <div className="flex items-center gap-[10px]">
-          <img src={APP_ASSETS.support1} alt="" className="size-[22px] object-contain brightness-0 invert opacity-40" />
+          <img src={APP_ASSETS.logo} alt="" className="size-[22px] object-contain opacity-40" />
           <p className="font-manrope font-semibold text-[20px] text-white">Поддержка</p>
         </div>
         <button
@@ -60,7 +59,6 @@ export function SupportPage() {
           <SupportTicketList tickets={tickets} activeId={activeId} onSelect={handleSelect} onNew={handleNew} />
         </div>
         <div className="flex-1 bg-[#121118] relative">
-          <div className="absolute top-0 right-0 w-[300px] h-[200px] bg-[#888ae5] opacity-[0.03] blur-[120px] pointer-events-none" />
           <AnimatePresence mode="wait">
             <motion.div
               key={view === 'new' ? 'new' : activeId ?? 'empty'}
@@ -108,14 +106,7 @@ export function SupportPage() {
 
 function EmptyState({ onNew }: { onNew: () => void }) {
   return (
-    <div className="flex flex-col items-center justify-center h-full gap-[16px] relative">
-      <div className="absolute top-[30%] left-1/2 -translate-x-1/2 w-[300px] h-[200px] bg-[#888ae5] opacity-[0.04] blur-[100px] pointer-events-none" />
-      <div className="relative">
-        <div className="absolute -inset-[16px] rounded-full opacity-30 blur-[24px]" style={{ background: 'radial-gradient(circle, rgba(136,138,229,0.4), transparent 70%)' }} />
-        <div className="relative size-[52px] flex items-center justify-center rounded-[16px]" style={{ background: 'linear-gradient(135deg, rgba(136,138,229,0.1), rgba(91,91,214,0.06))', border: '1px solid rgba(136,138,229,0.12)' }}>
-          <MessageCircle size={22} className="text-[#888ae5] opacity-60" />
-        </div>
-      </div>
+    <div className="flex flex-col items-center justify-center h-full gap-[16px]">
       <div className="flex flex-col items-center gap-[6px]">
         <p className="text-[15px] text-[rgba(255,255,255,0.4)] font-manrope font-medium">Выберите обращение</p>
         <p className="text-[13px] text-[rgba(255,255,255,0.2)] font-manrope">или создайте новое, чтобы начать</p>

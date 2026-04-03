@@ -53,6 +53,7 @@ export const APP_ASSETS = {
   sendIcon: '/assets/models/send_icon.png',
   support1: '/assets/models/support_1.png',
   arrowIcon: '/assets/models/arrow_icon.png',
+  padlockIcon: '/assets/models/padlock_icon.png',
 } as const
 
 export type ModelId = keyof typeof MODEL_ASSETS
