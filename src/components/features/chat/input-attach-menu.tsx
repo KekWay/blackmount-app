@@ -42,12 +42,12 @@ export function InputAttachMenu({
       transition={{ type: 'spring', damping: 24, stiffness: 400 }}
     >
       <button onClick={onClose} className="flex items-center gap-[10px] w-full px-[14px] py-[9px] transition-colors hover:bg-[rgba(136,138,229,0.08)] cursor-pointer">
-        <img src={APP_ASSETS.photoChat} alt="" className="size-[15px] object-contain opacity-50 shrink-0" />
+        <img src={APP_ASSETS.photoChat} alt="" className="size-[15px] object-contain brightness-0 invert opacity-50 shrink-0" />
         <span className="font-manrope font-medium text-[13px] text-white flex-1 text-left">Прикрепить фото</span>
         <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">3 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>
       </button>
       <button onClick={onClose} className="flex items-center gap-[10px] w-full px-[14px] py-[9px] transition-colors hover:bg-[rgba(136,138,229,0.08)] cursor-pointer">
-        <img src={APP_ASSETS.fileChat} alt="" className="size-[15px] object-contain opacity-50 shrink-0" />
+        <img src={APP_ASSETS.fileChat} alt="" className="size-[15px] object-contain brightness-0 invert opacity-50 shrink-0" />
         <span className="font-manrope font-medium text-[13px] text-white flex-1 text-left">Прикрепить файл</span>
         <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">3 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>
       </button>
@@ -58,7 +58,7 @@ export function InputAttachMenu({
             onClick={() => { setWebSearchActive(!webSearchActive); onClose() }}
             className={`flex items-center gap-[10px] w-full px-[14px] py-[9px] hover:bg-[rgba(136,138,229,0.08)] transition-colors cursor-pointer ${webSearchActive ? 'bg-[rgba(136,138,229,0.12)]' : ''}`}
           >
-            <img src={APP_ASSETS.webpoiskChat} alt="" className={`size-[15px] object-contain shrink-0 ${webSearchActive ? 'opacity-100' : 'opacity-50'}`} style={webSearchActive ? { filter: 'brightness(0) saturate(100%) invert(55%) sepia(50%) saturate(600%) hue-rotate(210deg)' } : undefined} />
+            <img src={APP_ASSETS.webpoiskChat} alt="" className="size-[15px] object-contain shrink-0" style={{ filter: webSearchActive ? 'brightness(0) saturate(100%) invert(55%) sepia(50%) saturate(600%) hue-rotate(210deg)' : 'brightness(0) invert(1) opacity(0.5)' }} />
             <span className="font-manrope font-medium text-[13px] text-white flex-1 text-left">Веб-поиск</span>
             {webSearchActive ? <Check size={12} className="text-[#888ae5] shrink-0" /> : <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">3 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>}
           </button>
@@ -66,7 +66,7 @@ export function InputAttachMenu({
             onClick={() => { setDeepResearchActive(!deepResearchActive); onClose() }}
             className={`flex items-center gap-[10px] w-full px-[14px] py-[9px] hover:bg-[rgba(136,138,229,0.08)] transition-colors cursor-pointer ${deepResearchActive ? 'bg-[rgba(136,138,229,0.12)]' : ''}`}
           >
-            <img src={APP_ASSETS.brainChat} alt="" className={`size-[15px] object-contain shrink-0 ${deepResearchActive ? 'opacity-100' : 'opacity-50'}`} style={deepResearchActive ? { filter: 'brightness(0) saturate(100%) invert(55%) sepia(50%) saturate(600%) hue-rotate(210deg)' } : undefined} />
+            <img src={APP_ASSETS.brainChat} alt="" className="size-[15px] object-contain shrink-0" style={{ filter: deepResearchActive ? 'brightness(0) saturate(100%) invert(55%) sepia(50%) saturate(600%) hue-rotate(210deg)' : 'brightness(0) invert(1) opacity(0.5)' }} />
             <span className="font-manrope font-medium text-[13px] text-white flex-1 text-left">Думать</span>
             {deepResearchActive ? <Check size={12} className="text-[#888ae5] shrink-0" /> : <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">3 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>}
           </button>
