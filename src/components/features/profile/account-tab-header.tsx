@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Pencil } from 'lucide-react'
+import { APP_ASSETS } from '@/lib/assets'
 
 export function AccountTabHeader() {
   const [editing, setEditing] = useState(false)
@@ -24,7 +24,7 @@ export function AccountTabHeader() {
           onClick={() => setEditing(!editing)}
           className="flex items-center gap-[6px] bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.1)] rounded-[10px] px-[14px] py-[8px] cursor-pointer transition-colors"
         >
-          <Pencil size={14} className="text-[rgba(255,255,255,0.5)]" />
+          <img src={APP_ASSETS.pencilIcon} alt="" className="size-[14px] object-contain brightness-0 invert opacity-50" />
           <span className="font-manrope font-medium text-[13px] text-white">{editing ? 'Отмена' : 'Изменить'}</span>
         </button>
       </div>
