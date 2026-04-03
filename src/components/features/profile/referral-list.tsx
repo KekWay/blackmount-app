@@ -78,7 +78,7 @@ function ReferralTransactionsView() {
         >
           <div className="flex items-center gap-[14px]">
             <div className={`rounded-[12px] size-[36px] flex items-center justify-center shrink-0 shadow-sm ${tx.icon === 'bonus' ? 'bg-[#6bc085]/10' : tx.icon === 'withdraw' ? 'bg-[#f87171]/10' : 'bg-[#888ae5]/10'}`}>
-              {tx.icon === 'bonus' ? <img src={APP_ASSETS.wallet3} alt="" className="size-[18px] object-contain" /> : tx.icon === 'withdraw' ? <RussianRuble size={16} className="text-[#f87171]" /> : tx.icon === 'convert' ? <div className="relative size-[18px]"><img src={APP_ASSETS.coinLarge} alt="" className="size-full object-contain brightness-[0.8] sepia hue-rotate-[210deg] saturate-[3]" /></div> : <RussianRuble size={16} className="text-[#888ae5]" />}
+              {tx.icon === 'bonus' ? <img src={APP_ASSETS.wallet3} alt="" className="size-[18px] object-contain brightness-[0.7] sepia hue-rotate-[90deg] saturate-[3]" /> : tx.icon === 'withdraw' ? <RussianRuble size={16} className="text-[#f87171]" /> : tx.icon === 'convert' ? <div className="relative size-[18px]"><img src={APP_ASSETS.coinLarge} alt="" className="size-full object-contain brightness-[0.8] sepia hue-rotate-[210deg] saturate-[3]" /></div> : <RussianRuble size={16} className="text-[#888ae5]" />}
             </div>
             <div>
               <p className="font-manrope font-bold text-[13px] text-white leading-[18px]">{tx.label}</p>

@@ -65,7 +65,7 @@ export function ReferralWithdrawOverlay({ onClose }: { onClose: () => void }) {
               <button onClick={onClose} className="text-[rgba(255,255,255,0.4)] hover:text-white transition-colors cursor-pointer"><X size={18} /></button>
             </div>
             <div className="rounded-[12px] px-[16px] py-[12px] flex items-center gap-[12px] mb-[20px] bg-[rgba(57,55,91,0.4)]">
-              <img src={APP_ASSETS.wallet1} alt="" className="size-[20px] object-contain" />
+              <img src={APP_ASSETS.wallet1} alt="" className="size-[20px] object-contain brightness-0 invert" />
               <div><p className="font-manrope font-normal text-[13px] text-[rgba(255,255,255,0.5)]">Баланс</p><p className="font-manrope font-black text-[18px] text-white">1000{'\u20BD'}</p></div>
             </div>
             <p className="font-manrope font-extrabold text-[15px] text-white mb-[8px]">Введите сумму</p>

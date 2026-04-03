@@ -2,7 +2,8 @@
 
 import { Suspense, useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { LogOut, Users, Clock, Menu, X } from 'lucide-react'
+import { LogOut, Clock, Menu, X } from 'lucide-react'
+import { APP_ASSETS } from '@/lib/assets'
 import { motion, AnimatePresence } from 'motion/react'
 import { useAuthStore } from '@/stores/auth'
 import { SidebarItem, SectionLabel } from '@/components/features/profile/profile-sidebar'
@@ -40,7 +41,7 @@ function ProfileSidebarContent({ activeTab, setActiveTab, router, logout, onClos
       </div>
       <div className="flex flex-col gap-[2px] px-[12px] mt-[20px]">
         <SectionLabel>Финансы</SectionLabel>
-        <SidebarItem icon={<Users size={15} />} label="Реферальная программа" active={activeTab === 'referral'} onClick={() => handleNav(() => setActiveTab('referral'))} />
+        <SidebarItem icon={<img src={APP_ASSETS.referralIcon} alt="" className="size-[15px] object-contain brightness-0 invert" />} label="Реферальная программа" active={activeTab === 'referral'} onClick={() => handleNav(() => setActiveTab('referral'))} />
         <SidebarItem icon={<Clock size={15} />} label="История операций" active={activeTab === 'history'} onClick={() => handleNav(() => setActiveTab('history'))} />
       </div>
       <div className="mt-auto px-[12px] pb-[24px]">
