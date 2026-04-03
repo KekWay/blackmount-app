@@ -41,7 +41,7 @@ function ProfileSidebarContent({ activeTab, setActiveTab, router, logout, onClos
       </div>
       <div className="flex flex-col gap-[2px] px-[12px] mt-[20px]">
         <SectionLabel>Финансы</SectionLabel>
-        <SidebarItem icon={<img src={APP_ASSETS.referralIcon} alt="" className="size-[15px] object-contain brightness-0 invert" />} label="Реферальная программа" active={activeTab === 'referral'} onClick={() => handleNav(() => setActiveTab('referral'))} />
+        <SidebarItem icon={<img src={APP_ASSETS.referralIcon} alt="" className={`size-[15px] object-contain brightness-0 invert transition-opacity ${activeTab === 'referral' ? 'opacity-100' : 'opacity-60'}`} />} label="Реферальная программа" active={activeTab === 'referral'} onClick={() => handleNav(() => setActiveTab('referral'))} />
         <SidebarItem icon={<Clock size={15} />} label="История операций" active={activeTab === 'history'} onClick={() => handleNav(() => setActiveTab('history'))} />
       </div>
       <div className="mt-auto px-[12px] pb-[24px]">

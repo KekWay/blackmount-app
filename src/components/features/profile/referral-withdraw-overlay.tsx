@@ -30,6 +30,9 @@ function isPhoneValid(value: string): boolean {
   return value.replace(/\D/g, '').length === 11
 }
 
+const WITHDRAW_MIN = 500
+const WITHDRAW_BALANCE = 1000
+
 export function ReferralWithdrawOverlay({ onClose }: { onClose: () => void }) {
   const [withdrawDone, setWithdrawDone] = useState(false)
   const [withdrawAmount, setWithdrawAmount] = useState('')
@@ -39,9 +42,14 @@ export function ReferralWithdrawOverlay({ onClose }: { onClose: () => void }) {
   const [withdrawMethod, setWithdrawMethod] = useState<'card' | 'sbp'>('card')
   const router = useRouter()
 
+  const amount = parseFloat(withdrawAmount || '0')
+  const amountTooLow = withdrawAmount.trim() !== '' && amount < WITHDRAW_MIN
+  const amountTooHigh = withdrawAmount.trim() !== '' && amount > WITHDRAW_BALANCE
+
   const isFormValid =
     withdrawAmount.trim() !== '' &&
-    parseFloat(withdrawAmount) >= 500 &&
+    amount >= WITHDRAW_MIN &&
+    amount <= WITHDRAW_BALANCE &&
     withdrawBank.trim() !== '' &&
     (withdrawMethod === 'card' ? isCardValid(withdrawCard) : isPhoneValid(withdrawPhone))
 
@@ -69,7 +77,10 @@ export function ReferralWithdrawOverlay({ onClose }: { onClose: () => void }) {
               <div><p className="font-manrope font-normal text-[13px] text-[rgba(255,255,255,0.5)]">Баланс</p><p className="font-manrope font-black text-[18px] text-white">1000{'\u20BD'}</p></div>
             </div>
             <p className="font-manrope font-extrabold text-[15px] text-white mb-[8px]">Введите сумму</p>
-            <input type="number" value={withdrawAmount} onChange={(e) => setWithdrawAmount(e.target.value)} placeholder="От 500 руб" className="w-full bg-[rgba(57,55,91,0.5)] border-none rounded-[10px] px-[16px] py-[12px] font-manrope font-medium text-[14px] text-white placeholder-[#898787] outline-none transition-colors mb-[18px]" />
+            <input type="number" value={withdrawAmount} onChange={(e) => setWithdrawAmount(e.target.value)} placeholder={`От ${WITHDRAW_MIN} руб`} className={`w-full bg-[rgba(57,55,91,0.5)] border rounded-[10px] px-[16px] py-[12px] font-manrope font-medium text-[14px] text-white placeholder-[#898787] outline-none transition-colors ${amountTooLow || amountTooHigh ? 'border-[#f87171]/50' : 'border-transparent'}`} />
+            {amountTooLow && <p className="font-manrope text-[11px] text-[#f87171] mt-[6px]">Минимальная сумма — {WITHDRAW_MIN}{'\u20BD'}</p>}
+            {amountTooHigh && <p className="font-manrope text-[11px] text-[#f87171] mt-[6px]">Максимальная сумма — {WITHDRAW_BALANCE}{'\u20BD'}</p>}
+            <div className="mb-[18px]" />
             <div className="flex flex-col mb-[18px]">
               <button onClick={() => setWithdrawMethod('card')} className="flex items-center justify-between py-[12px] border-b border-white/5 cursor-pointer">
                 <div className="flex items-center gap-[12px]"><CreditCard size={18} className="text-[rgba(255,255,255,0.5)]" /><span className="font-manrope font-bold text-[14px] text-white">Банковская карта</span></div>
