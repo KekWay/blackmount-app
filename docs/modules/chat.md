@@ -80,6 +80,16 @@ function getApiProvider(modelId: string): 'openrouter' | 'fal' | 'kie' {
 ## UI компоненты (src/components/features/chat/)
 chat-container, chat-header, chat-empty-state, message-list, message-bubble, chat-input, chat-input-actions, chat-attach-menu, model-selector, message-actions, typing-indicator, media-preview
 
+### Рендеринг ответов моделей
+- ✅ Markdown-рендеринг ответов assistant (react-markdown + remark-gfm + rehype-highlight)
+- ✅ Подсветка синтаксиса кода с кастомной тёмной темой
+- ✅ Блоки кода с хедером (язык + кнопка "Копировать")
+- ✅ Поддержка: заголовки, списки, таблицы, цитаты, inline-код, ссылки
+- ✅ Streaming markdown в typewriter (рендерится по мере набора)
+- ✅ Кнопка "Скачать" — экспорт ответа как .md файл
+- ✅ Markdown в арене (voting view, winner card, winner grid)
+- Сообщения пользователя (user) остаются plain text
+
 ## Edge Cases
 - Баланс=0 → PaymentOverlay
 - Лимит запросов → «Лимит исчерпан»

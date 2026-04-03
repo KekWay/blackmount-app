@@ -328,7 +328,8 @@ blackmount-app/
 │   │   ├── features/            # Chat, Home, Arena, Rating, Profile, Subscription,
 │   │   │                        # History, Prompts, Knowledge, Auth, Models, Support
 │   │   └── shared/              # ErrorScreen, MediaViewer, PaymentOverlay,
-│   │                            # SubscriptionGate, AnimatedToggle, ModelIcon
+│   │                            # SubscriptionGate, AnimatedToggle, ModelIcon,
+│   │                            # MarkdownRenderer
 │   ├── lib/                     # utils, supabase (client/server), assets, constants
 │   ├── stores/                  # Zustand: auth, balance, subscription, favorites,
 │   │                            # generation, chat-sessions, request-limiter, shared, arena-guard, support
