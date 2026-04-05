@@ -50,7 +50,7 @@ export function RatingPage() {
       return
     }
     const chatModelId = item.aiModelRef || item.id
-    router.push(`/chat/${chatModelId}`)
+    router.push(`/chat/${chatModelId}?version=${item.id}`)
   }
 
   const filtered = useMemo(() => {
