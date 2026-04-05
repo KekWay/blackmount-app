@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { ArrowRight } from 'lucide-react'
+import Image from 'next/image'
 import { trendingModels } from '@/data/trending'
 import { aiModels } from '@/data/ai-models'
 import { TrendingCard } from './trending-card'
@@ -32,7 +32,7 @@ export function TrendingModels() {
           <span className="text-[12px] md:text-[13px] text-[rgba(255,255,255,0.6)]">
             Смотреть рейтинг
           </span>
-          <ArrowRight size={14} className="text-[rgba(255,255,255,0.4)]" />
+          <Image src="/icons/arrow_right_icon.png" alt="" width={11} height={11} className="brightness-0 invert opacity-40" />
         </button>
       </div>
 
@@ -50,7 +50,7 @@ export function TrendingModels() {
               usage={tm.usage}
               change={tm.change}
               category={m.category}
-              onClick={() => router.push(`/chat/${tm.id}`)}
+              onClick={() => router.push(`/chat/${tm.id}?version=${tm.versionId}`)}
             />
           )
         })}
@@ -70,7 +70,7 @@ export function TrendingModels() {
               usage={tm.usage}
               change={tm.change}
               category={m.category}
-              onClick={() => router.push(`/chat/${tm.id}`)}
+              onClick={() => router.push(`/chat/${tm.id}?version=${tm.versionId}`)}
             />
           )
         })}

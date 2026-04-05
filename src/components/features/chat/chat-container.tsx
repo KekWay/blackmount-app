@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useState, useEffect, useRef } from 'react'
+import { Suspense, useState, useEffect, useRef, useCallback } from 'react'
 import { useParams, useSearchParams } from 'next/navigation'
 import { aiModels } from '@/data/ai-models'
 import { useBalanceStore } from '@/stores/balance'
@@ -53,6 +53,19 @@ function ChatContainerInner() {
   const [showLimitReached, setShowLimitReached] = useState(false)
   const [greeting, setGreeting] = useState(getRandomGreeting)
   const sessionIdRef = useRef<string | null>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [showScrollBtn, setShowScrollBtn] = useState(false)
+
+  const handleScroll = useCallback(() => {
+    const el = scrollRef.current
+    if (!el) return
+    const distanceFromBottom = el.scrollHeight - el.scrollTop - el.clientHeight
+    setShowScrollBtn(distanceFromBottom > 200)
+  }, [])
+
+  const scrollToBottom = useCallback(() => {
+    scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' })
+  }, [])
 
   const balance = useBalanceStore((s) => s.balance)
   const hasSub = useSubscriptionStore((s) => s.hasActiveSubscription())
@@ -115,11 +128,18 @@ function ChatContainerInner() {
     if (raw) { sessionStorage.removeItem('arena_continue'); try { const a = JSON.parse(raw) as { prompt: string; response: string }; if (a.prompt && a.response) setMessages([{ role: 'user', content: a.prompt }, { role: 'assistant', content: a.response }]) } catch { /* empty */ } }
   }, [model.id])
   useEffect(() => {
-    const s = [...model.versions].sort((a, b) => getBasePrice(a.price) - getBasePrice(b.price))
-    setSelectedVersionId(s[0]?.id || null); setWebSearchActive(false); setDeepResearchActive(false)
+    const versionParam = searchParams.get('version')
+    const matchedVersion = versionParam ? model.versions.find((v) => v.id === versionParam) : null
+    if (matchedVersion) {
+      setSelectedVersionId(matchedVersion.id)
+    } else {
+      const s = [...model.versions].sort((a, b) => getBasePrice(a.price) - getBasePrice(b.price))
+      setSelectedVersionId(s[0]?.id || null)
+    }
+    setWebSearchActive(false); setDeepResearchActive(false)
     setIsRecording(false); setSettingsOpen(false)
     setGreeting(getRandomGreeting())
-  }, [model.id])
+  }, [model.id]) // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
     setAudioEnabled(false)
     setQuality('1K')
@@ -148,11 +168,16 @@ function ChatContainerInner() {
         <div className="absolute left-1/2" style={{ top: '38%', transform: 'translateX(-50%) translateY(-50%)', width: '80%', height: '55%', background: `radial-gradient(ellipse 70% 55% at 50% 50%, ${hexToRgba(model.glowColors[0] || '#3e993e', 0.28)} 0%, ${hexToRgba(model.glowColors[1] || model.glowColors[0] || '#3e993e', 0.15)} 30%, ${hexToRgba(model.glowColors[0] || '#3e993e', 0.06)} 55%, transparent 75%)`, filter: 'blur(140px)' }} />
       </div>
       <ChatHeader model={model} selectedVersion={selectedVersion} onSelectVersion={(v: ModelVersion) => setSelectedVersionId(v.id)} hasSub={hasSub} subBannerDismissed={subBannerDismissed} setSubBannerDismissed={setSubBannerDismissed} handleNewChat={actions.handleNewChat} setShareOpen={setShareOpen} settingsOpen={settingsOpen} setSettingsOpen={setSettingsOpen} />
-      <div className="flex-1 flex flex-col items-center relative min-h-0 overflow-y-auto z-[1] chat-scrollbar">
+      <div ref={scrollRef} onScroll={handleScroll} className="flex-1 flex flex-col items-center relative min-h-0 overflow-y-auto z-[1] chat-scrollbar">
         {messages.length === 0 ? (
           <div className="flex-1 flex items-center justify-center px-[16px] md:px-[24px] lg:px-[40px]"><ChatEmptyState model={model} modelLocked={modelLocked} greeting={greeting} /></div>
         ) : (
           <ChatMessages messages={messages} model={model} msgRatings={msgRatings} setMsgRatings={setMsgRatings} setMsgShareIdx={setMsgShareIdx} setViewerMedia={setViewerMedia} setTypingIdx={setTypingIdx} setIsGenerating={setIsGenerating} setMessages={setMessages} setInput={setInput} />
+        )}
+        {showScrollBtn && (
+          <button onClick={scrollToBottom} className="sticky bottom-[16px] mb-[16px] w-[38px] h-[38px] min-w-[38px] min-h-[38px] rounded-full bg-[rgba(61,57,80,0.8)] border border-[rgba(255,255,255,0.08)] backdrop-blur-[12px] flex items-center justify-center cursor-pointer transition-all hover:bg-[rgba(255,255,255,0.1)] shadow-[0_4px_16px_rgba(0,0,0,0.4)] z-[10] shrink-0 aspect-square">
+            <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M8 3v10m0 0l-4-4m4 4l4-4" stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          </button>
         )}
       </div>
       <ChatInput input={input} setInput={setInput} handleSend={actions.handleSend} handleStopGeneration={actions.handleStopGeneration} handleModelSwitch={actions.handleModelSwitch} model={model} isTextModel={isTextModel} isGenerating={isGenerating} isRecording={isRecording} toggleRecording={actions.toggleRecording} cancelRecording={actions.cancelRecording} modelLocked={modelLocked} messagesLength={messages.length} dynamicCost={dynamicCost} webSearchActive={webSearchActive} setWebSearchActive={setWebSearchActive} deepResearchActive={deepResearchActive} setDeepResearchActive={setDeepResearchActive} attachOpen={attachOpen} setAttachOpen={setAttachOpen} />
