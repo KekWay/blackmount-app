@@ -1,7 +1,8 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { X, Zap, Layers } from 'lucide-react'
+import { Zap, Layers } from 'lucide-react'
+import Image from 'next/image'
 import { aiModels } from '@/data/ai-models'
 import { getBasePrice } from '@/types/models'
 import { ModelIcon } from '@/components/shared/model-icon'
@@ -23,9 +24,9 @@ export function AllModelsOverlay({ onClose }: { onClose: () => void }) {
               <p className="text-[14px] text-[rgba(255,255,255,0.5)] font-manrope mt-[4px]">Более 30 передовых ИИ-моделей в одной подписке</p>
             </div>
           </div>
-          <button onClick={onClose} className="size-[44px] rounded-full bg-[rgba(255,255,255,0.05)] flex items-center justify-center hover:bg-[rgba(255,255,255,0.1)] transition-colors cursor-pointer relative z-10"><X size={20} className="text-white" /></button>
+          <button onClick={onClose} className="group size-[44px] rounded-full bg-[rgba(255,255,255,0.05)] flex items-center justify-center hover:bg-[rgba(255,255,255,0.1)] transition-colors cursor-pointer relative z-10"><Image src="/icons/close_icon.png" alt="" width={16} height={16} className="invert opacity-60 group-hover:opacity-100 transition-opacity duration-200" /></button>
         </div>
-        <div className="flex-1 overflow-y-auto p-[32px] [scrollbar-width:none] bg-[#111018]">
+        <div className="flex-1 overflow-y-auto chat-scrollbar p-[32px] bg-[#111018]">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
             {aiModels.map((model) => {
               const catColor = catColors[model.category] || '#888ae5'

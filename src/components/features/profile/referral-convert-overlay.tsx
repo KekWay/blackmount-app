@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { X } from 'lucide-react'
+import Image from 'next/image'
 import { APP_ASSETS } from '@/lib/assets'
 import { motion } from 'motion/react'
 import { IMG_COIN } from './profile-data'
@@ -27,7 +27,7 @@ export function ReferralConvertOverlay({ onClose }: { onClose: () => void }) {
           <div className="px-[32px] py-[32px]">
             <div className="flex items-center justify-between mb-[24px]">
               <p className="font-manrope font-bold text-[22px] text-white">Конвертация в айкоины</p>
-              <button onClick={onClose} className="text-[rgba(255,255,255,0.4)] hover:text-white bg-white/5 hover:bg-white/10 p-[8px] rounded-[10px] transition-colors cursor-pointer"><X size={18} /></button>
+              <button onClick={onClose} className="group bg-white/5 hover:bg-white/10 p-[8px] rounded-[10px] transition-colors cursor-pointer"><Image src="/icons/close_icon.png" alt="" width={10} height={10} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" /></button>
             </div>
             <div className="border border-[#888ae5]/30 bg-[#888ae5]/5 rounded-[16px] px-[20px] py-[16px] flex items-center gap-[16px] mb-[24px]">
               <div className="bg-[#888ae5]/20 p-[10px] rounded-[12px]"><img src={APP_ASSETS.wallet1} alt="" className="size-[20px] object-contain brightness-0 invert" /></div>

@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { ArrowRight } from 'lucide-react'
+import Image from 'next/image'
 import type { DocSection } from './knowledge-types'
 
 interface KnowledgeTocProps {
@@ -53,7 +53,7 @@ export function KnowledgeToc({
           onClick={() => router.push(`/chat/${modelId}`)}
           className="flex items-center gap-[6px] text-[11px] text-[rgba(136,138,229,0.7)] hover:text-[#888ae5] transition-colors cursor-pointer"
         >
-          <ArrowRight size={11} />
+          <Image src="/icons/arrow_right_icon.png" alt="" width={9} height={9} className="[filter:brightness(0)_saturate(100%)_invert(55%)_sepia(50%)_saturate(600%)_hue-rotate(210deg)]" />
           <span>Попробовать {modelName}</span>
         </button>
       </div>

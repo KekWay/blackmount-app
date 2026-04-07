@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Heart, Play } from 'lucide-react'
+import { Play } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useAuthStore } from '@/stores/auth'
 import type { PromptItem } from './prompts-data'
@@ -40,13 +40,13 @@ export function PromptCard({ item, onOpen }: PromptCardProps) {
       {/* Favorite button */}
       <button
         onClick={(e) => { e.stopPropagation(); toggleFav() }}
-        className={`absolute top-[8px] right-[8px] backdrop-blur-[4px] rounded-[8px] size-[30px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all cursor-pointer border ${
+        className={`absolute top-[8px] right-[8px] backdrop-blur-[6px] rounded-[8px] size-[30px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all cursor-pointer border ${
           fav
-            ? 'bg-[rgba(136,138,229,0.25)] border-[rgba(136,138,229,0.4)]'
-            : 'bg-[rgba(0,0,0,0.45)] border-[rgba(255,255,255,0.08)] hover:bg-[rgba(0,0,0,0.65)]'
+            ? 'bg-[#39375b] border-[rgba(136,138,229,0.3)]'
+            : 'bg-[rgba(0,0,0,0.4)] border-[rgba(255,255,255,0.08)] hover:bg-[rgba(136,138,229,0.15)]'
         }`}
       >
-        <Heart size={13} className={fav ? 'text-[#888ae5]' : 'text-white'} fill={fav ? '#888ae5' : 'none'} />
+        <img src="/icons/heart_icon.png" alt="" width={13} height={13} className={`brightness-0 invert transition-all ${fav ? 'opacity-100' : 'opacity-70'}`} />
       </button>
       {/* Play icon for video */}
       {item.type === 'video' && (

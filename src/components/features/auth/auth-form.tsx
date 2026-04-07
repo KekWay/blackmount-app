@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Eye, EyeOff, Check, X } from 'lucide-react'
+import { Eye, EyeOff, Check } from 'lucide-react'
+import Image from 'next/image'
 import { toast } from 'sonner'
 import { motion, AnimatePresence } from 'motion/react'
 import { APP_ASSETS } from '@/lib/assets'
@@ -196,9 +197,9 @@ export function AuthForm() {
                       <p className="font-manrope font-bold text-[16px] text-white">Код приглашения</p>
                       <button
                         onClick={() => setShowReferralInput(false)}
-                        className="size-[28px] rounded-full bg-[rgba(57,55,91,0.6)] flex items-center justify-center cursor-pointer hover:bg-[rgba(57,55,91,0.9)] transition-colors"
+                        className="group size-[28px] rounded-full bg-[rgba(57,55,91,0.6)] flex items-center justify-center cursor-pointer hover:bg-[rgba(57,55,91,0.9)] transition-colors"
                       >
-                        <X size={12} className="text-[rgba(255,255,255,0.5)]" />
+                        <Image src="/icons/close_icon.png" alt="" width={9} height={9} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
                       </button>
                     </div>
                     <div className="px-[20px] pb-[20px]">

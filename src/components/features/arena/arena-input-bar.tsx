@@ -1,7 +1,6 @@
 'use client'
 
 import { useRef, useEffect } from 'react'
-import { ArrowUp } from 'lucide-react'
 import { IMG_COIN } from './arena-data'
 
 interface Props {
@@ -32,7 +31,7 @@ export function ArenaInputBar({ prompt, totalCost, canSend, onPromptChange, onSe
         <div className="bg-[rgba(61,57,80,0.5)] ring-1 ring-[rgba(255,255,255,0.05)] rounded-[30px] w-full flex flex-col relative shadow-lg">
           <textarea
             ref={textareaRef}
-            className="bg-transparent resize-none outline-none leading-[22px] text-[14px] text-white placeholder-[#898787] px-[26px] pt-[18px] pb-[6px] w-full"
+            className="bg-transparent resize-none outline-none leading-[22px] text-[14px] text-white placeholder-[#898787] px-[26px] pt-[18px] pb-[6px] w-full chat-scrollbar"
             placeholder="Напишите запрос для сравнения моделей"
             rows={1}
             value={prompt}
@@ -50,11 +49,11 @@ export function ArenaInputBar({ prompt, totalCost, canSend, onPromptChange, onSe
             <div className="flex items-center gap-[6px]">
               {canSend ? (
                 <button onClick={onSend} className="size-[28px] rounded-full bg-[#888ae5] hover:bg-[#9a9cf0] flex items-center justify-center cursor-pointer transition-colors" title="Отправить">
-                  <ArrowUp size={15} className="text-white" />
+                  <img src="/assets/models/arrow_up.png" alt="" className="size-[11px] object-contain brightness-0 invert" />
                 </button>
               ) : (
                 <div className="size-[28px] rounded-full bg-[rgba(255,255,255,0.06)] flex items-center justify-center">
-                  <ArrowUp size={15} className="text-[rgba(255,255,255,0.15)]" />
+                  <img src="/assets/models/arrow_up.png" alt="" className="size-[11px] object-contain brightness-0 invert opacity-15" />
                 </div>
               )}
             </div>

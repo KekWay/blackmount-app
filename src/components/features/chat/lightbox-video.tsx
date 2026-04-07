@@ -2,7 +2,8 @@
 
 import { useState, useRef } from 'react'
 import { motion } from 'motion/react'
-import { Play, Download } from 'lucide-react'
+import Image from 'next/image'
+import { Play } from 'lucide-react'
 
 interface LightboxVideoProps {
   src: string
@@ -98,9 +99,9 @@ export function LightboxVideo({ src, showControls }: LightboxVideoProps) {
             </div>
             <button
               onClick={() => { const a = document.createElement('a'); a.href = src; a.download = `blackmount-video-${Date.now()}.mp4`; a.click() }}
-              className="text-white/60 hover:text-white cursor-pointer transition-colors"
+              className="group text-white/60 hover:text-white cursor-pointer transition-colors"
             >
-              <Download size={16} />
+              <Image src="/icons/dowland_icon.png" alt="" width={16} height={16} className="brightness-0 invert opacity-80 group-hover:opacity-100 transition-opacity duration-200" />
             </button>
           </div>
         </div>

@@ -1,6 +1,7 @@
 'use client'
 
-import { X, Layers } from 'lucide-react'
+import { Layers } from 'lucide-react'
+import Image from 'next/image'
 import { motion } from 'motion/react'
 import { aiModels } from '@/data/ai-models'
 import { getBasePrice } from '@/types/models'
@@ -43,8 +44,8 @@ function AllModelsHeader({ onClose }: { onClose: () => void }) {
           <p className="text-[11px] text-[rgba(255,255,255,0.35)] font-manrope">{aiModels.length} нейросетей · бесплатные и PRO версии</p>
         </div>
       </div>
-      <button onClick={onClose} className="size-[32px] rounded-full flex items-center justify-center hover:bg-white/10 transition-colors cursor-pointer">
-        <X size={16} className="text-[rgba(255,255,255,0.5)]" />
+      <button onClick={onClose} className="group size-[32px] rounded-full flex items-center justify-center hover:bg-white/10 transition-colors cursor-pointer">
+        <Image src="/icons/close_icon.png" alt="" width={12} height={12} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
       </button>
     </div>
   )

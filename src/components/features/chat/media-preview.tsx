@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { Download, Play, Maximize2 } from 'lucide-react'
+import { Play, Maximize2 } from 'lucide-react'
 
 interface MediaPreviewProps {
   type: 'image' | 'video'
@@ -40,7 +40,7 @@ export function MediaPreview({ type, src, srcs, onOpenFullscreen }: MediaPreview
               onClick={(e) => { e.stopPropagation(); downloadFile(imgSrc, 'image') }}
               className="absolute bottom-1.5 right-1.5 bg-black/50 backdrop-blur-sm rounded-lg size-7 flex items-center justify-center cursor-pointer hover:bg-black/70 transition-colors opacity-0 group-hover:opacity-100"
             >
-              <Download size={12} className="text-white" />
+              <Image src="/icons/dowland_icon.png" alt="" width={12} height={12} className="brightness-0 invert opacity-80" />
             </button>
           </div>
         ))}
@@ -69,7 +69,7 @@ export function MediaPreview({ type, src, srcs, onOpenFullscreen }: MediaPreview
           onClick={(e) => { e.stopPropagation(); downloadFile(src, type) }}
           className="bg-black/50 backdrop-blur-sm rounded-lg size-8 flex items-center justify-center hover:bg-black/70 transition-colors"
         >
-          <Download size={14} className="text-white" />
+          <Image src="/icons/dowland_icon.png" alt="" width={14} height={14} className="brightness-0 invert opacity-80" />
         </button>
         {onOpenFullscreen && (
           <button

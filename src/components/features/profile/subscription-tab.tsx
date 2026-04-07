@@ -1,10 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { Info } from 'lucide-react'
+import Image from 'next/image'
 import { AnimatePresence } from 'motion/react'
 import { useBalanceStore } from '@/stores/balance'
 import { useSubscriptionStore } from '@/stores/subscription'
+import type { SubscriptionTier } from '@/types'
 import { AnimatedToggle } from '@/components/shared/animated-toggle'
 import { PaymentOverlay } from '@/components/shared/payment-overlay'
 import { planFeatures, plansArr, type Plan, type Period } from './profile-data'
@@ -43,8 +44,8 @@ export function SubscriptionTab() {
               size="sm"
             />
           </div>
-          <button onClick={() => setShowPricing(true)} className="flex items-center gap-[6px] text-[rgba(255,255,255,0.4)] hover:text-white transition-colors cursor-pointer text-[13px] font-manrope font-medium">
-            <Info size={14} />
+          <button onClick={() => setShowPricing(true)} className="group flex items-center gap-[6px] text-[rgba(255,255,255,0.4)] hover:text-white transition-colors cursor-pointer text-[13px] font-manrope font-medium">
+            <Image src="/icons/info_icon.png" alt="" width={14} height={14} className="invert opacity-40 group-hover:opacity-70 transition-opacity duration-200" />
             <span>Цены моделей</span>
           </button>
         </div>
@@ -78,8 +79,7 @@ export function SubscriptionTab() {
         onSuccess={() => {
           const expiresAt = new Date()
           expiresAt.setMonth(expiresAt.getMonth() + (period === 'month' ? 1 : 12))
-          const tier = payPlan === 'max' ? 'ultra' as const : 'pro' as const
-          setSubscription(tier, expiresAt.toISOString())
+          setSubscription(payPlan as SubscriptionTier, expiresAt.toISOString())
           addBalance(selectedCoins)
           addOperation('topup', `Подписка ${selectedPlanData.label}: ${selectedCoins} айкоинов`, selectedCoins)
           setShowPayment(false)

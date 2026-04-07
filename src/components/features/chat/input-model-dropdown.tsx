@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
-import { ChevronDown, Check, Lock, Sparkles } from 'lucide-react'
+import { ChevronDown, Check } from 'lucide-react'
 import { getBasePrice } from '@/types/models'
 import { motion } from 'motion/react'
 import { ModelIcon } from '@/components/shared/model-icon'
@@ -79,7 +79,7 @@ export function InputModelDropdown({ currentModel, onSelect }: InputModelDropdow
               </button>
             ))}
           </div>
-          <div className="max-h-[280px] overflow-y-auto">
+          <div className="max-h-[280px] overflow-y-auto chat-scrollbar">
             {filtered.map((m) => {
               const mLocked = useSubscriptionStore.getState().isModelLocked(m.id)
               return (
@@ -92,13 +92,13 @@ export function InputModelDropdown({ currentModel, onSelect }: InputModelDropdow
                   <span className="font-manrope font-medium text-[13px] text-white">{m.name}</span>
                   {mLocked ? (
                     <div className="flex items-center gap-[4px] ml-auto shrink-0">
-                      <Lock size={10} className="text-[rgba(255,255,255,0.35)]" />
+                      <img src="/assets/models/padlock_icon.png" alt="" className="size-[10px] object-contain brightness-0 invert opacity-35" />
                       <div
                         className="flex items-center gap-[3px] px-[7px] py-[2px] rounded-full cursor-pointer hover:brightness-110 transition-all ml-[4px]"
                         style={{ background: 'linear-gradient(135deg, rgba(91,91,214,0.5), rgba(124,92,191,0.5))' }}
                         onClick={(e) => { e.stopPropagation(); window.location.href = '/profile?tab=subscription' }}
                       >
-                        <Sparkles size={8} className="text-white" />
+                        <img src="/assets/models/stars_icon_2.png" alt="" className="size-[8px] object-contain brightness-0 invert" />
                         <span className="font-manrope font-semibold text-[9px] text-white">Подписка</span>
                       </div>
                     </div>

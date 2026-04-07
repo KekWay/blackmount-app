@@ -1,7 +1,8 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { Copy, ThumbsUp, ThumbsDown, Download, Play } from 'lucide-react'
+import Image from 'next/image'
+import { Copy, Play } from 'lucide-react'
 import type { Message } from '@/types'
 
 const imgShareMask = '/assets/models/share-mask.png'
@@ -48,7 +49,7 @@ export function ChatMessageMedia({
                 onClick={(e) => { e.stopPropagation(); const a = document.createElement('a'); a.href = src; a.download = `blackmount-image-${Date.now()}-${imgIdx + 1}.png`; a.click() }}
                 className="absolute bottom-[6px] right-[6px] bg-[rgba(0,0,0,0.5)] backdrop-blur-[4px] rounded-[8px] size-[28px] flex items-center justify-center cursor-pointer hover:bg-[rgba(0,0,0,0.7)] transition-colors"
               >
-                <Download size={12} className="text-white" />
+                <Image src="/icons/dowland_icon.png" alt="" width={12} height={12} className="brightness-0 invert opacity-80" />
               </button>
             </motion.div>
           ))}
@@ -66,11 +67,11 @@ export function ChatMessageMedia({
         </div>
       )}
       <div className="flex items-center gap-[4px] mt-[8px]">
-        <button onClick={() => { navigator.clipboard.writeText(msg.content) }} className="flex items-center gap-[4px] px-[8px] py-[4px] rounded-[8px] text-[11px] text-[rgba(255,255,255,0.3)] hover:text-white hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"><Copy size={11} /> Копировать</button>
-        <button onClick={() => setMsgShareIdx(index)} className="flex items-center gap-[4px] px-[8px] py-[4px] rounded-[8px] text-[11px] text-[rgba(255,255,255,0.3)] hover:text-white hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"><ShareIcon size={11} /> Поделиться</button>
-        <button onClick={() => setMsgRatings(p => ({ ...p, [index]: p[index] === 'up' ? undefined as never : 'up' }))} className={`flex items-center px-[6px] py-[4px] rounded-[8px] text-[11px] transition-all cursor-pointer ${msgRatings[index] === 'up' ? 'text-[#4ade80] bg-[rgba(74,222,128,0.08)]' : 'text-[rgba(255,255,255,0.3)] hover:text-white hover:bg-[rgba(255,255,255,0.06)]'}`}><ThumbsUp size={11} /></button>
-        <button onClick={() => setMsgRatings(p => ({ ...p, [index]: p[index] === 'down' ? undefined as never : 'down' }))} className={`flex items-center px-[6px] py-[4px] rounded-[8px] text-[11px] transition-all cursor-pointer ${msgRatings[index] === 'down' ? 'text-[#f87171] bg-[rgba(248,113,113,0.08)]' : 'text-[rgba(255,255,255,0.3)] hover:text-white hover:bg-[rgba(255,255,255,0.06)]'}`}><ThumbsDown size={11} /></button>
-        <button onClick={() => { const a = document.createElement('a'); a.href = msg.mediaSrc || (msg.mediaSrcs?.[0] ?? ''); a.download = `blackmount-${msg.mediaType}-${Date.now()}.png`; a.click() }} className="flex items-center gap-[4px] px-[8px] py-[4px] rounded-[8px] text-[11px] text-[rgba(255,255,255,0.3)] hover:text-white hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"><Download size={11} /> Сохранить</button>
+        <button onClick={() => { navigator.clipboard.writeText(msg.content) }} title="Копировать" className="group flex items-center px-[6px] py-[4px] rounded-[8px] text-[11px] text-[rgba(255,255,255,0.3)] hover:text-white hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"><Copy size={11} /></button>
+        <button onClick={() => setMsgShareIdx(index)} title="Поделиться" className="group flex items-center px-[6px] py-[4px] rounded-[8px] text-[11px] text-[rgba(255,255,255,0.3)] hover:text-white hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"><ShareIcon size={11} /></button>
+        <button onClick={() => setMsgRatings(p => ({ ...p, [index]: p[index] === 'up' ? undefined as never : 'up' }))} title="Нравится" className={`group flex items-center px-[6px] py-[4px] rounded-[8px] text-[11px] transition-all cursor-pointer ${msgRatings[index] === 'up' ? 'bg-[rgba(74,222,128,0.08)]' : 'hover:bg-[rgba(255,255,255,0.06)]'}`}><Image src="/icons/like_icon.png" alt="" width={11} height={11} className={`transition-all duration-200 ${msgRatings[index] === 'up' ? '[filter:brightness(0)_saturate(100%)_invert(73%)_sepia(57%)_saturate(497%)_hue-rotate(93deg)_brightness(98%)_contrast(92%)]' : 'brightness-0 invert opacity-30 group-hover:opacity-100'}`} /></button>
+        <button onClick={() => setMsgRatings(p => ({ ...p, [index]: p[index] === 'down' ? undefined as never : 'down' }))} title="Не нравится" className={`group flex items-center px-[6px] py-[4px] rounded-[8px] text-[11px] transition-all cursor-pointer ${msgRatings[index] === 'down' ? 'bg-[rgba(248,113,113,0.08)]' : 'hover:bg-[rgba(255,255,255,0.06)]'}`}><Image src="/icons/dislike_icon.png" alt="" width={11} height={11} className={`transition-all duration-200 ${msgRatings[index] === 'down' ? '[filter:brightness(0)_saturate(100%)_invert(56%)_sepia(72%)_saturate(1054%)_hue-rotate(325deg)_brightness(101%)_contrast(94%)]' : 'brightness-0 invert opacity-30 group-hover:opacity-100'}`} /></button>
+        <button onClick={() => { const a = document.createElement('a'); a.href = msg.mediaSrc || (msg.mediaSrcs?.[0] ?? ''); a.download = `blackmount-${msg.mediaType}-${Date.now()}.png`; a.click() }} title="Сохранить" className="group flex items-center px-[6px] py-[4px] rounded-[8px] text-[11px] text-[rgba(255,255,255,0.3)] hover:text-white hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"><Image src="/icons/dowland_icon.png" alt="" width={11} height={11} className="brightness-0 invert opacity-30 group-hover:opacity-100 transition-opacity duration-200" /></button>
       </div>
     </motion.div>
   )

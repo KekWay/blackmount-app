@@ -1,6 +1,6 @@
 'use client'
 
-import { Heart, Download, ArrowUpRight } from 'lucide-react'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { aiModels } from '@/data/ai-models'
 import { useAuthStore } from '@/stores/auth'
@@ -35,7 +35,6 @@ export function PromptDetailActions({ item, selectedModelId, saved, onToggleSave
         }}
         className="w-full bg-[#888ae5] hover:bg-[#9a9cf0] rounded-[12px] py-[12px] flex items-center justify-center gap-[8px] cursor-pointer transition-colors"
       >
-        <ArrowUpRight size={18} className="text-white" />
         <span className="text-[14px] text-white font-semibold">Применить</span>
       </button>
       {/* Save + Download row */}
@@ -48,11 +47,11 @@ export function PromptDetailActions({ item, selectedModelId, saved, onToggleSave
               : 'bg-[rgba(255,255,255,0.04)] border-[rgba(255,255,255,0.06)] hover:bg-[rgba(136,138,229,0.08)] text-white'
           }`}
         >
-          <Heart size={14} fill={saved ? '#888ae5' : 'none'} />
+          <Image src="/icons/heart_icon.png" alt="" width={14} height={14} className={`brightness-0 invert transition-all ${saved ? 'opacity-100' : 'opacity-70'}`} />
           <span className="text-[13px]">{saved ? 'Сохранено' : 'Сохранить'}</span>
         </button>
         <button className="flex-1 flex items-center justify-center gap-[6px] bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(136,138,229,0.08)] border border-[rgba(255,255,255,0.06)] rounded-[10px] py-[10px] transition-colors cursor-pointer">
-          <Download size={14} className="text-white" />
+          <Image src="/icons/dowland_icon.png" alt="" width={14} height={14} className="brightness-0 invert" />
           <span className="text-[13px] text-white">Скачать</span>
         </button>
       </div>

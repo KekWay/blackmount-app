@@ -1,6 +1,6 @@
 'use client'
 
-import { Check, Sparkles } from 'lucide-react'
+import { Check } from 'lucide-react'
 import { motion } from 'motion/react'
 import { toast } from 'sonner'
 import { APP_ASSETS } from '@/lib/assets'
@@ -73,7 +73,7 @@ export function InputAttachMenu({
         </>
       )}
       <button onClick={handleImprovePrompt} className="flex items-center gap-[10px] w-full px-[14px] py-[9px] transition-colors hover:bg-[rgba(136,138,229,0.08)] cursor-pointer">
-        <Sparkles size={15} className="text-[rgba(255,255,255,0.5)] shrink-0" />
+        <img src="/assets/models/Stars_icon.png" alt="" width={15} height={15} className="brightness-0 invert opacity-50 shrink-0" />
         <span className="font-manrope font-medium text-[13px] text-white flex-1 text-left">Улучшить промпт</span>
         <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] flex items-center gap-[3px] shrink-0">1 <img alt="" src={imgXsCoin} className="size-[10px]" /></span>
       </button>

@@ -2,7 +2,8 @@
 
 import { motion } from 'motion/react'
 import type { ArenaModel } from '@/data/arena-models'
-import { IMG_COIN, SVG_VS_PATH } from './arena-data'
+import { useSubscriptionStore } from '@/stores/subscription'
+import { FREE_ARENA_IDS, IMG_COIN, SVG_VS_PATH } from './arena-data'
 import { MIcon } from './arena-micon'
 
 interface Props {
@@ -11,6 +12,8 @@ interface Props {
 }
 
 export function ArenaIdleView({ selectedModels, gridCols }: Props) {
+  const hasSub = useSubscriptionStore((s) => s.hasActiveSubscription())
+
   return (
     <div className="h-full flex flex-col">
       {selectedModels.length === 0 ? (
@@ -23,7 +26,7 @@ export function ArenaIdleView({ selectedModels, gridCols }: Props) {
                 <div className="flex items-center gap-[8px] px-[16px] py-[10px] border-b border-[rgba(255,255,255,0.04)]">
                   <MIcon model={m} size={22} />
                   <span className="text-[13px] text-white font-semibold">{m.name}</span>
-                  <span className="text-[9px] text-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.04)] px-[5px] py-[1px] rounded-[4px]">{m.price}<img alt="" src={IMG_COIN} className="size-[8px] inline ml-[2px]" /></span>
+                  <span className="text-[9px] text-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.04)] px-[5px] py-[1px] rounded-[4px]">{hasSub && FREE_ARENA_IDS.has(m.id) ? 0 : m.price}<img alt="" src={IMG_COIN} className="size-[8px] inline ml-[2px]" /></span>
                 </div>
                 <div className="flex-1 flex items-center justify-center">
                   <p className="text-[12px] text-[rgba(255,255,255,0.12)]">Ожидание промпта...</p>

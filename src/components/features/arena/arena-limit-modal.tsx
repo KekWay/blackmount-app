@@ -1,7 +1,8 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { X, Clock, Sparkles } from 'lucide-react'
+import { Clock } from 'lucide-react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'motion/react'
 import { useSubscriptionStore } from '@/stores/subscription'
 import { useRequestLimiterStore } from '@/stores/request-limiter'
@@ -35,8 +36,8 @@ export function ArenaLimitModal({ open, onClose }: Props) {
           >
             <div className="absolute top-0 left-0 right-0 h-[1px]" style={{ background: 'linear-gradient(90deg, transparent 5%, rgba(136,138,229,0.4) 50%, transparent 95%)' }} />
             <div className="flex justify-end pt-[14px] pr-[14px]">
-              <button onClick={onClose} className="size-[30px] rounded-[10px] bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(136,138,229,0.12)] flex items-center justify-center cursor-pointer transition-colors">
-                <X size={14} className="text-[rgba(255,255,255,0.35)]" />
+              <button onClick={onClose} className="group bg-white/5 hover:bg-white/10 p-[8px] rounded-[10px] transition-colors cursor-pointer">
+                <Image src="/icons/close_icon.png" alt="" width={10} height={10} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
               </button>
             </div>
             <div className="flex flex-col items-center px-[36px] pb-[24px]">
@@ -65,7 +66,7 @@ export function ArenaLimitModal({ open, onClose }: Props) {
                   className="w-full h-[46px] rounded-[12px] cursor-pointer transition-all flex items-center justify-center gap-[8px] hover:brightness-110 active:scale-[0.98]"
                   style={{ background: '#888ae5', boxShadow: '0 2px 12px rgba(136,138,229,0.3), inset 0 1px 0 rgba(255,255,255,0.1)' }}
                 >
-                  <Sparkles size={15} className="text-white" />
+                  <img src="/assets/models/stars_icon_2.png" alt="" className="size-[15px] object-contain brightness-0 invert" />
                   <span className="text-[14px] text-white font-bold">Оформить подписку</span>
                 </button>
               )}

@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { X, Check } from 'lucide-react'
+import { Check } from 'lucide-react'
+import Image from 'next/image'
 import { useSharedStore } from '@/stores/shared'
 
 interface HistoryShareModalProps {
@@ -49,7 +50,7 @@ export function HistoryShareModal({ open, itemTitle, itemModelId, itemModelName,
           <motion.div className="relative bg-[#1a1a22] rounded-[24px] w-[440px] max-w-[90vw] overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.6)]" onClick={(e) => e.stopPropagation()} initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }}>
             <div className="flex items-center justify-between px-[28px] pt-[24px] pb-[16px]">
               <p className="text-[20px] text-white font-extrabold">Поделиться</p>
-              <button onClick={onClose} className="bg-[rgba(255,255,255,0.06)] rounded-[12px] size-[36px] flex items-center justify-center cursor-pointer hover:bg-[rgba(136,138,229,0.1)] transition-colors"><X size={16} className="text-[rgba(255,255,255,0.6)]" /></button>
+              <button onClick={onClose} className="group bg-[rgba(255,255,255,0.06)] rounded-[12px] size-[36px] flex items-center justify-center cursor-pointer hover:bg-[rgba(136,138,229,0.1)] transition-colors"><Image src="/icons/close_icon.png" alt="" width={12} height={12} className="invert opacity-60 group-hover:opacity-100 transition-opacity duration-200" /></button>
             </div>
             <div className="flex items-center justify-center gap-[20px] px-[28px] pb-[28px]">
               <ShareButton

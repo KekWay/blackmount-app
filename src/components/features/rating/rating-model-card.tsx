@@ -4,7 +4,6 @@ import { forwardRef } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import {
   TrendingUp, TrendingDown, ChevronDown,
-  Users,
 } from 'lucide-react'
 import { APP_ASSETS } from '@/lib/assets'
 import type { LeaderboardModel } from '@/data/leaderboard'
@@ -90,7 +89,7 @@ function ModelCardCompact({ item, rank, isTop3, medalColor, expanded, isComparin
           </div>
         </div>
         <div className="hidden lg:flex items-center gap-[6px] ml-[8px] pl-[12px] border-l border-[rgba(255,255,255,0.06)]">
-          <Users size={13} className="text-[#888ae5]" />
+          <img src="/icons/users_icon.png" alt="" width={13} height={13} className="[filter:brightness(0)_saturate(100%)_invert(55%)_sepia(50%)_saturate(600%)_hue-rotate(210deg)]" />
           <span className="text-[12px] text-[#888ae5] font-bold">{item.usagePercent}%</span>
         </div>
       </div>

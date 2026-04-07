@@ -3,7 +3,7 @@
  * Layout: name top-left, users+% top-right, #rank mid-left,
  * model image bottom-right (decorative), trend+% bottom-left.
  */
-import { Users, TrendingUp } from 'lucide-react'
+import { TrendingUp } from 'lucide-react'
 import { ModelIcon } from '@/components/shared/model-icon'
 
 interface TrendingCardProps {
@@ -42,7 +42,7 @@ export function TrendingCard({ modelId, versionLabel, rank, usage, change, onCli
 
       {/* Users icon + usage % — top right */}
       <div className="absolute right-[15px] top-[25px] flex items-center gap-[6px]">
-        <Users size={13} className="shrink-0 text-[#888AE5]" />
+        <img src="/icons/users_icon.png" alt="" width={13} height={13} className="shrink-0 [filter:brightness(0)_saturate(100%)_invert(55%)_sepia(50%)_saturate(600%)_hue-rotate(210deg)]" />
         <span className="font-manrope font-bold text-[12px] text-[#888ae5] leading-[18px] whitespace-nowrap">{usage}%</span>
       </div>
 

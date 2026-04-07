@@ -1,4 +1,5 @@
-import { Info, Layers, Lightbulb, Settings } from 'lucide-react'
+import Image from 'next/image'
+import { Layers, Lightbulb, Settings } from 'lucide-react'
 
 const imgPuzzlesMask = '/assets/models/knowledge-puzzles.png'
 const imgHandMask = '/assets/models/knowledge-hand.png'
@@ -23,7 +24,7 @@ function MaskIcon({ src }: { src: string }) {
 }
 
 export function iconAbout() {
-  return <Info size={15} />
+  return <Image src="/icons/info_icon.png" alt="" width={15} height={15} className="[filter:invert(60%)_sepia(50%)_saturate(500%)_hue-rotate(205deg)_brightness(95%)]" />
 }
 
 export function iconVersions() {

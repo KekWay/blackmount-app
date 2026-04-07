@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { ArrowRight, X } from 'lucide-react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'motion/react'
 
 export function AnnouncementBanner() {
@@ -55,15 +55,15 @@ export function AnnouncementBanner() {
               style={{ background: 'linear-gradient(103.2deg, rgb(101,222,216) 8%, rgb(54,120,117) 100%)' }}
             >
               Попробовать
-              <ArrowRight size={13} />
+              <Image src="/icons/arrow_right_icon.png" alt="" width={10} height={10} className="brightness-0 invert" />
             </button>
 
             <button
               onClick={() => { sessionStorage.setItem('banner-dismissed', 'true'); setDismissed(true) }}
               aria-label="Dismiss announcement"
-              className="shrink-0 size-[28px] rounded-[8px] flex items-center justify-center text-[rgba(255,255,255,0.3)] hover:text-white hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"
+              className="group shrink-0 size-[28px] rounded-[8px] flex items-center justify-center hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"
             >
-              <X size={14} />
+              <Image src="/icons/close_icon.png" alt="" width={10} height={10} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
             </button>
           </div>
         </motion.div>

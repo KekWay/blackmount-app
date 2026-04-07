@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { Zap, ExternalLink } from 'lucide-react'
+import Image from 'next/image'
 
 interface KnowledgeCtaProps {
   modelId: string
@@ -22,9 +22,8 @@ export function KnowledgeCta({ modelId, modelName, glowColor }: KnowledgeCtaProp
         onClick={() => router.push(`/chat/${modelId}`)}
         className="flex items-center gap-[8px] bg-[#888ae5] hover:bg-[#9a9cf0] rounded-[12px] px-[20px] py-[10px] transition-colors cursor-pointer shrink-0"
       >
-        <Zap size={15} className="text-white" />
+        <Image src="/icons/flash_icon.png" alt="" width={15} height={15} className="brightness-0 invert" />
         <span className="text-[13px] text-white font-semibold">Открыть чат</span>
-        <ExternalLink size={12} className="text-white/50" />
       </button>
     </div>
   )

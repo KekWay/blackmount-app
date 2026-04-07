@@ -43,7 +43,7 @@ export function SupportTicketList({ tickets, activeId, onSelect, onNew }: Suppor
           Новое обращение
         </button>
       </div>
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto chat-scrollbar">
         {sorted.length === 0 && (
           <p className="text-[13px] text-[rgba(255,255,255,0.25)] text-center mt-[40px] px-[16px]">Нет обращений</p>
         )}

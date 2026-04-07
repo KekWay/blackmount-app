@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { AnimatePresence } from 'motion/react'
-import { ArrowRight, Heart, Play } from 'lucide-react'
+import { Play } from 'lucide-react'
+import Image from 'next/image'
 import { PromptDetailModal } from '@/components/features/prompts/prompt-detail-modal'
 import type { PromptItem } from '@/components/features/prompts/prompts-data'
 
@@ -47,7 +48,7 @@ export function PromptsPreview() {
           <span className="text-[12px] md:text-[13px] text-[rgba(255,255,255,0.6)]">
             Смотреть все
           </span>
-          <ArrowRight size={14} className="text-[rgba(255,255,255,0.4)]" />
+          <Image src="/icons/arrow_right_icon.png" alt="" width={11} height={11} className="brightness-0 invert opacity-40" />
         </button>
       </div>
 
@@ -66,8 +67,8 @@ export function PromptsPreview() {
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="absolute top-[8px] right-[8px] bg-[rgba(0,0,0,0.45)] backdrop-blur-sm rounded-[8px] w-[28px] h-[28px] md:w-[30px] md:h-[30px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all cursor-pointer hover:bg-[rgba(0,0,0,0.65)]">
-                <Heart size={12} className="text-white" />
+              <div className="absolute top-[8px] right-[8px] bg-[rgba(0,0,0,0.4)] backdrop-blur-[6px] rounded-[8px] w-[28px] h-[28px] md:w-[30px] md:h-[30px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all cursor-pointer border border-[rgba(255,255,255,0.08)] hover:bg-[rgba(136,138,229,0.15)]">
+                <img src="/icons/heart_icon.png" alt="" width={12} height={12} className="brightness-0 invert opacity-70" />
               </div>
               {item.type === 'video' && (
                 <div className="absolute bottom-[8px] left-[8px] bg-[rgba(0,0,0,0.5)] rounded-full w-[24px] h-[24px] md:w-[28px] md:h-[28px] flex items-center justify-center backdrop-blur-sm">

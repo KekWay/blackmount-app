@@ -1,9 +1,7 @@
 'use client'
 
-import {
-  ArrowRight, ThumbsUp,
-  Users, Activity, Info,
-} from 'lucide-react'
+import { Activity } from 'lucide-react'
+import Image from 'next/image'
 import type { LeaderboardModel } from '@/data/leaderboard'
 import { CustomRadar } from './custom-radar'
 import { UserRating } from './user-rating'
@@ -43,7 +41,7 @@ export function ModelCardExpanded({ item, onOpenChat }: { item: LeaderboardModel
         <div className="lg:col-span-5 flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-[6px] mb-[10px]">
-              <Info size={12} className="text-[#888ae5]" />
+              <Image src="/icons/info_icon.png" alt="" width={12} height={12} className="[filter:invert(60%)_sepia(50%)_saturate(500%)_hue-rotate(205deg)_brightness(95%)]" />
               <h4 className="text-[11px] text-white font-bold uppercase tracking-wider">О модели</h4>
             </div>
             <p className="text-[13px] text-[rgba(255,255,255,0.7)] leading-[1.6] mb-[16px]">{item.description}</p>
@@ -52,7 +50,7 @@ export function ModelCardExpanded({ item, onOpenChat }: { item: LeaderboardModel
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-[12px] border-t border-[rgba(255,255,255,0.06)] gap-3 sm:gap-0 mt-auto">
             <div className="flex items-center gap-[16px]">
               <div className="flex items-center gap-[6px]">
-                <Users size={14} className="text-[rgba(255,255,255,0.3)]" />
+                <img src="/icons/users_icon.png" alt="" width={14} height={14} className="[filter:brightness(0)_saturate(100%)_invert(55%)_sepia(50%)_saturate(600%)_hue-rotate(210deg)]" />
                 <div className="flex flex-col">
                   <span className="text-[9px] text-[rgba(255,255,255,0.4)] font-bold uppercase tracking-wider">Аудитория</span>
                   <span className="text-[13px] text-white font-black">{item.usagePercent}%</span>
@@ -60,7 +58,7 @@ export function ModelCardExpanded({ item, onOpenChat }: { item: LeaderboardModel
               </div>
               <div className="w-[1px] h-[24px] bg-[rgba(255,255,255,0.06)]" />
               <div className="flex items-center gap-[6px]">
-                <ThumbsUp size={14} className="text-[rgba(255,255,255,0.3)]" />
+                <Image src="/icons/like_icon.png" alt="" width={14} height={14} className="[filter:brightness(0)_saturate(100%)_invert(55%)_sepia(50%)_saturate(600%)_hue-rotate(210deg)]" />
                 <div className="flex flex-col">
                   <span className="text-[9px] text-[rgba(255,255,255,0.4)] font-bold uppercase tracking-wider">Оценки</span>
                   <span className="text-[13px] text-white font-black">{item.votes.toLocaleString('ru-RU')}</span>
@@ -68,7 +66,7 @@ export function ModelCardExpanded({ item, onOpenChat }: { item: LeaderboardModel
               </div>
             </div>
             <button onClick={(e) => { e.stopPropagation(); onOpenChat(item) }} className="w-full sm:w-auto flex items-center justify-center gap-[6px] px-[20px] py-[10px] rounded-[10px] bg-[#888ae5] hover:bg-[#9a9cf0] text-white text-[13px] font-bold transition-all shadow-[0_4px_12px_rgba(136,138,229,0.3)] hover:shadow-[0_4px_16px_rgba(136,138,229,0.4)]">
-              Попробовать <ArrowRight size={14} />
+              Попробовать <Image src="/icons/arrow_right_icon.png" alt="" width={11} height={11} className="brightness-0 invert" />
             </button>
           </div>
         </div>

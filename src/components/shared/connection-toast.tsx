@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { WifiOff, Wifi, X } from 'lucide-react'
+import { WifiOff, Wifi } from 'lucide-react'
+import Image from 'next/image'
 
 interface ToastItem {
   id: number
@@ -60,8 +61,8 @@ export function ConnectionToastProvider({ children }: { children: React.ReactNod
                 </p>
                 <p className="text-[11px] text-white/45 leading-tight mt-0.5">{toast.message}</p>
               </div>
-              <button onClick={() => removeToast(toast.id)} aria-label="Закрыть" className="shrink-0 size-7 rounded-lg flex items-center justify-center hover:bg-white/[0.08] transition-colors cursor-pointer">
-                <X size={14} className="text-white/40" />
+              <button onClick={() => removeToast(toast.id)} aria-label="Закрыть" className="group shrink-0 size-7 rounded-lg flex items-center justify-center hover:bg-white/[0.08] transition-colors cursor-pointer">
+                <Image src="/icons/close_icon.png" alt="" width={10} height={10} className="invert opacity-40 group-hover:opacity-70 transition-opacity duration-200" />
               </button>
             </div>
           </div>

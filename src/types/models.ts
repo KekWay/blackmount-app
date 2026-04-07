@@ -7,7 +7,7 @@ export interface ModelVersion {
   label: string
   description?: string
   price?: ModelPrice
-  tier: 'free' | 'pro' | 'ultra'
+  tier: 'free' | 'pro' | 'max'
 }
 
 export interface AIModel {

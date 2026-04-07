@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Clock, X } from 'lucide-react'
+import { Clock } from 'lucide-react'
+import Image from 'next/image'
 import { AnimatedToggle } from '@/components/shared/animated-toggle'
 import { useBalanceStore } from '@/stores/balance'
 import { groupByDate, type HistoryItem } from './history-tab-utils'
@@ -69,8 +70,8 @@ export function HistoryTab() {
             className="bg-transparent outline-none font-manrope font-medium text-[13px] text-white placeholder-[#898787] w-full"
           />
           {searchQuery && (
-            <button onClick={() => setSearchQuery('')} className="text-[#898787] hover:text-white cursor-pointer shrink-0 transition-colors">
-              <X size={14} />
+            <button onClick={() => setSearchQuery('')} className="group cursor-pointer shrink-0 transition-colors">
+              <Image src="/icons/close_icon.png" alt="" width={10} height={10} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
             </button>
           )}
         </div>

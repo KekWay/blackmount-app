@@ -1,7 +1,8 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { ChevronLeft, Plus, X, Sparkles } from 'lucide-react'
+import { ChevronLeft } from 'lucide-react'
+import Image from 'next/image'
 import { APP_ASSETS } from '@/lib/assets'
 import { VersionDropdown } from './version-dropdown'
 import type { AIModel, ModelVersion } from '@/types'
@@ -57,14 +58,14 @@ export function ChatHeader({
             className="flex items-center gap-[6px] px-[14px] py-[6px] rounded-full cursor-pointer transition-all hover:brightness-110 group/pill"
             style={{ background: 'linear-gradient(135deg, #5b5bd6, #7c5cbf)', boxShadow: '0 2px 12px rgba(91,91,214,0.35)' }}
           >
-            <Sparkles size={12} className="text-white" />
+            <Image src="/assets/models/stars_icon_2.png" alt="" width={12} height={12} className="brightness-0 invert" />
             <span className="font-manrope font-semibold text-[12px] text-white whitespace-nowrap">Оформить подписку</span>
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); setSubBannerDismissed(true) }}
-            className="ml-[4px] size-[24px] rounded-full flex items-center justify-center cursor-pointer hover:bg-[rgba(255,255,255,0.1)] transition-colors"
+            className="group ml-[4px] size-[24px] rounded-full flex items-center justify-center cursor-pointer hover:bg-[rgba(255,255,255,0.1)] transition-colors"
           >
-            <X size={12} className="text-[rgba(255,255,255,0.4)]" />
+            <Image src="/icons/close_icon.png" alt="" width={9} height={9} className="invert opacity-40 group-hover:opacity-70 transition-opacity duration-200" />
           </button>
         </div>
       )}
@@ -74,7 +75,7 @@ export function ChatHeader({
           onClick={handleNewChat}
           className="flex items-center gap-[6px] cursor-pointer rounded-[12px] px-[14px] py-[7px] transition-all hover:bg-[rgba(136,138,229,0.12)]"
         >
-          <Plus size={14} className="text-[rgba(255,255,255,0.6)]" />
+          <Image src="/icons/plus_icon.png" alt="" width={8} height={8} className="brightness-0 invert opacity-60" />
           <p className="font-manrope font-medium leading-[20px] text-[13px] text-white hidden sm:block">Новый чат</p>
         </button>
         <button

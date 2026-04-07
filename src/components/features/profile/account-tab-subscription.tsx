@@ -1,6 +1,5 @@
 'use client'
 
-import { Sparkles } from 'lucide-react'
 import { useSubscriptionStore } from '@/stores/subscription'
 import { IMG_LOGO } from './profile-data'
 
@@ -19,11 +18,11 @@ export function AccountTabSubscription({ onNavigateSubscription }: { onNavigateS
             <div className="flex items-center gap-[8px]">
               <p className="font-manrope text-[14px] text-white leading-[22px] font-extrabold">BLACK MOUNT</p>
               <div className="h-[14px] rounded-[4px] flex items-center justify-center px-[6px] shrink-0" style={{ backgroundImage: 'linear-gradient(122deg, rgb(171, 135, 228) 18%, rgb(155, 33, 130) 88%)' }}>
-                <span className="font-manrope text-[8px] text-white leading-none tracking-[0.2px] font-extrabold">{subscription.tier === 'ultra' ? 'MAX' : 'PRO'}</span>
+                <span className="font-manrope text-[8px] text-white leading-none tracking-[0.2px] font-extrabold">{subscription.tier === 'max' ? 'MAX' : 'PRO'}</span>
               </div>
             </div>
             <p className="font-manrope font-normal text-[12px] text-[rgba(255,255,255,0.35)] leading-[18px]">
-              Истекает: {subscription.expiresAt ? new Date(subscription.expiresAt).toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' }) : '\u2014'} · {subscription.tier === 'ultra' ? '1 799\u20BD/мес' : '990\u20BD/мес'}
+              Истекает: {subscription.expiresAt ? new Date(subscription.expiresAt).toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' }) : '\u2014'} · {subscription.tier === 'max' ? '1 799\u20BD/мес' : '990\u20BD/мес'}
             </p>
           </div>
         </div>
@@ -68,7 +67,7 @@ export function AccountTabSubscription({ onNavigateSubscription }: { onNavigateS
           onClick={(e) => { e.stopPropagation(); onNavigateSubscription(); }}
           className="bg-[#888ae5] hover:bg-[#9a9cf0] rounded-[12px] px-[20px] h-[40px] flex items-center gap-[8px] shrink-0 cursor-pointer transition-all hover:scale-[1.02] shadow-[0_4px_20px_rgba(136,138,229,0.3)]"
         >
-          <Sparkles size={14} className="text-white" />
+          <img src="/assets/models/stars_icon_2.png" alt="" className="size-[14px] object-contain brightness-0 invert" />
           <p className="font-manrope font-extrabold text-[13px] text-white">Оформить</p>
         </button>
       </div>

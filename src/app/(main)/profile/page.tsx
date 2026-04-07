@@ -2,7 +2,8 @@
 
 import { Suspense, useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { LogOut, Clock, Menu, X } from 'lucide-react'
+import { Clock, Menu } from 'lucide-react'
+import Image from 'next/image'
 import { APP_ASSETS } from '@/lib/assets'
 import { motion, AnimatePresence } from 'motion/react'
 import { useAuthStore } from '@/stores/auth'
@@ -45,7 +46,7 @@ function ProfileSidebarContent({ activeTab, setActiveTab, router, logout, onClos
         <SidebarItem icon={<Clock size={15} />} label="История операций" active={activeTab === 'history'} onClick={() => handleNav(() => setActiveTab('history'))} />
       </div>
       <div className="mt-auto px-[12px] pb-[24px]">
-        <SidebarItem icon={<LogOut size={15} />} label="Выход" onClick={() => handleNav(() => { logout(); router.push('/auth') })} danger />
+        <SidebarItem icon={<img src="/assets/models/logout_icon.png" alt="" width={15} height={15} className="brightness-0 invert opacity-40 group-hover:[filter:brightness(0)_saturate(100%)_invert(50%)_sepia(50%)_saturate(500%)_hue-rotate(330deg)_brightness(90%)] group-hover:opacity-60 transition-all duration-200" />} label="Выход" onClick={() => handleNav(() => { logout(); router.push('/auth') })} danger />
       </div>
     </>
   )
@@ -91,16 +92,16 @@ function ProfilePageContent() {
       >
         <button
           onClick={() => setMobileMenuOpen(false)}
-          className="absolute top-[16px] right-[16px] size-[28px] flex items-center justify-center rounded-[8px] hover:bg-white/[0.06] transition-colors cursor-pointer"
+          className="group absolute top-[16px] right-[16px] size-[28px] flex items-center justify-center rounded-[8px] hover:bg-white/[0.06] transition-colors cursor-pointer"
           aria-label="Закрыть меню"
         >
-          <X size={18} className="text-white/50" />
+          <Image src="/icons/close_icon.png" alt="" width={14} height={14} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
         </button>
         <ProfileSidebarContent activeTab={activeTab} setActiveTab={setActiveTab} router={router} logout={logout} onClose={() => setMobileMenuOpen(false)} />
       </aside>
 
       {/* RIGHT CONTENT */}
-      <div className="flex-1 overflow-y-auto bg-[#121118]">
+      <div className="flex-1 overflow-y-auto chat-scrollbar bg-[#121118]">
         <div className="max-w-[720px] mx-auto px-[16px] md:px-[24px] lg:px-[48px] pt-[24px] md:pt-[32px] pb-[80px] md:pb-[48px]">
           <div className="flex items-center justify-between mb-[24px]">
             <div className="flex items-center gap-[10px]">

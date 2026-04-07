@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
-import { Home, Clock, Image, Trophy, Zap, BookOpen, MessageSquare, User, CreditCard, Plus } from 'lucide-react'
+import { Home, Clock, Image, Trophy, Zap, BookOpen, MessageSquare, User, CreditCard } from 'lucide-react'
 import { aiModels } from '@/data/ai-models'
 
 const isMac = typeof navigator !== 'undefined' && /Mac|iPod|iPhone|iPad/.test(navigator.userAgent)
@@ -38,7 +38,7 @@ export function CommandPalette() {
       id: `model-${m.id}`, label: m.name, description: `Открыть чат с ${m.name}`, icon: <MessageSquare size={16} />,
       action: () => router.push(`/chat/${m.id}`), category: 'models' as const, keywords: [m.name.toLowerCase(), m.id],
     })),
-    { id: 'new-chat', label: 'Новый чат', icon: <Plus size={16} />, action: () => router.push('/'), category: 'actions', keywords: ['new', 'новый'] },
+    { id: 'new-chat', label: 'Новый чат', icon: <img src="/icons/plus_icon.png" alt="" width={16} height={16} className="brightness-0 invert opacity-70" />, action: () => router.push('/'), category: 'actions', keywords: ['new', 'новый'] },
   ], [router])
 
   const { groups, flatList } = useMemo(() => {
@@ -82,7 +82,7 @@ export function CommandPalette() {
           <input ref={inputRef} value={query} onChange={(e) => { setQuery(e.target.value); setSelectedIdx(0) }} onKeyDown={handleKeyDown} placeholder="Поиск команд..." className="flex-1 bg-transparent py-3.5 text-sm text-white placeholder:text-white/30 outline-none" />
           <kbd className="text-[10px] text-white/20 bg-white/[0.06] px-1.5 py-0.5 rounded">{modKey}K</kbd>
         </div>
-        <div className="max-h-[360px] overflow-y-auto py-2">
+        <div className="max-h-[360px] overflow-y-auto chat-scrollbar py-2">
           {flatList.length === 0 && (
             <div className="flex flex-col items-center justify-center py-8 gap-[8px]">
               <img src="/assets/models/search-empty.png" alt="" className="size-[48px] object-contain" style={{ filter: 'brightness(0) invert(1)', opacity: 0.5 }} />

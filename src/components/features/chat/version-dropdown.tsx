@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { ChevronDown, Check, Lock, Sparkles } from 'lucide-react'
+import { ChevronDown, Check } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
 import { ModelIcon } from '@/components/shared/model-icon'
 import { useSubscriptionStore } from '@/stores/subscription'
@@ -65,7 +65,7 @@ export function VersionDropdown({ currentModel, selectedVersion, onSelectVersion
             <div className="px-[14px] py-[6px] border-b border-[rgba(255,255,255,0.06)] mb-[4px]">
               <p className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.3)] uppercase tracking-wider">Выберите модель {currentModel.name}</p>
             </div>
-            <div className="max-h-[200px] overflow-y-auto version-scrollbar">
+            <div className="max-h-[200px] overflow-y-auto chat-scrollbar">
               {currentModel.versions.map((v) => {
                 const vLocked = useSubscriptionStore.getState().isVersionLocked(v.id)
                 const pl = priceLabel(v)
@@ -78,7 +78,7 @@ export function VersionDropdown({ currentModel, selectedVersion, onSelectVersion
                     <div className="flex flex-col items-start flex-1 min-w-0">
                       <div className="flex items-center gap-[6px]">
                         <span className="font-manrope font-medium text-[13px] text-white">{v.label}</span>
-                        {vLocked && <Lock size={10} className="text-[rgba(255,255,255,0.35)]" />}
+                        {vLocked && <img src="/assets/models/padlock_icon.png" alt="" className="size-[10px] object-contain brightness-0 invert opacity-35" />}
                       </div>
                       {v.description && (
                         <span className="font-manrope font-normal text-[11px] text-[rgba(255,255,255,0.3)]">{v.description}</span>
@@ -90,7 +90,7 @@ export function VersionDropdown({ currentModel, selectedVersion, onSelectVersion
                         style={{ background: 'linear-gradient(135deg, rgba(91,91,214,0.5), rgba(124,92,191,0.5))' }}
                         onClick={(e) => { e.stopPropagation(); window.location.href = '/profile?tab=subscription' }}
                       >
-                        <Sparkles size={9} className="text-white" />
+                        <img src="/assets/models/stars_icon_2.png" alt="" className="size-[9px] object-contain brightness-0 invert" />
                         <span className="font-manrope font-semibold text-[9px] text-white whitespace-nowrap">Подписка</span>
                       </div>
                     ) : (

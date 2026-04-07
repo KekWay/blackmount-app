@@ -1,6 +1,6 @@
 'use client'
 
-import { X } from 'lucide-react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'motion/react'
 import { useRouter } from 'next/navigation'
 import { APP_ASSETS } from '@/lib/assets'
@@ -39,8 +39,8 @@ export function SupportChoiceModal({ show, onClose }: SupportChoiceModalProps) {
           >
             <div className="absolute top-0 left-0 right-0 h-[1px]" style={{ background: 'linear-gradient(90deg, transparent 5%, rgba(136,138,229,0.4) 50%, transparent 95%)' }} />
             <div className="flex justify-end pt-[14px] pr-[14px]">
-              <button onClick={onClose} className="size-[30px] rounded-[10px] bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(136,138,229,0.12)] flex items-center justify-center cursor-pointer transition-colors">
-                <X size={14} className="text-[rgba(255,255,255,0.35)]" />
+              <button onClick={onClose} className="group bg-white/5 hover:bg-white/10 p-[8px] rounded-[10px] transition-colors cursor-pointer">
+                <Image src="/icons/close_icon.png" alt="" width={10} height={10} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
               </button>
             </div>
             <div className="flex flex-col items-center px-[36px] pb-[12px]">

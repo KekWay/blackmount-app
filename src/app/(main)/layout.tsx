@@ -4,8 +4,10 @@ import { useState, createContext, useContext } from 'react'
 import { usePathname } from 'next/navigation'
 import { Sidebar } from '@/components/layout/sidebar'
 import { MobileSidebar } from '@/components/layout/mobile-sidebar'
+import { MobileNav } from '@/components/layout/mobile-nav'
 import { GenerationWatcher } from '@/components/shared/generation-watcher'
 import { KeyboardShortcuts } from '@/components/shared/keyboard-shortcuts'
+import { DevPanel } from '@/components/shared/dev-panel'
 
 const SidebarContext = createContext({ collapsed: false, setCollapsed: (_: boolean) => {} })
 export const useSidebarContext = () => useContext(SidebarContext)
@@ -63,13 +65,15 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             </div>
           )}
 
-          <div className={`w-full ${isChat ? 'h-full' : 'h-[calc(100%-60px)]'} overflow-hidden`}>
+          <div className={`w-full ${isChat ? 'h-full' : 'h-[calc(100%-60px)] pb-16'} overflow-hidden`}>
             {children}
           </div>
+          {!isChat && <MobileNav />}
         </div>
       </div>
       <GenerationWatcher />
       <KeyboardShortcuts />
+      <DevPanel />
     </SidebarContext.Provider>
   )
 }

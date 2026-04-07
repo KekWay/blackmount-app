@@ -1,7 +1,8 @@
 'use client'
 
 import { useRef, useEffect } from 'react'
-import { Plus, X } from 'lucide-react'
+import NextImage from 'next/image'
+import { X } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
 import { APP_ASSETS } from '@/lib/assets'
 import { AnimatedPlaceholder } from './animated-placeholder'
@@ -42,6 +43,14 @@ export function ChatInput({
   attachOpen, setAttachOpen,
 }: ChatInputProps) {
   const attachRef = useRef<HTMLDivElement>(null)
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto'
+      textareaRef.current.style.height = Math.min(textareaRef.current.scrollHeight, 120) + 'px'
+    }
+  }, [input])
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -55,15 +64,17 @@ export function ChatInput({
     <div className="flex justify-center pb-[12px] md:pb-[28px] px-[12px] md:px-[24px] lg:px-[40px] shrink-0 relative z-[20]">
       <div className="w-full max-w-[620px] flex flex-col gap-[8px]">
         <div className="bg-[rgba(61,57,80,0.5)] border border-[rgba(40,40,40,0.7)] rounded-[30px] w-full flex flex-col relative">
-          <div className="relative">
+          <div className="relative overflow-hidden rounded-t-[30px]">
             <AnimatedPlaceholder visible={!modelLocked && !input && messagesLength === 0} />
             <textarea
-              className="bg-transparent resize-none outline-none font-manrope font-normal leading-[22px] text-[14px] text-white px-[26px] pt-[18px] pb-[6px] w-full relative z-[1]"
+              ref={textareaRef}
+              className="bg-transparent resize-none outline-none font-manrope font-normal leading-[22px] text-[14px] text-white px-[26px] pt-[18px] pb-[6px] w-full relative z-[1] overflow-y-auto chat-scrollbar"
               placeholder={modelLocked ? 'Модель доступна по подписке PRO' : messagesLength > 0 ? 'Напишите запрос...' : ''}
-              rows={2}
+              rows={1}
               value={input}
               disabled={modelLocked}
               onChange={(e) => setInput(e.target.value)}
+              style={{ minHeight: 44, maxHeight: 120 }}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' && !e.shiftKey && !isGenerating) {
                   e.preventDefault()
@@ -75,8 +86,8 @@ export function ChatInput({
           <div className="flex items-center justify-between px-[22px] pb-[14px] relative z-[1]">
             <div className="flex items-center gap-[8px]">
               <div ref={attachRef} className="relative flex items-center">
-                <button onClick={() => setAttachOpen(!attachOpen)} className="opacity-50 hover:opacity-80 transition-opacity cursor-pointer">
-                  <Plus size={20} className="text-white" />
+                <button onClick={() => setAttachOpen(!attachOpen)} className="size-[34px] rounded-full hover:bg-[rgba(255,255,255,0.08)] flex items-center justify-center cursor-pointer transition-colors">
+                  <NextImage src="/icons/plus_icon.png" alt="" width={16} height={16} className="brightness-0 invert opacity-30" />
                 </button>
                 <AnimatePresence>
                   {attachOpen && (

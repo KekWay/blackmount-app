@@ -1,7 +1,14 @@
 'use client'
 
 import { useState } from 'react'
-import { Heart, X, Play, Share2 } from 'lucide-react'
+import { Play } from 'lucide-react'
+import Image from 'next/image'
+
+const imgShareMask = '/assets/models/share-mask.png'
+
+function ShareIcon({ size, className }: { size: number; className?: string }) {
+  return <div className={className} style={{ width: size, height: size, backgroundColor: 'currentColor', maskImage: `url('${imgShareMask}')`, WebkitMaskImage: `url('${imgShareMask}')`, maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center' }} />
+}
 import { motion } from 'motion/react'
 import { useRouter } from 'next/navigation'
 import { useAuthStore } from '@/stores/auth'
@@ -10,7 +17,6 @@ import type { PromptItem } from './prompts-data'
 import { ShareModal } from './share-modal'
 import { PromptDetailInfo } from './prompt-detail-info'
 import { PromptDetailActions } from './prompt-detail-actions'
-import { Info } from 'lucide-react'
 
 interface PromptDetailModalProps {
   item: PromptItem
@@ -53,7 +59,7 @@ export function PromptDetailModal({ item, onClose }: PromptDetailModalProps) {
       onClick={onClose}
     >
       <motion.div
-        className="flex flex-col md:flex-row gap-[16px] max-w-[1100px] w-[95vw] max-h-[85vh] items-stretch overflow-y-auto md:overflow-visible"
+        className="flex flex-col md:flex-row gap-[16px] max-w-[1100px] w-[95vw] max-h-[85vh] items-stretch overflow-y-auto chat-scrollbar md:overflow-visible"
         initial={{ scale: 0.92, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.92, opacity: 0 }}
@@ -70,16 +76,6 @@ export function PromptDetailModal({ item, onClose }: PromptDetailModalProps) {
               </div>
             </div>
           )}
-          <button
-            onClick={toggleSave}
-            className={`absolute top-[16px] right-[16px] backdrop-blur-[6px] rounded-[10px] size-[38px] flex items-center justify-center cursor-pointer transition-all border ${
-              saved
-                ? 'bg-[#39375b] border-[rgba(136,138,229,0.3)]'
-                : 'bg-[rgba(0,0,0,0.4)] border-[rgba(255,255,255,0.08)] hover:bg-[rgba(136,138,229,0.15)]'
-            }`}
-          >
-            <Heart size={18} className="text-white" fill={saved ? 'white' : 'none'} />
-          </button>
         </div>
 
         {/* Right: Info Panel */}
@@ -87,16 +83,16 @@ export function PromptDetailModal({ item, onClose }: PromptDetailModalProps) {
           {/* Header */}
           <div className="flex items-center justify-between px-[20px] pt-[20px] pb-[14px]">
             <div className="flex items-center gap-[8px]">
-              <Info size={16} className="text-[#888ae5]" />
+              <Image src="/icons/info_icon.png" alt="" width={16} height={16} className="[filter:invert(60%)_sepia(50%)_saturate(500%)_hue-rotate(205deg)_brightness(95%)]" />
               <span className="text-[14px] text-white">Детали промпта</span>
             </div>
             <div className="flex items-center gap-[8px]">
               <button onClick={() => setShareOpen(true)} className="flex items-center gap-[6px] bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(136,138,229,0.08)] rounded-[8px] px-[10px] py-[6px] transition-colors cursor-pointer">
-                <Share2 size={13} className="text-white/50" />
+                <ShareIcon size={13} className="text-[rgba(255,255,255,0.5)]" />
                 <span className="text-[12px] text-[rgba(255,255,255,0.5)]">Поделиться</span>
               </button>
-              <button onClick={onClose} className="bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(136,138,229,0.08)] rounded-[8px] size-[30px] flex items-center justify-center cursor-pointer transition-colors">
-                <X size={14} className="text-[rgba(255,255,255,0.5)]" />
+              <button onClick={onClose} className="group bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(136,138,229,0.08)] rounded-[8px] size-[30px] flex items-center justify-center cursor-pointer transition-colors">
+                <Image src="/icons/close_icon.png" alt="" width={10} height={10} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
               </button>
             </div>
           </div>

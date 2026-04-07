@@ -1,6 +1,6 @@
 'use client'
 
-import { X } from 'lucide-react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'motion/react'
 import type { ArenaModel, ArenaCategory } from '@/data/arena-models'
 import { IMG_COIN } from './arena-data'
@@ -34,7 +34,7 @@ export function ArenaTopBar({ selectedModels, totalCost, currentPrompt, promptOp
             <div className="flex items-center gap-[6px] rounded-[10px] bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.06)] pl-[6px] pr-[8px] py-[4px]">
               <MIcon model={m} size={18} />
               <span className="text-[12px] text-white whitespace-nowrap font-medium">{m.name}</span>
-              {!modelsDisabled && <button onClick={() => onToggle(m)} className="text-[rgba(255,255,255,0.25)] hover:text-white transition-colors cursor-pointer ml-[2px]"><X size={11} /></button>}
+              {!modelsDisabled && <button onClick={() => onToggle(m)} className="group/close transition-colors cursor-pointer ml-[2px]"><Image src="/icons/close_icon.png" alt="" width={8} height={8} className="invert opacity-25 group-hover/close:opacity-60 transition-opacity duration-200" /></button>}
             </div>
           </motion.div>
         ))}

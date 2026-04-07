@@ -18,7 +18,7 @@ export function SidebarItem({
   return (
     <button
       onClick={onClick}
-      className={`flex items-center gap-[10px] w-full px-[14px] py-[10px] rounded-[10px] cursor-pointer transition-colors text-left ${
+      className={`group flex items-center gap-[10px] w-full px-[14px] py-[10px] rounded-[10px] cursor-pointer transition-colors text-left ${
         active
           ? 'bg-[#39375b] text-white'
           : danger

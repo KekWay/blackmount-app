@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowUp, StopCircle } from 'lucide-react'
+import { StopCircle } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
 import { InputModelDropdown } from './input-model-dropdown'
 import type { AIModel } from '@/types'
@@ -70,7 +70,7 @@ export function InputActionButtons({
                 exit={{ scale: 0.6, opacity: 0 }}
                 transition={{ duration: 0.15, ease: 'easeOut' }}
               >
-                <ArrowUp size={15} className="text-white" />
+                <img src="/assets/models/arrow_up.png" alt="" className="size-[11px] object-contain brightness-0 invert" />
               </motion.button>
             ) : isRecording ? (
               <motion.button
@@ -112,7 +112,7 @@ export function InputActionButtons({
           className={`size-[28px] rounded-full flex items-center justify-center cursor-pointer transition-colors ${input.trim() ? 'bg-[#888ae5] hover:bg-[#9a9cf0]' : 'bg-[rgba(255,255,255,0.08)] hover:bg-[rgba(255,255,255,0.12)]'}`}
           title="Отправить"
         >
-          <ArrowUp size={15} className={input.trim() ? 'text-white' : 'text-[rgba(255,255,255,0.4)]'} />
+          <img src="/assets/models/arrow_up.png" alt="" className={`size-[11px] object-contain brightness-0 invert ${input.trim() ? '' : 'opacity-40'}`} />
         </button>
       )}
     </div>

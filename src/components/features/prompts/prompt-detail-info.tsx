@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Copy, Check, ChevronDown, Sparkles } from 'lucide-react'
+import { Copy, Check, ChevronDown } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
 import { copyToClipboard } from '@/lib/utils'
 import { aiModels } from '@/data/ai-models'
@@ -41,7 +41,7 @@ export function PromptDetailInfo({ item, selectedModelId, onSelectModel, onGate 
   }
 
   return (
-    <div className="px-[20px] py-[16px] flex flex-col gap-[14px] flex-1 overflow-y-auto hidden-scrollbar">
+    <div className="px-[20px] py-[16px] flex flex-col gap-[14px] flex-1 overflow-y-auto chat-scrollbar">
       {/* Generated with */}
       <div>
         <p className="text-[11px] text-[rgba(255,255,255,0.3)] uppercase tracking-wider mb-[10px]">Сгенерировано</p>
@@ -121,7 +121,7 @@ export function PromptDetailInfo({ item, selectedModelId, onSelectModel, onGate 
                       <span className="text-[13px] text-white">{m.name}</span>
                       {mLocked ? (
                         <div className="flex items-center gap-[3px] px-[6px] py-[1px] rounded-full ml-auto shrink-0" style={{ background: 'linear-gradient(135deg, rgba(91,91,214,0.5), rgba(124,92,191,0.5))' }}>
-                          <Sparkles size={8} className="text-white" />
+                          <img src="/assets/models/stars_icon_2.png" alt="" className="size-[8px] object-contain brightness-0 invert" />
                           <span className="text-[9px] text-white font-semibold">Подписка</span>
                         </div>
                       ) : (

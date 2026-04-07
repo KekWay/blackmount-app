@@ -2,11 +2,12 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { SubscriptionData, SubscriptionTier } from '@/types'
 
-export const LOCKED_MODEL_IDS = new Set(['veo31'])
+export const LOCKED_MODEL_IDS = new Set<string>([])
 
 export const LOCKED_VERSION_IDS = new Set([
   'gpt-5.4',
   'gpt-5.3',
+  'chatgpt-5.2',
   'claude-opus-4.6',
   'gemini-3.1-pro',
   'nanobanana-2',

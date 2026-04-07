@@ -2,12 +2,12 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import { Check, ChevronDown, Sparkles } from 'lucide-react'
+import { Check, ChevronDown } from 'lucide-react'
 import { motion } from 'motion/react'
 import { TEXT_MODELS, IMAGE_MODELS, VIDEO_MODELS } from '@/data/arena-models'
 import type { ArenaModel, ArenaCategory } from '@/data/arena-models'
 import { useSubscriptionStore } from '@/stores/subscription'
-import { ARENA_LOCKED_IDS, IMG_COIN, IMG_LIGHTNING_MASK } from './arena-data'
+import { ARENA_LOCKED_IDS, FREE_ARENA_IDS, IMG_COIN, IMG_LIGHTNING_MASK } from './arena-data'
 import { MIcon } from './arena-micon'
 
 interface Props {
@@ -68,12 +68,12 @@ export function ArenaModelDropdown({ selectedModels, onToggle, onCategoryChange 
                   <span className="text-[13px] text-white flex-1 text-left truncate font-medium">{m.name}</span>
                   {mLocked ? (
                     <div className="flex items-center gap-[3px] px-[7px] py-[2px] rounded-full shrink-0" style={{ background: 'linear-gradient(135deg, rgba(91,91,214,0.5), rgba(124,92,191,0.5))' }}>
-                      <Sparkles size={8} className="text-white" />
+                      <img src="/assets/models/stars_icon_2.png" alt="" className="size-[8px] object-contain brightness-0 invert" />
                       <span className="text-[9px] text-white font-semibold">Подписка</span>
                     </div>
                   ) : (
                     <>
-                      <span className="text-[11px] text-[rgba(255,255,255,0.35)] shrink-0 font-semibold">{m.price}<img alt="" className="size-[10px] inline ml-[2px]" src={IMG_COIN} /></span>
+                      <span className="text-[11px] text-[rgba(255,255,255,0.35)] shrink-0 font-semibold">{hasSub && FREE_ARENA_IDS.has(m.id) ? 0 : m.price}<img alt="" className="size-[10px] inline ml-[2px]" src={IMG_COIN} /></span>
                       <div className={`size-[16px] rounded-[4px] flex items-center justify-center shrink-0 transition-colors ${sel ? 'bg-[#888ae5] text-white' : 'bg-[rgba(255,255,255,0.06)] text-transparent'}`}><Check size={10} /></div>
                     </>
                   )}

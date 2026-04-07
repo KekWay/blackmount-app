@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { Lock, Sparkles, X } from 'lucide-react'
+import Image from 'next/image'
 
 interface SubscriptionGateModalProps {
   open: boolean
@@ -25,22 +25,21 @@ export function SubscriptionGateModal({ open, onClose, modelName }: Subscription
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
 
         <div className="flex justify-end pt-3.5 pr-3.5">
-          <button onClick={onClose} className="size-[30px] rounded-xl bg-white/[0.04] hover:bg-primary/[0.12] flex items-center justify-center cursor-pointer transition-colors">
-            <X size={14} className="text-white/35" />
+          <button onClick={onClose} className="group bg-white/5 hover:bg-white/10 p-[8px] rounded-[10px] transition-colors cursor-pointer">
+            <Image src="/icons/close_icon.png" alt="" width={10} height={10} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
           </button>
         </div>
 
         <div className="flex flex-col items-center px-9 pb-6">
           <div className="relative mb-5">
-            <div className="absolute -inset-3 rounded-full opacity-40 blur-[20px] bg-[radial-gradient(circle,rgba(136,138,229,0.5),transparent_70%)]" />
             <div className="relative size-[60px] flex items-center justify-center rounded-2xl bg-gradient-to-br from-primary/[0.12] to-[rgba(91,91,214,0.08)] border border-primary/15">
-              <Lock size={24} className="text-primary" />
+              <img src="/assets/models/padlock_icon.png" alt="" className="size-[24px] object-contain [filter:brightness(0)_saturate(100%)_invert(55%)_sepia(50%)_saturate(600%)_hue-rotate(210deg)]" />
             </div>
           </div>
 
           <p className="text-lg text-white font-bold mb-2 text-center">Доступно по подписке</p>
           <p className="text-[13px] text-white/45 text-center leading-5 mb-1">
-            Модель <span className="text-[#c4b5fd] font-semibold">{modelName}</span> доступна только для пользователей с подпиской Pro или Ultra.
+            Модель <span className="text-[#c4b5fd] font-semibold">{modelName}</span> доступна только для пользователей с подпиской Pro или Max.
           </p>
           <p className="text-[11px] text-white/20 text-center leading-[17px]">
             Оформите подписку для доступа ко всем премиум-моделям.
@@ -52,7 +51,6 @@ export function SubscriptionGateModal({ open, onClose, modelName }: Subscription
             onClick={() => { onClose(); router.push('/subscription') }}
             className="w-full h-[46px] rounded-xl bg-primary hover:brightness-110 text-white text-sm font-bold transition-all cursor-pointer flex items-center justify-center gap-2 shadow-[0_2px_12px_rgba(136,138,229,0.3)]"
           >
-            <Sparkles size={15} />
             Оформить подписку
           </button>
           <button

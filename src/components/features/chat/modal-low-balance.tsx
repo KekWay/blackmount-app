@@ -39,7 +39,7 @@ export function ModalLowBalance({ show, onClose, selectedVersion, dynamicCost, b
               </div>
               <p className="font-manrope font-extrabold text-[20px] text-white mb-[6px]">Недостаточно айкоинов</p>
               <p className="font-manrope font-normal text-[13px] text-[rgba(255,255,255,0.45)] text-center leading-[20px] mb-[6px]">
-                Для запроса к <span className="text-white">{selectedVersion.label}</span> нужно <span className="text-white">{dynamicCost}</span> айкоинов.
+                Для запроса к <span className="text-white">{selectedVersion.label}</span> нужно <span className="text-[#c7a82d] font-bold">{dynamicCost}</span> айкоинов.
               </p>
               <p className="font-manrope font-normal text-[13px] text-[rgba(255,255,255,0.45)] text-center leading-[20px]">
                 Ваш баланс: <span className="text-[#c7a82d]">{balance}</span> айкоинов
@@ -51,7 +51,6 @@ export function ModalLowBalance({ show, onClose, selectedVersion, dynamicCost, b
                 className="w-full h-[48px] rounded-[14px] cursor-pointer transition-colors flex items-center justify-center gap-[8px]"
                 style={{ backgroundImage: 'linear-gradient(90deg, rgba(187,170,76,0.5) 0%, rgba(199,168,45,0.8) 50%, rgba(187,170,76,0.5) 100%)' }}
               >
-                <img alt="" src={imgXsCoin} className="size-[18px] object-contain brightness-0 invert" />
                 <span className="font-manrope font-black text-[15px] text-white">Пополнить баланс</span>
               </button>
               <button

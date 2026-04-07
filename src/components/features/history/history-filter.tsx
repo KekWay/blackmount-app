@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { SlidersHorizontal, Check, X } from 'lucide-react'
+import { Check } from 'lucide-react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'motion/react'
 import { ModelIcon } from '@/components/shared/model-icon'
 import type { AIModel } from '@/types/models'
@@ -33,7 +34,7 @@ export function HistoryFilter({ relevantModels, selectedModels, onToggleModel, o
           onClick={() => setFilterOpen(!filterOpen)}
           className={`rounded-[12px] size-[40px] flex items-center justify-center cursor-pointer transition-colors ${hasActiveFilter ? 'bg-[rgba(136,138,229,0.2)]' : 'bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(136,138,229,0.08)]'}`}
         >
-          <SlidersHorizontal size={18} className={hasActiveFilter ? 'text-[#888ae5]' : 'text-[rgba(255,255,255,0.4)]'} />
+          <Image src="/assets/models/filter_icon.png" alt="" width={18} height={18} className={`brightness-0 invert transition-opacity ${hasActiveFilter ? '[filter:brightness(0)_saturate(100%)_invert(55%)_sepia(50%)_saturate(600%)_hue-rotate(210deg)]' : 'opacity-40'}`} />
         </button>
         <AnimatePresence>
           {filterOpen && (
@@ -78,8 +79,8 @@ export function HistoryFilter({ relevantModels, selectedModels, onToggleModel, o
               <div key={modelId} className="flex items-center gap-[5px] bg-[rgba(136,138,229,0.12)] border border-[rgba(136,138,229,0.25)] rounded-[14px] px-[8px] py-[3px]">
                 <ModelIcon modelId={m.id} size={14} />
                 <span className="font-manrope font-medium text-[11px] text-[#b0b2f0]">{m.name}</span>
-                <button onClick={() => onToggleModel(modelId)} className="text-[rgba(176,178,240,0.5)] hover:text-[#b0b2f0] cursor-pointer transition-colors">
-                  <X size={10} />
+                <button onClick={() => onToggleModel(modelId)} className="group cursor-pointer transition-colors">
+                  <Image src="/icons/close_icon.png" alt="" width={7} height={7} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
                 </button>
               </div>
             )

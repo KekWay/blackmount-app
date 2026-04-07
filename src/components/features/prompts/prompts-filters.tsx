@@ -1,7 +1,8 @@
 'use client'
 
 import { useRef, useEffect, useCallback, useState } from 'react'
-import { Star, LayoutGrid, X, ChevronLeft, ChevronRight } from 'lucide-react'
+import { LayoutGrid, ChevronLeft, ChevronRight } from 'lucide-react'
+import Image from 'next/image'
 import { AnimatePresence, motion } from 'motion/react'
 import { aiModels } from '@/data/ai-models'
 import { ModelIcon } from '@/components/shared/model-icon'
@@ -231,10 +232,7 @@ export function PromptsFilters({
                 }`}
               >
                 {isFav && (
-                  <Star
-                    size={12}
-                    fill={isActive ? 'white' : 'none'}
-                  />
+                  <img src="/icons/heart_icon.png" alt="" width={12} height={12} className={`brightness-0 invert transition-opacity ${isActive ? 'opacity-100' : 'opacity-40'}`} />
                 )}
                 {cat.name}
                 {isFav && favCount > 0 && (
@@ -285,7 +283,7 @@ export function PromptsFilters({
 
             {/* Panel */}
             <motion.div
-              className="relative max-w-3xl w-full max-h-[80vh] overflow-y-auto bg-sidebar border border-white/10 rounded-2xl p-6 shadow-2xl [scrollbar-width:none]"
+              className="relative max-w-3xl w-full max-h-[80vh] overflow-y-auto chat-scrollbar bg-sidebar border border-white/10 rounded-2xl p-6 shadow-2xl"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
@@ -298,9 +296,9 @@ export function PromptsFilters({
                 </h2>
                 <button
                   onClick={() => setOverlayOpen(false)}
-                  className="p-1.5 rounded-lg hover:bg-white/10 text-white/50 hover:text-white transition-colors cursor-pointer"
+                  className="group p-1.5 rounded-lg hover:bg-white/10 transition-colors cursor-pointer"
                 >
-                  <X size={18} />
+                  <Image src="/icons/close_icon.png" alt="" width={14} height={14} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
                 </button>
               </div>
 

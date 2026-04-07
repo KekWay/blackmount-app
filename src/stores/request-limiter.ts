@@ -2,8 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { useSubscriptionStore } from './subscription'
 
-const FREE_LIMIT = 2
-const SUB_LIMIT = 50
+const FREE_LIMIT = 50
 
 function todayStr(): string {
   const d = new Date()
@@ -26,8 +25,13 @@ export const useRequestLimiterStore = create<RequestLimiterState>()(
       count: 0,
 
       getDailyLimit: () => {
-        const hasSub = useSubscriptionStore.getState().hasActiveSubscription()
-        return hasSub ? SUB_LIMIT : FREE_LIMIT
+        const tier = useSubscriptionStore.getState().subscription.tier
+        switch (tier) {
+          case 'basic': return 100
+          case 'pro': return 150
+          case 'max': return 200
+          default: return FREE_LIMIT
+        }
       },
 
       getRemainingRequests: () => {

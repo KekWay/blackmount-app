@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { Star, Sparkles } from 'lucide-react'
+import { Sparkles } from 'lucide-react'
 import type { AIModel } from '@/types'
 import { ModelCard } from '@/components/features/models/model-card'
 import { useSubscriptionStore } from '@/stores/subscription'
@@ -24,9 +24,9 @@ export function ModelGrid({ models, activeFilter, searchQuery, onResetFilters }:
         {searchQuery ? (
           <img src="/assets/models/search-empty.png" alt="" className="size-[48px] object-contain" style={{ filter: 'brightness(0) invert(1)', opacity: 0.5 }} />
         ) : (
-          <div className="size-14 rounded-full flex items-center justify-center mb-1 bg-primary/[0.08]">
+          <div className="size-14 flex items-center justify-center mb-1">
             {activeFilter === 'favorites' ? (
-              <Star size={24} className="text-[#f5a623]/50" />
+              <img src="/icons/yellow_star.png" alt="" width={40} height={40} className="opacity-50" />
             ) : (
               <Sparkles size={24} className="text-primary/35" />
             )}

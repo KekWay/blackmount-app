@@ -1,6 +1,6 @@
 'use client'
 
-import { X, Trash2 } from 'lucide-react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'motion/react'
 import { APP_ASSETS } from '@/lib/assets'
 import type { AIModel, ModelVersion } from '@/types'
@@ -63,9 +63,9 @@ export function ChatSettingsPanel({
               <p className="font-manrope font-bold text-[18px] text-white">Настройки модели</p>
               <button
                 onClick={() => setSettingsOpen(false)}
-                className="size-[28px] rounded-full bg-[rgba(57,55,91,0.6)] flex items-center justify-center cursor-pointer hover:bg-[rgba(57,55,91,0.9)] transition-colors"
+                className="group size-[28px] rounded-full bg-[rgba(57,55,91,0.6)] flex items-center justify-center cursor-pointer hover:bg-[rgba(57,55,91,0.9)] transition-colors"
               >
-                <X size={12} className="text-[rgba(255,255,255,0.5)]" />
+                <Image src="/icons/close_icon.png" alt="" width={9} height={9} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
               </button>
             </div>
 
@@ -125,7 +125,7 @@ export function ChatSettingsPanel({
                   onClick={() => { handleNewChat(); setSettingsOpen(false) }}
                   className="flex items-center justify-center gap-[8px] w-full mt-[24px] py-[10px] rounded-[12px] cursor-pointer transition-colors hover:bg-[rgba(189,70,70,0.1)]"
                 >
-                  <Trash2 size={15} className="text-[#bd4646]" />
+                  <Image src="/assets/models/trash_icon.png" alt="" width={15} height={15} className="[filter:brightness(0)_saturate(100%)_invert(38%)_sepia(60%)_saturate(700%)_hue-rotate(330deg)_brightness(90%)]" />
                   <span className="font-manrope font-semibold text-[14px] text-[#bd4646]">удалить чат</span>
                 </button>
               )}

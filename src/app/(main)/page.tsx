@@ -68,7 +68,7 @@ function HomePageContent() {
   }, [])
 
   return (
-    <div className="w-full h-full overflow-y-auto px-[16px] md:px-[24px] lg:px-[40px] pt-[24px] md:pt-[32px] pb-[40px]">
+    <div className="w-full h-full overflow-y-auto chat-scrollbar px-[16px] md:px-[24px] lg:px-[40px] pt-[24px] md:pt-[32px] pb-[40px]">
       {/* Announcement */}
       <AnnouncementBanner />
 

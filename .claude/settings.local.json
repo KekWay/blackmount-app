@@ -4,7 +4,10 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(sed \"s|assets/models/||\")",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "Read(//c/Users/artur/projects/blackmount-vault/sessions/**)",
+      "Read(//c/Users/artur/projects/blackmount-vault/00-home/**)",
+      "Read(//c/Users/artur/projects/blackmount-vault/knowledge/decisions/**)"
     ]
   }
 }

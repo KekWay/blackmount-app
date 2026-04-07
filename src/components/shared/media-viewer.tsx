@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { X, Download, ChevronLeft, ChevronRight, Play } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Play } from 'lucide-react'
 
 interface MediaViewerProps {
   type: 'image' | 'video'
@@ -38,9 +38,9 @@ export function MediaViewer({ type, src, srcs, onClose }: MediaViewerProps) {
       <div className="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
         <button
           onClick={onClose}
-          className="absolute top-[-40px] right-0 bg-white/10 hover:bg-white/20 rounded-full size-8 flex items-center justify-center cursor-pointer transition-colors"
+          className="group absolute top-[-40px] right-0 bg-white/10 hover:bg-white/20 rounded-full size-8 flex items-center justify-center cursor-pointer transition-colors"
         >
-          <X size={16} className="text-white" />
+          <Image src="/icons/close_icon.png" alt="" width={12} height={12} className="invert opacity-60 group-hover:opacity-100 transition-opacity duration-200" />
         </button>
 
         {type === 'video' ? (
@@ -79,7 +79,7 @@ export function MediaViewer({ type, src, srcs, onClose }: MediaViewerProps) {
           onClick={() => downloadFile(type === 'video' ? src : images[currentIdx], type)}
           className="mt-4 flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-sm cursor-pointer transition-colors"
         >
-          <Download size={14} /> Скачать
+          <Image src="/icons/dowland_icon.png" alt="" width={14} height={14} className="brightness-0 invert" /> Скачать
         </button>
       </div>
     </div>

@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { Trash2, Play, ImageIcon } from 'lucide-react'
+import { Play, ImageIcon } from 'lucide-react'
 import { ModelIcon } from '@/components/shared/model-icon'
 import { useAuthStore } from '@/stores/auth'
 import { getModelById } from '@/data/ai-models'
@@ -185,7 +185,7 @@ export function HistoryMediaGrid({
             className="absolute top-[8px] right-[8px] backdrop-blur-[4px] bg-[rgba(0,0,0,0.5)] hover:bg-[rgba(248,113,113,0.3)] rounded-[8px] size-[28px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all cursor-pointer border border-[rgba(255,255,255,0.08)]"
             title="Удалить"
           >
-            <Trash2 size={12} className="text-white/70" />
+            <img src="/assets/models/trash_icon.png" alt="" width={12} height={12} className="brightness-0 invert opacity-70" />
           </button>
         </div>
       ))}

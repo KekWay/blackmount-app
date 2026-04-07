@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { X } from 'lucide-react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'motion/react'
 import { useAuthStore } from '@/stores/auth'
 import { useArenaGuardStore } from '@/stores/arena-guard'
@@ -149,8 +149,8 @@ export function ArenaBattle() {
               >
                 <div className="flex items-center justify-between px-[18px] py-[12px]">
                   <span className="text-[13px] text-[rgba(255,255,255,0.5)] font-medium">Ваш запрос</span>
-                  <button onClick={() => setPromptOpen(false)} className="text-[rgba(255,255,255,0.3)] hover:text-white transition-colors cursor-pointer p-[4px] rounded-[6px] hover:bg-[rgba(255,255,255,0.06)]">
-                    <X size={16} />
+                  <button onClick={() => setPromptOpen(false)} className="group transition-colors cursor-pointer p-[4px] rounded-[6px] hover:bg-[rgba(255,255,255,0.06)]">
+                    <Image src="/icons/close_icon.png" alt="" width={12} height={12} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
                   </button>
                 </div>
                 <div className="flex-1 overflow-y-auto chat-scrollbar px-[18px] py-[14px]">

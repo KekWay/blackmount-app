@@ -17,7 +17,7 @@ export function ArenaInputHints({ selectedModels, canAfford, totalCost, balance 
           <p className="text-[11px] text-[rgba(255,255,255,0.25)] ml-[26px]">Выбери минимум 2 модели</p>
         )}
         {selectedModels.length >= 2 && !canAfford && (
-          <p className="text-[11px] text-[#f87171] ml-[26px]">Недостаточно кредитов (нужно {totalCost}, баланс {balance})</p>
+          <p className="text-[11px] text-[#f87171] ml-[26px]">Недостаточно айкоинов (нужно {totalCost}, баланс {balance})</p>
         )}
       </div>
     </div>

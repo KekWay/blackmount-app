@@ -1,6 +1,6 @@
 'use client'
 
-import { Plus } from 'lucide-react'
+import Image from 'next/image'
 import { useBalanceStore } from '@/stores/balance'
 import { IMG_COIN } from './profile-data'
 
@@ -25,7 +25,7 @@ export function AccountTabBalance({ onNavigateTopup }: { onNavigateTopup: () => 
           backgroundImage: 'linear-gradient(90deg, rgba(187, 170, 76, 0.4) 0%, rgba(187, 170, 76, 0.4) 100%), linear-gradient(35.5611deg, rgba(199, 168, 45, 0.99) 24.316%, rgba(154, 147, 121, 0.99) 91.425%)',
         }}
       >
-        <Plus size={14} className="text-white" />
+        <Image src="/icons/plus_icon.png" alt="" width={14} height={14} className="brightness-0 invert" />
         <p className="font-manrope font-black leading-[22.5px] text-[13px] text-white">Пополнить</p>
       </button>
     </div>

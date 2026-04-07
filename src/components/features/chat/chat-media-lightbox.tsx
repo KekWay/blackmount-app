@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { X } from 'lucide-react'
+import Image from 'next/image'
 import { LightboxVideo } from './lightbox-video'
 import { LightboxImage } from './lightbox-image'
 
@@ -51,8 +51,8 @@ export function ChatMediaLightbox({ media, onClose }: ChatMediaLightboxProps) {
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
           onClick={e => e.stopPropagation()}
         >
-          <button onClick={onClose} className="absolute top-[-40px] right-0 bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.2)] rounded-full size-[32px] flex items-center justify-center cursor-pointer transition-colors z-10">
-            <X size={16} className="text-white" />
+          <button onClick={onClose} className="group absolute top-[-40px] right-0 bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.2)] rounded-full size-[32px] flex items-center justify-center cursor-pointer transition-colors z-10">
+            <Image src="/icons/close_icon.png" alt="" width={12} height={12} className="invert opacity-60 group-hover:opacity-100 transition-opacity duration-200" />
           </button>
 
           {isVideo ? (

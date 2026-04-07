@@ -48,7 +48,7 @@ export function SupportChat({ ticket, onBack }: SupportChatProps) {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-[16px] py-[16px] flex flex-col gap-[8px]">
+      <div className="flex-1 overflow-y-auto chat-scrollbar px-[16px] py-[16px] flex flex-col gap-[8px]">
         {ticket.messages.map((m, i) => (
           <motion.div
             key={m.id}
@@ -79,21 +79,24 @@ export function SupportChat({ ticket, onBack }: SupportChatProps) {
             <span className="text-[13px] text-[rgba(255,255,255,0.25)] font-medium">Обращение закрыто</span>
           </div>
         ) : (
-          <div className="flex items-center gap-[8px] bg-[rgba(61,57,80,0.5)] border border-[rgba(40,40,40,0.7)] rounded-[16px] px-[14px] py-[10px]">
-            <input
-              className="flex-1 bg-transparent outline-none font-manrope text-[13px] text-white placeholder:text-[rgba(255,255,255,0.2)]"
+          <div className="flex flex-col bg-[rgba(61,57,80,0.5)] border border-[rgba(40,40,40,0.7)] rounded-[16px] px-[14px] py-[10px]">
+            <textarea
+              className="w-full bg-transparent outline-none font-manrope text-[13px] text-white placeholder:text-[rgba(255,255,255,0.2)] resize-none max-h-[150px] overflow-y-auto chat-scrollbar leading-[20px]"
               placeholder="Напишите сообщение..."
+              rows={1}
               value={input}
-              onChange={(e) => setInput(e.target.value)}
+              onChange={(e) => { setInput(e.target.value); e.target.style.height = 'auto'; e.target.style.height = `${Math.min(e.target.scrollHeight, 150)}px` }}
               onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend() } }}
             />
-            <button
-              onClick={handleSend}
-              disabled={!input.trim()}
-              className="size-[32px] rounded-[10px] bg-[#888ae5] hover:brightness-110 flex items-center justify-center cursor-pointer transition-all disabled:opacity-30 disabled:cursor-default shrink-0"
-            >
-              <img src={APP_ASSETS.sendIcon} alt="" className="size-[14px] object-contain brightness-0 invert" />
-            </button>
+            <div className="flex justify-end mt-[8px]">
+              <button
+                onClick={handleSend}
+                disabled={!input.trim()}
+                className="size-[32px] rounded-[10px] bg-[#888ae5] hover:brightness-110 flex items-center justify-center cursor-pointer transition-all disabled:opacity-30 disabled:cursor-default shrink-0"
+              >
+                <img src={APP_ASSETS.sendIcon} alt="" className="size-[14px] object-contain brightness-0 invert" />
+              </button>
+            </div>
           </div>
         )}
       </div>

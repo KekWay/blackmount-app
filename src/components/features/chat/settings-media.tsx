@@ -1,6 +1,7 @@
 'use client'
 
-import { ChevronDown, Plus, Minus } from 'lucide-react'
+import Image from 'next/image'
+import { ChevronDown, Minus } from 'lucide-react'
 import type { AIModel, ModelVersion } from '@/types'
 import { hasAudioPricing } from '@/types/models'
 
@@ -55,7 +56,7 @@ export function SettingsImage({ aspectRatio, setAspectRatio, quality, setQuality
           </button>
           <span className="flex-1 text-center font-manrope font-medium text-[14px] text-white">1/{imageCount}</span>
           <button onClick={() => setImageCount(Math.min(4, imageCount + 1))} className="size-[28px] rounded-[7px] flex items-center justify-center cursor-pointer hover:bg-[rgba(255,255,255,0.08)] transition-colors">
-            <Plus size={14} className="text-white" />
+            <Image src="/icons/plus_icon.png" alt="" width={14} height={14} className="brightness-0 invert" />
           </button>
         </div>
       </div>

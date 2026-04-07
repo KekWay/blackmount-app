@@ -1,7 +1,6 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { Lock, Sparkles } from 'lucide-react'
 import type { AIModel } from '@/types'
 
 interface ChatEmptyStateProps {
@@ -17,7 +16,7 @@ export function ChatEmptyState({ model, modelLocked, greeting }: ChatEmptyStateP
     return (
       <div className="flex flex-col items-center gap-[16px] text-center">
         <div className="size-[56px] rounded-full flex items-center justify-center bg-[rgba(136,138,229,0.12)]">
-          <Lock size={24} className="text-[#a8a9f0]" />
+          <img src="/assets/models/padlock_icon.png" alt="" className="size-[24px] object-contain [filter:brightness(0)_saturate(100%)_invert(55%)_sepia(50%)_saturate(600%)_hue-rotate(210deg)]" />
         </div>
         <div className="flex flex-col gap-[6px]">
           <p className="font-manrope font-semibold text-[18px] text-white">{model.name} доступна по подписке</p>
@@ -28,7 +27,7 @@ export function ChatEmptyState({ model, modelLocked, greeting }: ChatEmptyStateP
           className="flex items-center gap-[8px] px-[20px] py-[10px] rounded-[12px] cursor-pointer transition-all hover:opacity-90"
           style={{ background: 'linear-gradient(135deg, rgba(136,138,229,0.3), rgba(168,90,220,0.3))', border: '1px solid rgba(136,138,229,0.25)' }}
         >
-          <Sparkles size={14} className="text-[#c4b5fd]" />
+          <img src="/assets/models/stars_icon_2.png" alt="" width={14} height={14} className="[filter:brightness(0)_saturate(100%)_invert(75%)_sepia(20%)_saturate(500%)_hue-rotate(220deg)]" />
           <span className="font-manrope font-semibold text-[13px] text-[#c4b5fd]">Оформить подписку</span>
         </button>
       </div>

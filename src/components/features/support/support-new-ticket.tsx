@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { APP_ASSETS } from '@/lib/assets'
 import { useSupportStore, type TicketCategory } from '@/stores/support-store'
 
@@ -21,6 +21,14 @@ export function SupportNewTicket({ onCreated, onBack }: SupportNewTicketProps) {
   const [message, setMessage] = useState('')
   const [category, setCategory] = useState<TicketCategory>('general')
   const createTicket = useSupportStore((s) => s.createTicket)
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
+
+  const handleMessageChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setMessage(e.target.value)
+    const ta = e.target
+    ta.style.height = 'auto'
+    ta.style.height = `${ta.scrollHeight}px`
+  }, [])
 
   const canSubmit = subject.trim().length > 0 && message.trim().length > 0
 
@@ -39,7 +47,7 @@ export function SupportNewTicket({ onCreated, onBack }: SupportNewTicketProps) {
         <p className="font-manrope font-semibold text-[15px] text-white">Новое обращение</p>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-[16px] py-[20px] flex flex-col gap-[16px]">
+      <div className="flex-1 overflow-y-auto chat-scrollbar px-[16px] py-[20px] flex flex-col gap-[16px]">
         <div className="flex flex-col gap-[6px]">
           <label className="font-manrope text-[12px] text-[rgba(255,255,255,0.35)] font-medium">Категория</label>
           <div className="flex flex-wrap gap-[8px]">
@@ -72,11 +80,12 @@ export function SupportNewTicket({ onCreated, onBack }: SupportNewTicketProps) {
         <div className="flex flex-col gap-[6px]">
           <label className="font-manrope text-[12px] text-[rgba(255,255,255,0.35)] font-medium">Сообщение</label>
           <textarea
-            className="bg-[rgba(61,57,80,0.5)] border border-[rgba(40,40,40,0.7)] rounded-[12px] px-[14px] py-[10px] font-manrope text-[13px] text-white outline-none resize-none placeholder:text-[rgba(255,255,255,0.2)] min-h-[120px]"
+            ref={textareaRef}
+            className="bg-[rgba(61,57,80,0.5)] border border-[rgba(40,40,40,0.7)] rounded-[12px] px-[14px] py-[10px] font-manrope text-[13px] text-white outline-none resize-none placeholder:text-[rgba(255,255,255,0.2)] min-h-[120px] max-h-[300px]"
             placeholder="Подробно опишите вашу проблему или вопрос"
             rows={5}
             value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={handleMessageChange}
           />
         </div>
       </div>

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
-import { ChevronDown, Check, Lock, Sparkles } from 'lucide-react'
+import { ChevronDown, Check } from 'lucide-react'
 import { getBasePrice } from '@/types/models'
 import type { AIModel, ModelVersion } from '@/types'
 import { MODEL_ASSETS } from '@/lib/assets'
@@ -78,7 +78,7 @@ export function ModelSelector({ model, selectedVersion, onSelectVersion }: Model
                 <div className="flex flex-col items-start flex-1 min-w-0">
                   <div className="flex items-center gap-1.5">
                     <span className="text-[13px] text-white font-medium">{v.label}</span>
-                    {locked && <Lock size={10} className="text-white/35" />}
+                    {locked && <img src="/assets/models/padlock_icon.png" alt="" className="size-[10px] object-contain brightness-0 invert opacity-35" />}
                   </div>
                   {v.description && (
                     <span className="text-[11px] text-white/30">{v.description}</span>
@@ -86,7 +86,7 @@ export function ModelSelector({ model, selectedVersion, onSelectVersion }: Model
                 </div>
                 {locked ? (
                   <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-gradient-to-r from-[rgba(91,91,214,0.5)] to-[rgba(124,92,191,0.5)] shrink-0">
-                    <Sparkles size={9} className="text-white" />
+                    <img src="/assets/models/stars_icon_2.png" alt="" className="size-[9px] object-contain brightness-0 invert" />
                     <span className="text-[9px] text-white font-semibold">Подписка</span>
                   </div>
                 ) : (

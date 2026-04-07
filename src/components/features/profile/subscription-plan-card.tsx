@@ -1,6 +1,7 @@
 'use client'
 
-import { Crown, Info } from 'lucide-react'
+import Image from 'next/image'
+import { Crown } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
 import { planFeatures, featureIconMap, IMG_COIN, IMG_BULLET_ICON, IMG_CHATGPT_COLOR, IMG_CLAUDE_COLOR, IMG_GEMINI_COLOR, IMG_FLUX_COLOR, type Period } from './profile-data'
 import { plansArr } from './profile-data'
@@ -128,7 +129,7 @@ function PlanFeaturesList({ features, onShowModels }: { features: typeof planFea
                   ))}
                 </div>
                 <button onClick={(e) => { e.stopPropagation(); onShowModels(); }} className="ml-[4px] size-[24px] rounded-full flex items-center justify-center bg-[#888ae5]/15 hover:bg-[#888ae5]/30 transition-colors cursor-pointer border border-[#888ae5]/25" title="Смотреть все модели">
-                  <Info size={13} className="text-[#888ae5]" />
+                  <Image src="/icons/info_icon.png" alt="" width={13} height={13} className="[filter:invert(60%)_sepia(50%)_saturate(500%)_hue-rotate(205deg)_brightness(95%)]" />
                 </button>
               </div>
             )}

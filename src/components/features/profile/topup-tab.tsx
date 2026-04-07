@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { Info, Star } from 'lucide-react'
+import NextImage from 'next/image'
+import { Star } from 'lucide-react'
 import { useBalanceStore } from '@/stores/balance'
 import { PaymentOverlay } from '@/components/shared/payment-overlay'
 import { packages, IMG_COIN } from './profile-data'
@@ -24,8 +25,8 @@ export function TopupTab() {
       <div className="flex flex-col gap-[12px]">
         <div className="flex items-center justify-between mb-[2px]">
           <p className="font-manrope font-semibold text-[15px] text-white">Выберите пакет</p>
-          <button onClick={() => setShowPricing(true)} className="flex items-center gap-[5px] text-[rgba(255,255,255,0.4)] hover:text-white transition-colors cursor-pointer">
-            <Info size={14} />
+          <button onClick={() => setShowPricing(true)} className="group flex items-center gap-[5px] text-[rgba(255,255,255,0.4)] hover:text-white transition-colors cursor-pointer">
+            <NextImage src="/icons/info_icon.png" alt="" width={14} height={14} className="invert opacity-40 group-hover:opacity-70 transition-opacity duration-200" />
             <span className="font-manrope font-medium text-[12px]">Цены моделей</span>
           </button>
         </div>

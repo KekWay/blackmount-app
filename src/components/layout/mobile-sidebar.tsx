@@ -3,7 +3,6 @@
 import { useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { X } from 'lucide-react'
 import { APP_ASSETS } from '@/lib/assets'
 import { SidebarNav } from './sidebar-nav'
 import { SidebarUser } from './sidebar-user'
@@ -61,10 +60,10 @@ export function MobileSidebar({ open, onClose }: MobileSidebarProps) {
           </Link>
           <button
             onClick={onClose}
-            className="size-[28px] flex items-center justify-center rounded-[8px] hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"
+            className="group size-[28px] flex items-center justify-center rounded-[8px] hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"
             aria-label="Close sidebar"
           >
-            <X size={18} className="text-white/50" />
+            <Image src="/icons/close_icon.png" alt="" width={14} height={14} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
           </button>
         </div>
 

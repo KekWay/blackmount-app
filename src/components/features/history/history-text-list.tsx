@@ -1,7 +1,6 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { Trash2 } from 'lucide-react'
 import { ModelIcon } from '@/components/shared/model-icon'
 import { Loader2 } from 'lucide-react'
 import { useAuthStore } from '@/stores/auth'
@@ -99,7 +98,7 @@ export function HistoryTextList({ selectedModels, hasActiveFilter, onRequestDele
               className="shrink-0 size-[32px] rounded-[8px] flex items-center justify-center opacity-0 group-hover:opacity-100 hover:bg-[rgba(248,113,113,0.12)] transition-all cursor-pointer"
               title="Удалить"
             >
-              <Trash2 size={14} className="text-[rgba(255,255,255,0.3)] hover:text-[#f87171]" />
+              <img src="/assets/models/trash_icon.png" alt="" width={14} height={14} className="brightness-0 invert opacity-30 hover:[filter:brightness(0)_saturate(100%)_invert(56%)_sepia(72%)_saturate(1054%)_hue-rotate(325deg)_brightness(101%)_contrast(94%)] transition-all" />
             </button>
           </div>
         )

@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import { motion } from 'motion/react'
-import { ChevronDown, Download } from 'lucide-react'
+import Image from 'next/image'
+import { ChevronDown } from 'lucide-react'
 
 interface LightboxImageProps {
   srcs: string[]
@@ -54,9 +55,9 @@ export function LightboxImage({ srcs }: LightboxImageProps) {
       )}
       <button
         onClick={() => { const a = document.createElement('a'); a.href = srcs[currentIdx]; a.download = `blackmount-image-${Date.now()}.png`; a.click() }}
-        className="absolute top-[12px] right-[12px] bg-[rgba(0,0,0,0.5)] backdrop-blur-[6px] hover:bg-[rgba(0,0,0,0.7)] rounded-[10px] size-[36px] flex items-center justify-center cursor-pointer transition-colors border border-[rgba(255,255,255,0.1)]"
+        className="group absolute top-[12px] right-[12px] bg-[rgba(0,0,0,0.5)] backdrop-blur-[6px] hover:bg-[rgba(0,0,0,0.7)] rounded-[10px] size-[36px] flex items-center justify-center cursor-pointer transition-colors border border-[rgba(255,255,255,0.1)]"
       >
-        <Download size={16} className="text-white" />
+        <Image src="/icons/dowland_icon.png" alt="" width={16} height={16} className="brightness-0 invert opacity-80 group-hover:opacity-100 transition-opacity duration-200" />
       </button>
     </div>
   )

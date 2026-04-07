@@ -1,6 +1,6 @@
 'use client'
 
-import { X, Lock } from 'lucide-react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'motion/react'
 import { useRouter } from 'next/navigation'
 
@@ -29,13 +29,13 @@ export function ModalAuthGate({ show, onClose }: ModalAuthGateProps) {
           >
             <button
               onClick={onClose}
-              className="absolute top-[12px] right-[12px] size-[32px] rounded-full bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.12)] flex items-center justify-center cursor-pointer transition-colors"
+              className="group absolute top-[12px] right-[12px] bg-white/5 hover:bg-white/10 p-[8px] rounded-[10px] transition-colors cursor-pointer"
             >
-              <X size={14} className="text-[rgba(255,255,255,0.5)]" />
+              <Image src="/icons/close_icon.png" alt="" width={10} height={10} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
             </button>
             <div className="flex flex-col items-center text-center gap-[16px]">
               <div className="size-[56px] rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(136,138,229,0.2), rgba(136,138,229,0.05))' }}>
-                <Lock size={24} className="text-[#888ae5]" />
+                <img src="/assets/models/padlock_icon.png" alt="" className="size-[24px] object-contain [filter:brightness(0)_saturate(100%)_invert(55%)_sepia(50%)_saturate(600%)_hue-rotate(210deg)]" />
               </div>
               <div>
                 <p className="text-white text-[18px] mb-[6px] font-semibold">Войдите, чтобы генерировать</p>

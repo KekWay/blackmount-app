@@ -1,4 +1,4 @@
-export type SubscriptionTier = 'free' | 'basic' | 'pro' | 'ultra'
+export type SubscriptionTier = 'free' | 'basic' | 'pro' | 'max'
 
 export interface SubscriptionData {
   tier: SubscriptionTier

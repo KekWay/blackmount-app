@@ -1,5 +1,6 @@
 'use client'
 
+import { useRef, useEffect } from 'react'
 import type { Message, AIModel } from '@/types'
 import { TextLoadingBubble, MediaLoadingBubble } from './chat-message-loading'
 import { ChatMessageMedia } from './chat-message-media'
@@ -22,6 +23,12 @@ export function ChatMessages({
   messages, model, msgRatings, setMsgRatings, setMsgShareIdx,
   setViewerMedia, setTypingIdx, setIsGenerating, setMessages, setInput,
 }: ChatMessagesProps) {
+  const bottomRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages.length])
+
   return (
     <div className="w-full max-w-[620px] flex flex-col gap-[16px] py-[20px] mx-auto px-[12px] md:px-[24px] lg:px-[40px]">
       {messages.map((msg, i) => (
@@ -60,6 +67,7 @@ export function ChatMessages({
           )}
         </div>
       ))}
+      <div ref={bottomRef} />
     </div>
   )
 }

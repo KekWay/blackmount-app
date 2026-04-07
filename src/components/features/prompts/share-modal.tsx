@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { X, Check } from 'lucide-react'
+import { Check } from 'lucide-react'
+import Image from 'next/image'
 import { copyToClipboard } from '@/lib/utils'
 import { aiModels } from '@/data/ai-models'
 import type { PromptItem } from './prompts-data'
@@ -42,8 +43,8 @@ export function ShareModal({ item, onClose }: ShareModalProps) {
       >
         <div className="flex items-center justify-between px-[28px] pt-[24px] pb-[16px]">
           <p className="font-manrope font-extrabold text-[20px] text-white">Поделиться</p>
-          <button onClick={onClose} className="bg-[rgba(255,255,255,0.06)] rounded-[12px] size-[36px] flex items-center justify-center cursor-pointer hover:bg-[rgba(136,138,229,0.1)] transition-colors">
-            <X size={16} className="text-[rgba(255,255,255,0.6)]" />
+          <button onClick={onClose} className="group bg-[rgba(255,255,255,0.06)] rounded-[12px] size-[36px] flex items-center justify-center cursor-pointer hover:bg-[rgba(136,138,229,0.1)] transition-colors">
+            <Image src="/icons/close_icon.png" alt="" width={12} height={12} className="invert opacity-60 group-hover:opacity-100 transition-opacity duration-200" />
           </button>
         </div>
         <div className="mx-[28px] mb-[24px] bg-[rgba(255,255,255,0.04)] rounded-[16px] p-[20px]">

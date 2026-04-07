@@ -98,7 +98,7 @@ function HistoryPageContent() {
   })()
 
   return (
-    <div className="w-full h-full overflow-y-auto px-[16px] md:px-[24px] lg:px-[40px] pt-[24px] md:pt-[32px] pb-[80px] md:pb-[40px]">
+    <div className="w-full h-full overflow-y-auto chat-scrollbar px-[16px] md:px-[24px] lg:px-[40px] pt-[24px] md:pt-[32px] pb-[80px] md:pb-[40px]">
       <p className="font-manrope font-extrabold leading-tight text-[24px] md:text-[30px] lg:text-[36px] text-white mb-[24px]">
         История
       </p>

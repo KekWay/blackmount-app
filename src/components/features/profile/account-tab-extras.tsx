@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Trash2 } from 'lucide-react'
 import { IMG_HEADPHONES_MASK, IMG_LAPTOP_MASK } from './profile-data'
 import { SupportChoiceModal } from '@/components/features/support/support-choice-modal'
 
@@ -45,7 +44,7 @@ export function AccountTabExtras() {
           <p className="font-manrope font-normal text-[12px] text-[rgba(255,255,255,0.3)] leading-[18px]">Это действие безвозвратно удалит ваш аккаунт</p>
         </div>
         <button className="flex items-center gap-[6px] bg-[rgba(248,113,113,0.08)] hover:bg-[rgba(248,113,113,0.16)] rounded-[10px] px-[14px] py-[8px] cursor-pointer transition-colors">
-          <Trash2 size={14} className="text-[#f87171]" />
+          <img src="/assets/models/trash_icon.png" alt="" width={14} height={14} className="[filter:brightness(0)_saturate(100%)_invert(56%)_sepia(72%)_saturate(1054%)_hue-rotate(325deg)_brightness(101%)_contrast(94%)]" />
           <span className="font-manrope font-medium text-[13px] text-[#f87171]">Удалить</span>
         </button>
       </div>

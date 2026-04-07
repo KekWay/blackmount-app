@@ -1,6 +1,5 @@
 'use client'
 
-import { Sparkles, Star } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
 import type { AIModel } from '@/types'
 import { isModelNew } from '@/data/ai-models'
@@ -140,11 +139,7 @@ export function ModelCard({ model, locked, onClick }: ModelCardProps) {
               exit={{ scale: 0.5 }}
               transition={{ type: 'spring', stiffness: 500, damping: 15, duration: 0.2 }}
             >
-              <Star
-                size={12}
-                className={isFav ? 'text-[#f5a623]' : 'text-white/70'}
-                fill={isFav ? '#f5a623' : 'none'}
-              />
+              <img src={isFav ? '/icons/yellow_star.png' : '/icons/star.png'} alt="" width={12} height={12} className={`transition-all ${isFav ? 'opacity-100' : 'brightness-0 invert opacity-70'}`} />
             </motion.div>
           </AnimatePresence>
         </button>
@@ -154,7 +149,7 @@ export function ModelCard({ model, locked, onClick }: ModelCardProps) {
       {locked && (
         <div className="absolute inset-0 rounded-[20px] flex flex-col items-center justify-center z-[2] bg-[rgba(0,0,0,0.4)] backdrop-blur-[1px]">
           <button className="flex items-center gap-[4px] px-[8px] py-[3px] rounded-full cursor-pointer transition-all hover:brightness-110" style={{ background: 'linear-gradient(135deg, rgba(91,91,214,0.7), rgba(124,92,191,0.7))', boxShadow: '0 2px 8px rgba(91,91,214,0.3)' }}>
-            <Sparkles size={9} className="text-white" />
+            <img src="/assets/models/stars_icon_2.png" alt="" className="size-[9px] object-contain brightness-0 invert" />
             <span className="font-manrope font-semibold text-[9px] text-white">Подписка</span>
           </button>
         </div>

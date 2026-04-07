@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import { LogOut, Sparkles } from 'lucide-react'
 import { motion } from 'motion/react'
 import { APP_ASSETS } from '@/lib/assets'
 import { useAuthStore } from '@/stores/auth'
@@ -60,9 +59,9 @@ export function SidebarUserMenu({ collapsed, hasActiveSub, onClose, onSupport }:
 
       <button
         onClick={() => { logout(); router.push('/auth'); onClose() }}
-        className="w-full flex items-center gap-2.5 px-4 py-[11px] hover:bg-[rgba(220,60,60,0.12)] transition-colors cursor-pointer text-left"
+        className="group w-full flex items-center gap-2.5 px-4 py-[11px] hover:bg-[rgba(220,60,60,0.12)] transition-colors cursor-pointer text-left"
       >
-        <LogOut size={15} className="text-[rgba(255,100,100,0.6)]" />
+        <Image src="/assets/models/logout_icon.png" alt="" width={15} height={15} className="[filter:brightness(0)_saturate(100%)_invert(50%)_sepia(50%)_saturate(500%)_hue-rotate(330deg)_brightness(90%)] opacity-60" />
         <span className="font-medium text-[13px] text-[rgba(255,100,100,0.7)]">Выйти</span>
       </button>
     </motion.div>
@@ -108,7 +107,7 @@ function SubscribeItem({ onClick }: { onClick: () => void }) {
       style={{ background: 'linear-gradient(90deg, rgba(136,138,229,0.08) 0%, rgba(168,90,220,0.12) 100%)' }}
     >
       <div className="absolute inset-0 opacity-0 group-hover/sub:opacity-100 transition-opacity" style={{ background: 'linear-gradient(90deg, rgba(136,138,229,0.15) 0%, rgba(168,90,220,0.2) 100%)' }} />
-      <span className="relative text-[#a8a9f0]"><Sparkles size={15} /></span>
+      <img src="/assets/models/stars_icon_2.png" alt="" className="relative size-[15px] object-contain [filter:brightness(0)_saturate(100%)_invert(55%)_sepia(50%)_saturate(600%)_hue-rotate(210deg)]" />
       <span className="relative font-semibold text-[13px] text-[#c4b5fd]">Оформить подписку</span>
       <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(136,138,229,0.3), transparent)' }} />
     </button>

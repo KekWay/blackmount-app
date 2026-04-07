@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { X, Check, CreditCard } from 'lucide-react'
+import { Check, CreditCard } from 'lucide-react'
+import Image from 'next/image'
 
 interface PaymentOverlayProps {
   open: boolean
@@ -58,8 +59,8 @@ export function PaymentOverlay({ open, onClose, amount, label, onSuccess }: Paym
             <CreditCard size={18} className="text-primary" />
             <span className="text-base text-white font-bold">Оплата</span>
           </div>
-          <button onClick={onClose} className="size-8 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] flex items-center justify-center cursor-pointer transition-colors">
-            <X size={14} className="text-white/40" />
+          <button onClick={onClose} className="group bg-white/5 hover:bg-white/10 p-[8px] rounded-[10px] transition-colors cursor-pointer">
+            <Image src="/icons/close_icon.png" alt="" width={10} height={10} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
           </button>
         </div>
 

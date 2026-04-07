@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { Globe, Moon, LogOut } from 'lucide-react'
+import { Globe, Moon } from 'lucide-react'
 import { useAuthStore } from '@/stores/auth'
 
 export function SettingsSection() {
@@ -35,7 +35,7 @@ export function SettingsSection() {
         onClick={handleLogout}
         className="mt-2 flex items-center justify-center gap-2 rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-400 transition-colors hover:bg-red-500/20"
       >
-        <LogOut className="h-4 w-4" />
+        <img src="/assets/models/logout_icon.png" alt="" width={16} height={16} className="[filter:brightness(0)_saturate(100%)_invert(56%)_sepia(72%)_saturate(1054%)_hue-rotate(325deg)_brightness(101%)_contrast(94%)]" />
         Выйти из аккаунта
       </button>
     </div>

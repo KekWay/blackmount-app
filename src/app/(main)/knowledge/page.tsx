@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
-import { Menu, List, X } from 'lucide-react'
+import { Menu, List } from 'lucide-react'
+import Image from 'next/image'
 import { aiModels } from '@/data/ai-models'
 import { getModelDocs } from '@/components/features/knowledge/knowledge-data'
 import { KnowledgeSidebar } from '@/components/features/knowledge/knowledge-sidebar'
@@ -85,8 +86,8 @@ export default function KnowledgePage() {
           leftOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        <button onClick={() => setLeftOpen(false)} className="absolute top-[12px] right-[12px] size-[28px] flex items-center justify-center rounded-[8px] hover:bg-white/[0.06] transition-colors cursor-pointer z-10" aria-label="Закрыть">
-          <X size={16} className="text-white/50" />
+        <button onClick={() => setLeftOpen(false)} className="group absolute top-[12px] right-[12px] size-[28px] flex items-center justify-center rounded-[8px] hover:bg-white/[0.06] transition-colors cursor-pointer z-10" aria-label="Закрыть">
+          <Image src="/icons/close_icon.png" alt="" width={12} height={12} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
         </button>
         <KnowledgeSidebar selectedModelId={selectedModelId} onSelectModel={handleSelectModel} mobile />
       </aside>
@@ -103,8 +104,8 @@ export default function KnowledgePage() {
           rightOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <button onClick={() => setRightOpen(false)} className="absolute top-[12px] left-[12px] size-[28px] flex items-center justify-center rounded-[8px] hover:bg-white/[0.06] transition-colors cursor-pointer z-10" aria-label="Закрыть">
-          <X size={16} className="text-white/50" />
+        <button onClick={() => setRightOpen(false)} className="group absolute top-[12px] left-[12px] size-[28px] flex items-center justify-center rounded-[8px] hover:bg-white/[0.06] transition-colors cursor-pointer z-10" aria-label="Закрыть">
+          <Image src="/icons/close_icon.png" alt="" width={12} height={12} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
         </button>
         <KnowledgeToc
           sections={docs.sections}

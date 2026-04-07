@@ -71,9 +71,6 @@ export function PricingComparison({ period, onSelectPlan, currentPlan }: Pricing
           </tbody>
         </table>
       </div>
-      <div className="p-[16px] text-center border-t border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.01)]">
-        <p className="font-manrope text-[11px] text-[rgba(255,255,255,0.3)]">* Безлимитные запросы к базовым моделям регулируются политикой добросовестного использования для предотвращения злоупотреблений.</p>
-      </div>
     </div>
   )
 }

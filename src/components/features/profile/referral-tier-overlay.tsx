@@ -1,6 +1,6 @@
 'use client'
 
-import { X } from 'lucide-react'
+import Image from 'next/image'
 import { motion } from 'motion/react'
 import type { TierInfo } from './referral-data'
 import { TierRing } from './tier-ring'
@@ -19,7 +19,7 @@ export function ReferralTierOverlay({ onClose, tiers, activeTier, currentTier, n
         <div className="px-[24px] sm:px-[32px] py-[24px] sm:py-[32px]">
           <div className="flex items-center justify-between mb-[24px]">
             <p className="font-manrope font-bold text-[22px] text-white">Система уровней</p>
-            <button onClick={onClose} className="text-[rgba(255,255,255,0.4)] hover:text-white bg-white/5 hover:bg-white/10 p-[8px] rounded-[10px] transition-colors cursor-pointer"><X size={18} /></button>
+            <button onClick={onClose} className="group bg-white/5 hover:bg-white/10 p-[8px] rounded-[10px] transition-colors cursor-pointer"><Image src="/icons/close_icon.png" alt="" width={10} height={10} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" /></button>
           </div>
 
           <TierCurrentHighlight currentTier={currentTier} nextTier={nextTier} tierProgress={tierProgress} />

@@ -1,7 +1,6 @@
 'use client'
 
 import { motion, AnimatePresence } from 'motion/react'
-import { Trash2 } from 'lucide-react'
 
 interface HistoryDeleteModalProps {
   itemTitle: string | null
@@ -29,7 +28,7 @@ export function HistoryDeleteModal({ itemTitle, onConfirm, onCancel }: HistoryDe
             transition={{ type: 'spring', damping: 28, stiffness: 400 }}
           >
             <div className="px-[24px] pt-[24px] pb-[16px] flex flex-col items-center gap-[12px]">
-              <Trash2 size={28} className="text-[#f87171]" />
+              <img src="/assets/models/trash_icon.png" alt="" width={28} height={28} className="[filter:brightness(0)_saturate(100%)_invert(56%)_sepia(72%)_saturate(1054%)_hue-rotate(325deg)_brightness(101%)_contrast(94%)]" />
               <p className="text-[18px] text-white text-center font-bold">Удалить запись?</p>
               <p className="text-[13px] text-[rgba(255,255,255,0.45)] text-center leading-[20px] max-w-[280px]">
                 «{itemTitle.slice(0, 60)}{itemTitle.length > 60 ? '...' : ''}» будет удалена безвозвратно

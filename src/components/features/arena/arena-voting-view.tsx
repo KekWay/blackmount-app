@@ -1,7 +1,7 @@
 'use client'
 
-import { Maximize2, Minimize2 } from 'lucide-react'
 import { motion } from 'motion/react'
+import Image from 'next/image'
 import type { ModelResponse } from './arena-data'
 import { IMG_MEDAL1 } from './arena-data'
 import { MIcon } from './arena-micon'
@@ -44,8 +44,8 @@ function ExpandedCard({ responses, expandedId, onVote, onToggleExpand }: { respo
             <span className="text-[13px] text-white font-semibold">{r.model.name}</span>
           </div>
           <div className="flex items-center gap-[6px]">
-            <button onClick={(e) => { e.stopPropagation(); onToggleExpand(r.model.id) }} className="text-[rgba(255,255,255,0.3)] hover:text-white transition-colors cursor-pointer p-[4px] rounded-[6px] hover:bg-[rgba(255,255,255,0.06)]" title="Свернуть">
-              <Minimize2 size={13} />
+            <button onClick={(e) => { e.stopPropagation(); onToggleExpand(r.model.id) }} className="group transition-colors cursor-pointer p-[4px] rounded-[6px] hover:bg-[rgba(255,255,255,0.06)]" title="Свернуть">
+              <Image src="/assets/models/zoom_out.png" alt="" width={13} height={13} className="brightness-0 invert opacity-30 group-hover:opacity-100 transition-opacity duration-200" />
             </button>
           </div>
         </div>
@@ -71,8 +71,8 @@ function VotingGrid({ responses, gridCols, onVote, onToggleExpand }: { responses
               <MIcon model={r.model} size={22} />
               <span className="text-[13px] text-white font-semibold">{r.model.name}</span>
             </div>
-            <button onClick={(e) => { e.stopPropagation(); onToggleExpand(r.model.id) }} className="text-[rgba(255,255,255,0.12)] hover:text-[rgba(255,255,255,0.4)] transition-colors cursor-pointer p-[4px] rounded-[6px] hover:bg-[rgba(255,255,255,0.06)]" title="Развернуть">
-              <Maximize2 size={13} />
+            <button onClick={(e) => { e.stopPropagation(); onToggleExpand(r.model.id) }} className="group transition-colors cursor-pointer p-[4px] rounded-[6px] hover:bg-[rgba(255,255,255,0.06)]" title="Развернуть">
+              <Image src="/assets/models/zoom_in.png" alt="" width={13} height={13} className="brightness-0 invert opacity-15 group-hover:opacity-40 transition-opacity duration-200" />
             </button>
           </div>
           <div className="flex-1 px-[16px] py-[14px] overflow-y-auto chat-scrollbar">

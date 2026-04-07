@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ThumbsUp, ThumbsDown } from 'lucide-react'
+import Image from 'next/image'
 
 function formatCount(n: number) {
   return n >= 1000 ? `${(n / 1000).toFixed(1)}K` : String(n)
@@ -56,24 +56,24 @@ export function UserRating({ modelId, baseVotes }: { modelId: string; baseVotes:
       <div className="flex items-center gap-[8px]">
         <button
           onClick={(e) => { e.stopPropagation(); handleVote('like') }}
-          className={`flex items-center gap-[5px] px-[10px] py-[5px] rounded-[8px] transition-all cursor-pointer ${
+          className={`group/like flex items-center gap-[5px] px-[10px] py-[5px] rounded-[8px] transition-all cursor-pointer ${
             vote === 'like'
               ? "bg-[#4ade80]/15 text-[#4ade80]"
               : "bg-[rgba(255,255,255,0.04)] text-[rgba(255,255,255,0.4)] hover:bg-[rgba(255,255,255,0.08)] hover:text-[rgba(255,255,255,0.7)]"
           }`}
         >
-          <ThumbsUp size={13} fill={vote === 'like' ? '#4ade80' : 'none'} />
+          <Image src="/icons/like_icon.png" alt="" width={13} height={13} className={`transition-all duration-200 ${vote === 'like' ? '[filter:brightness(0)_saturate(100%)_invert(73%)_sepia(57%)_saturate(497%)_hue-rotate(93deg)_brightness(98%)_contrast(92%)]' : 'brightness-0 invert opacity-30 group-hover/like:opacity-100'}`} />
           <span className="text-[11px] font-bold">{formatCount(likes)}</span>
         </button>
         <button
           onClick={(e) => { e.stopPropagation(); handleVote('dislike') }}
-          className={`flex items-center gap-[5px] px-[10px] py-[5px] rounded-[8px] transition-all cursor-pointer ${
+          className={`group/dislike flex items-center gap-[5px] px-[10px] py-[5px] rounded-[8px] transition-all cursor-pointer ${
             vote === 'dislike'
               ? "bg-[#ef4444]/15 text-[#ef4444]"
               : "bg-[rgba(255,255,255,0.04)] text-[rgba(255,255,255,0.4)] hover:bg-[rgba(255,255,255,0.08)] hover:text-[rgba(255,255,255,0.7)]"
           }`}
         >
-          <ThumbsDown size={13} fill={vote === 'dislike' ? '#ef4444' : 'none'} />
+          <Image src="/icons/dislike_icon.png" alt="" width={13} height={13} className={`transition-all duration-200 ${vote === 'dislike' ? '[filter:brightness(0)_saturate(100%)_invert(56%)_sepia(72%)_saturate(1054%)_hue-rotate(325deg)_brightness(101%)_contrast(94%)]' : 'brightness-0 invert opacity-30 group-hover/dislike:opacity-100'}`} />
           <span className="text-[11px] font-bold">{formatCount(dislikes)}</span>
         </button>
       </div>
