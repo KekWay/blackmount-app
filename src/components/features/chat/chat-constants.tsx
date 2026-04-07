@@ -19,6 +19,11 @@ export const testImagePool = [
 
 export const FREE_SUB_VERSIONS = ['chatgpt-5-mini', 'gemini-3-flash', 'gemini-2.5-flash']
 
+export function isVersionFreeForTier(versionId: string, tier: string): boolean {
+  if (!FREE_SUB_VERSIONS.includes(versionId)) return false
+  return tier === 'pro' || tier === 'max'
+}
+
 export const videoPricingMap: Record<string, Record<string, number>> = {
   'kling-2.6': { '5s': 45, '10s': 85 },
   'kling-2.6-audio': { '5s': 85, '10s': 170 },

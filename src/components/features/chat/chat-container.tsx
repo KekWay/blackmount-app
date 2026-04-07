@@ -10,7 +10,7 @@ import { useChatSessionsStore } from '@/stores/chat-sessions'
 import { useGenerationStore } from '@/stores/generation'
 import type { Message, ModelVersion } from '@/types'
 import { getBasePrice, hasAudioPricing } from '@/types/models'
-import { getRandomGreeting, FREE_SUB_VERSIONS, videoPricingMap, DURATION_KEY_MAP, hexToRgba } from './chat-constants'
+import { getRandomGreeting, isVersionFreeForTier, videoPricingMap, DURATION_KEY_MAP, hexToRgba } from './chat-constants'
 import { useChatActions } from './use-chat-actions'
 import { ChatHeader } from './chat-header'
 import { ChatEmptyState } from './chat-empty-state'
@@ -83,7 +83,8 @@ function ChatContainerInner() {
   const dynamicCost = (() => {
     const p = selectedVersion.price
     const bp = getBasePrice(p)
-    if (hasSub && FREE_SUB_VERSIONS.includes(selectedVersion.id)) return 0
+    const tier = useSubscriptionStore.getState().subscription.tier
+    if (isVersionFreeForTier(selectedVersion.id, tier)) return 0
     const fc = isTextModel ? ((webSearchActive ? 3 : 0) + (deepResearchActive ? 3 : 0)) : 0
     if (isTextModel) return bp + fc
     if (p != null && typeof p === 'object') {
