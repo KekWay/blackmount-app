@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { CreditCard, Check } from 'lucide-react'
+import { CreditCard } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { motion } from 'motion/react'
@@ -87,11 +88,11 @@ export function ReferralWithdrawOverlay({ onClose }: { onClose: () => void }) {
             <div className="flex flex-col mb-[20px]">
               <button onClick={() => setWithdrawMethod('card')} className="flex items-center justify-between py-[12px] border-b border-white/5 cursor-pointer">
                 <div className="flex items-center gap-[12px]"><CreditCard size={18} className="text-[rgba(255,255,255,0.5)]" /><span className="font-manrope font-bold text-[14px] text-white">Банковская карта</span></div>
-                <div className={`size-[20px] rounded-full border-2 flex items-center justify-center ${withdrawMethod === 'card' ? 'border-[#888ae5] bg-[#888ae5]' : 'border-white/20'}`}>{withdrawMethod === 'card' && <Check size={10} className="text-white" />}</div>
+                <div className={`size-[20px] rounded-full border-2 flex items-center justify-center ${withdrawMethod === 'card' ? 'border-[#888ae5] bg-[#888ae5]' : 'border-white/20'}`}>{withdrawMethod === 'card' && <CustomIcon src="/icons/chekmark_icon.png" size={10} />}</div>
               </button>
               <button onClick={() => setWithdrawMethod('sbp')} className="flex items-center justify-between py-[12px] cursor-pointer">
                 <div className="flex items-center gap-[12px]"><img src={APP_ASSETS.sbpLogo} alt="СБП" className="size-[18px] object-contain" /><span className="font-manrope font-bold text-[14px] text-white">СБП</span></div>
-                <div className={`size-[20px] rounded-full border-2 flex items-center justify-center ${withdrawMethod === 'sbp' ? 'border-[#888ae5] bg-[#888ae5]' : 'border-white/20'}`}>{withdrawMethod === 'sbp' && <Check size={10} className="text-white" />}</div>
+                <div className={`size-[20px] rounded-full border-2 flex items-center justify-center ${withdrawMethod === 'sbp' ? 'border-[#888ae5] bg-[#888ae5]' : 'border-white/20'}`}>{withdrawMethod === 'sbp' && <CustomIcon src="/icons/chekmark_icon.png" size={10} />}</div>
               </button>
             </div>
             {withdrawMethod === 'card' ? (

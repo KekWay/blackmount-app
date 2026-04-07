@@ -2,7 +2,8 @@
 
 import { motion } from 'motion/react'
 import Image from 'next/image'
-import { Copy, Play } from 'lucide-react'
+import { Play } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import type { Message } from '@/types'
 
 const imgShareMask = '/assets/models/share-mask.png'
@@ -67,7 +68,7 @@ export function ChatMessageMedia({
         </div>
       )}
       <div className="flex items-center gap-[4px] mt-[8px]">
-        <button onClick={() => { navigator.clipboard.writeText(msg.content) }} title="Копировать" className="group flex items-center px-[6px] py-[4px] rounded-[8px] text-[11px] text-[rgba(255,255,255,0.3)] hover:text-white hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"><Copy size={11} /></button>
+        <button onClick={() => { navigator.clipboard.writeText(msg.content) }} title="Копировать" className="group flex items-center px-[6px] py-[4px] rounded-[8px] text-[11px] text-[rgba(255,255,255,0.3)] hover:text-white hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"><CustomIcon src="/icons/copy_icon.png" size={11} /></button>
         <button onClick={() => setMsgShareIdx(index)} title="Поделиться" className="group flex items-center px-[6px] py-[4px] rounded-[8px] text-[11px] text-[rgba(255,255,255,0.3)] hover:text-white hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"><ShareIcon size={11} /></button>
         <button onClick={() => setMsgRatings(p => ({ ...p, [index]: p[index] === 'up' ? undefined as never : 'up' }))} title="Нравится" className={`group flex items-center px-[6px] py-[4px] rounded-[8px] text-[11px] transition-all cursor-pointer ${msgRatings[index] === 'up' ? 'bg-[rgba(74,222,128,0.08)]' : 'hover:bg-[rgba(255,255,255,0.06)]'}`}><Image src="/icons/like_icon.png" alt="" width={11} height={11} className={`transition-all duration-200 ${msgRatings[index] === 'up' ? '[filter:brightness(0)_saturate(100%)_invert(73%)_sepia(57%)_saturate(497%)_hue-rotate(93deg)_brightness(98%)_contrast(92%)]' : 'brightness-0 invert opacity-30 group-hover:opacity-100'}`} /></button>
         <button onClick={() => setMsgRatings(p => ({ ...p, [index]: p[index] === 'down' ? undefined as never : 'down' }))} title="Не нравится" className={`group flex items-center px-[6px] py-[4px] rounded-[8px] text-[11px] transition-all cursor-pointer ${msgRatings[index] === 'down' ? 'bg-[rgba(248,113,113,0.08)]' : 'hover:bg-[rgba(255,255,255,0.06)]'}`}><Image src="/icons/dislike_icon.png" alt="" width={11} height={11} className={`transition-all duration-200 ${msgRatings[index] === 'down' ? '[filter:brightness(0)_saturate(100%)_invert(56%)_sepia(72%)_saturate(1054%)_hue-rotate(325deg)_brightness(101%)_contrast(94%)]' : 'brightness-0 invert opacity-30 group-hover:opacity-100'}`} /></button>

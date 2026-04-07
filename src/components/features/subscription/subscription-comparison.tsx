@@ -1,6 +1,6 @@
 'use client'
 
-import { Check } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import { type Plan, type Period, plansArr, COMPARE_ROWS, imgCoin } from './subscription-data'
 
 interface PricingComparisonProps {
@@ -33,7 +33,7 @@ export function PricingComparison({ period, onSelectPlan, currentPlan }: Pricing
                       <span className={`font-manrope font-extrabold text-[18px] ${isPro ? 'text-[#888ae5]' : 'text-white'}`}>{p.label}</span>
                       <span className="font-manrope text-[12px] text-[rgba(255,255,255,0.5)] h-[36px]">{`${price}₽/мес\n${period === 'year' ? 'Оплата за год' : 'Ежемесячно'}`}</span>
                       {currentPlan === p.key ? (
-                        <div className="mt-[12px] w-full h-[40px] rounded-[10px] font-manrope font-bold text-[13px] bg-[rgba(255,255,255,0.05)] text-[rgba(255,255,255,0.4)] border border-[rgba(255,255,255,0.08)] flex items-center justify-center gap-[6px]"><Check size={14} />Текущая</div>
+                        <div className="mt-[12px] w-full h-[40px] rounded-[10px] font-manrope font-bold text-[13px] bg-[rgba(255,255,255,0.05)] text-[rgba(255,255,255,0.4)] border border-[rgba(255,255,255,0.08)] flex items-center justify-center gap-[6px]"><CustomIcon src="/icons/chekmark_icon.png" size={14} className="opacity-40" />Текущая</div>
                       ) : (
                         <button onClick={() => onSelectPlan(p.key as Plan)} className={`mt-[12px] w-full h-[40px] rounded-[10px] font-manrope font-bold text-[13px] transition-all cursor-pointer ${isPro ? 'bg-[#888ae5] hover:bg-[#9a9cf0] text-white shadow-[0_4px_16px_rgba(136,138,229,0.25)]' : 'bg-[rgba(255,255,255,0.08)] hover:bg-[rgba(255,255,255,0.12)] text-white'}`}>{p.cta}</button>
                       )}

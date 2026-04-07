@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 
 const imgGeneratedImage = '/assets/models/news-generated.png'
 const imgFrame32 = '/assets/models/news-frame.png'
@@ -62,14 +62,14 @@ export function NewsCarousel() {
             aria-label="Назад"
             className="bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.12)] rounded-full w-[32px] h-[32px] flex items-center justify-center transition-colors cursor-pointer"
           >
-            <ChevronLeft size={16} className="text-white" />
+            <CustomIcon src="/icons/litle_arrow_left.png" size={16} />
           </button>
           <button
             onClick={() => scroll('right')}
             aria-label="Вперёд"
             className="bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.12)] rounded-full w-[32px] h-[32px] flex items-center justify-center transition-colors cursor-pointer"
           >
-            <ChevronRight size={16} className="text-white" />
+            <CustomIcon src="/icons/litle_arrow_right.png" size={16} />
           </button>
         </div>
       </div>

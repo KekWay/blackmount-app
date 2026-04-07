@@ -1,6 +1,7 @@
 'use client'
 
-import { RefreshCw, WifiOff, AlertTriangle, ServerCrash } from 'lucide-react'
+import { WifiOff, AlertTriangle, ServerCrash } from 'lucide-react'
+import { CustomIcon } from './custom-icon'
 
 export type ErrorType = 'network' | 'server' | 'notfound' | 'generic'
 
@@ -40,7 +41,7 @@ export function ErrorScreen({ type = 'generic', title, message, onRetry, onGoHom
               onClick={onRetry}
               className="flex items-center gap-2 px-6 py-3 rounded-[14px] bg-primary hover:bg-primary/90 text-white text-sm font-bold transition-all cursor-pointer hover:scale-[1.02] active:scale-[0.98] shadow-[0_8px_24px_rgba(136,138,229,0.3)]"
             >
-              <RefreshCw size={16} />
+              <CustomIcon src="/icons/reload_2_icon.png" size={16} />
               Попробовать снова
             </button>
           )}

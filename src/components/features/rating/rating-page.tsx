@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'motion/react'
-import { ChevronDown } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import { useBalanceStore } from '@/stores/balance'
 import { useSubscriptionStore, LOCKED_VERSION_IDS } from '@/stores/subscription'
 import { SubscriptionGateModal } from '@/components/shared/subscription-gate'
@@ -98,7 +98,7 @@ export function RatingPage() {
         {visibleCount < filtered.length && (
           <motion.div className="mt-[20px] flex items-center justify-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
             <button onClick={() => setVisibleCount((v) => v + 12)} className="flex items-center gap-[8px] px-[20px] py-[10px] rounded-[12px] bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] text-[13px] text-[rgba(255,255,255,0.6)] hover:bg-[rgba(255,255,255,0.08)] hover:text-white transition-all cursor-pointer font-bold shadow-sm">
-              Загрузить еще ({filtered.length - visibleCount}) <ChevronDown size={14} />
+              Загрузить еще ({filtered.length - visibleCount}) <CustomIcon src="/icons/arrow_down_icon.png" size={14} />
             </button>
           </motion.div>
         )}

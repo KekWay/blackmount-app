@@ -1,7 +1,8 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { Zap, Layers } from 'lucide-react'
+import { Zap } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import Image from 'next/image'
 import { aiModels } from '@/data/ai-models'
 import { getBasePrice } from '@/types/models'
@@ -18,7 +19,7 @@ export function AllModelsOverlay({ onClose }: { onClose: () => void }) {
         <div className="shrink-0 p-[32px] border-b border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.01)] flex items-center justify-between relative overflow-hidden">
           <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#888ae5] opacity-[0.08] blur-[80px] pointer-events-none rounded-full translate-x-1/3 -translate-y-1/3" />
           <div className="flex items-center gap-[20px] relative z-10">
-            <div className="size-[56px] rounded-[16px] bg-gradient-to-br from-[#888ae5] to-[#5b5bd6] flex items-center justify-center shadow-[0_8px_24px_rgba(136,138,229,0.3)]"><Layers size={28} className="text-white" /></div>
+            <div className="size-[56px] rounded-[16px] bg-gradient-to-br from-[#888ae5] to-[#5b5bd6] flex items-center justify-center shadow-[0_8px_24px_rgba(136,138,229,0.3)]"><CustomIcon src="/icons/versions_icon.png" size={28} /></div>
             <div>
               <h2 className="text-[28px] text-white font-manrope font-extrabold">Доступные нейросети</h2>
               <p className="text-[14px] text-[rgba(255,255,255,0.5)] font-manrope mt-[4px]">Более 30 передовых ИИ-моделей в одной подписке</p>

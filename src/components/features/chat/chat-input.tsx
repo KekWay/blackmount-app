@@ -2,7 +2,7 @@
 
 import { useRef, useEffect } from 'react'
 import NextImage from 'next/image'
-import { X } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import { motion, AnimatePresence } from 'motion/react'
 import { APP_ASSETS } from '@/lib/assets'
 import { AnimatedPlaceholder } from './animated-placeholder'
@@ -114,7 +114,7 @@ export function ChatInput({
                     <div className="group flex items-center gap-[5px] rounded-[12px] px-[8px] py-[3px] cursor-default transition-all hover:bg-[rgba(136,138,229,0.12)]">
                       <img src={APP_ASSETS.webpoiskChat} alt="" className="size-[13px] object-contain" style={{ filter: 'brightness(0) saturate(100%) invert(55%) sepia(50%) saturate(600%) hue-rotate(210deg)' }} />
                       <span className="text-[13px] text-[#888ae5] whitespace-nowrap font-semibold">Веб-поиск</span>
-                      <button onClick={() => setWebSearchActive(false)} className="opacity-0 group-hover:opacity-100 transition-all cursor-pointer text-[#888ae5] hover:text-white"><X size={12} /></button>
+                      <button onClick={() => setWebSearchActive(false)} className="opacity-0 group-hover:opacity-100 transition-all cursor-pointer text-[#888ae5] hover:text-white"><CustomIcon src="/icons/close_icon.png" size={12} /></button>
                     </div>
                   </motion.div>
                 )}
@@ -125,7 +125,7 @@ export function ChatInput({
                     <div className="group flex items-center gap-[5px] rounded-[12px] px-[8px] py-[3px] cursor-default transition-all hover:bg-[rgba(136,138,229,0.12)]">
                       <img src={APP_ASSETS.brainChat} alt="" className="size-[13px] object-contain" style={{ filter: 'brightness(0) saturate(100%) invert(55%) sepia(50%) saturate(600%) hue-rotate(210deg)' }} />
                       <span className="text-[13px] text-[#888ae5] whitespace-nowrap font-semibold">Думать</span>
-                      <button onClick={() => setDeepResearchActive(false)} className="opacity-0 group-hover:opacity-100 transition-all cursor-pointer text-[#888ae5] hover:text-white"><X size={12} /></button>
+                      <button onClick={() => setDeepResearchActive(false)} className="opacity-0 group-hover:opacity-100 transition-all cursor-pointer text-[#888ae5] hover:text-white"><CustomIcon src="/icons/close_icon.png" size={12} /></button>
                     </div>
                   </motion.div>
                 )}

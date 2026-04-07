@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { ChevronLeft, ChevronRight, Play } from 'lucide-react'
+import { Play } from 'lucide-react'
+import { CustomIcon } from './custom-icon'
 
 interface MediaViewerProps {
   type: 'image' | 'video'
@@ -57,12 +58,12 @@ export function MediaViewer({ type, src, srcs, onClose }: MediaViewerProps) {
             <Image src={images[currentIdx]} alt="" width={1080} height={1080} className="max-w-[85vw] max-h-[80vh] object-contain rounded-xl" unoptimized />
             {isMulti && currentIdx > 0 && (
               <button onClick={() => setCurrentIdx((i) => i - 1)} className="absolute left-3 top-1/2 -translate-y-1/2 size-10 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center cursor-pointer hover:bg-black/70 transition-colors border border-white/10">
-                <ChevronLeft size={20} className="text-white" />
+                <CustomIcon src="/icons/litle_arrow_left.png" size={20} />
               </button>
             )}
             {isMulti && currentIdx < images.length - 1 && (
               <button onClick={() => setCurrentIdx((i) => i + 1)} className="absolute right-3 top-1/2 -translate-y-1/2 size-10 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center cursor-pointer hover:bg-black/70 transition-colors border border-white/10">
-                <ChevronRight size={20} className="text-white" />
+                <CustomIcon src="/icons/litle_arrow_right.png" size={20} />
               </button>
             )}
             {isMulti && (

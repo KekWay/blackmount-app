@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import { LogIn } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import { AnimatePresence } from 'motion/react'
 import { APP_ASSETS } from '@/lib/assets'
 import { useAuthStore } from '@/stores/auth'
@@ -100,7 +100,7 @@ export function SidebarUser({ collapsed }: SidebarUserProps) {
               collapsed ? '' : 'px-3.5'
             }`}
           >
-            <LogIn size={16} className="text-white shrink-0" />
+            <CustomIcon src="/icons/sign_in_icon.png" size={16} className="shrink-0" />
             {!collapsed && <span className="font-semibold text-[13px] text-white">Войти</span>}
           </button>
         )}

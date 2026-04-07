@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'motion/react'
-import { Check, Crown } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import { type Plan, type Period, planFeatures, featureIconMap, modelLogos, imgCoin } from './subscription-data'
 
 interface PlanCardProps {
@@ -29,7 +29,7 @@ export function SubscriptionPlanCard({ planKey, label, priceMonth, priceYear, ba
         <span className={`font-manrope font-black text-[20px] ${isPro ? 'text-white' : 'text-[rgba(255,255,255,0.9)]'}`}>{label}</span>
         {badge && (
           <div className={`flex items-center gap-[4px] px-[8px] py-[4px] rounded-[6px] text-[9px] font-manrope font-extrabold uppercase tracking-widest ${isPro ? 'text-white shadow-[0_0_12px_rgba(255,210,49,0.2)]' : 'bg-white/10 text-white'}`} style={isPro ? { backgroundImage: 'linear-gradient(106.083deg, rgb(255, 210, 49) 4.51%, rgb(192, 150, 0) 54.14%, rgb(238, 161, 16) 86.39%)' } : undefined}>
-            {isPro && <Crown size={10} strokeWidth={2.5} />}{badge}
+            {isPro && <CustomIcon src="/icons/crown_icon.png" size={10} />}{badge}
           </div>
         )}
       </div>
@@ -47,7 +47,7 @@ export function SubscriptionPlanCard({ planKey, label, priceMonth, priceYear, ba
       </p>
 
       {isActive ? (
-        <div className="w-full py-[12px] rounded-[12px] font-manrope font-bold text-[14px] relative z-10 mb-[24px] flex items-center justify-center gap-[8px] bg-[rgba(255,255,255,0.05)] text-[rgba(255,255,255,0.4)] border border-[rgba(255,255,255,0.08)]"><Check size={16} />Текущая подписка</div>
+        <div className="w-full py-[12px] rounded-[12px] font-manrope font-bold text-[14px] relative z-10 mb-[24px] flex items-center justify-center gap-[8px] bg-[rgba(255,255,255,0.05)] text-[rgba(255,255,255,0.4)] border border-[rgba(255,255,255,0.08)]"><CustomIcon src="/icons/chekmark_icon.png" size={16} className="opacity-40" />Текущая подписка</div>
       ) : (
         <button onClick={onSelect} className={`w-full py-[12px] rounded-[12px] font-manrope font-bold text-[14px] transition-all cursor-pointer relative z-10 mb-[24px] flex items-center justify-center gap-[8px] ${isPro ? 'bg-[#888ae5] text-white hover:bg-[#9a9cf0] hover:scale-[1.02] shadow-[0_8px_20px_rgba(136,138,229,0.3)]' : 'bg-[#39375b] text-white hover:bg-[#464470] hover:scale-[1.02]'}`}>{cta}</button>
       )}
@@ -60,7 +60,7 @@ export function SubscriptionPlanCard({ planKey, label, priceMonth, priceYear, ba
       <div className="flex flex-col gap-[12px] flex-1 relative z-10">
         {pf.limits.map((lim, i) => (
           <div key={`lim-${i}`} className="flex items-center gap-[8px]">
-            <div className="shrink-0 size-[16px] rounded-full bg-[rgba(255,255,255,0.05)] flex items-center justify-center"><Check size={10} className={isPro ? 'text-[#888ae5]' : 'text-[rgba(255,255,255,0.5)]'} /></div>
+            <div className="shrink-0 size-[16px] rounded-full bg-[rgba(255,255,255,0.05)] flex items-center justify-center"><CustomIcon src="/icons/chekmark_icon.png" size={10} className={isPro ? 'opacity-100' : 'opacity-50'} /></div>
             <span className={`font-manrope text-[13px] ${isPro ? 'text-white font-medium' : 'text-[rgba(255,255,255,0.7)]'}`}>{lim}</span>
           </div>
         ))}

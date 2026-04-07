@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import { motion } from 'motion/react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import Image from 'next/image'
 import { ScoreRing } from './score-ring'
 import { APP_ASSETS } from '@/lib/assets'
@@ -26,10 +26,10 @@ export function SpotlightCards({ onNavigate }: SpotlightCardsProps) {
         <p className="text-[12px] text-[rgba(255,255,255,0.3)] font-manrope uppercase tracking-wider font-bold">Лучшие в категориях</p>
         <div className="flex items-center gap-[6px]">
           <button onClick={() => scrollSpotlights('left')} className="size-[28px] rounded-[8px] bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] flex items-center justify-center cursor-pointer hover:bg-[rgba(255,255,255,0.08)] transition-colors">
-            <ChevronLeft size={14} className="text-[rgba(255,255,255,0.5)]" />
+            <CustomIcon src="/icons/litle_arrow_left.png" size={14} className="opacity-50" />
           </button>
           <button onClick={() => scrollSpotlights('right')} className="size-[28px] rounded-[8px] bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] flex items-center justify-center cursor-pointer hover:bg-[rgba(255,255,255,0.08)] transition-colors">
-            <ChevronRight size={14} className="text-[rgba(255,255,255,0.5)]" />
+            <CustomIcon src="/icons/litle_arrow_right.png" size={14} className="opacity-50" />
           </button>
         </div>
       </div>

@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { ChevronDown, Check } from 'lucide-react'
+import { Check } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import { motion, AnimatePresence } from 'motion/react'
 import { ModelIcon } from '@/components/shared/model-icon'
 import { useSubscriptionStore } from '@/stores/subscription'
@@ -50,7 +51,7 @@ export function VersionDropdown({ currentModel, selectedVersion, onSelectVersion
             {selectedVersion.label}
           </p>
         </div>
-        <ChevronDown size={16} className={`text-[rgba(255,255,255,0.4)] transition-transform ${open ? 'rotate-180' : ''}`} />
+        <CustomIcon src="/icons/arrow_down_icon.png" size={16} className={`opacity-40 transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
 
       <AnimatePresence>

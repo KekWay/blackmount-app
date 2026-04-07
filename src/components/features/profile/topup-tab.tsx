@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import NextImage from 'next/image'
-import { Star } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import { useBalanceStore } from '@/stores/balance'
 import { PaymentOverlay } from '@/components/shared/payment-overlay'
 import { packages, IMG_COIN } from './profile-data'
@@ -35,7 +35,7 @@ export function TopupTab() {
             {pkg.badge && (
               <div className="absolute right-[16px] top-[-10px] z-[1]">
                 <div className="bg-[#c0a020] rounded-[20px] px-[10px] py-[3px] flex items-center gap-[4px]">
-                  <Star size={10} className="text-white" />
+                  <CustomIcon src="/icons/fire_2_icon.png" size={10} />
                   <span className="font-manrope font-extrabold text-[10px] text-white">{pkg.badge}</span>
                 </div>
               </div>

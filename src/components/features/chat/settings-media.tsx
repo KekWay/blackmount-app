@@ -1,7 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { ChevronDown, Minus } from 'lucide-react'
+import { Minus } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import type { AIModel, ModelVersion } from '@/types'
 import { hasAudioPricing } from '@/types/models'
 
@@ -29,7 +30,7 @@ export function SettingsImage({ aspectRatio, setAspectRatio, quality, setQuality
             <option value="4:3">4:3</option>
             <option value="3:4">3:4</option>
           </select>
-          <ChevronDown size={14} className="absolute right-[12px] top-1/2 -translate-y-1/2 text-[rgba(255,255,255,0.3)] pointer-events-none" />
+          <CustomIcon src="/icons/arrow_down_icon.png" size={14} className="absolute right-[12px] top-1/2 -translate-y-1/2 opacity-30 pointer-events-none" />
         </div>
       </div>
       {hasResolutionPricing && (
@@ -92,7 +93,7 @@ export function SettingsVideo({
             <option value="9:16">9:16</option>
             <option value="4:3">4:3</option>
           </select>
-          <ChevronDown size={14} className="absolute right-[12px] top-1/2 -translate-y-1/2 text-[rgba(255,255,255,0.3)] pointer-events-none" />
+          <CustomIcon src="/icons/arrow_down_icon.png" size={14} className="absolute right-[12px] top-1/2 -translate-y-1/2 opacity-30 pointer-events-none" />
         </div>
       </div>
       <div>

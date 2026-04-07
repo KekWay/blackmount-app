@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { Check, Copy } from 'lucide-react'
+import { Check } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import { motion } from 'motion/react'
 import { copyToClipboard } from '@/lib/utils'
 import { REFERRAL_LINK, INVITE_CODE, type TierInfo } from './referral-data'
@@ -57,7 +58,7 @@ export function ReferralHero({ currentTier, nextTier, tierProgress, onTierClick 
             <p className="font-manrope font-bold text-[13px] text-[rgba(255,255,255,0.4)] uppercase tracking-[0.06em] mb-[8px]">Код приглашения</p>
             <div className="flex items-center justify-between mt-auto">
               <p className="font-manrope font-black text-[18px] text-white tracking-[0.02em]">{INVITE_CODE}</p>
-              <button onClick={handleCopyCode} className="text-[rgba(255,255,255,0.35)] hover:text-white bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.1)] p-[8px] rounded-[8px] transition-colors cursor-pointer">{copiedCode ? <Check size={14} className="text-[#6bc085]" /> : <Copy size={14} />}</button>
+              <button onClick={handleCopyCode} className="text-[rgba(255,255,255,0.35)] hover:text-white bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.1)] p-[8px] rounded-[8px] transition-colors cursor-pointer">{copiedCode ? <Check size={14} className="text-[#6bc085]" /> : <CustomIcon src="/icons/copy_icon.png" size={14} />}</button>
             </div>
           </div>
         </div>
@@ -75,7 +76,7 @@ function ReferralLinkSection({ copied, onCopy }: { copied: boolean; onCopy: () =
           <p className="font-manrope font-medium text-[13px] text-[rgba(255,255,255,0.7)] truncate">{REFERRAL_LINK}</p>
         </div>
         <button onClick={onCopy} className="rounded-[10px] px-[16px] py-[10px] flex items-center gap-[6px] cursor-pointer transition-all hover:brightness-110 shrink-0 shadow-[0_4px_12px_rgba(136,138,229,0.2)]" style={{ background: '#888ae5' }}>
-          {copied ? <Check size={14} className="text-white" /> : <Copy size={14} className="text-white" />}
+          {copied ? <Check size={14} className="text-white" /> : <CustomIcon src="/icons/copy_icon.png" size={14} />}
           <span className="font-manrope font-bold text-[13px] text-white">{copied ? 'Скопировано' : 'Копировать'}</span>
         </button>
       </div>

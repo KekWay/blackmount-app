@@ -1,7 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { Check, MessageSquare } from 'lucide-react'
+import { MessageSquare } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import { motion } from 'motion/react'
 import type { ArenaModel } from '@/data/arena-models'
 import type { ModelResponse } from './arena-data'
@@ -45,7 +46,7 @@ export function ArenaWinnerCard({ winnerResponse, prompt, savedIds, ratedId, onS
       </div>
       <div className="px-[20px] py-[12px] border-t border-[rgba(255,255,255,0.05)] flex items-center gap-[8px] flex-wrap">
         <button onClick={() => onSave(winnerResponse.model.id)} className={`flex items-center gap-[5px] px-[12px] py-[7px] rounded-[10px] text-[11px] transition-all cursor-pointer ${isSaved ? 'bg-[rgba(74,222,128,0.08)] text-[#4ade80] border border-[rgba(74,222,128,0.15)]' : 'bg-[rgba(255,255,255,0.04)] text-[rgba(255,255,255,0.4)] hover:bg-[rgba(255,255,255,0.08)] border border-transparent'}`}>
-          {isSaved ? <Check size={12} /> : <Image src="/icons/dowland_icon.png" alt="" width={12} height={12} className="brightness-0 invert opacity-40" />}
+          {isSaved ? <CustomIcon src="/icons/chekmark_icon.png" size={12} /> : <Image src="/icons/dowland_icon.png" alt="" width={12} height={12} className="brightness-0 invert opacity-40" />}
           {isSaved ? 'Сохранено' : 'Сохранить'}
         </button>
         <button onClick={onShare} className="flex items-center gap-[5px] px-[12px] py-[7px] rounded-[10px] bg-[rgba(255,255,255,0.04)] text-[11px] text-[rgba(255,255,255,0.4)] hover:bg-[rgba(255,255,255,0.08)] transition-all cursor-pointer border border-transparent font-medium">

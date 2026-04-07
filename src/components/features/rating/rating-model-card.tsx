@@ -2,9 +2,8 @@
 
 import { forwardRef } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import {
-  TrendingUp, TrendingDown, ChevronDown,
-} from 'lucide-react'
+import { TrendingUp, TrendingDown } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import { APP_ASSETS } from '@/lib/assets'
 import type { LeaderboardModel } from '@/data/leaderboard'
 import { ScoreRing } from './score-ring'
@@ -113,7 +112,7 @@ function ModelCardCompact({ item, rank, isTop3, medalColor, expanded, isComparin
             <ScalesIcon size={12} />
           </button>
           <div className={`w-[32px] h-[32px] rounded-[7px] flex items-center justify-center transition-all ${expanded ? "bg-[#888ae5] text-white shadow-[0_2px_8px_rgba(136,138,229,0.3)]" : "bg-[rgba(255,255,255,0.05)] text-[rgba(255,255,255,0.5)] group-hover:bg-[rgba(255,255,255,0.1)] group-hover:text-white"}`}>
-            <motion.div animate={{ rotate: expanded ? 180 : 0 }} transition={{ duration: 0.3 }}><ChevronDown size={16} /></motion.div>
+            <motion.div animate={{ rotate: expanded ? 180 : 0 }} transition={{ duration: 0.3 }}><CustomIcon src="/icons/arrow_down_icon.png" size={16} /></motion.div>
           </div>
         </div>
       </div>

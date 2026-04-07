@@ -4,7 +4,7 @@ import { useState, useRef, useCallback } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeHighlight from 'rehype-highlight'
-import { Copy, Check } from 'lucide-react'
+import { CustomIcon } from './custom-icon'
 import type { Components } from 'react-markdown'
 
 function CodeBlock({ children, className }: { children: React.ReactNode; className?: string }) {
@@ -32,12 +32,12 @@ function CodeBlock({ children, className }: { children: React.ReactNode; classNa
         >
           {copied ? (
             <>
-              <Check size={12} />
+              <CustomIcon src="/icons/chekmark_icon.png" size={12} />
               Скопировано!
             </>
           ) : (
             <>
-              <Copy size={12} />
+              <CustomIcon src="/icons/copy_icon.png" size={12} />
               Копировать
             </>
           )}

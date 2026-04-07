@@ -1,6 +1,7 @@
 'use client'
 
-import { ChevronDown, ArrowUpRight, ArrowDownLeft, Zap } from 'lucide-react'
+import { ArrowUpRight, ArrowDownLeft, Zap } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import { motion, AnimatePresence } from 'motion/react'
 import { MODEL_ASSETS } from '@/lib/assets'
 import { IMG_COIN } from './profile-data'
@@ -22,7 +23,7 @@ export function HistoryTabGroup({ dateLabel, items, isExpanded, onToggle }: {
       <button onClick={onToggle} className="w-full flex items-center justify-between px-[24px] py-[14px] cursor-pointer hover:bg-[rgba(255,255,255,0.02)] transition-colors">
         <div className="flex items-center gap-[10px]">
           <motion.div animate={{ rotate: isExpanded ? 0 : -90 }} transition={{ duration: 0.2 }}>
-            <ChevronDown size={14} className="text-[rgba(255,255,255,0.3)]" />
+            <CustomIcon src="/icons/arrow_down_icon.png" size={14} className="opacity-30" />
           </motion.div>
           <span className="font-manrope font-semibold text-[14px] text-[#b0b0b0]">{dateLabel}</span>
           <span className="font-manrope font-medium text-[11px] text-[rgba(255,255,255,0.2)]">{items.length} операц.</span>

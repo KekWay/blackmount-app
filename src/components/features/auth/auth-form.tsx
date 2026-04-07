@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Eye, EyeOff, Check } from 'lucide-react'
+import { Check } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import Image from 'next/image'
 import { toast } from 'sonner'
 import { motion, AnimatePresence } from 'motion/react'
@@ -126,7 +127,7 @@ export function AuthForm() {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-[10px] top-1/2 -translate-y-1/2 text-[rgba(255,255,255,0.3)] hover:text-white transition-colors cursor-pointer"
                   >
-                    {showPassword ? <EyeOff size={14} /> : <Eye size={14} />}
+                    {showPassword ? <CustomIcon src="/icons/eye_hide_icon.png" size={14} /> : <CustomIcon src="/icons/eye_icon.png" size={14} />}
                   </button>
                 </div>
               </div>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
-import { ChevronDown, Check } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import { getBasePrice } from '@/types/models'
 import { motion } from 'motion/react'
 import { ModelIcon } from '@/components/shared/model-icon'
@@ -56,7 +56,7 @@ export function InputModelDropdown({ currentModel, onSelect }: InputModelDropdow
         <p className="font-manrope font-medium leading-[28px] text-[14px] text-[#919191]">
           {currentModel.name}
         </p>
-        <ChevronDown size={11} className={`text-[#919191] transition-transform ${open ? 'rotate-180' : ''}`} />
+        <CustomIcon src="/icons/arrow_down_icon.png" size={11} className={`opacity-50 transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
 
       {open && pos && mounted && createPortal(
@@ -113,7 +113,7 @@ export function InputModelDropdown({ currentModel, onSelect }: InputModelDropdow
                         </div>
                       </div>
                       {m.id === currentModel.id && (
-                        <Check size={12} className="text-[rgba(255,255,255,0.5)]" />
+                        <CustomIcon src="/icons/chekmark_icon.png" size={12} className="opacity-50" />
                       )}
                     </>
                   )}

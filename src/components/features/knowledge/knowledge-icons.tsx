@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Layers, Lightbulb, Settings } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 
 const imgPuzzlesMask = '/assets/models/knowledge-puzzles.png'
 const imgHandMask = '/assets/models/knowledge-hand.png'
@@ -28,7 +28,7 @@ export function iconAbout() {
 }
 
 export function iconVersions() {
-  return <Layers size={15} />
+  return <CustomIcon src="/icons/versions_icon.png" size={15} />
 }
 
 export function iconUsecases() {
@@ -36,7 +36,7 @@ export function iconUsecases() {
 }
 
 export function iconPrompts() {
-  return <Lightbulb size={15} />
+  return <CustomIcon src="/icons/lightbulb_icon.png" size={15} />
 }
 
 export function iconTips() {
@@ -44,5 +44,5 @@ export function iconTips() {
 }
 
 export function iconSettings() {
-  return <Settings size={15} />
+  return <CustomIcon src="/icons/cogwheel_icon.png" size={15} />
 }

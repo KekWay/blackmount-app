@@ -2,7 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
-import { ChevronDown, Check } from 'lucide-react'
+import { Check } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import { getBasePrice } from '@/types/models'
 import type { AIModel, ModelVersion } from '@/types'
 import { MODEL_ASSETS } from '@/lib/assets'
@@ -45,9 +46,10 @@ export function ModelSelector({ model, selectedVersion, onSelectVersion }: Model
           <span className="font-semibold text-lg text-white leading-tight">{model.name}</span>
           <span className="text-[11px] text-white/40 leading-tight">{selectedVersion.label}</span>
         </div>
-        <ChevronDown
+        <CustomIcon
+          src="/icons/arrow_down_icon.png"
           size={16}
-          className={`text-white/40 transition-transform ${open ? 'rotate-180' : ''}`}
+          className={`opacity-40 transition-transform ${open ? 'rotate-180' : ''}`}
         />
       </button>
 

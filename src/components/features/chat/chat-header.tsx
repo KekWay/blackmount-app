@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { ChevronLeft } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import Image from 'next/image'
 import { APP_ASSETS } from '@/lib/assets'
 import { VersionDropdown } from './version-dropdown'
@@ -42,7 +42,7 @@ export function ChatHeader({
           className="md:hidden shrink-0 size-[32px] flex items-center justify-center rounded-[8px] text-white/50 hover:bg-white/[0.06] transition-colors cursor-pointer"
           aria-label="Назад"
         >
-          <ChevronLeft size={20} />
+          <CustomIcon src="/icons/litle_arrow_left.png" size={20} className="opacity-50" />
         </button>
         <VersionDropdown
           currentModel={model}

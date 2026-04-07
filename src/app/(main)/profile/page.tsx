@@ -2,7 +2,8 @@
 
 import { Suspense, useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Clock, Menu } from 'lucide-react'
+import { Clock } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import Image from 'next/image'
 import { APP_ASSETS } from '@/lib/assets'
 import { motion, AnimatePresence } from 'motion/react'
@@ -110,7 +111,7 @@ function ProfilePageContent() {
                 className="md:hidden size-[34px] flex items-center justify-center rounded-[10px] hover:bg-white/[0.06] transition-colors cursor-pointer"
                 aria-label="Меню профиля"
               >
-                <Menu size={20} className="text-white/60" />
+                <CustomIcon src="/icons/menubar_icon.png" size={20} className="opacity-60" />
               </button>
               <p className="font-manrope font-semibold leading-[36px] text-[20px] md:text-[24px] text-white">
                 {tabTitles[activeTab]}

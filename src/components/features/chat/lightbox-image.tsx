@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'motion/react'
 import Image from 'next/image'
-import { ChevronDown } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 
 interface LightboxImageProps {
   srcs: string[]
@@ -29,7 +29,7 @@ export function LightboxImage({ srcs }: LightboxImageProps) {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <ChevronDown size={20} className="text-white rotate-90" />
+              <CustomIcon src="/icons/arrow_down_icon.png" size={20} className="rotate-90" />
             </motion.button>
           )}
           {currentIdx < srcs.length - 1 && (
@@ -39,7 +39,7 @@ export function LightboxImage({ srcs }: LightboxImageProps) {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <ChevronDown size={20} className="text-white -rotate-90" />
+              <CustomIcon src="/icons/arrow_down_icon.png" size={20} className="-rotate-90" />
             </motion.button>
           )}
           <div className="absolute bottom-[12px] left-1/2 -translate-x-1/2 bg-[rgba(0,0,0,0.6)] backdrop-blur-[6px] rounded-full px-[12px] py-[4px] flex items-center gap-[8px]">

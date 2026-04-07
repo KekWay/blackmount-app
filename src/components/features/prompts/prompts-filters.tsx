@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useEffect, useCallback, useState } from 'react'
-import { LayoutGrid, ChevronLeft, ChevronRight } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import Image from 'next/image'
 import { AnimatePresence, motion } from 'motion/react'
 import { aiModels } from '@/data/ai-models'
@@ -202,7 +202,7 @@ export function PromptsFilters({
           aria-label="Назад"
           className="shrink-0 hidden sm:flex bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.12)] rounded-full w-[28px] h-[28px] items-center justify-center transition-colors cursor-pointer"
         >
-          <ChevronLeft size={14} className="text-white" />
+          <CustomIcon src="/icons/litle_arrow_left.png" size={14} />
         </button>
 
         {/* Scrollable chips */}
@@ -249,7 +249,7 @@ export function PromptsFilters({
           aria-label="Вперёд"
           className="shrink-0 hidden sm:flex bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.12)] rounded-full w-[28px] h-[28px] items-center justify-center transition-colors cursor-pointer"
         >
-          <ChevronRight size={14} className="text-white" />
+          <CustomIcon src="/icons/litle_arrow_right.png" size={14} />
         </button>
 
         {/* Divider */}
@@ -260,7 +260,7 @@ export function PromptsFilters({
           onClick={() => setOverlayOpen(true)}
           className="shrink-0 hover:bg-white/10 rounded-lg px-3 py-1.5 text-sm text-white/70 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
         >
-          <LayoutGrid size={14} />
+          <CustomIcon src="/icons/menu_icon.png" size={14} />
           <span className="hidden sm:inline">Все разделы</span>
         </button>
       </div>

@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'motion/react'
-import { Play, Copy, Check, ArrowUpRight, ImageIcon } from 'lucide-react'
+import { Play, Check, ArrowUpRight, ImageIcon } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import Image from 'next/image'
 
 const imgShareMask = '/assets/models/share-mask.png'
@@ -123,7 +124,7 @@ function HistoryViewerContent({ item, onClose, onDelete, onShare }: { item: View
                 onClick={handleCopy}
                 className="mt-[8px] flex items-center gap-[6px] text-[12px] text-[rgba(255,255,255,0.35)] hover:text-[#888ae5] transition-colors cursor-pointer"
               >
-                {copied ? <Check size={13} className="text-[#888ae5]" /> : <Copy size={13} />}
+                {copied ? <Check size={13} className="text-[#888ae5]" /> : <CustomIcon src="/icons/copy_icon.png" size={13} />}
                 {copied ? 'Скопировано!' : 'Скопировать промпт'}
               </button>
             </div>

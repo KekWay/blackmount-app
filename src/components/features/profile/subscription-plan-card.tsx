@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { Crown } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import { motion, AnimatePresence } from 'motion/react'
 import { planFeatures, featureIconMap, IMG_COIN, IMG_BULLET_ICON, IMG_CHATGPT_COLOR, IMG_CLAUDE_COLOR, IMG_GEMINI_COLOR, IMG_FLUX_COLOR, type Period } from './profile-data'
 import { plansArr } from './profile-data'
@@ -62,7 +62,7 @@ function PlanHeader({ label, badge, isPro }: { label: string; badge: string | nu
           className={`flex items-center gap-[4px] px-[10px] py-[4px] rounded-[6px] text-[10px] leading-[15px] font-manrope font-extrabold uppercase tracking-[0.5px] ${isPro ? 'text-white shadow-[0_0_12px_rgba(255,210,49,0.3)]' : 'bg-white/10 text-white'}`}
           style={isPro ? { backgroundImage: 'linear-gradient(106.083deg, rgb(255, 210, 49) 4.51%, rgb(192, 150, 0) 54.14%, rgb(238, 161, 16) 86.39%)' } : undefined}
         >
-          {isPro && <Crown size={12} strokeWidth={2.5} />}
+          {isPro && <CustomIcon src="/icons/crown_icon.png" size={12} />}
           {badge}
         </div>
       )}

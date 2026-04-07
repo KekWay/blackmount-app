@@ -1,4 +1,4 @@
-import { ChevronDown } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 
 interface SettingsTextProps {
   systemPrompt: string
@@ -34,7 +34,7 @@ export function SettingsText({ systemPrompt, setSystemPrompt, toneSetting, setTo
             <option value="concise">краткий</option>
             <option value="creative">креативный</option>
           </select>
-          <ChevronDown size={14} className="absolute right-[12px] top-1/2 -translate-y-1/2 text-[rgba(255,255,255,0.3)] pointer-events-none" />
+          <CustomIcon src="/icons/arrow_down_icon.png" size={14} className="absolute right-[12px] top-1/2 -translate-y-1/2 opacity-30 pointer-events-none" />
         </div>
       </div>
     </div>

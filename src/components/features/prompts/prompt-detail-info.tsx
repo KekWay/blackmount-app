@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { Copy, Check, ChevronDown } from 'lucide-react'
+import { Check } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import { motion, AnimatePresence } from 'motion/react'
 import { copyToClipboard } from '@/lib/utils'
 import { aiModels } from '@/data/ai-models'
@@ -68,7 +69,7 @@ export function PromptDetailInfo({ item, selectedModelId, onSelectModel, onGate 
           onClick={handleCopy}
           className="mt-[8px] flex items-center gap-[6px] text-[12px] text-[rgba(255,255,255,0.35)] hover:text-[#888ae5] transition-colors cursor-pointer"
         >
-          {copied ? <Check size={13} className="text-[#888ae5]" /> : <Copy size={13} />}
+          {copied ? <Check size={13} className="text-[#888ae5]" /> : <CustomIcon src="/icons/copy_icon.png" size={13} />}
           {copied ? 'Скопировано!' : 'Скопировать промпт'}
         </button>
       </div>
@@ -87,7 +88,7 @@ export function PromptDetailInfo({ item, selectedModelId, onSelectModel, onGate 
               {selectedModel && <ModelIcon modelId={selectedModel.id} size={20} />}
               <span className="text-[13px] text-white">{selectedModel?.name || 'Выбрать'}</span>
             </div>
-            <ChevronDown size={14} className={`text-[rgba(255,255,255,0.3)] transition-transform ${modelDropdownOpen ? 'rotate-180' : ''}`} />
+            <CustomIcon src="/icons/arrow_down_icon.png" size={14} className={`opacity-30 transition-transform ${modelDropdownOpen ? 'rotate-180' : ''}`} />
           </button>
 
           <AnimatePresence>

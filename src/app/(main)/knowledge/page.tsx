@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
-import { Menu, List } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import Image from 'next/image'
 import { aiModels } from '@/data/ai-models'
 import { getModelDocs } from '@/components/features/knowledge/knowledge-data'
@@ -126,7 +126,7 @@ export default function KnowledgePage() {
             className="size-[34px] flex items-center justify-center rounded-[10px] hover:bg-white/[0.06] transition-colors cursor-pointer"
             aria-label="Модели"
           >
-            <Menu size={18} className="text-white/60" />
+            <CustomIcon src="/icons/menubar_icon.png" size={18} className="opacity-60" />
           </button>
           <span className="text-[14px] text-white font-semibold flex-1 truncate">{model.name}</span>
           <button
@@ -134,7 +134,7 @@ export default function KnowledgePage() {
             className="size-[34px] flex items-center justify-center rounded-[10px] hover:bg-white/[0.06] transition-colors cursor-pointer"
             aria-label="Содержание"
           >
-            <List size={18} className="text-white/60" />
+            <CustomIcon src="/icons/menubar_2_icon.png" size={18} className="opacity-60" />
           </button>
         </div>
 

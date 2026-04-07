@@ -1,6 +1,7 @@
 'use client'
 
-import { ChevronRight, Hash } from 'lucide-react'
+import { Hash } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import type { DocSection } from './knowledge-types'
 
 interface KnowledgeSectionProps {
@@ -37,7 +38,7 @@ export function KnowledgeSection({ section: sec, glowColor, isLast, sectionRef }
           <div className="grid grid-cols-2 gap-[8px]">
             {sec.content.map((item, pi) => (
               <div key={pi} className="flex items-start gap-[8px] px-[12px] py-[10px] rounded-[10px] bg-[rgba(255,255,255,0.02)]">
-                <ChevronRight size={12} className="text-[#888ae5] mt-[3px] shrink-0" />
+                <CustomIcon src="/icons/litle_arrow_right.png" size={12} className="mt-[3px] shrink-0" />
                 <p className="text-[13px] text-[rgba(255,255,255,0.55)] leading-[19px]">{item}</p>
               </div>
             ))}

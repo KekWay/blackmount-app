@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronDown } from 'lucide-react'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import { motion, AnimatePresence } from 'motion/react'
 import { ModelIcon } from '@/components/shared/model-icon'
 import { aiModels } from '@/data/ai-models'
@@ -66,9 +66,10 @@ export function KnowledgeSidebar({ selectedModelId, onSelectModel, mobile }: Kno
                 onClick={() => toggleGroup(group.category)}
                 className="flex items-center gap-[6px] w-full px-[8px] py-[6px] rounded-[8px] hover:bg-[rgba(136,138,229,0.06)] transition-colors cursor-pointer"
               >
-                <ChevronDown
+                <CustomIcon
+                  src="/icons/arrow_down_icon.png"
                   size={12}
-                  className={`text-[rgba(255,255,255,0.3)] transition-transform ${isCollapsed ? '-rotate-90' : ''}`}
+                  className={`opacity-30 transition-transform ${isCollapsed ? '-rotate-90' : ''}`}
                 />
                 <span className="text-[11px] text-[rgba(255,255,255,0.35)] uppercase tracking-[0.06em] font-semibold">
                   {group.label}

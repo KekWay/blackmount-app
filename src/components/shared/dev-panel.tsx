@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useBalanceStore } from '@/stores/balance'
 import { useSubscriptionStore } from '@/stores/subscription'
 import type { SubscriptionTier } from '@/types'
+import { ErrorScreen, type ErrorType } from './error-screen'
 
 const OVERLAYS = [
   { id: 'auth-gate', label: 'Auth Gate' },
@@ -14,11 +15,19 @@ const OVERLAYS = [
   { id: 'support-choice', label: 'Выбор поддержки' },
 ] as const
 
+const ERROR_PAGES: { id: ErrorType; label: string }[] = [
+  { id: 'network', label: 'Нет сети' },
+  { id: 'server', label: 'Ошибка 500' },
+  { id: 'notfound', label: '404' },
+  { id: 'generic', label: 'Generic' },
+]
+
 type OverlayId = (typeof OVERLAYS)[number]['id']
 
 export function DevPanel() {
   const [open, setOpen] = useState(false)
   const [activeOverlay, setActiveOverlay] = useState<OverlayId | null>(null)
+  const [activeError, setActiveError] = useState<ErrorType | null>(null)
   const [balanceInput, setBalanceInput] = useState('')
   const [toast, setToast] = useState<string | null>(null)
 
@@ -127,6 +136,35 @@ export function DevPanel() {
           </div>
         </Section>
 
+        {/* Error pages */}
+        <Section title="Страницы ошибок">
+          <div className="flex flex-wrap gap-[6px]">
+            {ERROR_PAGES.map((e) => (
+              <Btn key={e.id} label={e.label} onClick={() => setActiveError(e.id)} />
+            ))}
+          </div>
+        </Section>
+
+        {/* Connection notifications */}
+        <Section title="Уведомления о связи">
+          <div className="flex flex-wrap gap-[6px]">
+            <Btn
+              label="Офлайн-тост"
+              onClick={() => {
+                window.dispatchEvent(new Event('offline'))
+                showToast('Офлайн-тост')
+              }}
+            />
+            <Btn
+              label="Онлайн-тост"
+              onClick={() => {
+                window.dispatchEvent(new Event('online'))
+                showToast('Онлайн-тост')
+              }}
+            />
+          </div>
+        </Section>
+
         {/* Reset */}
         <button
           onClick={resetAll}
@@ -145,6 +183,24 @@ export function DevPanel() {
 
       {/* Overlay previews */}
       {activeOverlay && <OverlayPreview id={activeOverlay} onClose={() => setActiveOverlay(null)} />}
+
+      {/* Error page preview */}
+      {activeError && (
+        <div className="fixed inset-0 z-[10000] bg-[#121118] overflow-auto">
+          <button
+            onClick={() => setActiveError(null)}
+            className="fixed top-[20px] right-[20px] z-[10001] size-[36px] rounded-full bg-[rgba(255,255,255,0.08)] hover:bg-[rgba(255,255,255,0.16)] text-white flex items-center justify-center cursor-pointer text-[18px] transition-colors"
+            aria-label="Закрыть"
+          >
+            &times;
+          </button>
+          <ErrorScreen
+            type={activeError}
+            onRetry={() => setActiveError(null)}
+            onGoHome={() => setActiveError(null)}
+          />
+        </div>
+      )}
     </>
   )
 }
