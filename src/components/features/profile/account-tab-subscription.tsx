@@ -3,6 +3,18 @@
 import { useSubscriptionStore } from '@/stores/subscription'
 import { IMG_LOGO } from './profile-data'
 
+const TIER_LABELS: Record<string, string> = {
+  basic: 'BASIC',
+  pro: 'PRO',
+  max: 'MAX',
+}
+
+const TIER_PRICES: Record<string, string> = {
+  basic: '499\u20BD/мес',
+  pro: '999\u20BD/мес',
+  max: '1 799\u20BD/мес',
+}
+
 export function AccountTabSubscription({ onNavigateSubscription }: { onNavigateSubscription: () => void }) {
   const subscription = useSubscriptionStore((s) => s.subscription)
   const hasSubscription = subscription.tier !== 'free'
@@ -18,11 +30,11 @@ export function AccountTabSubscription({ onNavigateSubscription }: { onNavigateS
             <div className="flex items-center gap-[8px]">
               <p className="font-manrope text-[14px] text-white leading-[22px] font-extrabold">BLACK MOUNT</p>
               <div className="h-[14px] rounded-[4px] flex items-center justify-center px-[6px] shrink-0" style={{ backgroundImage: 'linear-gradient(122deg, rgb(171, 135, 228) 18%, rgb(155, 33, 130) 88%)' }}>
-                <span className="font-manrope text-[8px] text-white leading-none tracking-[0.2px] font-extrabold">{subscription.tier === 'max' ? 'MAX' : 'PRO'}</span>
+                <span className="font-manrope text-[8px] text-white leading-none tracking-[0.2px] font-extrabold">{TIER_LABELS[subscription.tier] || subscription.tier.toUpperCase()}</span>
               </div>
             </div>
             <p className="font-manrope font-normal text-[12px] text-[rgba(255,255,255,0.35)] leading-[18px]">
-              Истекает: {subscription.expiresAt ? new Date(subscription.expiresAt).toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' }) : '\u2014'} · {subscription.tier === 'max' ? '1 799\u20BD/мес' : '990\u20BD/мес'}
+              Истекает: {subscription.expiresAt ? new Date(subscription.expiresAt).toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' }) : '\u2014'} · {TIER_PRICES[subscription.tier] || ''}
             </p>
           </div>
         </div>
