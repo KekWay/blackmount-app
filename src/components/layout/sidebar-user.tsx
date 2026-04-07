@@ -12,6 +12,12 @@ import { useSubscriptionStore } from '@/stores/subscription'
 import { SidebarUserMenu } from './sidebar-user-menu'
 import { SupportChoiceModal } from '@/components/features/support/support-choice-modal'
 
+const TIER_LABELS: Record<string, string> = {
+  basic: 'BASIC',
+  pro: 'PRO',
+  max: 'MAX',
+}
+
 interface SidebarUserProps {
   collapsed: boolean
 }
@@ -21,6 +27,7 @@ export function SidebarUser({ collapsed }: SidebarUserProps) {
   const { isLoggedIn, user } = useAuthStore()
   const balance = useBalanceStore((s) => s.balance)
   const hasActiveSub = useSubscriptionStore((s) => s.hasActiveSubscription())
+  const tier = useSubscriptionStore((s) => s.subscription.tier)
   const [menuOpen, setMenuOpen] = useState(false)
   const [supportModal, setSupportModal] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
@@ -67,7 +74,7 @@ export function SidebarUser({ collapsed }: SidebarUserProps) {
                     <span className="text-[13px] text-white truncate">{user.name}</span>
                     {hasActiveSub ? (
                       <div className="h-[14px] rounded-[4px] flex items-center justify-center px-[5px] shrink-0 mt-0.5 self-start" style={{ backgroundImage: 'linear-gradient(122deg, rgb(171, 135, 228) 18%, rgb(155, 33, 130) 88%)' }}>
-                        <span className="font-manrope text-[8px] text-white leading-none tracking-wide font-extrabold">PRO</span>
+                        <span className="font-manrope text-[8px] text-white leading-none tracking-wide font-extrabold">{TIER_LABELS[tier] || tier.toUpperCase()}</span>
                       </div>
                     ) : (
                       <div className="h-[14px] rounded-[4px] flex items-center justify-center px-[5px] shrink-0 mt-0.5 self-start bg-white/[0.08]">
