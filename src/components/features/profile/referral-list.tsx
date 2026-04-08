@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { RussianRuble } from 'lucide-react'
 import Link from 'next/link'
 import { APP_ASSETS } from '@/lib/assets'
 import { motion, AnimatePresence } from 'motion/react'
@@ -168,7 +167,7 @@ function TxIcon({ icon }: { icon: string }) {
   return (
     <div className={`rounded-[12px] size-[36px] flex items-center justify-center shrink-0 shadow-sm ${bg}`}>
       {icon === 'bonus' && <img src={APP_ASSETS.wallet3} alt="" className="size-[18px] object-contain" style={{ filter: 'brightness(0) saturate(100%) invert(67%) sepia(20%) saturate(700%) hue-rotate(100deg) brightness(92%) contrast(87%)' }} />}
-      {icon === 'withdraw' && <RussianRuble size={16} className="text-[#f87171]" />}
+      {icon === 'withdraw' && <div style={{ width: 16, height: 16, backgroundColor: '#f87171', maskImage: "url('/icons/ruble_icon.png')", WebkitMaskImage: "url('/icons/ruble_icon.png')", maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center' }} />}
       {icon === 'convert' && <div className="relative size-[18px]"><img src={APP_ASSETS.coinLarge} alt="" className="size-full object-contain brightness-[0.8] sepia hue-rotate-[210deg] saturate-[3]" /></div>}
     </div>
   )

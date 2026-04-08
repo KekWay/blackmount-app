@@ -41,16 +41,16 @@ export function PromptDetailActions({ item, selectedModelId, saved, onToggleSave
       <div className="flex gap-[8px]">
         <button
           onClick={onToggleSave}
-          className={`flex-1 flex items-center justify-center gap-[6px] rounded-[10px] py-[10px] transition-colors cursor-pointer border ${
+          className={`flex-1 flex items-center justify-center gap-[6px] rounded-[10px] py-[10px] transition-colors cursor-pointer ${
             saved
-              ? 'bg-[#39375b] border-[rgba(136,138,229,0.25)] text-white'
-              : 'bg-[rgba(255,255,255,0.04)] border-[rgba(255,255,255,0.06)] hover:bg-[rgba(136,138,229,0.08)] text-white'
+              ? 'bg-[#39375b] text-white'
+              : 'bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(136,138,229,0.08)] text-white'
           }`}
         >
           <Image src="/icons/heart_icon.png" alt="" width={14} height={14} className={`brightness-0 invert transition-all ${saved ? 'opacity-100' : 'opacity-70'}`} />
           <span className="text-[13px]">{saved ? 'Сохранено' : 'Сохранить'}</span>
         </button>
-        <button className="flex-1 flex items-center justify-center gap-[6px] bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(136,138,229,0.08)] border border-[rgba(255,255,255,0.06)] rounded-[10px] py-[10px] transition-colors cursor-pointer">
+        <button className="flex-1 flex items-center justify-center gap-[6px] bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(136,138,229,0.08)] rounded-[10px] py-[10px] transition-colors cursor-pointer">
           <Image src="/icons/dowland_icon.png" alt="" width={14} height={14} className="brightness-0 invert" />
           <span className="text-[13px] text-white">Скачать</span>
         </button>

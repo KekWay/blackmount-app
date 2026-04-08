@@ -34,8 +34,8 @@ export function TopupTab() {
           <div key={pkg.id} className="relative">
             {pkg.badge && (
               <div className="absolute right-[16px] top-[-10px] z-[1]">
-                <div className="bg-[#c0a020] rounded-[20px] px-[10px] py-[3px] flex items-center gap-[4px]">
-                  <CustomIcon src="/icons/fire_2_icon.png" size={10} />
+                <div className="rounded-[20px] px-[10px] py-[3px] flex items-center gap-[4px]" style={{ background: pkg.badge === 'Самый выгодный' ? 'linear-gradient(135deg, #f5d76e 0%, #c0a020 100%)' : 'linear-gradient(135deg, #ff8a3d 0%, #ff4d3d 100%)' }}>
+                  <CustomIcon src={pkg.badge === 'Самый выгодный' ? '/icons/star_3_icon.png' : '/icons/fire_2_icon.png'} size={10} />
                   <span className="font-manrope font-extrabold text-[10px] text-white">{pkg.badge}</span>
                 </div>
               </div>

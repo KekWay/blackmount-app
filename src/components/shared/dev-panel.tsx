@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useAuthStore } from '@/stores/auth'
 import { useBalanceStore } from '@/stores/balance'
 import { useSubscriptionStore } from '@/stores/subscription'
 import type { SubscriptionTier } from '@/types'
@@ -33,6 +34,7 @@ export function DevPanel() {
 
   const balance = useBalanceStore((s) => s.balance)
   const tier = useSubscriptionStore((s) => s.subscription.tier)
+  const isLoggedIn = useAuthStore((s) => s.isLoggedIn)
 
   const showToast = (msg: string) => {
     setToast(msg)
@@ -142,6 +144,17 @@ export function DevPanel() {
             {ERROR_PAGES.map((e) => (
               <Btn key={e.id} label={e.label} onClick={() => setActiveError(e.id)} />
             ))}
+          </div>
+        </Section>
+
+        {/* Auth */}
+        <Section title="Авторизация">
+          <div className="flex items-center gap-[6px] mb-[8px]">
+            <span className="text-[13px] text-white font-bold">{isLoggedIn ? 'Вошёл' : 'Гость'}</span>
+          </div>
+          <div className="flex flex-wrap gap-[6px]">
+            <Btn label="Войти" active={isLoggedIn} onClick={() => { useAuthStore.getState().login({ email: 'dev@blackmount.ai', name: 'Dev User' }); showToast('Вошёл') }} />
+            <Btn label="Выйти" active={!isLoggedIn} onClick={() => { useAuthStore.getState().logout(); showToast('Вышел') }} />
           </div>
         </Section>
 

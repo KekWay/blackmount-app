@@ -52,7 +52,7 @@ export function ArenaModelDropdown({ selectedModels, onToggle, onCategoryChange 
         {selectedModels.length > 0 && (
           <span className="text-[10px] px-[6px] py-[1px] rounded-[6px] bg-[rgba(136,138,229,0.2)] text-[#888ae5] font-bold">{selectedModels.length}</span>
         )}
-        <CustomIcon src="/icons/arrow_down_icon.png" size={12} className={`transition-transform ${open ? 'rotate-180' : ''}`} />
+        <CustomIcon src="/icons/arrow_down_icon.png" size={12} className={`opacity-50 transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
       {open && pos && createPortal(
         <motion.div ref={ref} className="fixed bg-[#1e1d26] rounded-[16px] w-[280px] py-[8px] z-[9999] shadow-[0_12px_40px_rgba(0,0,0,0.6)]" style={{ top: pos.top, left: pos.left }} initial={{ opacity: 0, scale: 0.95, y: -8 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ type: 'spring', damping: 24, stiffness: 400 }}>
@@ -74,7 +74,7 @@ export function ArenaModelDropdown({ selectedModels, onToggle, onCategoryChange 
                   ) : (
                     <>
                       <span className="text-[11px] text-[rgba(255,255,255,0.35)] shrink-0 font-semibold">{hasSub && FREE_ARENA_IDS.has(m.id) ? 0 : m.price}<img alt="" className="size-[10px] inline ml-[2px]" src={IMG_COIN} /></span>
-                      <div className={`size-[16px] rounded-[4px] flex items-center justify-center shrink-0 transition-colors ${sel ? 'bg-[#888ae5] text-white' : 'bg-[rgba(255,255,255,0.06)] text-transparent'}`}><CustomIcon src="/icons/chekmark_icon.png" size={10} /></div>
+                      <div className={`size-[16px] rounded-[4px] flex items-center justify-center shrink-0 transition-colors ${sel ? 'bg-[#888ae5]' : 'bg-[rgba(255,255,255,0.06)]'}`}>{sel && <CustomIcon src="/icons/chekmark_icon.png" size={10} className="opacity-60" />}</div>
                     </>
                   )}
                 </button>

@@ -29,29 +29,6 @@ export function ArenaWinnerCelebration({ winnerResponse }: Props) {
 
   return (
     <>
-      {/* Background celebration glows */}
-      <motion.div
-        className="absolute top-[-40px] left-1/2 -translate-x-1/2 w-[700px] h-[300px] rounded-full pointer-events-none"
-        initial={{ opacity: 0, scale: 0.3 }}
-        animate={{ opacity: 0.18, scale: 1 }}
-        transition={{ duration: 1.5, ease: 'easeOut' }}
-        style={{ background: 'radial-gradient(ellipse, rgba(136,138,229,0.6) 0%, rgba(168,90,220,0.2) 40%, transparent 70%)', filter: 'blur(80px)' }}
-      />
-      <motion.div
-        className="absolute top-[10px] left-[20%] w-[200px] h-[200px] rounded-full pointer-events-none"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 0.1, 0.05, 0.1] }}
-        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-        style={{ background: 'radial-gradient(circle, rgba(196,181,253,0.4) 0%, transparent 70%)', filter: 'blur(50px)' }}
-      />
-      <motion.div
-        className="absolute top-[30px] right-[20%] w-[180px] h-[180px] rounded-full pointer-events-none"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 0.08, 0.04, 0.08] }}
-        transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-        style={{ background: 'radial-gradient(circle, rgba(224,111,226,0.3) 0%, transparent 70%)', filter: 'blur(50px)' }}
-      />
-
       {/* Confetti particles */}
       {particles.map((p, pi) => (
         <motion.div

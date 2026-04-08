@@ -1,7 +1,7 @@
 'use client'
 
-import { Activity } from 'lucide-react'
 import Image from 'next/image'
+import { CustomIcon } from '@/components/shared/custom-icon'
 import type { LeaderboardModel } from '@/data/leaderboard'
 import { CustomRadar } from './custom-radar'
 import { UserRating } from './user-rating'
@@ -73,7 +73,7 @@ export function ModelCardExpanded({ item, onOpenChat }: { item: LeaderboardModel
         <div className="lg:col-span-4 flex flex-col bg-[rgba(255,255,255,0.02)] rounded-[10px] p-[16px] border border-[rgba(255,255,255,0.03)]">
           <div className="flex items-center justify-between mb-[12px]">
             <div className="flex items-center gap-[6px]">
-              <Activity size={12} className="text-[#888ae5]" />
+              <CustomIcon src="/icons/model_raiting_parametr.png" size={12} />
               <h4 className="text-[11px] text-white font-bold uppercase tracking-wider">Подробные оценки</h4>
             </div>
           </div>

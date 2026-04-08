@@ -61,7 +61,7 @@ function ModelCardCompact({ item, rank, isTop3, medalColor, expanded, isComparin
   item: LeaderboardModel; rank: number; isTop3: boolean; medalColor: string | undefined; expanded: boolean; isComparing: boolean; onToggleCompare: () => void
 }) {
   return (
-    <div className="flex flex-wrap md:flex-nowrap items-center gap-[12px] px-[16px] py-[12px]">
+    <div className="flex flex-wrap md:flex-nowrap items-center gap-[12px] px-[16px] py-[12px] min-h-[68px]">
       <div className="flex items-center gap-[12px] w-full md:w-auto md:min-w-[240px]">
         <div className="w-[30px] shrink-0 flex items-center justify-center">
           {isTop3 ? (
@@ -112,7 +112,7 @@ function ModelCardCompact({ item, rank, isTop3, medalColor, expanded, isComparin
             <ScalesIcon size={12} />
           </button>
           <div className={`w-[32px] h-[32px] rounded-[7px] flex items-center justify-center transition-all ${expanded ? "bg-[#888ae5] text-white shadow-[0_2px_8px_rgba(136,138,229,0.3)]" : "bg-[rgba(255,255,255,0.05)] text-[rgba(255,255,255,0.5)] group-hover:bg-[rgba(255,255,255,0.1)] group-hover:text-white"}`}>
-            <motion.div animate={{ rotate: expanded ? 180 : 0 }} transition={{ duration: 0.3 }}><CustomIcon src="/icons/arrow_down_icon.png" size={16} /></motion.div>
+            <motion.div animate={{ rotate: expanded ? 180 : 0 }} transition={{ duration: 0.3 }}><CustomIcon src="/icons/arrow_down_icon.png" size={11} /></motion.div>
           </div>
         </div>
       </div>

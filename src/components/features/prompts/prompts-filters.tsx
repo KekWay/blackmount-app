@@ -200,9 +200,9 @@ export function PromptsFilters({
         <button
           onClick={() => scrollBy('left')}
           aria-label="Назад"
-          className="shrink-0 hidden sm:flex bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.12)] rounded-full w-[28px] h-[28px] items-center justify-center transition-colors cursor-pointer"
+          className="group shrink-0 hidden sm:flex bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.12)] rounded-full w-[28px] h-[28px] items-center justify-center transition-colors cursor-pointer"
         >
-          <CustomIcon src="/icons/litle_arrow_left.png" size={14} />
+          <CustomIcon src="/icons/litle_arrow_left.png" size={10} className="opacity-40 group-hover:opacity-100 transition-opacity duration-200" />
         </button>
 
         {/* Scrollable chips */}
@@ -247,9 +247,9 @@ export function PromptsFilters({
         <button
           onClick={() => scrollBy('right')}
           aria-label="Вперёд"
-          className="shrink-0 hidden sm:flex bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.12)] rounded-full w-[28px] h-[28px] items-center justify-center transition-colors cursor-pointer"
+          className="group shrink-0 hidden sm:flex bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.12)] rounded-full w-[28px] h-[28px] items-center justify-center transition-colors cursor-pointer"
         >
-          <CustomIcon src="/icons/litle_arrow_right.png" size={14} />
+          <CustomIcon src="/icons/litle_arrow_right.png" size={10} className="opacity-40 group-hover:opacity-100 transition-opacity duration-200" />
         </button>
 
         {/* Divider */}
@@ -258,9 +258,9 @@ export function PromptsFilters({
         {/* "Все разделы" button — no border */}
         <button
           onClick={() => setOverlayOpen(true)}
-          className="shrink-0 hover:bg-white/10 rounded-lg px-3 py-1.5 text-sm text-white/70 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
+          className="group shrink-0 rounded-[10px] px-3 py-1.5 text-[13px] text-[rgba(255,255,255,0.4)] hover:text-[rgba(255,255,255,0.7)] hover:bg-[rgba(255,255,255,0.04)] flex items-center gap-1.5 transition-colors cursor-pointer"
         >
-          <CustomIcon src="/icons/menu_icon.png" size={14} />
+          <CustomIcon src="/icons/menu_icon.png" size={14} className="opacity-40 group-hover:opacity-70 transition-opacity duration-200" />
           <span className="hidden sm:inline">Все разделы</span>
         </button>
       </div>

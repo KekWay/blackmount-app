@@ -28,16 +28,16 @@ function CodeBlock({ children, className }: { children: React.ReactNode; classNa
         </span>
         <button
           onClick={handleCopy}
-          className="flex items-center gap-[4px] text-[11px] text-[rgba(255,255,255,0.35)] hover:text-white transition-colors cursor-pointer"
+          className="group flex items-center gap-[4px] text-[11px] text-[rgba(255,255,255,0.35)] hover:text-white transition-colors cursor-pointer"
         >
           {copied ? (
             <>
-              <CustomIcon src="/icons/chekmark_icon.png" size={12} />
+              <CustomIcon src="/icons/chekmark_icon.png" size={12} className="opacity-35 group-hover:opacity-100 transition-opacity duration-200" />
               Скопировано!
             </>
           ) : (
             <>
-              <CustomIcon src="/icons/copy_icon.png" size={12} />
+              <CustomIcon src="/icons/copy_icon.png" size={12} className="opacity-35 group-hover:opacity-100 transition-opacity duration-200" />
               Копировать
             </>
           )}

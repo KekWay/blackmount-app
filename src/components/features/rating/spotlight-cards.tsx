@@ -25,11 +25,11 @@ export function SpotlightCards({ onNavigate }: SpotlightCardsProps) {
       <div className="flex items-center justify-between mb-[12px]">
         <p className="text-[12px] text-[rgba(255,255,255,0.3)] font-manrope uppercase tracking-wider font-bold">Лучшие в категориях</p>
         <div className="flex items-center gap-[6px]">
-          <button onClick={() => scrollSpotlights('left')} className="size-[28px] rounded-[8px] bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] flex items-center justify-center cursor-pointer hover:bg-[rgba(255,255,255,0.08)] transition-colors">
-            <CustomIcon src="/icons/litle_arrow_left.png" size={14} className="opacity-50" />
+          <button onClick={() => scrollSpotlights('left')} className="bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.12)] rounded-full w-[28px] h-[28px] flex items-center justify-center transition-colors cursor-pointer">
+            <CustomIcon src="/icons/litle_arrow_left.png" size={10} className="opacity-50" />
           </button>
-          <button onClick={() => scrollSpotlights('right')} className="size-[28px] rounded-[8px] bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] flex items-center justify-center cursor-pointer hover:bg-[rgba(255,255,255,0.08)] transition-colors">
-            <CustomIcon src="/icons/litle_arrow_right.png" size={14} className="opacity-50" />
+          <button onClick={() => scrollSpotlights('right')} className="bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.12)] rounded-full w-[28px] h-[28px] flex items-center justify-center transition-colors cursor-pointer">
+            <CustomIcon src="/icons/litle_arrow_right.png" size={10} className="opacity-50" />
           </button>
         </div>
       </div>

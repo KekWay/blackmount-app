@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import { MessageSquare } from 'lucide-react'
 import { CustomIcon } from '@/components/shared/custom-icon'
 import { motion } from 'motion/react'
 import type { ArenaModel } from '@/data/arena-models'
@@ -65,7 +64,7 @@ export function ArenaWinnerCard({ winnerResponse, prompt, savedIds, ratedId, onS
             <Image src="/icons/redo_icon.png" alt="" width={11} height={11} className="brightness-0 invert opacity-40 group-hover:opacity-100 transition-opacity duration-200" /> Новая битва
           </button>
           <motion.button onClick={() => onGoChat(winnerResponse.model)} className="flex items-center gap-[5px] px-[14px] py-[7px] rounded-[10px] bg-[#888ae5] hover:bg-[#9a9cf0] text-[12px] text-white transition-colors cursor-pointer font-semibold shadow-[0_2px_12px_rgba(136,138,229,0.3)]" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-            <MessageSquare size={12} /> Продолжить в чате <Image src="/icons/arrow_right_icon.png" alt="" width={9} height={9} className="brightness-0 invert" />
+            Продолжить в чате
           </motion.button>
         </div>
       </div>

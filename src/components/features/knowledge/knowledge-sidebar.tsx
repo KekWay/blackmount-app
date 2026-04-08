@@ -32,9 +32,6 @@ export function KnowledgeSidebar({ selectedModelId, onSelectModel, mobile }: Kno
       {/* Header */}
       <div className="px-[20px] pt-[24px] pb-[16px]">
         <div className="flex items-center gap-[10px] mb-[16px]">
-          <div className="size-[32px] flex items-center justify-center">
-            <div className="w-[20px] h-[20px]" style={{ backgroundColor: '#888ae5', maskImage: `url('${imgFaceMask}')`, WebkitMaskImage: `url('${imgFaceMask}')`, maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center' }} />
-          </div>
           <div>
             <p className="text-[15px] text-white font-semibold">База знаний</p>
             <p className="text-[11px] text-[rgba(255,255,255,0.3)]">Документация моделей</p>

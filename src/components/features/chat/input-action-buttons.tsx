@@ -1,6 +1,5 @@
 'use client'
 
-import { StopCircle } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
 import { InputModelDropdown } from './input-model-dropdown'
 import type { AIModel } from '@/types'
@@ -86,7 +85,7 @@ export function InputActionButtons({
                 <motion.div className="absolute inset-[-4px] rounded-full border-2 border-[#888ae5]" animate={{ scale: [1, 1.15, 1], opacity: [0.6, 0.3, 0.6] }} transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }} />
                 <motion.div className="absolute inset-[-10px] rounded-full border border-[rgba(136,138,229,0.3)]" animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.15, 0.3] }} transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }} />
                 <div className="size-[36px] flex items-center justify-center rounded-full bg-[rgba(136,138,229,0.25)]">
-                  <StopCircle size={18} className="text-[#888ae5]" />
+                  <div style={{ width: 14, height: 14, backgroundColor: '#888ae5', maskImage: "url('/icons/square_icon.png')", WebkitMaskImage: "url('/icons/square_icon.png')", maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center' }} />
                 </div>
               </motion.button>
             ) : (

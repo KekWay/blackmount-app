@@ -1,15 +1,30 @@
 'use client'
 
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { trendingModels } from '@/data/trending'
 import { aiModels } from '@/data/ai-models'
+import { useSubscriptionStore } from '@/stores/subscription'
+import { SubscriptionGateModal } from '@/components/shared/subscription-gate'
 import { TrendingCard } from './trending-card'
 
 const imgFireIcon = '/assets/models/fire-icon.png'
 
 export function TrendingModels() {
   const router = useRouter()
+  const isVersionLocked = useSubscriptionStore((s) => s.isVersionLocked)
+  const [gateOpen, setGateOpen] = useState(false)
+  const [gateModelName, setGateModelName] = useState('')
+
+  const handleClick = (modelId: string, versionId: string, versionLabel: string) => {
+    if (isVersionLocked(versionId)) {
+      setGateModelName(versionLabel)
+      setGateOpen(true)
+      return
+    }
+    router.push(`/chat/${modelId}?version=${versionId}`)
+  }
 
   return (
     <section className="mb-[40px]" aria-label="Trending models">
@@ -50,7 +65,7 @@ export function TrendingModels() {
               usage={tm.usage}
               change={tm.change}
               category={m.category}
-              onClick={() => router.push(`/chat/${tm.id}?version=${tm.versionId}`)}
+              onClick={() => handleClick(tm.id, tm.versionId, tm.versionLabel)}
             />
           )
         })}
@@ -70,11 +85,12 @@ export function TrendingModels() {
               usage={tm.usage}
               change={tm.change}
               category={m.category}
-              onClick={() => router.push(`/chat/${tm.id}?version=${tm.versionId}`)}
+              onClick={() => handleClick(tm.id, tm.versionId, tm.versionLabel)}
             />
           )
         })}
       </div>
+      <SubscriptionGateModal open={gateOpen} onClose={() => setGateOpen(false)} modelName={gateModelName} />
     </section>
   )
 }

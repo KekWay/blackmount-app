@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Manrope, Maven_Pro, Bakbak_One } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 import { Toaster } from 'sonner'
+import { ConnectionToastProvider } from '@/components/shared/connection-toast'
 import './globals.css'
 
 const manrope = Manrope({
@@ -49,7 +50,7 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          {children}
+          <ConnectionToastProvider>{children}</ConnectionToastProvider>
           <Toaster
             theme="dark"
             position="top-right"

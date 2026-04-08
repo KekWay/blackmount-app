@@ -112,16 +112,15 @@ export function ReferralWithdrawOverlay({ onClose }: { onClose: () => void }) {
           </div>
         ) : (
           <div className="px-[32px] py-[48px] flex flex-col items-center">
-            <div className="bg-[#121118]/50 border border-[#f5a623]/20 rounded-[20px] px-[32px] py-[32px] flex flex-col items-center mb-[24px] w-full relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-[150px] h-[150px] bg-[#f5a623]/10 blur-[50px] rounded-full" />
+            <div className="bg-[#121118]/50 rounded-[20px] px-[32px] py-[32px] flex flex-col items-center mb-[24px] w-full relative overflow-hidden">
               <div className="mb-[20px] relative z-10"><img src={APP_ASSETS.rocketIcon} alt="" className="size-[64px] object-contain" /></div>
               <p className="font-manrope font-black text-[22px] text-white mb-[8px] text-center relative z-10">Заявка создана</p>
               <p className="font-manrope font-medium text-[13px] text-[#f5a623] bg-[#f5a623]/10 px-[12px] py-[4px] rounded-full relative z-10 mb-[12px]">На проверке</p>
               <p className="font-manrope font-medium text-[12px] text-[rgba(255,255,255,0.5)] text-center leading-[18px] relative z-10">Обычно обработка занимает до 24 часов</p>
             </div>
             <div className="flex flex-col gap-[8px] w-full">
-              <button onClick={() => { onClose(); router.push('/support') }} className="w-full bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(136,138,229,0.08)] border border-[rgba(255,255,255,0.06)] rounded-[14px] py-[14px] cursor-pointer transition-colors"><span className="font-manrope font-semibold text-[14px] text-[rgba(255,255,255,0.5)]">Написать в поддержку</span></button>
-              <button onClick={onClose} className="w-full bg-white/5 hover:bg-white/10 border border-white/10 rounded-[14px] py-[14px] cursor-pointer transition-colors"><span className="font-manrope font-bold text-[14px] text-white">Закрыть</span></button>
+              <button onClick={() => { onClose(); router.push('/support') }} className="w-full bg-[#888ae5] hover:bg-[#9a9cf0] rounded-[14px] py-[14px] cursor-pointer transition-colors shadow-[0_4px_12px_rgba(136,138,229,0.25)]"><span className="font-manrope font-bold text-[14px] text-white">Написать в поддержку</span></button>
+              <button onClick={onClose} className="w-full bg-white/5 hover:bg-white/10 rounded-[14px] py-[14px] cursor-pointer transition-colors"><span className="font-manrope font-bold text-[14px] text-white">Закрыть</span></button>
             </div>
           </div>
         )}

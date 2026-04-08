@@ -122,9 +122,12 @@ function HistoryViewerContent({ item, onClose, onDelete, onShare }: { item: View
               </div>
               <button
                 onClick={handleCopy}
-                className="mt-[8px] flex items-center gap-[6px] text-[12px] text-[rgba(255,255,255,0.35)] hover:text-[#888ae5] transition-colors cursor-pointer"
+                className="group mt-[8px] flex items-center gap-[6px] text-[12px] text-[rgba(255,255,255,0.35)] hover:text-[#888ae5] transition-colors cursor-pointer"
               >
-                {copied ? <Check size={13} className="text-[#888ae5]" /> : <CustomIcon src="/icons/copy_icon.png" size={13} />}
+                <span className="relative inline-block size-[13px]">
+                  <span className="absolute inset-0 transition-opacity duration-200 group-hover:opacity-0" style={{ backgroundColor: 'rgba(255,255,255,0.35)', maskImage: `url('/icons/${copied ? 'chekmark' : 'copy'}_icon.png')`, WebkitMaskImage: `url('/icons/${copied ? 'chekmark' : 'copy'}_icon.png')`, maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center' }} />
+                  <span className="absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100" style={{ backgroundColor: '#888ae5', maskImage: `url('/icons/${copied ? 'chekmark' : 'copy'}_icon.png')`, WebkitMaskImage: `url('/icons/${copied ? 'chekmark' : 'copy'}_icon.png')`, maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center' }} />
+                </span>
                 {copied ? 'Скопировано!' : 'Скопировать промпт'}
               </button>
             </div>

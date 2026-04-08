@@ -53,23 +53,26 @@ export function NewsCarousel() {
   return (
     <section className="mb-[40px]" aria-label="News and updates">
       <div className="flex items-center justify-between mb-[16px]">
-        <h2 className="font-manrope font-semibold leading-[30px] not-italic text-[20px] md:text-[24px] text-white">
-          News &amp; Updates
-        </h2>
+        <div className="flex flex-col">
+          <h2 className="font-manrope font-semibold leading-[30px] not-italic text-[20px] md:text-[24px] text-white">
+            Новости и обновления
+          </h2>
+          <p className="font-manrope text-[13px] text-[rgba(255,255,255,0.4)] mt-[2px]">Самые свежие новости и обновления</p>
+        </div>
         <div className="flex gap-[8px]">
           <button
             onClick={() => scroll('left')}
             aria-label="Назад"
             className="bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.12)] rounded-full w-[32px] h-[32px] flex items-center justify-center transition-colors cursor-pointer"
           >
-            <CustomIcon src="/icons/litle_arrow_left.png" size={16} />
+            <CustomIcon src="/icons/litle_arrow_left.png" size={11} />
           </button>
           <button
             onClick={() => scroll('right')}
             aria-label="Вперёд"
             className="bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.12)] rounded-full w-[32px] h-[32px] flex items-center justify-center transition-colors cursor-pointer"
           >
-            <CustomIcon src="/icons/litle_arrow_right.png" size={16} />
+            <CustomIcon src="/icons/litle_arrow_right.png" size={11} />
           </button>
         </div>
       </div>

@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { CustomIcon } from '@/components/shared/custom-icon'
 
 const imgPuzzlesMask = '/assets/models/knowledge-puzzles.png'
 const imgHandMask = '/assets/models/knowledge-hand.png'
@@ -27,8 +26,12 @@ export function iconAbout() {
   return <Image src="/icons/info_icon.png" alt="" width={15} height={15} className="[filter:invert(60%)_sepia(50%)_saturate(500%)_hue-rotate(205deg)_brightness(95%)]" />
 }
 
+function PurpleIcon({ src }: { src: string }) {
+  return <div style={{ width: 15, height: 15, backgroundColor: '#888ae5', maskImage: `url('${src}')`, WebkitMaskImage: `url('${src}')`, maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center' }} />
+}
+
 export function iconVersions() {
-  return <CustomIcon src="/icons/versions_icon.png" size={15} />
+  return <PurpleIcon src="/icons/versions_icon.png" />
 }
 
 export function iconUsecases() {
@@ -36,7 +39,7 @@ export function iconUsecases() {
 }
 
 export function iconPrompts() {
-  return <CustomIcon src="/icons/lightbulb_icon.png" size={15} />
+  return <PurpleIcon src="/icons/lightbulb_icon.png" />
 }
 
 export function iconTips() {
@@ -44,5 +47,5 @@ export function iconTips() {
 }
 
 export function iconSettings() {
-  return <CustomIcon src="/icons/cogwheel_icon.png" size={15} />
+  return <PurpleIcon src="/icons/cogwheel_icon.png" />
 }

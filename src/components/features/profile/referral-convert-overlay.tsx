@@ -50,13 +50,12 @@ export function ReferralConvertOverlay({ onClose }: { onClose: () => void }) {
           </div>
         ) : (
           <div className="px-[32px] py-[48px] flex flex-col items-center">
-            <div className="bg-[#121118]/50 border border-[#6bc085]/20 rounded-[20px] px-[32px] py-[32px] flex flex-col items-center mb-[24px] w-full relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-[150px] h-[150px] bg-[#6bc085]/10 blur-[50px] rounded-full" />
+            <div className="bg-[#121118]/50 rounded-[20px] px-[32px] py-[32px] flex flex-col items-center mb-[24px] w-full relative overflow-hidden">
               <div className="mb-[20px] relative z-10 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"><div className="relative size-[64px]"><img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={IMG_COIN} /></div></div>
               <p className="font-manrope font-black text-[22px] text-white mb-[8px] text-center relative z-10">Зачислено {convertedCoins} айкоинов</p>
               <p className="font-manrope font-medium text-[13px] text-[#6bc085] bg-[#6bc085]/10 px-[12px] py-[4px] rounded-full relative z-10">Конвертация прошла успешно!</p>
             </div>
-            <button onClick={onClose} className="w-full bg-white/5 hover:bg-white/10 border border-white/10 rounded-[14px] py-[14px] cursor-pointer transition-colors"><span className="font-manrope font-bold text-[14px] text-white">Закрыть</span></button>
+            <button onClick={onClose} className="w-full bg-white/5 hover:bg-white/10 rounded-[14px] py-[14px] cursor-pointer transition-colors"><span className="font-manrope font-bold text-[14px] text-white">Закрыть</span></button>
           </div>
         )}
       </motion.div>
