@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'motion/react'
 import Image from 'next/image'
 import { Check } from 'lucide-react'
+import { toast } from 'sonner'
 import { CustomIcon } from '@/components/shared/custom-icon'
 import { MarkdownRenderer } from '@/components/shared/markdown-renderer'
 import { TypewriterText } from './typewriter-text'
@@ -58,6 +59,7 @@ export function TextBubble({
   const [copied, setCopied] = useState(false)
   const handleCopy = () => {
     navigator.clipboard.writeText(msg.content).catch(() => {})
+    toast.success('Скопировано в буфер обмена')
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
