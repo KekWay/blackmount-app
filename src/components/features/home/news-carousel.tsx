@@ -16,21 +16,33 @@ interface NewsItem {
 
 const newsItems: NewsItem[] = [
   {
+    id: 'gpt54',
+    subtitle: 'ChatGPT 5.4',
+    description: 'Флагман OpenAI — объединяет Codex+GPT, лучшая модель для кодинга и сложных рассуждений!',
+    image: imgGeneratedImage,
+  },
+  {
     id: 'nb2',
     subtitle: 'NanoBanana 2',
-    description: 'Протестируйте новую нейросеть для генерации фото уже сейчас!',
+    description: 'Новая нейросеть для генерации фото с яркими цветами и точным текстом до 4K!',
     image: imgGeneratedImage,
+  },
+  {
+    id: 'claude46',
+    subtitle: 'Claude Opus 4.6',
+    description: 'Максимальный интеллект от Anthropic — агентные задачи, глубокий анализ, непревзойдённая точность!',
+    image: imgFrame32,
   },
   {
     id: 'kling3',
     subtitle: 'Kling 3.0',
-    description: 'Протестируйте новую нейросеть для генерации видео в лучшем качестве уже сейчас!',
+    description: 'Нативное аудио нового поколения — мультиязычный lip-sync и профессиональное видео!',
     image: imgFrame32,
   },
   {
-    id: 'claude4',
-    subtitle: 'Claude 4 Opus',
-    description: 'Новая флагманская модель Claude с улучшенным рассуждением и точностью!',
+    id: 'gemini31',
+    subtitle: 'Gemini 3.1 Pro',
+    description: 'Топовая модель Google с мультимодальностью нового уровня уже доступна!',
     image: imgGeneratedImage,
   },
   {
