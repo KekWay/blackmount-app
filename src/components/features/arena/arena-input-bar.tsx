@@ -13,6 +13,13 @@ interface Props {
 
 export function ArenaInputBar({ prompt, totalCost, canSend, onPromptChange, onSend }: Props) {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
+  const sendLockRef = useRef(false)
+  const handleSendClick = () => {
+    if (sendLockRef.current) return
+    sendLockRef.current = true
+    onSend()
+    setTimeout(() => { sendLockRef.current = false }, 1000)
+  }
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -22,7 +29,7 @@ export function ArenaInputBar({ prompt, totalCost, canSend, onPromptChange, onSe
   }, [prompt])
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); onSend() }
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSendClick() }
   }
 
   return (
@@ -48,7 +55,7 @@ export function ArenaInputBar({ prompt, totalCost, canSend, onPromptChange, onSe
             </div>
             <div className="flex items-center gap-[6px]">
               {canSend ? (
-                <button onClick={onSend} className="size-[28px] rounded-full bg-[#888ae5] hover:bg-[#9a9cf0] flex items-center justify-center cursor-pointer transition-colors" title="Отправить">
+                <button onClick={handleSendClick} className="size-[28px] rounded-full bg-[#888ae5] hover:bg-[#9a9cf0] flex items-center justify-center cursor-pointer transition-colors" title="Отправить">
                   <img src="/assets/models/arrow_up.png" alt="" className="size-[11px] object-contain brightness-0 invert" />
                 </button>
               ) : (

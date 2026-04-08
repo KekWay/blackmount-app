@@ -22,6 +22,7 @@ import { ArenaInputBar } from './arena-input-bar'
 import { ArenaInputHints } from './arena-input-hints'
 import { ArenaLimitModal } from './arena-limit-modal'
 import { ShareModal } from '@/components/features/chat/share-modal'
+import { ModalAuthGate } from '@/components/features/chat/modal-auth-gate'
 
 export function ArenaBattle() {
   const router = useRouter()
@@ -46,6 +47,7 @@ export function ArenaBattle() {
   const [gateModelName, setGateModelName] = useState('')
   const [promptOpen, setPromptOpen] = useState(false)
   const [arenaShareOpen, setArenaShareOpen] = useState(false)
+  const [showAuthGate, setShowAuthGate] = useState(false)
   const togglePrompt = useCallback(() => setPromptOpen((p) => !p), [])
 
   const setGuardActive = useArenaGuardStore((s) => s.setActive)
@@ -89,7 +91,7 @@ export function ArenaBattle() {
 
   const send = () => {
     if (!canSend) return
-    if (!isLoggedIn) { router.push('/auth'); return }
+    if (!isLoggedIn) { setShowAuthGate(true); return }
     if (!canMakeRequest()) { setShowLimitReached(true); return }
     consumeRequest()
     setCurrentPrompt(prompt); setPrompt(''); setPhase('generating')
@@ -168,6 +170,7 @@ export function ArenaBattle() {
         </>
       )}
       <ArenaLimitModal open={showLimitReached} onClose={() => setShowLimitReached(false)} />
+      <ModalAuthGate show={showAuthGate} onClose={() => setShowAuthGate(false)} />
       <SubscriptionGateModal open={gateOpen} onClose={() => setGateOpen(false)} modelName={gateModelName} />
 
       {winnerResponse && (

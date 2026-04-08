@@ -1,5 +1,6 @@
 'use client'
 
+import { useRef } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { InputModelDropdown } from './input-model-dropdown'
 import type { AIModel } from '@/types'
@@ -27,6 +28,13 @@ export function InputActionButtons({
   input, handleSend, handleStopGeneration, handleModelSwitch,
   model, isTextModel, isGenerating, isRecording, toggleRecording, cancelRecording,
 }: InputActionButtonsProps) {
+  const sendLockRef = useRef(false)
+  const handleSendClick = () => {
+    if (sendLockRef.current) return
+    sendLockRef.current = true
+    handleSend()
+    setTimeout(() => { sendLockRef.current = false }, 1000)
+  }
   return (
     <div className="flex items-center gap-[6px]">
       <AnimatePresence>
@@ -61,7 +69,7 @@ export function InputActionButtons({
             {input.trim() ? (
               <motion.button
                 key="send-btn"
-                onClick={handleSend}
+                onClick={handleSendClick}
                 className="absolute inset-0 m-auto size-[28px] rounded-full bg-[#888ae5] hover:bg-[#9a9cf0] flex items-center justify-center cursor-pointer"
                 title="Отправить"
                 initial={{ scale: 0.6, opacity: 0 }}
@@ -107,7 +115,7 @@ export function InputActionButtons({
         </div>
       ) : (
         <button
-          onClick={handleSend}
+          onClick={handleSendClick}
           className={`size-[28px] rounded-full flex items-center justify-center cursor-pointer transition-colors ${input.trim() ? 'bg-[#888ae5] hover:bg-[#9a9cf0]' : 'bg-[rgba(255,255,255,0.08)] hover:bg-[rgba(255,255,255,0.12)]'}`}
           title="Отправить"
         >
