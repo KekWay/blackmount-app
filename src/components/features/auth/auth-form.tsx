@@ -22,6 +22,7 @@ export function AuthForm() {
   const [showPassword, setShowPassword] = useState(false)
   const [referralCode, setReferralCode] = useState('')
   const [showReferralInput, setShowReferralInput] = useState(false)
+  const [errors, setErrors] = useState<{ email?: string; password?: string; name?: string }>({})
 
   const showReferralCheck = referralCode.length >= 4 && /^[A-Z0-9]{4,20}$/.test(referralCode)
 
@@ -54,6 +55,27 @@ export function AuthForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    const newErrors: { email?: string; password?: string; name?: string } = {}
+
+    if (!email.trim()) {
+      newErrors.email = 'Введите email'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      newErrors.email = 'Неверный формат email'
+    }
+
+    if (!password.trim()) {
+      newErrors.password = 'Введите пароль'
+    } else if (password.length < 6) {
+      newErrors.password = 'Минимум 6 символов'
+    }
+
+    if (mode === 'register' && !name.trim()) {
+      newErrors.name = 'Введите имя'
+    }
+
+    setErrors(newErrors)
+    if (Object.keys(newErrors).length > 0) return
+
     const pending = localStorage.getItem('pendingReferralCode')
     const referredBy = pending && /^[A-Z0-9]{4,20}$/.test(pending) ? pending : undefined
     login({ email, name: name || email.split('@')[0], referredBy })
@@ -98,6 +120,7 @@ export function AuthForm() {
                     placeholder="Ваше имя"
                     className="bg-[#1a1a1f] border border-[rgba(255,255,255,0.08)] rounded-[15px] px-[12px] py-[8px] 2xl:px-[16px] 2xl:py-[12px] font-manrope font-normal text-[12px] 2xl:text-[14px] text-white placeholder-[rgba(255,255,255,0.2)] outline-none focus:border-[#888ae5] transition-colors"
                   />
+                  {errors.name && <p className="font-manrope text-[10px] text-[#f87171] mt-[3px]">{errors.name}</p>}
                 </div>
               )}
 
@@ -110,6 +133,7 @@ export function AuthForm() {
                   placeholder="example@mail.com"
                   className="bg-[#1a1a1f] border border-[rgba(255,255,255,0.08)] rounded-[15px] px-[12px] py-[8px] 2xl:px-[16px] 2xl:py-[12px] font-manrope font-normal text-[12px] 2xl:text-[14px] text-white placeholder-[rgba(255,255,255,0.2)] outline-none focus:border-[#888ae5] transition-colors"
                 />
+                {errors.email && <p className="font-manrope text-[10px] text-[#f87171] mt-[3px]">{errors.email}</p>}
               </div>
 
               <div className="flex flex-col gap-[3px]">
@@ -130,6 +154,7 @@ export function AuthForm() {
                     {showPassword ? <CustomIcon src="/icons/eye_hide_icon.png" size={14} /> : <CustomIcon src="/icons/eye_icon.png" size={14} />}
                   </button>
                 </div>
+                {errors.password && <p className="font-manrope text-[10px] text-[#f87171] mt-[3px]">{errors.password}</p>}
               </div>
 
               {mode === 'login' && (
@@ -153,7 +178,7 @@ export function AuthForm() {
               <p className="font-manrope font-normal text-[10px] 2xl:text-[12px] text-[rgba(255,255,255,0.45)]">
                 {mode === 'login' ? 'Нет аккаунта? ' : 'Уже есть аккаунт? '}
                 <button
-                  onClick={() => setMode(mode === 'login' ? 'register' : 'login')}
+                  onClick={() => { setMode(mode === 'login' ? 'register' : 'login'); setErrors({}) }}
                   className="text-[#888ae5] hover:text-[#9a9cf0] font-medium transition-colors cursor-pointer text-[10px] 2xl:text-[12px]"
                 >
                   {mode === 'login' ? 'Создать' : 'Войти'}

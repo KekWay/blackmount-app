@@ -57,8 +57,13 @@ export const useSubscriptionStore = create<SubscriptionState>()(
       },
 
       hasActiveSubscription: () => {
-        const { tier } = get().subscription
-        return tier !== 'free'
+        const { tier, expiresAt } = get().subscription
+        if (tier === 'free') return false
+        if (expiresAt && new Date(expiresAt).getTime() < Date.now()) {
+          set({ subscription: { tier: 'free', expiresAt: null } })
+          return false
+        }
+        return true
       },
 
       isModelLocked: (modelId) => {
