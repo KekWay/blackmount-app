@@ -51,7 +51,7 @@ export function ChatMediaLightbox({ media, onClose }: ChatMediaLightboxProps) {
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
           onClick={e => e.stopPropagation()}
         >
-          <button onClick={onClose} className="group absolute top-[-40px] right-0 bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.2)] rounded-full size-[32px] flex items-center justify-center cursor-pointer transition-colors z-10">
+          <button onClick={onClose} aria-label="Закрыть" className="group absolute top-[-40px] right-0 bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.2)] rounded-full size-[32px] flex items-center justify-center cursor-pointer transition-colors z-10">
             <Image src="/icons/close_icon.png" alt="" width={12} height={12} className="invert opacity-60 group-hover:opacity-100 transition-opacity duration-200" />
           </button>
 

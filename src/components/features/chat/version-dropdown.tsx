@@ -1,11 +1,13 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef, useCallback } from 'react'
+import { useRouter } from 'next/navigation'
 import { Check } from 'lucide-react'
 import { CustomIcon } from '@/components/shared/custom-icon'
 import { motion, AnimatePresence } from 'motion/react'
 import { ModelIcon } from '@/components/shared/model-icon'
 import { useSubscriptionStore } from '@/stores/subscription'
+import { useClickOutside } from '@/lib/hooks'
 import { APP_ASSETS } from '@/lib/assets'
 import type { AIModel, ModelVersion } from '@/types'
 import { getBasePrice } from '@/types/models'
@@ -19,17 +21,12 @@ interface VersionDropdownProps {
 }
 
 export function VersionDropdown({ currentModel, selectedVersion, onSelectVersion }: VersionDropdownProps) {
+  const router = useRouter()
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const isVersionLocked = useSubscriptionStore((s) => s.isVersionLocked)
 
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
-    }
-    document.addEventListener('mousedown', handler)
-    return () => document.removeEventListener('mousedown', handler)
-  }, [])
+  useClickOutside([ref], useCallback(() => setOpen(false), []))
 
   const priceLabel = (v: ModelVersion) => {
     if (v.price == null) return null
@@ -90,7 +87,7 @@ export function VersionDropdown({ currentModel, selectedVersion, onSelectVersion
                       <div
                         className="flex items-center gap-[4px] px-[8px] py-[3px] rounded-full shrink-0 cursor-pointer hover:brightness-110 transition-all"
                         style={{ background: 'linear-gradient(135deg, rgba(91,91,214,0.5), rgba(124,92,191,0.5))' }}
-                        onClick={(e) => { e.stopPropagation(); window.location.href = '/profile?tab=subscription' }}
+                        onClick={(e) => { e.stopPropagation(); router.push('/subscription') }}
                       >
                         <img src="/assets/models/stars_icon_2.png" alt="" className="size-[9px] object-contain brightness-0 invert" />
                         <span className="font-manrope font-semibold text-[9px] text-white whitespace-nowrap">Подписка</span>

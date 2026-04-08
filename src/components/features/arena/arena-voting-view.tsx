@@ -52,10 +52,10 @@ function ExpandedCard({ responses, expandedId, onVote, onToggleExpand }: { respo
         <div className="flex-1 px-[16px] py-[14px] overflow-y-auto chat-scrollbar">
           <MarkdownRenderer content={r.text} />
         </div>
-        <div onClick={() => onVote(r.model.id)} className="px-[16px] py-[10px] border-t border-[rgba(255,255,255,0.04)] flex items-center justify-center gap-[6px] bg-[rgba(136,138,229,0.04)] hover:bg-[rgba(136,138,229,0.08)] transition-all cursor-pointer">
+        <button type="button" onClick={() => onVote(r.model.id)} className="w-full px-[16px] py-[10px] border-t border-[rgba(255,255,255,0.04)] flex items-center justify-center gap-[6px] bg-[rgba(136,138,229,0.04)] hover:bg-[rgba(136,138,229,0.08)] transition-all cursor-pointer">
           <div className="shrink-0 w-[12px] h-[12px] bg-[#888ae5]" style={{ maskImage: `url('${IMG_MEDAL1}')`, WebkitMaskImage: `url('${IMG_MEDAL1}')`, maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center' }} />
           <span className="text-[11px] text-[#888ae5] font-semibold">Выбрать победителем</span>
-        </div>
+        </button>
       </motion.div>
     </div>
   )

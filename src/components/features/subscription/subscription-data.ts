@@ -1,16 +1,10 @@
 import { APP_ASSETS, MODEL_ASSETS } from '@/lib/assets'
+import { planFeatures, featureIconMap, type Plan, type Period, type PlanFeature } from '@/components/features/profile/profile-data'
 
-export type Plan = 'basic' | 'pro' | 'max'
-export type Period = 'month' | 'year'
-
-export interface PlanFeature { icon: string; text: string; bold?: string }
+export type { Plan, Period, PlanFeature }
+export { planFeatures, featureIconMap }
 
 export const imgCoin = APP_ASSETS.coin
-export const imgBulletIcon = '/assets/models/bullet-icon.png'
-export const imgLockIcon = '/assets/models/lock-icon.png'
-export const imgDiscountIcon = '/assets/models/discount-icon.png'
-export const imgRequestsIcon = '/assets/models/requests-icon.png'
-export const imgContextIcon = '/assets/models/context-icon.png'
 
 export const modelLogos = [
   '/assets/models/chatgpt-color.png',
@@ -21,48 +15,6 @@ export const modelLogos = [
   MODEL_ASSETS.kling.colorLogo,
   MODEL_ASSETS.veo31.colorLogo,
 ]
-
-export const featureIconMap: Record<string, string> = {
-  lock: imgLockIcon,
-  discount: imgDiscountIcon,
-  requests: imgRequestsIcon,
-  context: imgContextIcon,
-}
-
-export const planFeatures: Record<Plan, { coins: number; limits: string[]; features: PlanFeature[] }> = {
-  basic: {
-    coins: 300,
-    limits: ['до 300 текстовых запросов', 'до 157 генераций изображений', 'до 40 генераций видео'],
-    features: [
-      { icon: 'lock', text: 'Доступ ко всем моделям' },
-      { icon: 'discount', text: 'Скидка на покупку айкоинов ', bold: '10%' },
-      { icon: 'requests', text: '', bold: '100 запросов в день' },
-      { icon: 'context', text: 'Увеличенный контекст' },
-    ],
-  },
-  pro: {
-    coins: 550,
-    limits: ['до 550 текстовых запросов', 'до 280 генераций изображений', 'до 75 генераций видео'],
-    features: [
-      { icon: 'lock', text: 'Доступ ко всем моделям' },
-      { icon: 'lock', text: 'Бесплатно: ', bold: 'ChatGPT 5 mini, Gemini 3 Flash, Gemini 2.5 Flash' },
-      { icon: 'discount', text: 'Скидка на покупку айкоинов ', bold: '15%' },
-      { icon: 'requests', text: '', bold: '150 запросов в день' },
-      { icon: 'context', text: 'Увеличенный контекст x2' },
-    ],
-  },
-  max: {
-    coins: 1200,
-    limits: ['до 1200 текстовых запросов', 'до 600 генераций изображений', 'до 160 генераций видео'],
-    features: [
-      { icon: 'lock', text: 'Доступ ко всем моделям' },
-      { icon: 'lock', text: 'Бесплатно: ', bold: 'ChatGPT 5 mini, Gemini 3 Flash, Gemini 2.5 Flash' },
-      { icon: 'discount', text: 'Скидка на покупку айкоинов ', bold: '20%' },
-      { icon: 'requests', text: '', bold: '200 запросов в день' },
-      { icon: 'context', text: 'Максимальный контекст x3' },
-    ],
-  },
-}
 
 export const plansArr: { key: Plan | 'free'; label: string; priceMonth: number; priceYear: number; badge: string | null; cta: string }[] = [
   { key: 'free', label: 'Free', priceMonth: 0, priceYear: 0, badge: null, cta: 'Текущий план' },

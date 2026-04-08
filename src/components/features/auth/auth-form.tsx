@@ -30,12 +30,13 @@ export function AuthForm() {
     const ref = searchParams.get('ref')
     if (ref) {
       const upper = ref.toUpperCase()
-      localStorage.setItem('pendingReferralCode', upper)
+      try { localStorage.setItem('pendingReferralCode', upper) } catch {}
       setReferralCode(upper)
       setShowReferralInput(true)
       toast.info('Вас пригласил друг!')
     } else {
-      const saved = localStorage.getItem('pendingReferralCode')
+      let saved: string | null = null
+      try { saved = localStorage.getItem('pendingReferralCode') } catch {}
       if (saved) {
         setReferralCode(saved)
         setShowReferralInput(true)
@@ -46,11 +47,10 @@ export function AuthForm() {
   const handleReferralChange = (value: string) => {
     const upper = value.toUpperCase()
     setReferralCode(upper)
-    if (upper) {
-      localStorage.setItem('pendingReferralCode', upper)
-    } else {
-      localStorage.removeItem('pendingReferralCode')
-    }
+    try {
+      if (upper) localStorage.setItem('pendingReferralCode', upper)
+      else localStorage.removeItem('pendingReferralCode')
+    } catch {}
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -76,10 +76,11 @@ export function AuthForm() {
     setErrors(newErrors)
     if (Object.keys(newErrors).length > 0) return
 
-    const pending = localStorage.getItem('pendingReferralCode')
+    let pending: string | null = null
+    try { pending = localStorage.getItem('pendingReferralCode') } catch {}
     const referredBy = pending && /^[A-Z0-9]{4,20}$/.test(pending) ? pending : undefined
     login({ email, name: name || email.split('@')[0], referredBy })
-    localStorage.removeItem('pendingReferralCode')
+    try { localStorage.removeItem('pendingReferralCode') } catch {}
     router.push('/')
   }
 
@@ -223,6 +224,7 @@ export function AuthForm() {
                       <p className="font-manrope font-bold text-[16px] text-white">Код приглашения</p>
                       <button
                         onClick={() => setShowReferralInput(false)}
+                        aria-label="Закрыть"
                         className="group size-[28px] rounded-full bg-[rgba(57,55,91,0.6)] flex items-center justify-center cursor-pointer hover:bg-[rgba(57,55,91,0.9)] transition-colors"
                       >
                         <Image src="/icons/close_icon.png" alt="" width={9} height={9} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />

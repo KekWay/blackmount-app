@@ -113,7 +113,7 @@ export function ArenaBattle() {
   const goChat = (m: ArenaModel) => {
     const winResp = responses.find((r) => r.model.id === m.id)
     if (winResp && currentPrompt) {
-      sessionStorage.setItem('arena_continue', JSON.stringify({ prompt: currentPrompt, response: winResp.text, modelName: winResp.model.name }))
+      try { sessionStorage.setItem('arena_continue', JSON.stringify({ prompt: currentPrompt, response: winResp.text, modelName: winResp.model.name })) } catch {}
     }
     router.push(`/chat/${m.aiModelRef || m.id}`)
   }
@@ -151,7 +151,7 @@ export function ArenaBattle() {
               >
                 <div className="flex items-center justify-between px-[18px] py-[12px]">
                   <span className="text-[13px] text-[rgba(255,255,255,0.5)] font-medium">Ваш запрос</span>
-                  <button onClick={() => setPromptOpen(false)} className="group transition-colors cursor-pointer p-[4px] rounded-[6px] hover:bg-[rgba(255,255,255,0.06)]">
+                  <button onClick={() => setPromptOpen(false)} aria-label="Закрыть" className="group transition-colors cursor-pointer p-[4px] rounded-[6px] hover:bg-[rgba(255,255,255,0.06)]">
                     <Image src="/icons/close_icon.png" alt="" width={12} height={12} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
                   </button>
                 </div>

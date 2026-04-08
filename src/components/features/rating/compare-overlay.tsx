@@ -37,7 +37,7 @@ export function CompareOverlay({ models, onClose }: CompareOverlayProps) {
               <div className="p-1.5 bg-[#888ae5]/20 rounded-lg"><ScalesIcon size={16} className="text-[#888ae5]" /></div>
               <span className="text-[16px] text-white font-extrabold">Сравнение моделей</span>
             </div>
-            <button onClick={onClose} className="group p-1.5 rounded-full hover:bg-[rgba(255,255,255,0.1)] transition-colors cursor-pointer"><Image src="/icons/close_icon.png" alt="" width={12} height={12} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" /></button>
+            <button onClick={onClose} aria-label="Закрыть" className="group p-1.5 rounded-full hover:bg-[rgba(255,255,255,0.1)] transition-colors cursor-pointer"><Image src="/icons/close_icon.png" alt="" width={12} height={12} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" /></button>
           </div>
           <div className="grid gap-[6px] mb-[12px]" style={{ gridTemplateColumns: `140px repeat(${models.length}, 1fr)` }}>
             <div />

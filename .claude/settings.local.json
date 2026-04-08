@@ -7,7 +7,8 @@
       "Read(//tmp/**)",
       "Read(//c/Users/artur/projects/blackmount-vault/sessions/**)",
       "Read(//c/Users/artur/projects/blackmount-vault/00-home/**)",
-      "Read(//c/Users/artur/projects/blackmount-vault/knowledge/decisions/**)"
+      "Read(//c/Users/artur/projects/blackmount-vault/knowledge/decisions/**)",
+      "Read(//c/Users/artur/projects/blackmount-vault/**)"
     ]
   }
 }

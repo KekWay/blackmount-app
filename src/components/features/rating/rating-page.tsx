@@ -5,11 +5,11 @@ import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'motion/react'
 import { CustomIcon } from '@/components/shared/custom-icon'
 import { useBalanceStore } from '@/stores/balance'
-import { useSubscriptionStore, LOCKED_VERSION_IDS } from '@/stores/subscription'
+import { useSubscriptionStore } from '@/stores/subscription'
 import { SubscriptionGateModal } from '@/components/shared/subscription-gate'
 import {
   leaderboardData,
-  RATING_LOCKED_MAP,
+  isRatingVersionLocked,
   type LeaderboardModel,
   type CategoryFilter,
   type SortKey,
@@ -21,9 +21,7 @@ import { RatingModelCard } from './rating-model-card'
 
 function isRatingModelLocked(leaderboardId: string, hasActive: boolean): boolean {
   if (hasActive) return false
-  const mapped = RATING_LOCKED_MAP[leaderboardId]
-  if (mapped && LOCKED_VERSION_IDS.has(mapped)) return true
-  return false
+  return isRatingVersionLocked(leaderboardId)
 }
 
 export function RatingPage() {

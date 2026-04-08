@@ -14,7 +14,7 @@ export function PricingInfoOverlay({ onClose }: { onClose: () => void }) {
           <div className="px-[32px] pt-[32px] pb-[20px] shrink-0">
             <div className="flex items-center justify-between">
               <p className="font-manrope font-bold text-[22px] text-white">Стоимость генерации</p>
-              <button onClick={onClose} className="group bg-white/5 hover:bg-white/10 p-[8px] rounded-[10px] transition-colors cursor-pointer"><Image src="/icons/close_icon.png" alt="" width={10} height={10} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" /></button>
+              <button onClick={onClose} aria-label="Закрыть" className="group bg-white/5 hover:bg-white/10 p-[8px] rounded-[10px] transition-colors cursor-pointer"><Image src="/icons/close_icon.png" alt="" width={10} height={10} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" /></button>
             </div>
           </div>
           <div className="flex-1 overflow-y-auto chat-scrollbar px-[32px] pb-[32px]">

@@ -77,21 +77,9 @@ export const SPOTLIGHTS = [
   { title: "Аналитика", badge: "#1 Analytics", model: "Claude Opus 4.6", score: 97, iconImg: "/assets/models/leader-claude-analytics.png", color: "#818cf8", metric: "Аналитика", metricValue: "98", aiModelRef: "claude" },
 ]
 
-export const RATING_LOCKED_MAP: Record<string, string> = {
-  "gpt-5.4": "gpt-5.4",
-  "claude-opus-4.6": "claude-opus-4.6",
-  "gemini-3.1-pro": "gemini-3.1-pro",
-  "nanobanana-2": "nanobanana-2",
-  "kling-3.0-pro": "kling-3.0-pro",
-  "kling-3.0": "kling-3.0",
-  "chatgpt-5.2": "chatgpt-5.2",
-  "claude-opus-4.5": "claude-opus-4.5",
-  "gemini-3-pro": "gemini-3-pro",
-  "flux-1.1-pro-ultra": "flux-1.1-pro-ultra",
-  "nb-pro": "nb-pro",
-  "veo-3.1-quality": "veo-3.1-quality",
-  "kling-2.6": "kling-2.6",
-  "gpt-5.3": "gpt-5.3",
-  "kling-2.6-pro": "kling-2.6-pro",
-  "veo-3.1-fast": "veo-3.1-fast",
+import { SUBSCRIPTION_VERSION_IDS } from '@/lib/locked-versions'
+
+/** Проверяет, заблокирована ли модель рейтинга */
+export function isRatingVersionLocked(leaderboardId: string): boolean {
+  return SUBSCRIPTION_VERSION_IDS.has(leaderboardId)
 }

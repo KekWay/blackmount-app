@@ -1,21 +1,15 @@
 'use client'
 
 import { useRef, useEffect, useState } from 'react'
-
-
 import { motion } from 'motion/react'
 import { APP_ASSETS } from '@/lib/assets'
+import { formatTime } from '@/lib/utils'
 import type { SupportTicket } from '@/stores/support-store'
 import { useSupportStore } from '@/stores/support-store'
 
 interface SupportChatProps {
   ticket: SupportTicket
   onBack?: () => void
-}
-
-function formatTime(iso: string): string {
-  const d = new Date(iso)
-  return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`
 }
 
 export function SupportChat({ ticket, onBack }: SupportChatProps) {

@@ -1,10 +1,11 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { Check } from 'lucide-react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'motion/react'
 import { ModelIcon } from '@/components/shared/model-icon'
+import { useClickOutside } from '@/lib/hooks'
 import type { AIModel } from '@/types/models'
 
 interface HistoryFilterProps {
@@ -19,13 +20,7 @@ export function HistoryFilter({ relevantModels, selectedModels, onToggleModel, o
   const filterRef = useRef<HTMLDivElement>(null)
   const hasActiveFilter = selectedModels.length > 0
 
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (filterRef.current && !filterRef.current.contains(e.target as Node)) setFilterOpen(false)
-    }
-    document.addEventListener('mousedown', handler)
-    return () => document.removeEventListener('mousedown', handler)
-  }, [])
+  useClickOutside([filterRef], useCallback(() => setFilterOpen(false), []))
 
   return (
     <>
@@ -79,7 +74,7 @@ export function HistoryFilter({ relevantModels, selectedModels, onToggleModel, o
               <div key={modelId} className="flex items-center gap-[5px] bg-[rgba(136,138,229,0.12)] border border-[rgba(136,138,229,0.25)] rounded-[14px] px-[8px] py-[3px]">
                 <ModelIcon modelId={m.id} size={14} />
                 <span className="font-manrope font-medium text-[11px] text-[#b0b2f0]">{m.name}</span>
-                <button onClick={() => onToggleModel(modelId)} className="group cursor-pointer transition-colors">
+                <button onClick={() => onToggleModel(modelId)} aria-label="Сбросить фильтр" className="group cursor-pointer transition-colors">
                   <Image src="/icons/close_icon.png" alt="" width={7} height={7} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
                 </button>
               </div>

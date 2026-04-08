@@ -18,7 +18,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
   const pathname = usePathname()
   const [collapsed, setCollapsed] = useState(() => {
     if (typeof window === 'undefined') return false
-    return localStorage.getItem('sidebarCollapsed') === 'true'
+    try { return localStorage.getItem('sidebarCollapsed') === 'true' } catch { return false }
   })
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -31,7 +31,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         <Sidebar collapsed={collapsed} onToggle={() => {
           const next = !collapsed
           setCollapsed(next)
-          localStorage.setItem('sidebarCollapsed', String(next))
+          try { localStorage.setItem('sidebarCollapsed', String(next)) } catch {}
         }} />
 
         <MobileSidebar open={mobileOpen} onClose={() => setMobileOpen(false)} />

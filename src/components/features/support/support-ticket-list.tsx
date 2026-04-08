@@ -1,6 +1,7 @@
 'use client'
 
 import type { SupportTicket, TicketStatus } from '@/stores/support-store'
+import { formatDateShort } from '@/lib/utils'
 
 interface SupportTicketListProps {
   tickets: SupportTicket[]
@@ -21,11 +22,7 @@ const statusColors: Record<TicketStatus, string> = {
   closed: 'bg-[rgba(255,255,255,0.06)] text-[rgba(255,255,255,0.35)]',
 }
 
-function formatDate(iso: string): string {
-  const d = new Date(iso)
-  const pad = (n: number) => String(n).padStart(2, '0')
-  return `${pad(d.getDate())}.${pad(d.getMonth() + 1)}.${String(d.getFullYear()).slice(2)}`
-}
+const formatDate = formatDateShort
 
 export function SupportTicketList({ tickets, activeId, onSelect, onNew }: SupportTicketListProps) {
   const sorted = [...tickets].sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())

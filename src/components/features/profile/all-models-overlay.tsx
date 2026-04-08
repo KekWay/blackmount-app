@@ -6,16 +6,8 @@ import { motion } from 'motion/react'
 import { aiModels } from '@/data/ai-models'
 import { getBasePrice } from '@/types/models'
 import { MODEL_ASSETS } from '@/lib/assets'
+import { SUBSCRIPTION_VERSION_IDS } from '@/lib/locked-versions'
 
-const lockedVersionIds = new Set([
-  // Старые
-  'chatgpt-5.2', 'claude-opus-4.5', 'gemini-3-pro', 'flux-1.1-pro-ultra',
-  'nb-pro', 'veo-3.1-quality', 'veo-3.1-fast', 'kling-2.6',
-  // Новые (апрель 2026)
-  'gpt-5.4', 'gpt-5.3', 'claude-opus-4.6', 'gemini-3.1-pro',
-  'nanobanana-2', 'kling-3.0', 'kling-3.0-pro', 'kling-2.6-pro',
-])
-const lockedModelIds = new Set<string>([])
 const catColors: Record<string, string> = { text: '#888ae5', image: '#ef4444', video: '#22d3ee' }
 const catLabels: Record<string, string> = { text: 'Текст', image: 'Изображение', video: 'Видео' }
 
@@ -51,7 +43,7 @@ function AllModelsHeader({ onClose }: { onClose: () => void }) {
           <p className="text-[11px] text-[rgba(255,255,255,0.35)] font-manrope">{aiModels.length} нейросетей · бесплатные и PRO версии</p>
         </div>
       </div>
-      <button onClick={onClose} className="group size-[32px] rounded-full flex items-center justify-center hover:bg-white/10 transition-colors cursor-pointer">
+      <button onClick={onClose} aria-label="Закрыть" className="group size-[32px] rounded-full flex items-center justify-center hover:bg-white/10 transition-colors cursor-pointer">
         <Image src="/icons/close_icon.png" alt="" width={12} height={12} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
       </button>
     </div>
@@ -81,7 +73,6 @@ function AllModelsList() {
   return (
     <div className="px-[24px] py-[16px] flex flex-col gap-[12px]">
       {aiModels.map((model) => {
-        const isFullyLocked = lockedModelIds.has(model.id)
         const catColor = catColors[model.category] || '#888ae5'
         const assets = MODEL_ASSETS[model.id as ModelId]
         const colorLogo = assets && 'colorLogo' in assets ? assets.colorLogo : null
@@ -114,16 +105,13 @@ function AllModelsList() {
                 <div className="flex items-center gap-[8px]">
                   <p className="text-[14px] text-white font-manrope font-extrabold">{model.name}</p>
                   <span className="text-[9px] font-manrope px-[6px] py-[2px] rounded-[4px] border font-bold" style={{ color: catColor, borderColor: `${catColor}30`, backgroundColor: `${catColor}10` }}>{catLabels[model.category]}</span>
-                  {isFullyLocked && (
-                    <span className="text-[9px] font-manrope px-[6px] py-[2px] rounded-[4px] bg-[#ef4444]/10 text-[#ef4444] border border-[#ef4444]/20 font-bold">Только PRO</span>
-                  )}
                 </div>
                 <p className="text-[11px] text-[rgba(255,255,255,0.35)] font-manrope mt-[2px]">{model.versions.length} {model.versions.length === 1 ? 'версия' : model.versions.length < 5 ? 'версии' : 'версий'}</p>
               </div>
             </div>
             <div className="px-[16px] pb-[12px] flex flex-col gap-[4px]">
               {model.versions.map((v) => {
-                const isLocked = lockedVersionIds.has(v.id)
+                const isLocked = SUBSCRIPTION_VERSION_IDS.has(v.id)
                 return (
                   <div key={v.id} className="flex items-center gap-[10px] px-[12px] py-[8px] rounded-[8px] bg-[rgba(255,255,255,0.015)]">
                     <div className={`size-[7px] rounded-full shrink-0 ${isLocked ? 'bg-[#888ae5]' : 'bg-[#6bc085]'}`} />

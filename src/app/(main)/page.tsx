@@ -38,7 +38,7 @@ function HomePageContent() {
   useEffect(() => {
     const ref = searchParams.get('ref')
     if (ref) {
-      localStorage.setItem('pendingReferralCode', ref.toUpperCase())
+      try { localStorage.setItem('pendingReferralCode', ref.toUpperCase()) } catch {}
       toast.info('Вас пригласил друг!')
     }
   }, [searchParams])

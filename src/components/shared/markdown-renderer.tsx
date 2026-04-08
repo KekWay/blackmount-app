@@ -1,24 +1,23 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
+import { useRef } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeHighlight from 'rehype-highlight'
 import { CustomIcon } from './custom-icon'
+import { useCopyToClipboard } from '@/lib/hooks'
 import type { Components } from 'react-markdown'
 
 function CodeBlock({ children, className }: { children: React.ReactNode; className?: string }) {
-  const [copied, setCopied] = useState(false)
+  const { copied, copy } = useCopyToClipboard()
   const preRef = useRef<HTMLPreElement>(null)
 
   const language = className?.match(/language-(\w+)/)?.[1] ?? 'code'
 
-  const handleCopy = useCallback(() => {
+  const handleCopy = () => {
     const text = preRef.current?.textContent ?? ''
-    navigator.clipboard.writeText(text)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }, [])
+    copy(text)
+  }
 
   return (
     <div className="rounded-[12px] bg-[#0d0c14] border border-[rgba(255,255,255,0.06)] overflow-hidden mb-[12px]">

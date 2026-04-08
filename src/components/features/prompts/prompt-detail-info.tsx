@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { CustomIcon } from '@/components/shared/custom-icon'
 import { motion, AnimatePresence } from 'motion/react'
-import { copyToClipboard } from '@/lib/utils'
+import { useCopyToClipboard } from '@/lib/hooks'
 import { aiModels } from '@/data/ai-models'
 import { useSubscriptionStore } from '@/stores/subscription'
 import { ModelIcon } from '@/components/shared/model-icon'
@@ -25,7 +25,7 @@ interface PromptDetailInfoProps {
 }
 
 export function PromptDetailInfo({ item, selectedModelId, onSelectModel, onGate }: PromptDetailInfoProps) {
-  const [copied, setCopied] = useState(false)
+  const { copied, copy } = useCopyToClipboard()
   const [modelDropdownOpen, setModelDropdownOpen] = useState(false)
   const isModelLocked = useSubscriptionStore((s) => s.isModelLocked)
 
@@ -34,11 +34,7 @@ export function PromptDetailInfo({ item, selectedModelId, onSelectModel, onGate 
   const themeLabel = themeLabelMap[item.theme] ?? promptCategories.find((c) => c.id === item.theme)?.name ?? item.theme
   const generationModels = aiModels.filter((m) => m.category === item.type)
 
-  const handleCopy = () => {
-    copyToClipboard(item.prompt).catch(() => {})
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
+  const handleCopy = () => copy(item.prompt)
 
   return (
     <div className="px-[20px] py-[16px] flex flex-col gap-[14px] flex-1 overflow-y-auto chat-scrollbar">

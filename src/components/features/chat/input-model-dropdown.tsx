@@ -1,12 +1,14 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import { useRouter } from 'next/navigation'
 import { createPortal } from 'react-dom'
 import { CustomIcon } from '@/components/shared/custom-icon'
 import { getBasePrice } from '@/types/models'
 import { motion } from 'motion/react'
 import { ModelIcon } from '@/components/shared/model-icon'
 import { useSubscriptionStore } from '@/stores/subscription'
+import { useClickOutside } from '@/lib/hooks'
 import { aiModels } from '@/data/ai-models'
 import { APP_ASSETS } from '@/lib/assets'
 import type { AIModel } from '@/types'
@@ -19,6 +21,7 @@ interface InputModelDropdownProps {
 }
 
 export function InputModelDropdown({ currentModel, onSelect }: InputModelDropdownProps) {
+  const router = useRouter()
   const [open, setOpen] = useState(false)
   const [filterCat, setFilterCat] = useState<'all' | 'text' | 'image' | 'video'>('all')
   const ref = useRef<HTMLDivElement>(null)
@@ -29,13 +32,7 @@ export function InputModelDropdown({ currentModel, onSelect }: InputModelDropdow
 
   useEffect(() => { setMounted(true) }, [])
 
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node) && btnRef.current && !btnRef.current.contains(e.target as Node)) setOpen(false)
-    }
-    document.addEventListener('mousedown', handler)
-    return () => document.removeEventListener('mousedown', handler)
-  }, [])
+  useClickOutside([ref, btnRef], useCallback(() => setOpen(false), []))
 
   useEffect(() => {
     if (open && btnRef.current) {
@@ -97,7 +94,7 @@ export function InputModelDropdown({ currentModel, onSelect }: InputModelDropdow
                       <div
                         className="flex items-center gap-[3px] px-[7px] py-[2px] rounded-full cursor-pointer hover:brightness-110 transition-all ml-[4px]"
                         style={{ background: 'linear-gradient(135deg, rgba(91,91,214,0.5), rgba(124,92,191,0.5))' }}
-                        onClick={(e) => { e.stopPropagation(); window.location.href = '/profile?tab=subscription' }}
+                        onClick={(e) => { e.stopPropagation(); router.push('/subscription') }}
                       >
                         <img src="/assets/models/stars_icon_2.png" alt="" className="size-[8px] object-contain brightness-0 invert" />
                         <span className="font-manrope font-semibold text-[9px] text-white">Подписка</span>

@@ -19,13 +19,15 @@ export function SubscriptionGateModal({ open, onClose, modelName }: Subscription
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
 
       <div
+        role="dialog"
+        aria-modal="true"
         className="relative w-[400px] max-w-[90vw] overflow-hidden rounded-[20px] bg-[#14131c] border border-primary/[0.12] shadow-[0_24px_64px_rgba(0,0,0,0.55)]"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
 
         <div className="flex justify-end pt-3.5 pr-3.5">
-          <button onClick={onClose} className="group bg-white/5 hover:bg-white/10 p-[8px] rounded-[10px] transition-colors cursor-pointer">
+          <button onClick={onClose} aria-label="Закрыть" className="group bg-white/5 hover:bg-white/10 p-[8px] rounded-[10px] transition-colors cursor-pointer">
             <Image src="/icons/close_icon.png" alt="" width={10} height={10} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
           </button>
         </div>

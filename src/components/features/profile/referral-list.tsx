@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { APP_ASSETS } from '@/lib/assets'
+import { formatDateShort } from '@/lib/utils'
 import { motion, AnimatePresence } from 'motion/react'
 import { AnimatedToggle } from '@/components/shared/animated-toggle'
 import { useReferralStore, type WithdrawalStatus } from '@/stores/referral-store'
@@ -84,11 +85,6 @@ function ReferralListView() {
   )
 }
 
-function formatDateShort(iso: string): string {
-  const d = new Date(iso)
-  const pad = (n: number) => String(n).padStart(2, '0')
-  return `${pad(d.getDate())}.${pad(d.getMonth() + 1)}.${String(d.getFullYear()).slice(2)}`
-}
 
 function useMergedTransactions(): ReferralTransaction[] {
   const withdrawals = useReferralStore((s) => s.withdrawals)

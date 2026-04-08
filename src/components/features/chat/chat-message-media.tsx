@@ -6,13 +6,8 @@ import { toast } from 'sonner'
 import { handleImageError } from '@/lib/image-fallback'
 import { Play } from 'lucide-react'
 import { CustomIcon } from '@/components/shared/custom-icon'
+import { ShareIcon } from '@/components/shared/icons'
 import type { Message } from '@/types'
-
-const imgShareMask = '/assets/models/share-mask.png'
-
-function ShareIcon({ size, className }: { size: number; className?: string }) {
-  return <div className={className} style={{ width: size, height: size, backgroundColor: 'currentColor', maskImage: `url('${imgShareMask}')`, WebkitMaskImage: `url('${imgShareMask}')`, maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center' }} />
-}
 
 interface ChatMessageMediaProps {
   msg: Message
@@ -58,7 +53,7 @@ export function ChatMessageMedia({
           ))}
         </div>
       ) : (
-        <div className="relative cursor-pointer" onClick={() => setViewerMedia({ type: msg.mediaType || 'image', src: msg.mediaSrc || msg.mediaSrcs?.[0] || '' })}>
+        <div className="relative cursor-pointer" role="button" tabIndex={0} aria-label="Открыть медиа" onClick={() => setViewerMedia({ type: msg.mediaType || 'image', src: msg.mediaSrc || msg.mediaSrcs?.[0] || '' })} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setViewerMedia({ type: msg.mediaType || 'image', src: msg.mediaSrc || msg.mediaSrcs?.[0] || '' }) } }}>
           <img src={msg.mediaSrc || msg.mediaSrcs?.[0]} alt="" className="size-[320px] object-cover rounded-[16px]" onError={handleImageError} />
           {msg.mediaType === 'video' && (
             <div className="absolute inset-0 flex items-center justify-center">
@@ -70,11 +65,11 @@ export function ChatMessageMedia({
         </div>
       )}
       <div className="flex items-center gap-[4px] mt-[8px]">
-        <button onClick={() => { navigator.clipboard.writeText(msg.content); toast.success('Скопировано в буфер обмена') }} title="Копировать" className="group flex items-center px-[6px] py-[4px] rounded-[8px] text-[11px] text-[rgba(255,255,255,0.3)] hover:text-white hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"><CustomIcon src="/icons/copy_icon.png" size={11} className="opacity-30 group-hover:opacity-100 transition-opacity duration-200" /></button>
-        <button onClick={() => setMsgShareIdx(index)} title="Поделиться" className="group flex items-center px-[6px] py-[4px] rounded-[8px] text-[11px] text-[rgba(255,255,255,0.3)] hover:text-white hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"><ShareIcon size={11} /></button>
-        <button onClick={() => setMsgRatings(p => { const next = { ...p }; if (next[index] === 'up') delete next[index]; else next[index] = 'up'; return next })} title="Нравится" className={`group flex items-center px-[6px] py-[4px] rounded-[8px] text-[11px] transition-all cursor-pointer ${msgRatings[index] === 'up' ? 'bg-[rgba(74,222,128,0.08)]' : 'hover:bg-[rgba(255,255,255,0.06)]'}`}><Image src="/icons/like_icon.png" alt="" width={11} height={11} className={`transition-all duration-200 ${msgRatings[index] === 'up' ? '[filter:brightness(0)_saturate(100%)_invert(73%)_sepia(57%)_saturate(497%)_hue-rotate(93deg)_brightness(98%)_contrast(92%)]' : 'brightness-0 invert opacity-30 group-hover:opacity-100'}`} /></button>
-        <button onClick={() => setMsgRatings(p => { const next = { ...p }; if (next[index] === 'down') delete next[index]; else next[index] = 'down'; return next })} title="Не нравится" className={`group flex items-center px-[6px] py-[4px] rounded-[8px] text-[11px] transition-all cursor-pointer ${msgRatings[index] === 'down' ? 'bg-[rgba(248,113,113,0.08)]' : 'hover:bg-[rgba(255,255,255,0.06)]'}`}><Image src="/icons/dislike_icon.png" alt="" width={11} height={11} className={`transition-all duration-200 ${msgRatings[index] === 'down' ? '[filter:brightness(0)_saturate(100%)_invert(56%)_sepia(72%)_saturate(1054%)_hue-rotate(325deg)_brightness(101%)_contrast(94%)]' : 'brightness-0 invert opacity-30 group-hover:opacity-100'}`} /></button>
-        <button onClick={() => { const a = document.createElement('a'); a.href = msg.mediaSrc || (msg.mediaSrcs?.[0] ?? ''); a.download = `blackmount-${msg.mediaType}-${Date.now()}.png`; a.click() }} title="Сохранить" className="group flex items-center px-[6px] py-[4px] rounded-[8px] text-[11px] text-[rgba(255,255,255,0.3)] hover:text-white hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"><Image src="/icons/dowland_icon.png" alt="" width={11} height={11} className="brightness-0 invert opacity-30 group-hover:opacity-100 transition-opacity duration-200" /></button>
+        <button onClick={() => { navigator.clipboard.writeText(msg.content); toast.success('Скопировано в буфер обмена') }} title="Копировать" aria-label="Копировать" className="group flex items-center px-[6px] py-[4px] rounded-[8px] text-[11px] text-[rgba(255,255,255,0.3)] hover:text-white hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"><CustomIcon src="/icons/copy_icon.png" size={11} className="opacity-30 group-hover:opacity-100 transition-opacity duration-200" /></button>
+        <button onClick={() => setMsgShareIdx(index)} title="Поделиться" aria-label="Поделиться" className="group flex items-center px-[6px] py-[4px] rounded-[8px] text-[11px] text-[rgba(255,255,255,0.3)] hover:text-white hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"><ShareIcon size={11} /></button>
+        <button onClick={() => setMsgRatings(p => { const next = { ...p }; if (next[index] === 'up') delete next[index]; else next[index] = 'up'; return next })} title="Нравится" aria-label="Нравится" className={`group flex items-center px-[6px] py-[4px] rounded-[8px] text-[11px] transition-all cursor-pointer ${msgRatings[index] === 'up' ? 'bg-[rgba(74,222,128,0.08)]' : 'hover:bg-[rgba(255,255,255,0.06)]'}`}><Image src="/icons/like_icon.png" alt="" width={11} height={11} className={`transition-all duration-200 ${msgRatings[index] === 'up' ? '[filter:brightness(0)_saturate(100%)_invert(73%)_sepia(57%)_saturate(497%)_hue-rotate(93deg)_brightness(98%)_contrast(92%)]' : 'brightness-0 invert opacity-30 group-hover:opacity-100'}`} /></button>
+        <button onClick={() => setMsgRatings(p => { const next = { ...p }; if (next[index] === 'down') delete next[index]; else next[index] = 'down'; return next })} title="Не нравится" aria-label="Не нравится" className={`group flex items-center px-[6px] py-[4px] rounded-[8px] text-[11px] transition-all cursor-pointer ${msgRatings[index] === 'down' ? 'bg-[rgba(248,113,113,0.08)]' : 'hover:bg-[rgba(255,255,255,0.06)]'}`}><Image src="/icons/dislike_icon.png" alt="" width={11} height={11} className={`transition-all duration-200 ${msgRatings[index] === 'down' ? '[filter:brightness(0)_saturate(100%)_invert(56%)_sepia(72%)_saturate(1054%)_hue-rotate(325deg)_brightness(101%)_contrast(94%)]' : 'brightness-0 invert opacity-30 group-hover:opacity-100'}`} /></button>
+        <button onClick={() => { const a = document.createElement('a'); a.href = msg.mediaSrc || (msg.mediaSrcs?.[0] ?? ''); a.download = `blackmount-${msg.mediaType}-${Date.now()}.png`; a.click() }} title="Сохранить" aria-label="Сохранить" className="group flex items-center px-[6px] py-[4px] rounded-[8px] text-[11px] text-[rgba(255,255,255,0.3)] hover:text-white hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"><Image src="/icons/dowland_icon.png" alt="" width={11} height={11} className="brightness-0 invert opacity-30 group-hover:opacity-100 transition-opacity duration-200" /></button>
       </div>
     </motion.div>
   )

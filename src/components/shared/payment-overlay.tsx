@@ -40,7 +40,7 @@ export function PaymentOverlay({ open, onClose, amount, label, onSuccess }: Paym
   if (success) {
     return (
       <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-sm">
-        <div className="bg-[#14131c] rounded-3xl p-10 flex flex-col items-center border border-white/[0.08]">
+        <div role="dialog" aria-modal="true" className="bg-[#14131c] rounded-3xl p-10 flex flex-col items-center border border-white/[0.08]">
           <div className="size-16 rounded-full bg-green-500/20 flex items-center justify-center mb-4">
             <Check size={32} className="text-green-400" />
           </div>
@@ -53,13 +53,13 @@ export function PaymentOverlay({ open, onClose, amount, label, onSuccess }: Paym
 
   return (
     <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={onClose}>
-      <div className="bg-[#14131c] rounded-3xl w-[420px] max-w-[90vw] border border-white/[0.08] shadow-2xl" onClick={(e) => e.stopPropagation()}>
+      <div role="dialog" aria-modal="true" className="bg-[#14131c] rounded-3xl w-[420px] max-w-[90vw] border border-white/[0.08] shadow-2xl" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between p-6 border-b border-white/[0.06]">
           <div className="flex items-center gap-2">
             <CreditCard size={18} className="text-primary" />
             <span className="text-base text-white font-bold">Оплата</span>
           </div>
-          <button onClick={onClose} className="group bg-white/5 hover:bg-white/10 p-[8px] rounded-[10px] transition-colors cursor-pointer">
+          <button onClick={onClose} aria-label="Закрыть" className="group bg-white/5 hover:bg-white/10 p-[8px] rounded-[10px] transition-colors cursor-pointer">
             <Image src="/icons/close_icon.png" alt="" width={10} height={10} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
           </button>
         </div>

@@ -70,7 +70,7 @@ export function HistoryTab() {
             className="bg-transparent outline-none font-manrope font-medium text-[13px] text-white placeholder-[#898787] w-full"
           />
           {searchQuery && (
-            <button onClick={() => setSearchQuery('')} className="group cursor-pointer shrink-0 transition-colors">
+            <button onClick={() => setSearchQuery('')} aria-label="Сбросить фильтр" className="group cursor-pointer shrink-0 transition-colors">
               <Image src="/icons/close_icon.png" alt="" width={10} height={10} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
             </button>
           )}

@@ -20,6 +20,8 @@ export function HistoryDeleteModal({ itemTitle, onConfirm, onCancel }: HistoryDe
           onClick={onCancel}
         >
           <motion.div
+            role="dialog"
+            aria-modal="true"
             className="bg-[#1a1a22] rounded-[20px] w-[380px] max-w-[90vw] overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.6)] border border-[rgba(255,255,255,0.06)]"
             onClick={(e) => e.stopPropagation()}
             initial={{ scale: 0.95, opacity: 0 }}

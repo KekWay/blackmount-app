@@ -4,15 +4,11 @@ import { useRouter } from 'next/navigation'
 import { CustomIcon } from '@/components/shared/custom-icon'
 import Image from 'next/image'
 import { APP_ASSETS } from '@/lib/assets'
+import { ShareIcon } from '@/components/shared/icons'
 import { VersionDropdown } from './version-dropdown'
 import type { AIModel, ModelVersion } from '@/types'
 
-const imgShareMask = '/assets/models/share-mask.png'
 const imgFreeIconSetting = APP_ASSETS.settings
-
-function ShareIcon({ size, className }: { size: number; className?: string }) {
-  return <div className={className} style={{ width: size, height: size, backgroundColor: 'currentColor', maskImage: `url('${imgShareMask}')`, WebkitMaskImage: `url('${imgShareMask}')`, maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center' }} />
-}
 
 interface ChatHeaderProps {
   model: AIModel
@@ -63,6 +59,7 @@ export function ChatHeader({
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); setSubBannerDismissed(true) }}
+            aria-label="Закрыть"
             className="group ml-[4px] size-[24px] rounded-full flex items-center justify-center cursor-pointer hover:bg-[rgba(255,255,255,0.1)] transition-colors"
           >
             <Image src="/icons/close_icon.png" alt="" width={9} height={9} className="invert opacity-40 group-hover:opacity-70 transition-opacity duration-200" />

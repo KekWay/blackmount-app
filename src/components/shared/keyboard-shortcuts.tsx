@@ -39,6 +39,8 @@ function ShortcutsHelpModal({ onClose }: { onClose: () => void }) {
     <div className="fixed inset-0 z-[300] flex items-center justify-center" onClick={onClose}>
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
       <div
+        role="dialog"
+        aria-modal="true"
         className="relative w-[420px] max-w-[90vw] bg-[#1a1926] rounded-2xl border border-white/[0.08] shadow-2xl p-6"
         onClick={(e) => e.stopPropagation()}
       >

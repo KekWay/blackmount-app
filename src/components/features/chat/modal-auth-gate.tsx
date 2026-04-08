@@ -21,6 +21,8 @@ export function ModalAuthGate({ show, onClose }: ModalAuthGateProps) {
           onClick={onClose}
         >
           <motion.div
+            role="dialog"
+            aria-modal="true"
             className="relative rounded-[20px] p-[32px] max-w-[400px] w-[90vw]"
             style={{ background: '#1e1d2a', border: '1px solid rgba(136,138,229,0.15)' }}
             initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }}
@@ -29,6 +31,7 @@ export function ModalAuthGate({ show, onClose }: ModalAuthGateProps) {
           >
             <button
               onClick={onClose}
+              aria-label="Закрыть"
               className="group absolute top-[12px] right-[12px] bg-white/5 hover:bg-white/10 p-[8px] rounded-[10px] transition-colors cursor-pointer"
             >
               <Image src="/icons/close_icon.png" alt="" width={10} height={10} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />

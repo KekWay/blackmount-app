@@ -296,6 +296,7 @@ export function PromptsFilters({
                 </h2>
                 <button
                   onClick={() => setOverlayOpen(false)}
+                  aria-label="Закрыть"
                   className="group p-1.5 rounded-lg hover:bg-white/10 transition-colors cursor-pointer"
                 >
                   <Image src="/icons/close_icon.png" alt="" width={14} height={14} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />

@@ -59,7 +59,7 @@ export function SidebarUser({ collapsed }: SidebarUserProps) {
 
       <div className="border-t border-white/[0.06] pt-3">
         {isLoggedIn && user ? (
-          <div className="cursor-pointer" onClick={() => setMenuOpen((v) => !v)}>
+          <div className="cursor-pointer" role="button" tabIndex={0} onClick={() => setMenuOpen((v) => !v)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setMenuOpen((v) => !v) } }}>
             <div className={`flex items-center gap-3 rounded-xl py-1.5 transition-colors hover:bg-[rgba(255,255,255,0.08)] ${
               collapsed ? 'justify-center px-1 pt-3' : 'px-2 pt-3'
             }`}>

@@ -28,6 +28,8 @@ export function ArenaLimitModal({ open, onClose }: Props) {
         >
           <div className="absolute inset-0 bg-[rgba(0,0,0,0.6)] backdrop-blur-[8px]" />
           <motion.div
+            role="dialog"
+            aria-modal="true"
             className="relative w-[400px] max-w-[90vw] overflow-hidden rounded-[20px]"
             initial={{ scale: 0.92, opacity: 0, y: 10 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.92, opacity: 0, y: 10 }}
             transition={{ type: 'spring', damping: 28, stiffness: 380 }}
@@ -36,7 +38,7 @@ export function ArenaLimitModal({ open, onClose }: Props) {
           >
             <div className="absolute top-0 left-0 right-0 h-[1px]" style={{ background: 'linear-gradient(90deg, transparent 5%, rgba(136,138,229,0.4) 50%, transparent 95%)' }} />
             <div className="flex justify-end pt-[14px] pr-[14px]">
-              <button onClick={onClose} className="group bg-white/5 hover:bg-white/10 p-[8px] rounded-[10px] transition-colors cursor-pointer">
+              <button onClick={onClose} aria-label="Закрыть" className="group bg-white/5 hover:bg-white/10 p-[8px] rounded-[10px] transition-colors cursor-pointer">
                 <Image src="/icons/close_icon.png" alt="" width={10} height={10} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
               </button>
             </div>

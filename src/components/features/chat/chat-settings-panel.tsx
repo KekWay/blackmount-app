@@ -66,6 +66,7 @@ export function ChatSettingsPanel({
               <p className="font-manrope font-bold text-[18px] text-white">Настройки модели</p>
               <button
                 onClick={() => setSettingsOpen(false)}
+                aria-label="Закрыть"
                 className="group size-[28px] rounded-full bg-[rgba(57,55,91,0.6)] flex items-center justify-center cursor-pointer hover:bg-[rgba(57,55,91,0.9)] transition-colors"
               >
                 <Image src="/icons/close_icon.png" alt="" width={9} height={9} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />

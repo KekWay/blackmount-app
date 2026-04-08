@@ -5,9 +5,10 @@ import { CustomIcon } from '@/components/shared/custom-icon'
 import { motion } from 'motion/react'
 import type { ArenaModel } from '@/data/arena-models'
 import type { ModelResponse } from './arena-data'
-import { IMG_COIN, IMG_SHARE_MASK } from './arena-data'
+import { IMG_COIN } from './arena-data'
 import { MIcon } from './arena-micon'
 import { MarkdownRenderer } from '@/components/shared/markdown-renderer'
+import { ShareIcon } from '@/components/shared/icons'
 
 interface Props {
   winnerResponse: ModelResponse
@@ -49,7 +50,7 @@ export function ArenaWinnerCard({ winnerResponse, prompt, savedIds, ratedId, onS
           {isSaved ? 'Сохранено' : 'Сохранить'}
         </button>
         <button onClick={onShare} className="flex items-center gap-[5px] px-[12px] py-[7px] rounded-[10px] bg-[rgba(255,255,255,0.04)] text-[11px] text-[rgba(255,255,255,0.4)] hover:bg-[rgba(255,255,255,0.08)] transition-all cursor-pointer border border-transparent font-medium">
-          <div className="w-[12px] h-[12px]" style={{ backgroundColor: 'currentColor', maskImage: `url('${IMG_SHARE_MASK}')`, WebkitMaskImage: `url('${IMG_SHARE_MASK}')`, maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center' }} /> Поделиться
+          <ShareIcon size={12} /> Поделиться
         </button>
         <div className="flex items-center gap-[4px]">
           <button onClick={() => onRate('up')} className={`group flex items-center gap-[3px] px-[10px] py-[7px] rounded-[10px] text-[11px] transition-all cursor-pointer border ${ratedId === 'up' ? 'bg-[rgba(74,222,128,0.08)] text-[#4ade80] border-[rgba(74,222,128,0.15)]' : 'bg-[rgba(255,255,255,0.04)] text-[rgba(255,255,255,0.4)] hover:bg-[rgba(255,255,255,0.08)] border-transparent'}`}>

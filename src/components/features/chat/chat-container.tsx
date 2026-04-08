@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useState, useEffect, useRef, useCallback } from 'react'
+import { Suspense, useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { useParams, useSearchParams } from 'next/navigation'
 import { aiModels } from '@/data/ai-models'
 import { useBalanceStore } from '@/stores/balance'
@@ -83,7 +83,7 @@ function ChatContainerInner() {
   const isTextModel = model.category === 'text'
   const dailyLimit = useRequestLimiterStore.getState().getDailyLimit()
 
-  const dynamicCost = (() => {
+  const dynamicCost = useMemo(() => {
     const p = selectedVersion.price
     const bp = getBasePrice(p)
     if (isVersionFreeForTier(selectedVersion.id, tier)) return 0
@@ -107,7 +107,7 @@ function ChatContainerInner() {
       return videoPricingMap[audioVk]?.[DURATION_KEY_MAP[videoDuration]] ?? bp
     }
     return videoPricingMap[vk]?.[DURATION_KEY_MAP[videoDuration]] ?? bp
-  })()
+  }, [selectedVersion, tier, isTextModel, webSearchActive, deepResearchActive, videoDuration, quality, audioEnabled, imageCount, model.category])
 
   const actions = useChatActions({
     model, selectedVersion, isTextModel, modelLocked, dynamicCost, input, setInput,
@@ -127,8 +127,9 @@ function ChatContainerInner() {
     }
   }, [searchParams])
   useEffect(() => {
-    const raw = sessionStorage.getItem('arena_continue')
-    if (raw) { sessionStorage.removeItem('arena_continue'); try { const a = JSON.parse(raw) as { prompt: string; response: string }; if (a.prompt && a.response) setMessages([{ role: 'user', content: a.prompt }, { role: 'assistant', content: a.response }]) } catch { /* empty */ } }
+    let raw: string | null = null
+    try { raw = sessionStorage.getItem('arena_continue') } catch {}
+    if (raw) { try { sessionStorage.removeItem('arena_continue') } catch {} try { const a = JSON.parse(raw) as { prompt: string; response: string }; if (a.prompt && a.response) setMessages([{ role: 'user', content: a.prompt }, { role: 'assistant', content: a.response }]) } catch { /* empty */ } }
   }, [model.id])
   const searchParamsRef = useRef(searchParams)
   searchParamsRef.current = searchParams

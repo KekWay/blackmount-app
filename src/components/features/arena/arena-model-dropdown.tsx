@@ -1,9 +1,10 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import { CustomIcon } from '@/components/shared/custom-icon'
 import { motion } from 'motion/react'
+import { useClickOutside } from '@/lib/hooks'
 import { TEXT_MODELS, IMAGE_MODELS, VIDEO_MODELS } from '@/data/arena-models'
 import type { ArenaModel, ArenaCategory } from '@/data/arena-models'
 import { useSubscriptionStore } from '@/stores/subscription'
@@ -24,13 +25,7 @@ export function ArenaModelDropdown({ selectedModels, onToggle, onCategoryChange 
   const [pos, setPos] = useState<{ top: number; left: number } | null>(null)
   const hasSub = useSubscriptionStore((s) => s.hasActiveSubscription())
 
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node) && btnRef.current && !btnRef.current.contains(e.target as Node)) setOpen(false)
-    }
-    document.addEventListener('mousedown', handler)
-    return () => document.removeEventListener('mousedown', handler)
-  }, [])
+  useClickOutside([ref, btnRef], useCallback(() => setOpen(false), []))
 
   useEffect(() => {
     if (open && btnRef.current) {

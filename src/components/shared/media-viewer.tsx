@@ -39,6 +39,7 @@ export function MediaViewer({ type, src, srcs, onClose }: MediaViewerProps) {
       <div className="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
         <button
           onClick={onClose}
+          aria-label="Закрыть"
           className="group absolute top-[-40px] right-0 bg-white/10 hover:bg-white/20 rounded-full size-8 flex items-center justify-center cursor-pointer transition-colors"
         >
           <Image src="/icons/close_icon.png" alt="" width={12} height={12} className="invert opacity-60 group-hover:opacity-100 transition-opacity duration-200" />

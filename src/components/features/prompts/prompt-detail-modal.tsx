@@ -3,12 +3,7 @@
 import { useState } from 'react'
 import { Play } from 'lucide-react'
 import Image from 'next/image'
-
-const imgShareMask = '/assets/models/share-mask.png'
-
-function ShareIcon({ size, className }: { size: number; className?: string }) {
-  return <div className={className} style={{ width: size, height: size, backgroundColor: 'currentColor', maskImage: `url('${imgShareMask}')`, WebkitMaskImage: `url('${imgShareMask}')`, maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center' }} />
-}
+import { ShareIcon } from '@/components/shared/icons'
 import { motion } from 'motion/react'
 import { useRouter } from 'next/navigation'
 import { useAuthStore } from '@/stores/auth'
@@ -91,7 +86,7 @@ export function PromptDetailModal({ item, onClose }: PromptDetailModalProps) {
                 <ShareIcon size={13} className="text-[rgba(255,255,255,0.5)]" />
                 <span className="text-[12px] text-[rgba(255,255,255,0.5)]">Поделиться</span>
               </button>
-              <button onClick={onClose} className="group bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(136,138,229,0.08)] rounded-[8px] size-[30px] flex items-center justify-center cursor-pointer transition-colors">
+              <button onClick={onClose} aria-label="Закрыть" className="group bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(136,138,229,0.08)] rounded-[8px] size-[30px] flex items-center justify-center cursor-pointer transition-colors">
                 <Image src="/icons/close_icon.png" alt="" width={10} height={10} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
               </button>
             </div>

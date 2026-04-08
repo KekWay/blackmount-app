@@ -3,15 +3,9 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'motion/react'
-import { Play, Check, ArrowUpRight, ImageIcon } from 'lucide-react'
-import { CustomIcon } from '@/components/shared/custom-icon'
+import { Play, ImageIcon } from 'lucide-react'
 import Image from 'next/image'
-
-const imgShareMask = '/assets/models/share-mask.png'
-
-function ShareIcon({ size, className }: { size: number; className?: string }) {
-  return <div className={className} style={{ width: size, height: size, backgroundColor: 'currentColor', maskImage: `url('${imgShareMask}')`, WebkitMaskImage: `url('${imgShareMask}')`, maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center' }} />
-}
+import { ShareIcon } from '@/components/shared/icons'
 import { ModelIcon } from '@/components/shared/model-icon'
 import { useAuthStore } from '@/stores/auth'
 import { copyToClipboard } from '@/lib/utils'
@@ -92,7 +86,7 @@ function HistoryViewerContent({ item, onClose, onDelete, onShare }: { item: View
               <Image src="/icons/info_icon.png" alt="" width={16} height={16} className="[filter:invert(60%)_sepia(50%)_saturate(500%)_hue-rotate(205deg)_brightness(95%)]" />
               <span className="text-[14px] text-white">Детали генерации</span>
             </div>
-            <button onClick={onClose} className="group bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(136,138,229,0.1)] rounded-[8px] size-[30px] flex items-center justify-center cursor-pointer transition-colors">
+            <button onClick={onClose} aria-label="Закрыть" className="group bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(136,138,229,0.1)] rounded-[8px] size-[30px] flex items-center justify-center cursor-pointer transition-colors">
               <Image src="/icons/close_icon.png" alt="" width={10} height={10} className="invert opacity-50 group-hover:opacity-80 transition-opacity duration-200" />
             </button>
           </div>

@@ -59,7 +59,7 @@ export function AnnouncementBanner() {
             </button>
 
             <button
-              onClick={() => { sessionStorage.setItem('banner-dismissed', 'true'); setDismissed(true) }}
+              onClick={() => { try { sessionStorage.setItem('banner-dismissed', 'true') } catch {} setDismissed(true) }}
               aria-label="Dismiss announcement"
               className="group shrink-0 size-[28px] rounded-[8px] flex items-center justify-center hover:bg-[rgba(255,255,255,0.06)] transition-all cursor-pointer"
             >

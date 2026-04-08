@@ -37,13 +37,15 @@ export function ShareModal({ item, onClose }: ShareModalProps) {
     <div className="fixed inset-0 z-[200] flex items-center justify-center" onClick={onClose}>
       <div className="absolute inset-0 bg-[rgba(0,0,0,0.6)] backdrop-blur-[4px]" />
       <div
+        role="dialog"
+        aria-modal="true"
         className="relative bg-[#1a1a22] rounded-[24px] w-[440px] max-w-[90vw] overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.6)]"
         onClick={(e) => e.stopPropagation()}
         style={{ animation: 'shareIn 0.25s ease-out' }}
       >
         <div className="flex items-center justify-between px-[28px] pt-[24px] pb-[16px]">
           <p className="font-manrope font-extrabold text-[20px] text-white">Поделиться</p>
-          <button onClick={onClose} className="group bg-[rgba(255,255,255,0.06)] rounded-[12px] size-[36px] flex items-center justify-center cursor-pointer hover:bg-[rgba(136,138,229,0.1)] transition-colors">
+          <button onClick={onClose} aria-label="Закрыть" className="group bg-[rgba(255,255,255,0.06)] rounded-[12px] size-[36px] flex items-center justify-center cursor-pointer hover:bg-[rgba(136,138,229,0.1)] transition-colors">
             <Image src="/icons/close_icon.png" alt="" width={12} height={12} className="invert opacity-60 group-hover:opacity-100 transition-opacity duration-200" />
           </button>
         </div>

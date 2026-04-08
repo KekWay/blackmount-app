@@ -49,7 +49,7 @@ export function MediaPreview({ type, src, srcs, onOpenFullscreen }: MediaPreview
   }
 
   return (
-    <div className="relative cursor-pointer group" onClick={onOpenFullscreen}>
+    <div className="relative cursor-pointer group" role="button" tabIndex={0} aria-label="Открыть на весь экран" onClick={onOpenFullscreen} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onOpenFullscreen?.() } }}>
       <Image
         src={src}
         alt=""

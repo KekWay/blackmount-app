@@ -76,7 +76,7 @@ export function CommandPalette() {
   return (
     <div className="fixed inset-0 z-[300] flex items-start justify-center pt-[20vh]" onClick={() => setOpen(false)}>
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
-      <div className="relative w-[520px] max-w-[90vw] bg-[#1a1926] rounded-2xl border border-white/[0.08] shadow-2xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
+      <div role="dialog" aria-modal="true" className="relative w-[520px] max-w-[90vw] bg-[#1a1926] rounded-2xl border border-white/[0.08] shadow-2xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center gap-3 px-4 border-b border-white/[0.06]">
           <img src="/assets/models/search-icon.png" alt="" className="size-[18px] object-contain shrink-0" style={{ filter: 'brightness(0) invert(1)', opacity: 0.5 }} />
           <input ref={inputRef} value={query} onChange={(e) => { setQuery(e.target.value); setSelectedIdx(0) }} onKeyDown={handleKeyDown} placeholder="Поиск команд..." className="flex-1 bg-transparent py-3.5 text-sm text-white placeholder:text-white/30 outline-none" />
