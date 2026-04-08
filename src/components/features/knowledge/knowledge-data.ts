@@ -13,19 +13,19 @@ export const modelGroups = [
 const modelIntros: Record<string, { intro: string; subtitle: string }> = {
   chatgpt: {
     intro: 'Самая популярная нейросеть в мире от OpenAI',
-    subtitle: '3 версии \u00b7 Текст \u00b7 от 1 монеты',
+    subtitle: '5 версий \u00b7 Текст \u00b7 от 1 монеты',
   },
   claude: {
     intro: 'Точность, код и глубокий анализ от Anthropic',
-    subtitle: '4 версии \u00b7 Текст \u00b7 от 1.5 монет',
+    subtitle: '6 версий \u00b7 Текст \u00b7 от 1.5 монет',
   },
   gemini: {
     intro: 'Семейство нейросетей от Google DeepMind',
-    subtitle: '4 версии \u00b7 Текст \u00b7 от 1 монеты',
+    subtitle: '5 версий \u00b7 Текст \u00b7 от 1 монеты',
   },
   nanobanana: {
     intro: 'Генерация изображений с точным текстом от Google',
-    subtitle: '2 версии \u00b7 Изображения \u00b7 от 7 монет',
+    subtitle: '3 версии \u00b7 Изображения \u00b7 от 7 монет',
   },
   flux: {
     intro: 'Фотореалистичные изображения от Black Forest Labs',
@@ -33,11 +33,11 @@ const modelIntros: Record<string, { intro: string; subtitle: string }> = {
   },
   kling: {
     intro: 'Генерация видео со звуком от Kuaishou',
-    subtitle: '2 версии \u00b7 Видео \u00b7 от 35 монет',
+    subtitle: '5 версий \u00b7 Видео \u00b7 от 35 монет',
   },
   veo31: {
     intro: 'Кинематографичное видео до 4K от Google DeepMind',
-    subtitle: '1 версия \u00b7 Видео \u00b7 от 50 монет',
+    subtitle: '2 версии \u00b7 Видео \u00b7 от 50 монет',
   },
 }
 
