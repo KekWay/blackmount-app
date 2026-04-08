@@ -91,4 +91,7 @@ export const RATING_LOCKED_MAP: Record<string, string> = {
   "nb-pro": "nb-pro",
   "veo-3.1-quality": "veo-3.1-quality",
   "kling-2.6": "kling-2.6",
+  "gpt-5.3": "gpt-5.3",
+  "kling-2.6-pro": "kling-2.6-pro",
+  "veo-3.1-fast": "veo-3.1-fast",
 }

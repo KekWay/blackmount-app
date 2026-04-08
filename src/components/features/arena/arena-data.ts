@@ -4,6 +4,8 @@ export const ARENA_LOCKED_IDS = new Set([
   'claude-opus-4.5', 'chatgpt-5.2', 'gemini-3-pro', 'flux-1.1-pro-ultra',
   'nb-pro', 'veo-3.1-quality', 'veo-3.1-fast', 'kling-2.6',
   'kling-3.0', 'kling-3.0-pro',
+  'gpt-5.4', 'gpt-5.3', 'claude-opus-4.6', 'gemini-3.1-pro',
+  'nanobanana-2', 'kling-2.6-pro',
 ])
 
 export const FREE_ARENA_IDS = new Set(['chatgpt-5-mini', 'gemini-3-flash', 'gemini-2.5-flash'])
