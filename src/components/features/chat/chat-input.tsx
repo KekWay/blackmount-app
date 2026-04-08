@@ -61,7 +61,7 @@ export function ChatInput({
   }, [setAttachOpen])
 
   return (
-    <div className="flex justify-center pb-[12px] md:pb-[28px] px-[12px] md:px-[24px] lg:px-[40px] shrink-0 relative z-[20]">
+    <div className="flex justify-center pb-[80px] md:pb-[28px] px-[12px] md:px-[24px] lg:px-[40px] shrink-0 relative z-[20]">
       <div className="w-full max-w-[620px] flex flex-col gap-[8px]">
         <div className="bg-[rgba(61,57,80,0.5)] border border-[rgba(40,40,40,0.7)] rounded-[30px] w-full flex flex-col relative">
           <div className="relative overflow-hidden rounded-t-[30px]">

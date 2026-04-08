@@ -44,7 +44,7 @@ function ChatContainerInner() {
   const [webSearchActive, setWebSearchActive] = useState(false)
   const [deepResearchActive, setDeepResearchActive] = useState(false)
   const [showLowBalance, setShowLowBalance] = useState(false)
-  const [typingIdx, setTypingIdx] = useState<number | null>(null)
+  const [, setTypingIdx] = useState<number | null>(null)
   const [isGenerating, setIsGenerating] = useState(false)
   const [subBannerDismissed, setSubBannerDismissed] = useState(false)
   const [msgRatings, setMsgRatings] = useState<Record<number, 'up' | 'down'>>({})
@@ -169,8 +169,6 @@ function ChatContainerInner() {
       prevModelIdRef.current = modelId
     }
   }, [modelId])
-
-  void typingIdx
 
   return (
     <div className="w-full h-screen flex flex-col bg-[#121118] relative">
