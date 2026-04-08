@@ -25,6 +25,7 @@ export function InputModelDropdown({ currentModel, onSelect }: InputModelDropdow
   const btnRef = useRef<HTMLButtonElement>(null)
   const [pos, setPos] = useState<{ bottom: number; right: number } | null>(null)
   const [mounted, setMounted] = useState(false)
+  const isModelLocked = useSubscriptionStore((s) => s.isModelLocked)
 
   useEffect(() => { setMounted(true) }, [])
 
@@ -81,7 +82,7 @@ export function InputModelDropdown({ currentModel, onSelect }: InputModelDropdow
           </div>
           <div className="max-h-[280px] overflow-y-auto chat-scrollbar">
             {filtered.map((m) => {
-              const mLocked = useSubscriptionStore.getState().isModelLocked(m.id)
+              const mLocked = isModelLocked(m.id)
               return (
                 <button
                   key={m.id}

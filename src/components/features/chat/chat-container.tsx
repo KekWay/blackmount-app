@@ -69,12 +69,15 @@ function ChatContainerInner() {
 
   const balance = useBalanceStore((s) => s.balance)
   const hasSub = useSubscriptionStore((s) => s.hasActiveSubscription())
+  const isModelLocked = useSubscriptionStore((s) => s.isModelLocked)
+  const isVersionLocked = useSubscriptionStore((s) => s.isVersionLocked)
+  const tier = useSubscriptionStore((s) => s.subscription.tier)
   const model = aiModels.find((m) => m.id === modelId) || aiModels[0]
-  const modelLocked = useSubscriptionStore.getState().isModelLocked(model.id)
+  const modelLocked = isModelLocked(model.id)
   const defaultVersion = (() => {
     const s = [...model.versions].sort((a, b) => getBasePrice(a.price) - getBasePrice(b.price))
     if (hasSub) return s[0]
-    return s.find(v => !useSubscriptionStore.getState().isVersionLocked(v.id)) || s[0]
+    return s.find(v => !isVersionLocked(v.id)) || s[0]
   })()
   const selectedVersion = model.versions.find((v) => v.id === selectedVersionId) || defaultVersion
   const isTextModel = model.category === 'text'
@@ -83,7 +86,6 @@ function ChatContainerInner() {
   const dynamicCost = (() => {
     const p = selectedVersion.price
     const bp = getBasePrice(p)
-    const tier = useSubscriptionStore.getState().subscription.tier
     if (isVersionFreeForTier(selectedVersion.id, tier)) return 0
     const fc = isTextModel ? ((webSearchActive ? 3 : 0) + (deepResearchActive ? 3 : 0)) : 0
     if (isTextModel) return bp + fc

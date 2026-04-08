@@ -21,6 +21,7 @@ interface VersionDropdownProps {
 export function VersionDropdown({ currentModel, selectedVersion, onSelectVersion }: VersionDropdownProps) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
+  const isVersionLocked = useSubscriptionStore((s) => s.isVersionLocked)
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -68,7 +69,7 @@ export function VersionDropdown({ currentModel, selectedVersion, onSelectVersion
             </div>
             <div className="max-h-[200px] overflow-y-auto chat-scrollbar">
               {currentModel.versions.map((v) => {
-                const vLocked = useSubscriptionStore.getState().isVersionLocked(v.id)
+                const vLocked = isVersionLocked(v.id)
                 const pl = priceLabel(v)
                 return (
                   <button
