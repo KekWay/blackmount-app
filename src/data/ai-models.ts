@@ -13,9 +13,7 @@ export const aiModels: AIModel[] = [
       { id: 'chatgpt-5', label: 'ChatGPT 5', description: 'Базовая модель', price: 3, tier: 'pro' },
       { id: 'chatgpt-5-mini', label: 'ChatGPT 5 mini', description: 'Лёгкая и быстрая', price: 1, tier: 'free' },
     ],
-    glowColors: ['#3e993e', '#2d8a2d', '#4aad4a'],
-    addedAt: '2026-04-01T00:00:00Z',
-  },
+    glowColors: ['#3e993e', '#2d8a2d', '#4aad4a'],  },
   {
     id: 'claude',
     name: 'Claude',
@@ -29,9 +27,7 @@ export const aiModels: AIModel[] = [
       { id: 'claude-sonnet-3.7', label: 'Claude Sonnet 3.7', description: 'Проверенный классик', price: 5, tier: 'pro' },
       { id: 'claude-haiku-4.5', label: 'Claude Haiku 4.5', description: 'Мгновенные ответы', price: 1.5, tier: 'free' },
     ],
-    glowColors: ['#8B4513', '#A0522D', '#6B3410'],
-    addedAt: '2026-04-01T00:00:00Z',
-  },
+    glowColors: ['#8B4513', '#A0522D', '#6B3410'],  },
   {
     id: 'gemini',
     name: 'Gemini',
@@ -44,9 +40,7 @@ export const aiModels: AIModel[] = [
       { id: 'gemini-3-flash', label: 'Gemini 3 Flash', description: 'Молниеносный', price: 1, tier: 'free' },
       { id: 'gemini-2.5-flash', label: 'Gemini 2.5 Flash', description: 'Ультрабюджетный', price: 1, tier: 'free' },
     ],
-    glowColors: ['#3355cc', '#4466dd', '#2244aa'],
-    addedAt: '2026-04-01T00:00:00Z',
-  },
+    glowColors: ['#3355cc', '#4466dd', '#2244aa'],  },
   {
     id: 'nanobanana',
     name: 'NanoBanana',
@@ -57,9 +51,7 @@ export const aiModels: AIModel[] = [
       { id: 'nb-pro', label: 'NanoBanana Pro', description: 'Максимальная детализация', price: { '1k': 22, '2k': 22, '4k': 43 }, tier: 'max' },
       { id: 'nb-2.0', label: 'NanoBanana', description: 'Классическая генерация', price: 7, tier: 'pro' },
     ],
-    glowColors: ['#C8A000', '#B89A20', '#DAB830'],
-    addedAt: '2026-04-01T00:00:00Z',
-  },
+    glowColors: ['#C8A000', '#B89A20', '#DAB830'],  },
   {
     id: 'flux',
     name: 'Flux',
@@ -83,9 +75,7 @@ export const aiModels: AIModel[] = [
       { id: 'kling-2.6', label: 'Kling 2.6', description: 'Аудио-визуал', price: { '5s': 45, '5s_audio': 85, '10s': 85, '10s_audio': 170 }, tier: 'pro' },
       { id: 'kling-2.5-turbo', label: 'Kling 2.5 Turbo', description: 'Быстрый стандарт', price: 35, tier: 'pro' },
     ],
-    glowColors: ['#00AA55', '#0088CC', '#00CC66'],
-    addedAt: '2026-04-01T00:00:00Z',
-  },
+    glowColors: ['#00AA55', '#0088CC', '#00CC66'],  },
   {
     id: 'veo31',
     name: 'Veo 3.1',
@@ -95,9 +85,7 @@ export const aiModels: AIModel[] = [
       { id: 'veo-3.1-quality', label: 'Veo 3.1 Quality', description: 'Кинематограф', price: 185, tier: 'max' },
       { id: 'veo-3.1-fast', label: 'Veo 3.1 Fast', description: 'Быстрое кино', price: 50, tier: 'pro' },
     ],
-    glowColors: ['#3287FF', '#E55966', '#CAC631', '#41C18A'],
-    addedAt: '2023-10-01T00:00:00Z',
-  },
+    glowColors: ['#3287FF', '#E55966', '#CAC631', '#41C18A'],  },
 ]
 
 const FOURTEEN_DAYS = 14 * 24 * 60 * 60 * 1000
