@@ -51,6 +51,9 @@ Next.js 14 App Router · TypeScript strict · Tailwind CSS 4 · shadcn/ui · Zus
 ### Проект
 - docs/PROJECT_IDEA.md — идея, аудитория, конкуренты, план
 
+### Качество кода
+- docs/code-rules.md — правила чистого кода (обязательно к соблюдению)
+
 ## Архитектура
 ```
 src/app/(main)/          — страницы с sidebar
