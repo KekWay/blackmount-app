@@ -7,8 +7,15 @@ import { aiModels } from '@/data/ai-models'
 import { getBasePrice } from '@/types/models'
 import { MODEL_ASSETS } from '@/lib/assets'
 
-const lockedVersionIds = new Set(['chatgpt-5.2', 'claude-opus-4.5', 'gemini-3-pro', 'nb-pro', 'flux-1.1-pro-ultra', 'kling-2.6', 'veo-3.1-quality', 'veo-3.1-fast'])
-const lockedModelIds = new Set(['veo31'])
+const lockedVersionIds = new Set([
+  // Старые
+  'chatgpt-5.2', 'claude-opus-4.5', 'gemini-3-pro', 'flux-1.1-pro-ultra',
+  'nb-pro', 'veo-3.1-quality', 'veo-3.1-fast', 'kling-2.6',
+  // Новые (апрель 2026)
+  'gpt-5.4', 'gpt-5.3', 'claude-opus-4.6', 'gemini-3.1-pro',
+  'nanobanana-2', 'kling-3.0', 'kling-3.0-pro', 'kling-2.6-pro',
+])
+const lockedModelIds = new Set<string>([])
 const catColors: Record<string, string> = { text: '#888ae5', image: '#ef4444', video: '#22d3ee' }
 const catLabels: Record<string, string> = { text: 'Текст', image: 'Изображение', video: 'Видео' }
 

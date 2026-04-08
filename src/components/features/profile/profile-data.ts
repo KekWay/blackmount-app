@@ -36,6 +36,7 @@ export const GEN_MODELS = [
   { model: 'Kling 3.0', price: 55, cat: 'video' as const },
   { model: 'Veo 3.1 Fast', price: 50, cat: 'video' as const },
   { model: 'Kling 2.6', price: 45, cat: 'video' as const },
+  { model: 'Kling 2.6 Pro', price: 45, cat: 'video' as const },
   { model: 'Kling 2.5 Turbo', price: 35, cat: 'video' as const },
 ]
 

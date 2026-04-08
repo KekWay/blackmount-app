@@ -14,7 +14,7 @@ export const aiModels: AIModel[] = [
       { id: 'chatgpt-5-mini', label: 'ChatGPT 5 mini', description: 'Лёгкая и быстрая', price: 1, tier: 'free' },
     ],
     glowColors: ['#3e993e', '#2d8a2d', '#4aad4a'],
-    addedAt: '2023-10-01T00:00:00Z',
+    addedAt: '2026-04-01T00:00:00Z',
   },
   {
     id: 'claude',
@@ -30,6 +30,7 @@ export const aiModels: AIModel[] = [
       { id: 'claude-haiku-4.5', label: 'Claude Haiku 4.5', description: 'Мгновенные ответы', price: 1.5, tier: 'free' },
     ],
     glowColors: ['#8B4513', '#A0522D', '#6B3410'],
+    addedAt: '2026-04-01T00:00:00Z',
   },
   {
     id: 'gemini',
@@ -44,6 +45,7 @@ export const aiModels: AIModel[] = [
       { id: 'gemini-2.5-flash', label: 'Gemini 2.5 Flash', description: 'Ультрабюджетный', price: 1, tier: 'free' },
     ],
     glowColors: ['#3355cc', '#4466dd', '#2244aa'],
+    addedAt: '2026-04-01T00:00:00Z',
   },
   {
     id: 'nanobanana',
@@ -56,6 +58,7 @@ export const aiModels: AIModel[] = [
       { id: 'nb-2.0', label: 'NanoBanana', description: 'Классическая генерация', price: 7, tier: 'pro' },
     ],
     glowColors: ['#C8A000', '#B89A20', '#DAB830'],
+    addedAt: '2026-04-01T00:00:00Z',
   },
   {
     id: 'flux',
@@ -81,6 +84,7 @@ export const aiModels: AIModel[] = [
       { id: 'kling-2.5-turbo', label: 'Kling 2.5 Turbo', description: 'Быстрый стандарт', price: 35, tier: 'pro' },
     ],
     glowColors: ['#00AA55', '#0088CC', '#00CC66'],
+    addedAt: '2026-04-01T00:00:00Z',
   },
   {
     id: 'veo31',

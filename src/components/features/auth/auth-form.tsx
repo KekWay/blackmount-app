@@ -106,7 +106,7 @@ export function AuthForm() {
               {mode === 'login' ? 'Войти в аккаунт' : 'Создать аккаунт'}
             </h1>
             <p className="font-manrope font-normal text-[11px] 2xl:text-[13px] text-[rgba(255,255,255,0.45)] mb-[20px] 2xl:mb-[28px]">
-              {mode === 'login' ? 'Добро пожаловать в Black Mount AI' : 'Приоединяйтесь к Black Mount AI'}
+              {mode === 'login' ? 'Добро пожаловать в Black Mount AI' : 'Присоединяйтесь к Black Mount AI'}
             </p>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-[10px] 2xl:gap-[14px]">

@@ -83,6 +83,7 @@ export const COMPARE_ROWS: CompareRow[] = [
   { label: 'Kling 3.0', price: 55, basic: '5 видео', pro: '10 видео', max: '21 видео' },
   { label: 'Veo 3.1 Fast', price: 50, basic: '6 видео', pro: '11 видео', max: '24 видео' },
   { label: 'Kling 2.6', price: 45, basic: '6 видео', pro: '12 видео', max: '26 видео' },
+  { label: 'Kling 2.6 Pro', price: 45, basic: '6 видео', pro: '12 видео', max: '26 видео' },
   { label: 'Kling 2.5 Turbo', price: 35, basic: '8 видео', pro: '15 видео', max: '34 видео' },
   { section: 'Изображения (в месяц)' },
   { label: 'NanoBanana Pro', price: 22, basic: '13 изображений', pro: '25 изображений', max: '54 изображения' },
