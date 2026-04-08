@@ -123,43 +123,50 @@ function ChatContainerInner() {
     } else {
       sessionIdRef.current = null
     }
-  }, [searchParams]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [searchParams])
   useEffect(() => {
     const raw = sessionStorage.getItem('arena_continue')
     if (raw) { sessionStorage.removeItem('arena_continue'); try { const a = JSON.parse(raw) as { prompt: string; response: string }; if (a.prompt && a.response) setMessages([{ role: 'user', content: a.prompt }, { role: 'assistant', content: a.response }]) } catch { /* empty */ } }
   }, [model.id])
+  const searchParamsRef = useRef(searchParams)
+  searchParamsRef.current = searchParams
+  const modelVersionsRef = useRef(model.versions)
+  modelVersionsRef.current = model.versions
   useEffect(() => {
-    const versionParam = searchParams.get('version')
-    const matchedVersion = versionParam ? model.versions.find((v) => v.id === versionParam) : null
+    const versionParam = searchParamsRef.current.get('version')
+    const versions = modelVersionsRef.current
+    const matchedVersion = versionParam ? versions.find((v) => v.id === versionParam) : null
     if (matchedVersion) {
       setSelectedVersionId(matchedVersion.id)
     } else {
-      const s = [...model.versions].sort((a, b) => getBasePrice(a.price) - getBasePrice(b.price))
+      const s = [...versions].sort((a, b) => getBasePrice(a.price) - getBasePrice(b.price))
       setSelectedVersionId(s[0]?.id || null)
     }
     setWebSearchActive(false); setDeepResearchActive(false)
     setIsRecording(false); setSettingsOpen(false)
     setGreeting(getRandomGreeting())
-  }, [model.id]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [model.id])
   useEffect(() => {
     setAudioEnabled(false)
     setQuality('1K')
     if (model.id === 'kling') setVideoDuration('5с'); else if (model.id === 'veo31') setVideoDuration('8с')
-  }, [model.id, selectedVersion.id]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [model.id, selectedVersion.id])
   useEffect(() => {
     useGenerationStore.getState().setActiveChat(modelId)
     return () => { useGenerationStore.getState().setActiveChat(null) }
   }, [modelId])
 
   const prevModelIdRef = useRef(modelId)
+  const actionsRef = useRef(actions)
+  actionsRef.current = actions
   useEffect(() => {
     if (prevModelIdRef.current !== modelId) {
-      actions.handleStopGeneration()
+      actionsRef.current.handleStopGeneration()
       setMessages([])
       sessionIdRef.current = null
       prevModelIdRef.current = modelId
     }
-  }, [modelId]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [modelId])
 
   void typingIdx
 

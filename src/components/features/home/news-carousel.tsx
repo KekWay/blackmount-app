@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import { CustomIcon } from '@/components/shared/custom-icon'
+import { handleImageError } from '@/lib/image-fallback'
 
 const imgGeneratedImage = '/assets/models/news-generated.png'
 const imgFrame32 = '/assets/models/news-frame.png'
@@ -88,6 +89,7 @@ export function NewsCarousel() {
                 src={item.image}
                 alt={item.subtitle}
                 className="absolute inset-0 w-full h-full object-cover opacity-80"
+                onError={handleImageError}
               />
             </div>
             <h3 className="font-maven font-extrabold text-[20px] text-white">

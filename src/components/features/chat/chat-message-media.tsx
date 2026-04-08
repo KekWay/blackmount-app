@@ -3,6 +3,7 @@
 import { motion } from 'motion/react'
 import Image from 'next/image'
 import { toast } from 'sonner'
+import { handleImageError } from '@/lib/image-fallback'
 import { Play } from 'lucide-react'
 import { CustomIcon } from '@/components/shared/custom-icon'
 import type { Message } from '@/types'
@@ -43,7 +44,7 @@ export function ChatMessageMedia({
               transition={{ duration: 0.35, delay: imgIdx * 0.1 }}
               onClick={() => setViewerMedia({ type: 'image', src, srcs: msg.mediaSrcs })}
             >
-              <img src={src} alt="" className="w-full h-full object-cover" />
+              <img src={src} alt="" className="w-full h-full object-cover" onError={handleImageError} />
               <div className="absolute top-[6px] left-[6px] bg-[rgba(0,0,0,0.5)] backdrop-blur-[4px] rounded-[6px] px-[6px] py-[2px]">
                 <span className="text-[10px] text-white font-semibold">{imgIdx + 1}/{msg.mediaSrcs!.length}</span>
               </div>
@@ -58,7 +59,7 @@ export function ChatMessageMedia({
         </div>
       ) : (
         <div className="relative cursor-pointer" onClick={() => setViewerMedia({ type: msg.mediaType || 'image', src: msg.mediaSrc || msg.mediaSrcs?.[0] || '' })}>
-          <img src={msg.mediaSrc || msg.mediaSrcs?.[0]} alt="" className="size-[320px] object-cover rounded-[16px]" />
+          <img src={msg.mediaSrc || msg.mediaSrcs?.[0]} alt="" className="size-[320px] object-cover rounded-[16px]" onError={handleImageError} />
           {msg.mediaType === 'video' && (
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="bg-[rgba(0,0,0,0.45)] rounded-full size-[48px] flex items-center justify-center backdrop-blur-[6px] border border-[rgba(255,255,255,0.1)]">
