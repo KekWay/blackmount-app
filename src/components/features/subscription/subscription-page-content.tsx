@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { useAuthStore } from '@/stores/auth'
 import { motion, AnimatePresence } from 'motion/react'
 import Image from 'next/image'
 import { AnimatedToggle } from '@/components/shared/animated-toggle'
@@ -16,6 +17,12 @@ import { AllModelsOverlay } from './subscription-models-overlay'
 
 export function SubscriptionPageContent() {
   const router = useRouter()
+  const isLoggedIn = useAuthStore((s) => s.isLoggedIn)
+
+  useEffect(() => {
+    if (!isLoggedIn) router.replace('/auth')
+  }, [isLoggedIn, router])
+
   const [period, setPeriod] = useState<Period>('month')
   const [showPayment, setShowPayment] = useState(false)
   const [showModelsModal, setShowModelsModal] = useState(false)
@@ -28,6 +35,8 @@ export function SubscriptionPageContent() {
   const activePlanKey: string | null = hasActiveSub
     ? (() => { try { return localStorage.getItem('active_plan_key'); } catch { return null; } })()
     : null
+
+  if (!isLoggedIn) return null
 
   const selectedPlan = plansArr.find((p) => p.key === payPlan)
   const selectedPrice = selectedPlan ? (period === 'month' ? selectedPlan.priceMonth : selectedPlan.priceYear) : 0

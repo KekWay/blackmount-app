@@ -57,6 +57,7 @@ function ProfilePageContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const logout = useAuthStore((s) => s.logout)
+  const isLoggedIn = useAuthStore((s) => s.isLoggedIn)
   const tabParam = searchParams.get('tab')
 
   const [activeTab, setActiveTab] = useState<Tab>('account')
@@ -71,6 +72,12 @@ function ProfilePageContent() {
       setActiveTab(tabParam as Tab)
     }
   }, [tabParam, router])
+
+  useEffect(() => {
+    if (!isLoggedIn) router.replace('/auth')
+  }, [isLoggedIn, router])
+
+  if (!isLoggedIn) return null
 
   return (
     <div className="bg-[#121118] fixed inset-0 z-50 flex flex-col md:flex-row">
