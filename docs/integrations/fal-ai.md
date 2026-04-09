@@ -20,10 +20,15 @@ headers: {
 ## Маппинг моделей
 ```typescript
 const IMAGE_MODEL_MAP: Record<string, string> = {
-  'nb-2.0': 'fal-ai/nano-banana',
-  'nb-pro': 'fal-ai/nano-banana/pro',
-  'flux-1-pro': 'fal-ai/flux-pro/v1',
+  // NanoBanana
+  'nanobanana-2': 'fal-ai/nano-banana-2',
+  'nanobanana-pro': 'fal-ai/nano-banana/pro',
+  'nanobanana': 'fal-ai/nano-banana',
+  // Flux
+  'flux-2-pro': 'fal-ai/flux-2-pro',
   'flux-1.1-pro-ultra': 'fal-ai/flux-pro/v1.1-ultra',
+  'flux-1-pro': 'fal-ai/flux-pro/v1',
+  'flux-1-dev': 'fal-ai/flux/dev',
 }
 ```
 
@@ -68,10 +73,16 @@ const { images } = await resultResponse.json()
 ## Ценообразование (из docs/modules/chat.md)
 | Модель | API стоимость | Цена (айкоины) |
 |--------|---------------|----------------|
-| NanoBanana | ~$0.039/img | 7 |
-| NanoBanana Pro | ~$0.15/img | 22 |
-| Flux 1 Pro | ~$0.04/MP | 7 |
-| Flux 1.1 Pro Ultra | ~$0.06/img | 15 |
+| NanoBanana | $0.039/img | 7 |
+| NanoBanana Pro (1K/2K) | $0.15/img | 22 |
+| NanoBanana Pro (4K) | $0.30/img | 43 |
+| NanoBanana 2 (1K) | $0.08/img | 13 |
+| NanoBanana 2 (2K) | $0.12/img | 19 |
+| NanoBanana 2 (4K) | $0.16/img | 26 |
+| Flux 2 Pro | $0.03/MP | 5 |
+| Flux 1.1 Pro Ultra | $0.06/img | 15 |
+| Flux 1 Pro | $0.04/MP | 7 |
+| Flux 1 Dev | $0.025/MP | 4 |
 
 ## Ошибки
 | Код | Значение | Действие |

@@ -21,9 +21,10 @@ export const SUBSCRIPTION_VERSION_IDS = new Set([
   'gemini-3-pro',
   // NanoBanana
   'nanobanana-2',
-  'nb-pro',
+  'nanobanana-pro',
   // Flux
   'flux-1.1-pro-ultra',
+  'flux-2-pro',
   // Kling
   'kling-3.0-pro',
   'kling-3.0',

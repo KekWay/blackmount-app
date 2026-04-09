@@ -1,7 +1,7 @@
 # CLAUDE.md — Blackmount AI Aggregator
 
 ## Проект
-Русскоязычный AI-агрегатор: 6 нейросетей (ChatGPT, Claude, Gemini, NanoBanana, Flux, Kling) + Veo в едином интерфейсе.
+Русскоязычный AI-агрегатор: 7 нейросетей (ChatGPT, Claude, Gemini, NanoBanana, Flux, Kling, Veo 3.1) в едином интерфейсе.
 Монетизация: айкоины (1₽=1) + подписки (Free/Basic 499₽/Pro 999₽/Max 1799₽). Деплой: Railway.
 Текущее состояние: фронтенд готов (10 страниц), моковые данные Zustand, бэкенд не подключён.
 
@@ -70,14 +70,15 @@ src/data/                — моковые данные (ai-models, arena, lead
 ```
 
 ## Нейросети и модели
-6 нейросетей, каждая с массивом versions. Цены в айкоинах (1 айкоин = 1₽).
+7 нейросетей, 32 версии. Цены в айкоинах (1 айкоин = 1₽). Полный реестр: docs/models/MODEL_REGISTRY.md.
 
 ChatGPT (OpenRouter): 5.4 (6₽), 5.3 (5₽), 5.2 (5₽), 5 (3₽), 5 mini (1₽)
-Claude (OpenRouter): Opus 4.6 (8₽), Sonnet 4.6 (5₽), Opus 4.5 (8₽), Sonnet 4.5 (5₽), Haiku 4.5 (2₽), Sonnet 3.7 (5₽)
+Claude (OpenRouter): Opus 4.6 (8₽), Sonnet 4.6 (5₽, доступна без подписки), Opus 4.5 (8₽), Sonnet 4.5 (5₽), Sonnet 3.7 (5₽), Haiku 4.5 (1.5₽)
 Gemini (OpenRouter): 3.1 Pro (5₽), 3 Pro (5₽), 2.5 Pro (3₽), 3 Flash (1₽), 2.5 Flash (1₽)
 NanoBanana (fal.ai): NanoBanana 2 (13/19/26₽ — 1K/2K/4K), Pro (22/22/43₽ — 1K/2K/4K), оригинал (7₽)
-Flux (fal.ai): 1 Pro (7₽), 1.1 Pro Ultra (15₽)
+Flux (fal.ai): 2 Pro (5₽), 1.1 Pro Ultra (15₽), 1 Pro (7₽), 1 Dev (4₽)
 Kling (kie.ai): 3.0 Pro (85/170₽), 3.0 (55/110₽), 2.6 Pro (45-170₽), 2.6 (45-170₽), 2.5 Turbo (35/65₽)
+Veo 3.1 (kie.ai): Quality (220₽), Fast (50₽)
 
 
 Динамические цены: Kling через настройки длительности (5с/10с) + звук. NanoBanana 2 и Pro через разрешение (1K/2K/4K).

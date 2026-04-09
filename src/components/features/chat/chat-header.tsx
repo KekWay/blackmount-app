@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { APP_ASSETS } from '@/lib/assets'
 import { ShareIcon } from '@/components/shared/icons'
 import { VersionDropdown } from './version-dropdown'
+import { RequestLimitBadge } from './request-limit-badge'
 import type { AIModel, ModelVersion } from '@/types'
 
 const imgFreeIconSetting = APP_ASSETS.settings
@@ -45,6 +46,7 @@ export function ChatHeader({
           selectedVersion={selectedVersion}
           onSelectVersion={onSelectVersion}
         />
+        <RequestLimitBadge />
       </div>
 
       {!hasSub && !subBannerDismissed && (

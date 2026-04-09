@@ -29,15 +29,17 @@ export const TEXT_MODELS: ArenaModel[] = [
 export const IMAGE_MODELS: ArenaModel[] = [
   { id: 'nanobanana-2', name: 'NanoBanana 2', category: 'image', price: 13, aiModelRef: 'nanobanana', gradient: 'linear-gradient(135deg,#CBD03C,#DCCA7A)' },
   { id: 'flux-1.1-pro-ultra', name: 'Flux 1.1 Pro Ultra', category: 'image', price: 15, aiModelRef: 'flux', gradient: 'linear-gradient(135deg,#ef4444,#b91c1c)' },
-  { id: 'nb-pro', name: 'NanoBanana Pro', category: 'image', price: 22, aiModelRef: 'nanobanana', gradient: 'linear-gradient(135deg,#CBD03C,#DCCA7A)' },
+  { id: 'nanobanana-pro', name: 'NanoBanana Pro', category: 'image', price: 22, aiModelRef: 'nanobanana', gradient: 'linear-gradient(135deg,#CBD03C,#DCCA7A)' },
   { id: 'flux-1-pro', name: 'Flux 1 Pro', category: 'image', price: 7, aiModelRef: 'flux', gradient: 'linear-gradient(135deg,#ef4444,#b91c1c)' },
-  { id: 'nb-2.0', name: 'NanoBanana', category: 'image', price: 7, aiModelRef: 'nanobanana', gradient: 'linear-gradient(135deg,#CBD03C,#DCCA7A)' },
+  { id: 'nanobanana', name: 'NanoBanana', category: 'image', price: 7, aiModelRef: 'nanobanana', gradient: 'linear-gradient(135deg,#CBD03C,#DCCA7A)' },
+  { id: 'flux-2-pro', name: 'Flux 2 Pro', category: 'image', price: 5, aiModelRef: 'flux', gradient: 'linear-gradient(135deg,#ef4444,#b91c1c)' },
+  { id: 'flux-1-dev', name: 'Flux 1 Dev', category: 'image', price: 4, aiModelRef: 'flux', gradient: 'linear-gradient(135deg,#ef4444,#b91c1c)' },
 ]
 
 export const VIDEO_MODELS: ArenaModel[] = [
   { id: 'kling-3.0-pro', name: 'Kling 3.0 Pro', category: 'video', price: 85, aiModelRef: 'kling', gradient: 'linear-gradient(135deg,#1bfe27,#0f69df)' },
   { id: 'kling-3.0', name: 'Kling 3.0', category: 'video', price: 55, aiModelRef: 'kling', gradient: 'linear-gradient(135deg,#1bfe27,#0f69df)' },
-  { id: 'veo-3.1-quality', name: 'Veo 3.1 Quality', category: 'video', price: 185, aiModelRef: 'veo31', gradient: 'linear-gradient(135deg,#7188e3,#e2694e)' },
+  { id: 'veo-3.1-quality', name: 'Veo 3.1 Quality', category: 'video', price: 220, aiModelRef: 'veo31', gradient: 'linear-gradient(135deg,#7188e3,#e2694e)' },
   { id: 'veo-3.1-fast', name: 'Veo 3.1 Fast', category: 'video', price: 50, aiModelRef: 'veo31', gradient: 'linear-gradient(135deg,#7188e3,#e2694e)' },
   { id: 'kling-2.6-pro', name: 'Kling 2.6 Pro', category: 'video', price: 45, aiModelRef: 'kling', gradient: 'linear-gradient(135deg,#1bfe27,#0f69df)' },
   { id: 'kling-2.6', name: 'Kling 2.6', category: 'video', price: 45, aiModelRef: 'kling', gradient: 'linear-gradient(135deg,#1bfe27,#0f69df)' },

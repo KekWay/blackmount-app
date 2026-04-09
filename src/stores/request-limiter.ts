@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { useSubscriptionStore } from './subscription'
 
-const DAILY_LIMITS: Record<string, number> = {
+export const DAILY_LIMITS: Record<string, number> = {
   free: 50,
   basic: 100,
   pro: 150,

@@ -22,13 +22,21 @@ headers: {
 ## Маппинг моделей
 ```typescript
 const TEXT_MODEL_MAP: Record<string, string> = {
+  // ChatGPT
+  'gpt-5.4': 'openai/gpt-5.4',
+  'gpt-5.3': 'openai/gpt-5.3',
   'chatgpt-5.2': 'openai/gpt-5.2',
   'chatgpt-5': 'openai/gpt-5',
   'chatgpt-5-mini': 'openai/gpt-5-mini',
+  // Claude
+  'claude-opus-4.6': 'anthropic/claude-opus-4.6',
+  'claude-sonnet-4.6': 'anthropic/claude-sonnet-4.6',
   'claude-opus-4.5': 'anthropic/claude-opus-4.5',
   'claude-sonnet-4.5': 'anthropic/claude-sonnet-4.5',
   'claude-sonnet-3.7': 'anthropic/claude-3.7-sonnet',
   'claude-haiku-4.5': 'anthropic/claude-haiku-4.5',
+  // Gemini
+  'gemini-3.1-pro': 'google/gemini-3.1-pro',
   'gemini-3-pro': 'google/gemini-3-pro',
   'gemini-2.5-pro': 'google/gemini-2.5-pro',
   'gemini-3-flash': 'google/gemini-3-flash',

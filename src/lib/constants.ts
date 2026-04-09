@@ -23,7 +23,7 @@ export const PLACEHOLDER_TEXTS = [
   'Создай видео по описанию...',
 ] as const
 
-export const FREE_DAILY_REQUESTS = 10
-export const BASIC_DAILY_REQUESTS = 50
-export const PRO_DAILY_REQUESTS = 200
-export const ULTRA_DAILY_REQUESTS = Infinity
+export const FREE_DAILY_REQUESTS = 50
+export const BASIC_DAILY_REQUESTS = 100
+export const PRO_DAILY_REQUESTS = 150
+export const MAX_DAILY_REQUESTS = 200

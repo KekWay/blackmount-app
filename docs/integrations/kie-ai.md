@@ -1,7 +1,7 @@
 # Интеграция: kie.ai (генерация видео)
 
 ## Описание
-kie.ai — API-агрегатор для генерации видео. Sora 2, Kling, Veo 3.1 доступны через единый API.
+kie.ai — API-агрегатор для генерации видео. Kling, Veo 3.1 доступны через единый API.
 Асинхронная генерация: отправка → polling → получение результата (1-10 мин).
 
 ## URL
@@ -20,12 +20,13 @@ headers: {
 ## Маппинг моделей → эндпойнтов
 ```typescript
 const VIDEO_MODEL_MAP: Record<string, { endpoint: string; model: string }> = {
-  'sora-2':           { endpoint: 'sora/generate', model: 'sora2' },
-  'sora-2-pro':       { endpoint: 'sora/generate', model: 'sora2_pro' },
-  'kling-2.5-turbo':  { endpoint: 'kling/generate', model: 'kling2.5_turbo' },
+  'kling-3.0-pro':    { endpoint: 'kling/generate', model: 'kling3.0_pro' },
+  'kling-3.0':        { endpoint: 'kling/generate', model: 'kling3.0' },
+  'kling-2.6-pro':    { endpoint: 'kling/generate', model: 'kling2.6_pro' },
   'kling-2.6':        { endpoint: 'kling/generate', model: 'kling2.6' },
-  'veo-3.1-fast':     { endpoint: 'veo/generate', model: 'veo3_fast' },
+  'kling-2.5-turbo':  { endpoint: 'kling/generate', model: 'kling2.5_turbo' },
   'veo-3.1-quality':  { endpoint: 'veo/generate', model: 'veo3_quality' },
+  'veo-3.1-fast':     { endpoint: 'veo/generate', model: 'veo3_fast' },
 }
 ```
 
@@ -68,19 +69,6 @@ POST https://api.kie.ai/api/v1/veo/generate
 // Ответ: { data: { task_id: "xxx" } }
 ```
 
-## Sora 2 (пример)
-```typescript
-POST https://api.kie.ai/api/v1/sora/generate
-{
-  "prompt": "Кинематографическая сцена заката",
-  "model": "sora2",            // или sora2_pro
-  "aspect_ratio": "16:9",
-  "frames": 10,                // длительность в секундах
-  "size": "1080p",
-  "watermark": false
-}
-```
-
 ## Kling (пример)
 ```typescript
 POST https://api.kie.ai/api/v1/kling/generate
@@ -109,16 +97,15 @@ POST https://api.kie.ai/api/v1/kling/generate
 ## Ценообразование
 | Модель | Длит. | Цена (айкоины) |
 |--------|-------|----------------|
+| Kling 3.0 Pro | 5с / 10с | 85 / 170 |
+| Kling 3.0 | 5с / 10с | 55 / 110 |
+| Kling 2.6 Pro (без звука) | 5с / 10с | 45 / 85 |
+| Kling 2.6 Pro (со звуком) | 5с / 10с | 85 / 170 |
+| Kling 2.6 (без звука) | 5с / 10с | 45 / 85 |
+| Kling 2.6 (со звуком) | 5с / 10с | 85 / 170 |
+| Kling 2.5 Turbo | 5с / 10с | 35 / 65 |
+| Veo 3.1 Quality | 8с | 220 |
 | Veo 3.1 Fast | 8с | 50 |
-| Veo 3.1 Quality | 8с | 185 |
-| Sora 2 | 10с | 25 |
-| Sora 2 Pro | 10с | 115 |
-| Sora 2 | 15с | 30 |
-| Sora 2 Pro | 15с | 215 |
-| Kling 2.5 Turbo | 5с | 35 |
-| Kling 2.5 Turbo | 10с | 65 |
-| Kling 2.6 (без звука) | 5с | 45 |
-| Kling 2.6 (со звуком) | 10с | 170 |
 
 ## Ошибки
 | Код | Значение | Действие |

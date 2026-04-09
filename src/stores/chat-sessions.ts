@@ -5,6 +5,7 @@ import type { Message } from '@/types'
 export interface ChatSession {
   id: string
   modelId: string
+  versionId: string
   title: string
   messages: Message[]
   createdAt: string
@@ -13,7 +14,7 @@ export interface ChatSession {
 
 interface ChatSessionsState {
   sessions: Record<string, ChatSession>
-  createSession: (modelId: string, firstMessage: string) => string
+  createSession: (modelId: string, versionId: string, firstMessage: string) => string
   addMessages: (sessionId: string, msgs: Message[]) => void
   updateMessages: (sessionId: string, msgs: Message[]) => void
   getSession: (sessionId: string) => ChatSession | null
@@ -30,12 +31,13 @@ export const useChatSessionsStore = create<ChatSessionsState>()(
     (set, get) => ({
       sessions: {},
 
-      createSession: (modelId: string, firstMessage: string) => {
+      createSession: (modelId: string, versionId: string, firstMessage: string) => {
         const id = genId()
         const now = new Date().toISOString()
         const session: ChatSession = {
           id,
           modelId,
+          versionId,
           title: firstMessage.slice(0, 50),
           messages: [],
           createdAt: now,

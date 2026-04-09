@@ -25,10 +25,14 @@ export function isVersionFreeForTier(versionId: string, tier: string): boolean {
 }
 
 export const videoPricingMap: Record<string, Record<string, number>> = {
+  'kling-3.0-pro': { '5s': 85, '10s': 170 },
+  'kling-3.0': { '5s': 55, '10s': 110 },
+  'kling-2.6-pro': { '5s': 45, '10s': 85 },
+  'kling-2.6-pro-audio': { '5s': 85, '10s': 170 },
   'kling-2.6': { '5s': 45, '10s': 85 },
   'kling-2.6-audio': { '5s': 85, '10s': 170 },
   'kling-2.5-turbo': { '5s': 35, '10s': 65 },
-  'veo-3.1-quality': { '8s': 185, '5s': 120 },
+  'veo-3.1-quality': { '8s': 220, '5s': 145 },
   'veo-3.1-fast': { '8s': 50, '5s': 35 },
 }
 

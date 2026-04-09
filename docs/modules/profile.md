@@ -136,7 +136,7 @@ Store: `src/stores/balance.ts` (Zustand persist, ключ `balance`)
 Store: `src/stores/subscription.ts` (Zustand persist, ключ `subscription`)
 ```typescript
 interface SubscriptionData {
-  tier: 'free' | 'basic' | 'pro' | 'ultra'
+  tier: 'free' | 'basic' | 'pro' | 'max'
   expiresAt: string | null
 }
 ```

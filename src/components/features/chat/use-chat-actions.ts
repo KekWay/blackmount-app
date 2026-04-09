@@ -45,7 +45,7 @@ export function useChatActions(p: UseChatActionsParams) {
 
   const ensureSession = (userText: string): string => {
     if (p.sessionIdRef.current) return p.sessionIdRef.current
-    const id = useChatSessionsStore.getState().createSession(p.model.id, userText)
+    const id = useChatSessionsStore.getState().createSession(p.model.id, p.selectedVersion.id, userText)
     p.sessionIdRef.current = id
     return id
   }

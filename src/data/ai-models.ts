@@ -21,7 +21,7 @@ export const aiModels: AIModel[] = [
     gradient: 'linear-gradient(120.356deg, rgb(255, 200, 123) 1.0121%, rgb(255, 166, 0) 43.678%, rgb(255, 158, 3) 98.988%)',
     versions: [
       { id: 'claude-opus-4.6', label: 'Claude Opus 4.6', description: 'Максимальный интеллект', price: 8, tier: 'max' },
-      { id: 'claude-sonnet-4.6', label: 'Claude Sonnet 4.6', description: 'Баланс и скорость', price: 5, tier: 'pro' },
+      { id: 'claude-sonnet-4.6', label: 'Claude Sonnet 4.6', description: 'Баланс и скорость', price: 5, tier: 'free' },
       { id: 'claude-opus-4.5', label: 'Claude Opus 4.5', description: 'Глубокий анализ', price: 8, tier: 'max' },
       { id: 'claude-sonnet-4.5', label: 'Claude Sonnet 4.5', description: 'Рабочая лошадка', price: 5, tier: 'pro' },
       { id: 'claude-sonnet-3.7', label: 'Claude Sonnet 3.7', description: 'Проверенный классик', price: 5, tier: 'pro' },
@@ -48,8 +48,8 @@ export const aiModels: AIModel[] = [
     gradient: 'linear-gradient(120.356deg, rgb(203, 208, 60) 0%, rgb(220, 202, 122) 100%)',
     versions: [
       { id: 'nanobanana-2', label: 'NanoBanana 2', description: 'Лучшее качество', price: { '1k': 13, '2k': 19, '4k': 26 }, tier: 'max' },
-      { id: 'nb-pro', label: 'NanoBanana Pro', description: 'Максимальная детализация', price: { '1k': 22, '2k': 22, '4k': 43 }, tier: 'max' },
-      { id: 'nb-2.0', label: 'NanoBanana', description: 'Классическая генерация', price: 7, tier: 'pro' },
+      { id: 'nanobanana-pro', label: 'NanoBanana Pro', description: 'Максимальная детализация', price: { '1k': 22, '2k': 22, '4k': 43 }, tier: 'max' },
+      { id: 'nanobanana', label: 'NanoBanana', description: 'Классическая генерация', price: 7, tier: 'pro' },
     ],
     glowColors: ['#C8A000', '#B89A20', '#DAB830'],  },
   {
@@ -58,8 +58,10 @@ export const aiModels: AIModel[] = [
     category: 'image',
     gradient: 'linear-gradient(120.356deg, rgb(230, 15, 19) 1.0121%, rgb(169, 98, 98) 98.988%)',
     versions: [
+      { id: 'flux-2-pro', label: 'Flux 2 Pro', description: 'Новейшее поколение', price: 5, tier: 'pro' },
       { id: 'flux-1.1-pro-ultra', label: 'Flux 1.1 Pro Ultra', description: 'Ультравысокое качество', price: 15, tier: 'max' },
       { id: 'flux-1-pro', label: 'Flux 1 Pro', description: 'Точная детализация', price: 7, tier: 'pro' },
+      { id: 'flux-1-dev', label: 'Flux 1 Dev', description: 'Бесплатная классика', price: 4, tier: 'free' },
     ],
     glowColors: ['#8B2020', '#6B1515'],
   },
@@ -82,7 +84,7 @@ export const aiModels: AIModel[] = [
     category: 'video',
     gradient: 'linear-gradient(120.356deg, rgb(113, 136, 227) 40.108%, rgb(226, 105, 78) 93.807%)',
     versions: [
-      { id: 'veo-3.1-quality', label: 'Veo 3.1 Quality', description: 'Кинематограф', price: 185, tier: 'max' },
+      { id: 'veo-3.1-quality', label: 'Veo 3.1 Quality', description: 'Кинематограф', price: 220, tier: 'max' },
       { id: 'veo-3.1-fast', label: 'Veo 3.1 Fast', description: 'Быстрое кино', price: 50, tier: 'pro' },
     ],
     glowColors: ['#3287FF', '#E55966', '#CAC631', '#41C18A'],  },

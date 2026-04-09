@@ -3,7 +3,7 @@ import type { AIModel } from '@/types/models'
 
 export interface HistoryItem {
   id: string
-  type: 'topup' | 'spent'
+  type: 'topup' | 'spent' | 'bonus' | 'referral' | 'subscription'
   label: string
   amount: number
   date: string

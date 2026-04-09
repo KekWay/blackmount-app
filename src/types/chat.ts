@@ -8,12 +8,3 @@ export interface Message {
   isTyping?: boolean
   timestamp?: number
 }
-
-export interface ChatSession {
-  id: string
-  modelId: string
-  versionId: string
-  messages: Message[]
-  createdAt: string
-  updatedAt: string
-}

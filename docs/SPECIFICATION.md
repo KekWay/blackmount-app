@@ -222,9 +222,16 @@ CREATE TABLE subscriptions (
 
 ### Гейтинг
 ```typescript
-const LOCKED_VERSIONS = new Set(['chatgpt-5.2','claude-opus-4.5','gemini-3-pro','nb-pro','flux-1.1-pro-ultra','sora-2-pro','kling-2.6','veo-3.1-quality'])
-const LOCKED_MODELS = new Set(['veo31'])
-const FREE_FOR_SUBSCRIBERS = new Set(['chatgpt-5-mini','gemini-2.5-flash'])
+const LOCKED_VERSIONS = new Set([
+  'gpt-5.4','gpt-5.3','chatgpt-5.2',
+  'claude-opus-4.6','claude-opus-4.5',
+  'gemini-3.1-pro','gemini-3-pro',
+  'nanobanana-2','nanobanana-pro',
+  'flux-2-pro','flux-1.1-pro-ultra',
+  'kling-3.0-pro','kling-3.0','kling-2.6-pro','kling-2.6',
+  'veo-3.1-quality','veo-3.1-fast',
+])
+const FREE_FOR_SUBSCRIBERS = new Set(['chatgpt-5-mini','gemini-3-flash','gemini-2.5-flash'])
 ```
 
 ### Лимиты

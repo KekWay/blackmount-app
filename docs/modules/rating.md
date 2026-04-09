@@ -35,10 +35,8 @@ ChatGPT 5.2, ChatGPT 5, ChatGPT 5 mini, Claude Opus 4.5, Claude Sonnet 4.5, Clau
 ### Изображения (4):
 Flux 1.1 Pro Ultra, Flux 1 Pro, NanoBanana Pro, NanoBanana
 
-### Видео (5):
-Sora 2 Pro, Sora 2, Veo 3.1, Kling 2.6, Kling 2.5 Turbo
-
-> **Примечание:** Sora 2 удалена из основного каталога моделей (ai-models.ts), но пока остаётся в leaderboard. TODO: убрать Sora 2 из leaderboard.ts и trending.ts.
+### Видео (7):
+Kling 3.0 Pro, Kling 3.0, Veo 3.1 Quality, Veo 3.1 Fast, Kling 2.6, Kling 2.5 Turbo
 
 ## Метрики моделей
 
@@ -79,7 +77,7 @@ Sora 2 Pro, Sora 2, Veo 3.1, Kling 2.6, Kling 2.5 Turbo
 | Креативность | Flux 1.1 Pro | Арт | 97 |
 | Доступность | ChatGPT 5 mini | Цена | 1 ₿ |
 | Быстрый ответ | Gemini 2.5 Flash | Скорость | 98 |
-| Лучшее видео | Sora 2 Pro | Качество | 94 |
+| Лучшее видео | Kling 3.0 Pro | Качество | 92 |
 | Рассуждения | Claude Opus 4.5 | Логика | 99 |
 | Аналитика | Claude Opus 4.5 | Аналитика | 99 |
 
@@ -123,7 +121,7 @@ Sora 2 Pro, Sora 2, Veo 3.1, Kling 2.6, Kling 2.5 Turbo
 
 ### Locked модели
 Модели привязанные к подписке (RATING_LOCKED_MAP):
-- chatgpt-5.2, claude-opus, gemini-3-pro, flux-1.1-pro-ultra, nanobanana-pro, sora-2-pro, veo-3.1, kling-2.6
+- chatgpt-5.2, claude-opus-4.6, gemini-3.1-pro, flux-1.1-pro-ultra, nanobanana-pro, nanobanana-2, kling-3.0-pro, veo-3.1-quality, kling-2.6
 - При клике «Попробовать» → SubscriptionGateModal
 
 ## Текущее хранение данных

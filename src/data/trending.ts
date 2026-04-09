@@ -14,6 +14,6 @@ export const trendingModels: TrendingModel[] = [
   { id: 'flux', versionId: 'flux-1.1-pro-ultra', versionLabel: 'Flux 1.1 Pro Ultra', usage: 18.7, change: +7.2, desc: 'Топ-1 генератор изображений' },
   { id: 'kling', versionId: 'kling-3.0-pro', versionLabel: 'Kling 3.0 Pro', usage: 16.2, change: +18.4, desc: 'Новинка — профессиональное видео нового поколения' },
   { id: 'gemini', versionId: 'gemini-3-pro', versionLabel: 'Gemini 3 Pro', usage: 12.8, change: -1.3, desc: 'Мультимодальная модель Google' },
-  { id: 'nanobanana', versionId: 'nb-pro', versionLabel: 'NanoBanana Pro', usage: 7.6, change: +1.9, desc: 'Быстрая генерация изображений' },
+  { id: 'nanobanana', versionId: 'nanobanana-pro', versionLabel: 'NanoBanana Pro', usage: 7.6, change: +1.9, desc: 'Быстрая генерация изображений' },
   { id: 'veo31', versionId: 'veo-3.1-quality', versionLabel: 'Veo 3.1 Quality', usage: 5.3, change: +8.1, desc: 'Кинематографическое видео' },
 ]

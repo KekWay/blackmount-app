@@ -30,7 +30,7 @@ export interface CompareRow {
 
 export const COMPARE_ROWS: CompareRow[] = [
   { section: 'Видео (в месяц)' },
-  { label: 'Veo 3.1 Quality', price: 185, basic: '1 видео', pro: '2 видео', max: '6 видео' },
+  { label: 'Veo 3.1 Quality', price: 220, basic: '1 видео', pro: '2 видео', max: '5 видео' },
   { label: 'Kling 3.0 Pro', price: 85, basic: '3 видео', pro: '6 видео', max: '14 видео' },
   { label: 'Kling 3.0', price: 55, basic: '5 видео', pro: '10 видео', max: '21 видео' },
   { label: 'Veo 3.1 Fast', price: 50, basic: '6 видео', pro: '11 видео', max: '24 видео' },
@@ -43,6 +43,8 @@ export const COMPARE_ROWS: CompareRow[] = [
   { label: 'NanoBanana 2', price: 13, basic: '23 изображения', pro: '42 изображения', max: '92 изображения' },
   { label: 'Flux 1 Pro', price: 7, basic: '42 изображения', pro: '78 изображений', max: '170 изображений' },
   { label: 'NanoBanana', price: 7, basic: '42 изображения', pro: '78 изображений', max: '170 изображений' },
+  { label: 'Flux 2 Pro', price: 5, basic: '60 изображений', pro: '110 изображений', max: '240 изображений' },
+  { label: 'Flux 1 Dev', price: 4, basic: '75 изображений', pro: '137 изображений', max: '300 изображений' },
   { section: 'Текст (в месяц)' },
   { label: 'Claude Opus 4.6 / Opus 4.5', price: 8, basic: '37 запросов', pro: '68 запросов', max: '150 запросов' },
   { label: 'ChatGPT 5.4', price: 6, basic: '50 запросов', pro: '91 запрос', max: '200 запросов' },
