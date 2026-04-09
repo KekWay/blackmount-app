@@ -19,22 +19,22 @@
 
 ## 2. Текстовые модели (OpenRouter) — 16 версий
 
-| model_id | version_id | Label (UI) | Цена (₽) | Tier в коде | OpenRouter slug | subscriptionOnly | FREE_FOR_SUBSCRIBERS |
+| model_id | version_id | Label (UI) | Цена (₽) | Tier | OpenRouter slug | subscriptionOnly | FREE_FOR_SUBSCRIBERS |
 |----------|-----------|------------|-----------|-------------|-----------------|------------------|---------------------|
-| chatgpt | gpt-5.4 | ChatGPT 5.4 | 6 | max | openai/gpt-5.4 | ✅ | — |
-| chatgpt | gpt-5.3 | ChatGPT 5.3 | 5 | pro | openai/gpt-5.3 | ✅ | — |
+| chatgpt | gpt-5.4 | ChatGPT 5.4 | 6 | sub | openai/gpt-5.4 | ✅ | — |
+| chatgpt | gpt-5.3 | ChatGPT 5.3 | 5 | sub | openai/gpt-5.3 | ✅ | — |
 | chatgpt | chatgpt-5.2 | ChatGPT 5.2 | 5 | free | openai/gpt-5.2 | — | — |
-| chatgpt | chatgpt-5 | ChatGPT 5 | 3 | pro | openai/gpt-5 | — | — |
+| chatgpt | chatgpt-5 | ChatGPT 5 | 3 | free | openai/gpt-5 | — | — |
 | chatgpt | chatgpt-5-mini | ChatGPT 5 mini | 1 | free | openai/gpt-5-mini | — | ✅ Pro/Max |
-| claude | claude-opus-4.6 | Claude Opus 4.6 | 8 | max | anthropic/claude-opus-4.6 | ✅ | — |
+| claude | claude-opus-4.6 | Claude Opus 4.6 | 8 | sub | anthropic/claude-opus-4.6 | ✅ | — |
 | claude | claude-sonnet-4.6 | Claude Sonnet 4.6 | 5 | free | anthropic/claude-sonnet-4.6 | — | — |
-| claude | claude-opus-4.5 | Claude Opus 4.5 | 8 | max | anthropic/claude-opus-4.5 | ✅ | — |
-| claude | claude-sonnet-4.5 | Claude Sonnet 4.5 | 5 | pro | anthropic/claude-sonnet-4.5 | — | — |
-| claude | claude-sonnet-3.7 | Claude Sonnet 3.7 | 5 | pro | anthropic/claude-3.7-sonnet | — | — |
+| claude | claude-opus-4.5 | Claude Opus 4.5 | 8 | sub | anthropic/claude-opus-4.5 | ✅ | — |
+| claude | claude-sonnet-4.5 | Claude Sonnet 4.5 | 5 | free | anthropic/claude-sonnet-4.5 | — | — |
+| claude | claude-sonnet-3.7 | Claude Sonnet 3.7 | 5 | free | anthropic/claude-3.7-sonnet | — | — |
 | claude | claude-haiku-4.5 | Claude Haiku 4.5 | 1.5 | free | anthropic/claude-haiku-4.5 | — | — |
-| gemini | gemini-3.1-pro | Gemini 3.1 Pro | 5 | pro | google/gemini-3.1-pro | ✅ | — |
+| gemini | gemini-3.1-pro | Gemini 3.1 Pro | 5 | sub | google/gemini-3.1-pro | ✅ | — |
 | gemini | gemini-3-pro | Gemini 3 Pro | 5 | free | google/gemini-3-pro | — | — |
-| gemini | gemini-2.5-pro | Gemini 2.5 Pro | 3 | pro | google/gemini-2.5-pro | — | — |
+| gemini | gemini-2.5-pro | Gemini 2.5 Pro | 3 | free | google/gemini-2.5-pro | — | — |
 | gemini | gemini-3-flash | Gemini 3 Flash | 1 | free | google/gemini-3-flash | — | ✅ Pro/Max |
 | gemini | gemini-2.5-flash | Gemini 2.5 Flash | 1 | free | google/gemini-2.5-flash | — | ✅ Pro/Max |
 
@@ -46,12 +46,12 @@
 
 | model_id | version_id | Label (UI) | Цена (₽) | Tier | fal.ai endpoint | subscriptionOnly |
 |----------|-----------|------------|-----------|------|-----------------|------------------|
-| nanobanana | nanobanana-2 | NanoBanana 2 | 13/19/26 (1K/2K/4K) | max | fal-ai/nano-banana-2 | ✅ |
-| nanobanana | nanobanana-pro | NanoBanana Pro | 22/22/43 (1K/2K/4K) | max | fal-ai/nano-banana/pro | ✅ |
-| nanobanana | nanobanana | NanoBanana | 7 | pro | fal-ai/nano-banana | — |
-| flux | flux-2-pro | Flux 2 Pro | 5 | pro | fal-ai/flux-2-pro | ✅ |
-| flux | flux-1.1-pro-ultra | Flux 1.1 Pro Ultra | 15 | max | fal-ai/flux-pro/v1.1-ultra | ✅ |
-| flux | flux-1-pro | Flux 1 Pro | 7 | pro | fal-ai/flux-pro/v1 | — |
+| nanobanana | nanobanana-2 | NanoBanana 2 | 13/19/26 (1K/2K/4K) | sub | fal-ai/nano-banana-2 | ✅ |
+| nanobanana | nanobanana-pro | NanoBanana Pro | 22/22/43 (1K/2K/4K) | sub | fal-ai/nano-banana/pro | ✅ |
+| nanobanana | nanobanana | NanoBanana | 7 | free | fal-ai/nano-banana | — |
+| flux | flux-2-pro | Flux 2 Pro | 5 | sub | fal-ai/flux-2-pro | ✅ |
+| flux | flux-1.1-pro-ultra | Flux 1.1 Pro Ultra | 15 | sub | fal-ai/flux-pro/v1.1-ultra | ✅ |
+| flux | flux-1-pro | Flux 1 Pro | 7 | free | fal-ai/flux-pro/v1 | — |
 | flux | flux-1-dev | Flux 1 Dev | 4 | free | fal-ai/flux/dev | — |
 
 > **⚠️ ID переименованы (апрель 2026):** `nb-2.0` → `nanobanana`, `nb-pro` → `nanobanana-pro`. Старые ID НЕ использовать.
@@ -65,13 +65,13 @@
 
 | model_id | version_id | Label (UI) | Цена (₽) | Tier | kie.ai model | Звук | subscriptionOnly |
 |----------|-----------|------------|-----------|------|-------------|------|------------------|
-| kling | kling-3.0-pro | Kling 3.0 Pro | 85/170 (5с/10с) | max | kling3.0_pro | всегда вкл | ✅ |
-| kling | kling-3.0 | Kling 3.0 | 55/110 (5с/10с) | max | kling3.0 | всегда вкл | ✅ |
-| kling | kling-2.6-pro | Kling 2.6 Pro | 45-170 (длит+звук) | max | kling2.6_pro | toggle | ✅ |
+| kling | kling-3.0-pro | Kling 3.0 Pro | 85/170 (5с/10с) | sub | kling3.0_pro | всегда вкл | ✅ |
+| kling | kling-3.0 | Kling 3.0 | 55/110 (5с/10с) | sub | kling3.0 | всегда вкл | ✅ |
+| kling | kling-2.6-pro | Kling 2.6 Pro | 45-170 (длит+звук) | sub | kling2.6_pro | toggle | ✅ |
 | kling | kling-2.6 | Kling 2.6 | 45-170 (длит+звук) | free | kling2.6 | toggle | — |
-| kling | kling-2.5-turbo | Kling 2.5 Turbo | 35/65 (5с/10с) | pro | kling2.5_turbo | нет | — |
-| veo31 | veo-3.1-quality | Veo 3.1 Quality | 220 | max | veo3_quality | — | ✅ |
-| veo31 | veo-3.1-fast | Veo 3.1 Fast | 50 | pro | veo3_fast | — | ✅ |
+| kling | kling-2.5-turbo | Kling 2.5 Turbo | 35/65 (5с/10с) | free | kling2.5_turbo | нет | — |
+| veo31 | veo-3.1-quality | Veo 3.1 Quality | 220 | sub | veo3_quality | — | ✅ |
+| veo31 | veo-3.1-fast | Veo 3.1 Fast | 50 | sub | veo3_fast | — | ✅ |
 
 > Veo 3.1 Quality — цена обновлена до 220₽ (API подорожал: $1.25 → $2.00 за 8с на kie.ai).
 > Kling 3.0 / 3.0 Pro — звук всегда включён (нет toggle).
