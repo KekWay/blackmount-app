@@ -50,9 +50,17 @@ Next.js 14 App Router · TypeScript strict · Tailwind CSS 4 · shadcn/ui · Zus
 
 ### Проект
 - docs/PROJECT_IDEA.md — идея, аудитория, конкуренты, план
+- docs/models/MODEL_REGISTRY.md — реестр моделей (источник правды)
+- docs/MIGRATION_PLAN.md — план миграций Supabase
+- docs/ENV_TEMPLATE.md — переменные окружения
 
 ### Качество кода
 - docs/code-rules.md — правила чистого кода (ОБЯЗАТЕЛЬНО прочитать перед любым изменением кода)
+
+### Ключевые документы (обязательно к прочтению)
+- docs/models/MODEL_REGISTRY.md — единый реестр всех 32 моделей, цен, API-маппингов, тиров
+- docs/MIGRATION_PLAN.md — 22 миграции Supabase в правильном порядке
+- docs/ENV_TEMPLATE.md — все переменные окружения (серверные и клиентские)
 
 ## Архитектура
 ```

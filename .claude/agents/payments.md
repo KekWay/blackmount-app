@@ -16,6 +16,12 @@
 7. ВСЕГДА логируй ВСЕ платёжные операции
 ```
 
+## Ключевые документы
+- docs/MIGRATION_PLAN.md — SQL для balances, operations, subscriptions
+- docs/integrations/yukassa.md — API ЮKassa, вебхуки
+- docs/models/MODEL_REGISTRY.md — цены моделей (для расчёта стоимости)
+- docs/ENV_TEMPLATE.md — YUKASSA_SHOP_ID, SECRET_KEY, WEBHOOK_SECRET
+
 ## Поток оплаты пакета айкоинов
 ```
 1. Клиент → POST /api/balance/topup { packageId: 'advanced' }

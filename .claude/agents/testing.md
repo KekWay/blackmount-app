@@ -9,6 +9,10 @@
 - **E2E:** Playwright (установится позже)
 - **Компоненты:** React Testing Library
 
+## Ключевые документы
+- docs/models/MODEL_REGISTRY.md — данные для моков (цены, версии, тиры)
+- docs/MIGRATION_PLAN.md — SQL таблиц для тестовой БД
+
 ## Структура тестов
 ```
 src/

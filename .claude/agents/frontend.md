@@ -130,25 +130,29 @@ Desktop:  > 1024px
 ## Иконки
 
 ```
+Основной UI:
+  Используй КАСТОМНЫЕ PNG из public/icons/:
+  Компонент: CustomIcon из @/components/shared/custom-icon
+  Стиль: className="brightness-0 invert" (белые на тёмном фоне)
+  Цвет в тёмной теме через CSS filter: invert(1) или конкретный filter
+
 Sidebar навигация:
-  Используй КАСТОМНЫЕ PNG из public/assets/icons/:
+  Кастомные PNG из public/icons/:
     home-icon.png, history-icon.png, prompt-icon.png,
     knowledge-icon.png, rating-icon.png, arena-icon.png
-  Стиль: className="brightness-0 invert" (белые на тёмном фоне)
-  Размер: 20x20px
-
-Остальной UI:
-  Используй Lucide React:
-    import { Star, Share2, Copy, ChevronRight, X } from 'lucide-react'
-  Размер: size={18} strokeWidth={1.8}
-  Цвет: currentColor (наследует от текста)
 
 Модели:
-  Используй ЦВЕТНЫЕ логотипы из assets.ts: model.colorLogo
+  ЦВЕТНЫЕ логотипы из assets.ts: model.colorLogo
   В карточках trending (ТОП-3): size-[64px]
   В остальных местах: size-[24px] или size-[32px]
 
-⛔ НЕ СМЕШИВАЙ: PNG иконки sidebar ≠ Lucide иконки UI ≠ Логотипы моделей
+Lucide React:
+  Используется ТОЛЬКО где нет кастомной PNG-замены
+  import { Star, Share2, Copy, ChevronRight, X } from 'lucide-react'
+  Проверь public/icons/ — если PNG есть, используй CustomIcon
+
+⛔ НЕ добавляй новые lucide-react иконки без проверки public/icons/
+⛔ НЕ дублируй — если PNG существует, не используй lucide
 ```
 
 ---

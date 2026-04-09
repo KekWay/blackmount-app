@@ -2,6 +2,12 @@
 
 > Claude Code ОБЯЗАН следовать этим правилам при написании ЛЮБОГО кода. Нарушение = уязвимость в продакшене.
 
+## Ключевые документы
+- docs/security/SECURITY.md — полные правила
+- docs/security/api-security.md — rate limiting
+- docs/security/auth.md — OAuth, триггеры, middleware
+- docs/ENV_TEMPLATE.md — все переменные (серверные/клиентские)
+
 ---
 
 ## 🔴 НИКОГДА (нарушение = критическая уязвимость)

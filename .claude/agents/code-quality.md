@@ -138,6 +138,24 @@ export function formatDate(d: Date): string {
 
 ---
 
+## Единые источники данных
+
+```
+При работе с моделями, ценами, версиями:
+  Источник правды: docs/models/MODEL_REGISTRY.md
+  Код: src/data/ai-models.ts
+  Гейтинг: src/lib/locked-versions.ts
+  НЕ хардкодь цены/версии в компонентах — импортируй из data/
+
+При работе с Supabase:
+  Источник правды: docs/MIGRATION_PLAN.md (SQL, порядок миграций)
+
+При работе с env:
+  Источник правды: docs/ENV_TEMPLATE.md
+```
+
+---
+
 ## Размер и сложность
 
 ### Максимумы
