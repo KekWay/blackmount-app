@@ -126,5 +126,6 @@ Kling 3.0/3.0 Pro — звук всегда включён. Kling 2.6/2.6 Pro �
 ## Git
 - После каждого промпта: `git add -A && git commit -m "..." && git push origin main`
 - Перед коммитом: запусти `/code-review` для проверки качества
+- Перед коммитом: `npx vitest run` для проверки бизнес-логики
 - Перед коммитом: запусти `bash scripts/integrity-check.sh` для проверки целостности данных
 - Формат коммита: `type: описание` (fix, feat, refactor, docs, a11y, cleanup, vault)
