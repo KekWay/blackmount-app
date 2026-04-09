@@ -51,7 +51,7 @@
 | nanobanana | nanobanana | NanoBanana | 7 | free | fal-ai/nano-banana | — |
 | flux | flux-2-pro | Flux 2 Pro | 5 | sub | fal-ai/flux-2-pro | ✅ |
 | flux | flux-1.1-pro-ultra | Flux 1.1 Pro Ultra | 15 | sub | fal-ai/flux-pro/v1.1-ultra | ✅ |
-| flux | flux-1-pro | Flux 1 Pro | 7 | free | fal-ai/flux-pro/v1 | — |
+| flux | flux-1-pro | Flux 1.1 Pro | 7 | free | fal-ai/flux-pro/v1 | — |
 | flux | flux-1-dev | Flux 1 Dev | 4 | free | fal-ai/flux/dev | — |
 
 > **⚠️ ID переименованы (апрель 2026):** `nb-2.0` → `nanobanana`, `nb-pro` → `nanobanana-pro`. Старые ID НЕ использовать.
@@ -196,7 +196,7 @@ UI тогл `deepResearchActive` → API добавляет `reasoning: { effort
 | NanoBanana 2 (4K) | $0.16/img | ~15.20₽ | 26₽ |
 | Flux 2 Pro | $0.03/MP | ~2.85₽ | 5₽ |
 | Flux 1.1 Pro Ultra | $0.06/img | ~5.70₽ | 15₽ |
-| Flux 1 Pro | $0.04/MP | ~3.80₽ | 7₽ |
+| Flux 1.1 Pro | $0.04/MP | ~3.80₽ | 7₽ |
 | Flux 1 Dev | $0.025/MP | ~2.38₽ | 4₽ |
 
 ### Видео (kie.ai)

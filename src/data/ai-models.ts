@@ -60,7 +60,7 @@ export const aiModels: AIModel[] = [
     versions: [
       { id: 'flux-2-pro', label: 'Flux 2 Pro', description: 'Новейшее поколение', price: 5, tier: 'sub' },
       { id: 'flux-1.1-pro-ultra', label: 'Flux 1.1 Pro Ultra', description: 'Ультравысокое качество', price: 15, tier: 'sub' },
-      { id: 'flux-1-pro', label: 'Flux 1 Pro', description: 'Точная детализация', price: 7, tier: 'free' },
+      { id: 'flux-1-pro', label: 'Flux 1.1 Pro', description: 'Точная детализация', price: 7, tier: 'free' },
       { id: 'flux-1-dev', label: 'Flux 1 Dev', description: 'Бесплатная классика', price: 4, tier: 'free' },
     ],
     glowColors: ['#8B2020', '#6B1515'],

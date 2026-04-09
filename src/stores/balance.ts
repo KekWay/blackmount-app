@@ -43,7 +43,7 @@ const defaultOperations: OperationItem[] = [
   { id: '4', type: 'spent', label: 'Claude Sonnet 4.5', amount: -5, date: '22.02.26 16:20:33' },
   { id: '5', type: 'spent', label: 'Claude Sonnet 4.5', amount: -5, date: '22.02.26 16:15:12' },
   { id: '6', type: 'topup', label: 'Пополнение счета', amount: 90, date: '22.02.26 14:30:00' },
-  { id: '7', type: 'spent', label: 'Flux 1.1 Pro', amount: -10, date: '21.02.26 12:10:45' },
+  { id: '7', type: 'spent', label: 'Flux 1.1 Pro', amount: -7, date: '21.02.26 12:10:45' },
   { id: '8', type: 'spent', label: 'Kling 2.6', amount: -45, date: '21.02.26 11:05:22' },
   { id: '9', type: 'topup', label: 'Пополнение счета', amount: 350, date: '20.02.26 09:00:00' },
 ]

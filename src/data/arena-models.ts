@@ -30,7 +30,7 @@ export const IMAGE_MODELS: ArenaModel[] = [
   { id: 'nanobanana-2', name: 'NanoBanana 2', category: 'image', price: 13, aiModelRef: 'nanobanana', gradient: 'linear-gradient(135deg,#CBD03C,#DCCA7A)' },
   { id: 'flux-1.1-pro-ultra', name: 'Flux 1.1 Pro Ultra', category: 'image', price: 15, aiModelRef: 'flux', gradient: 'linear-gradient(135deg,#ef4444,#b91c1c)' },
   { id: 'nanobanana-pro', name: 'NanoBanana Pro', category: 'image', price: 22, aiModelRef: 'nanobanana', gradient: 'linear-gradient(135deg,#CBD03C,#DCCA7A)' },
-  { id: 'flux-1-pro', name: 'Flux 1 Pro', category: 'image', price: 7, aiModelRef: 'flux', gradient: 'linear-gradient(135deg,#ef4444,#b91c1c)' },
+  { id: 'flux-1-pro', name: 'Flux 1.1 Pro', category: 'image', price: 7, aiModelRef: 'flux', gradient: 'linear-gradient(135deg,#ef4444,#b91c1c)' },
   { id: 'nanobanana', name: 'NanoBanana', category: 'image', price: 7, aiModelRef: 'nanobanana', gradient: 'linear-gradient(135deg,#CBD03C,#DCCA7A)' },
   { id: 'flux-2-pro', name: 'Flux 2 Pro', category: 'image', price: 5, aiModelRef: 'flux', gradient: 'linear-gradient(135deg,#ef4444,#b91c1c)' },
   { id: 'flux-1-dev', name: 'Flux 1 Dev', category: 'image', price: 4, aiModelRef: 'flux', gradient: 'linear-gradient(135deg,#ef4444,#b91c1c)' },

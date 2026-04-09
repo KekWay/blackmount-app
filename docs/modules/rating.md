@@ -33,7 +33,7 @@
 ChatGPT 5.2, ChatGPT 5, ChatGPT 5 mini, Claude Opus 4.5, Claude Sonnet 4.5, Claude Sonnet 3.7, Claude Haiku 4.5, Gemini 3 Pro, Gemini 2.5 Pro, Gemini 3 Flash, Gemini 2.5 Flash
 
 ### Изображения (4):
-Flux 1.1 Pro Ultra, Flux 1 Pro, NanoBanana Pro, NanoBanana
+Flux 1.1 Pro Ultra, Flux 1.1 Pro, NanoBanana Pro, NanoBanana
 
 ### Видео (6):
 Kling 3.0 Pro, Kling 3.0, Veo 3.1 Quality, Veo 3.1 Fast, Kling 2.6, Kling 2.5 Turbo

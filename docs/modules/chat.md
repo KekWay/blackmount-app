@@ -89,7 +89,7 @@ function getApiProvider(modelId: string): 'openrouter' | 'fal' | 'kie' {
 | NanoBanana | (базовая) | 7 | — |
 | Flux | 2 Pro | 5 | ✅ |
 | Flux | 1.1 Pro Ultra | 15 | ✅ |
-| Flux | 1 Pro | 7 | — |
+| Flux | 1.1 Pro | 7 | — |
 | Flux | 1 Dev | 4 | — |
 
 ### Модели видео

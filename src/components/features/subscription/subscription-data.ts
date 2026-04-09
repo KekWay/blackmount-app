@@ -41,7 +41,7 @@ export const COMPARE_ROWS: CompareRow[] = [
   { label: 'NanoBanana Pro', price: 22, basic: '13 изображений', pro: '25 изображений', max: '54 изображения' },
   { label: 'Flux 1.1 Pro Ultra', price: 15, basic: '20 изображений', pro: '36 изображений', max: '80 изображений' },
   { label: 'NanoBanana 2', price: 13, basic: '23 изображения', pro: '42 изображения', max: '92 изображения' },
-  { label: 'Flux 1 Pro', price: 7, basic: '42 изображения', pro: '78 изображений', max: '170 изображений' },
+  { label: 'Flux 1.1 Pro', price: 7, basic: '42 изображения', pro: '78 изображений', max: '170 изображений' },
   { label: 'NanoBanana', price: 7, basic: '42 изображения', pro: '78 изображений', max: '170 изображений' },
   { label: 'Flux 2 Pro', price: 5, basic: '60 изображений', pro: '110 изображений', max: '240 изображений' },
   { label: 'Flux 1 Dev', price: 4, basic: '75 изображений', pro: '137 изображений', max: '300 изображений' },

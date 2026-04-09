@@ -81,7 +81,7 @@ const { images } = await resultResponse.json()
 | NanoBanana 2 (4K) | $0.16/img | 26 |
 | Flux 2 Pro | $0.03/MP | 5 |
 | Flux 1.1 Pro Ultra | $0.06/img | 15 |
-| Flux 1 Pro | $0.04/MP | 7 |
+| Flux 1.1 Pro | $0.04/MP | 7 |
 | Flux 1 Dev | $0.025/MP | 4 |
 
 ## Ошибки

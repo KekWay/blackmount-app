@@ -168,7 +168,7 @@ User → /api/chat → [авторизация] → [баланс >= cost?] → 
 | NanoBanana Pro (1K/2K/4K) | 22 / 22 / 43 | subscriptionOnly |
 | NanoBanana (стандартная) | 7 | pro |
 | Flux 1.1 Pro Ultra | 15 | subscriptionOnly |
-| Flux 1 Pro | 7 | pro |
+| Flux 1.1 Pro | 7 | pro |
 
 Динамические цены NanoBanana 2 и Pro — через настройку разрешения (1K/2K/4K).
 

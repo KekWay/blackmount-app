@@ -7,8 +7,9 @@ import { useBalanceStore } from '@/stores/balance'
 import { useSubscriptionStore } from '@/stores/subscription'
 import { useRequestLimiterStore } from '@/stores/request-limiter'
 import type { Message } from '@/types'
-import { getBasePrice, hasAudioPricing } from '@/types/models'
-import { getRandomGreeting, isVersionFreeForTier, videoPricingMap, DURATION_KEY_MAP } from './chat-constants'
+import { getBasePrice } from '@/types/models'
+import { getRandomGreeting } from './chat-constants'
+import { computeDynamicCost } from './compute-dynamic-cost'
 import { useChatActions } from './use-chat-actions'
 import { useChatScroll } from './use-chat-scroll'
 import { useChatEffects } from './use-chat-effects'
@@ -64,30 +65,19 @@ export function useChatState() {
   const dailyLimit = useRequestLimiterStore.getState().getDailyLimit()
 
   const dynamicCost = useMemo(() => {
-    const p = selectedVersion.price
-    const bp = getBasePrice(p)
-    if (isVersionFreeForTier(selectedVersion.id, tier)) return 0
-    const fc = isTextModel ? ((webSearchActive ? 3 : 0) + (deepResearchActive ? 3 : 0)) : 0
-    if (isTextModel) return bp + fc
-    if (p != null && typeof p === 'object') {
-      const dk = DURATION_KEY_MAP[videoDuration]
-      const qk = quality.toLowerCase()
-      if (model.category === 'video' && dk) {
-        const key = audioEnabled && hasAudioPricing(p) ? `${dk}_audio` : dk
-        return (p[key] ?? p[dk] ?? bp) * (model.category === 'video' ? 1 : imageCount)
-      }
-      if (model.category === 'image') {
-        return (p[qk] ?? bp) * imageCount
-      }
-    }
-    if (model.category === 'image') return Math.round(bp * (quality === '4K' ? 2.5 : quality === '2K' ? 1.5 : 1) * imageCount)
-    const vk = selectedVersion.id
-    const audioVk = `${vk}-audio`
-    if (audioEnabled && videoPricingMap[audioVk]) {
-      return videoPricingMap[audioVk]?.[DURATION_KEY_MAP[videoDuration]] ?? bp
-    }
-    return videoPricingMap[vk]?.[DURATION_KEY_MAP[videoDuration]] ?? bp
-  }, [selectedVersion, tier, isTextModel, webSearchActive, deepResearchActive, videoDuration, quality, audioEnabled, imageCount, model.category])
+    return computeDynamicCost({
+      model,
+      selectedVersion,
+      tier,
+      isTextModel,
+      webSearchActive,
+      deepResearchActive,
+      videoDuration,
+      quality,
+      audioEnabled,
+      imageCount,
+    })
+  }, [model, selectedVersion, tier, isTextModel, webSearchActive, deepResearchActive, videoDuration, quality, audioEnabled, imageCount])
 
   const actions = useChatActions({
     model, selectedVersion, isTextModel, modelLocked, dynamicCost, input, setInput,

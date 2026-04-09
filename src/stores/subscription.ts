@@ -16,9 +16,6 @@ export function getMinTierForVersion(_versionId: string, subscriptionOnly: boole
 
 export const LOCKED_MODEL_IDS = new Set<string>([])
 
-/** @deprecated Используй SUBSCRIPTION_VERSION_IDS из lib/locked-versions */
-export const LOCKED_VERSION_IDS = SUBSCRIPTION_VERSION_IDS
-
 interface SubscriptionState {
   subscription: SubscriptionData
   setSubscription: (tier: SubscriptionTier, expiresAt?: string | null) => void
@@ -54,17 +51,20 @@ export const useSubscriptionStore = create<SubscriptionState>()(
 
       isVersionLocked: (versionId, subscriptionOnly) => {
         const tier = get().subscription.tier
-        const subOnly = subscriptionOnly ?? LOCKED_VERSION_IDS.has(versionId)
+        const subOnly = subscriptionOnly ?? SUBSCRIPTION_VERSION_IDS.has(versionId)
         const minTier = getMinTierForVersion(versionId, subOnly)
         return (TIER_ORDER[tier] ?? 0) < (TIER_ORDER[minTier] ?? 0)
       },
 
       getFirstFreeVersion: (modelId, versions) => {
         if (LOCKED_MODEL_IDS.has(modelId)) return null
-        const free = versions.find((v) => !LOCKED_VERSION_IDS.has(v.id))
+        const free = versions.find((v) => !SUBSCRIPTION_VERSION_IDS.has(v.id))
         return free ? free.id : null
       },
     }),
     { name: 'subscription' },
   ),
 )
+
+/** @deprecated Используй SUBSCRIPTION_VERSION_IDS из '@/lib/locked-versions' напрямую */
+export const LOCKED_VERSION_IDS = SUBSCRIPTION_VERSION_IDS

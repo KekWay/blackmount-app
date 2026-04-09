@@ -31,7 +31,7 @@
 | 2 | Claude | Текст | Anthropic | Opus 4.6, Sonnet 4.6, Opus 4.5, Sonnet 4.5, Sonnet 3.7, Haiku 4.5 |
 | 3 | Gemini | Текст | Google | 3.1 Pro, 3 Pro, 2.5 Pro, 3 Flash, 2.5 Flash |
 | 4 | NanoBanana | Изображение | Google (Imagen) | 2, Pro, (базовая) |
-| 5 | Flux | Изображение | Black Forest Labs | 2 Pro, 1.1 Pro Ultra, 1 Pro, 1 Dev |
+| 5 | Flux | Изображение | Black Forest Labs | 2 Pro, 1.1 Pro Ultra, 1.1 Pro, 1 Dev |
 | 6 | Kling | Видео | Kuaishou | 3.0 Pro, 3.0, 2.6 Pro, 2.6, 2.5 Turbo |
 | 7 | Veo 3.1 | Видео | Google DeepMind | Quality, Fast |
 

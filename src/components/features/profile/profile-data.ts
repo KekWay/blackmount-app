@@ -29,7 +29,7 @@ export const GEN_MODELS = [
   { model: 'NanoBanana Pro', price: 22, cat: 'image' as const },
   { model: 'Flux 1.1 Pro Ultra', price: 15, cat: 'image' as const },
   { model: 'NanoBanana 2', price: 13, cat: 'image' as const },
-  { model: 'Flux 1 Pro', price: 7, cat: 'image' as const },
+  { model: 'Flux 1.1 Pro', price: 7, cat: 'image' as const },
   { model: 'NanoBanana', price: 7, cat: 'image' as const },
   { model: 'Flux 2 Pro', price: 5, cat: 'image' as const },
   { model: 'Flux 1 Dev', price: 4, cat: 'image' as const },
