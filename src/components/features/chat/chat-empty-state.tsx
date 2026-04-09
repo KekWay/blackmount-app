@@ -24,8 +24,7 @@ export function ChatEmptyState({ model, modelLocked, greeting }: ChatEmptyStateP
         </div>
         <button
           onClick={() => router.push('/profile?tab=subscription')}
-          className="flex items-center gap-[8px] px-[20px] py-[10px] rounded-[12px] cursor-pointer transition-all hover:opacity-90"
-          style={{ background: 'linear-gradient(135deg, rgba(136,138,229,0.3), rgba(168,90,220,0.3))', border: '1px solid rgba(136,138,229,0.25)' }}
+          className="flex items-center gap-[8px] px-[20px] py-[10px] rounded-[12px] cursor-pointer transition-all hover:opacity-90 bg-gradient-to-br from-[rgba(136,138,229,0.3)] to-[rgba(168,90,220,0.3)] border border-[rgba(136,138,229,0.25)]"
         >
           <img src="/assets/models/stars_icon_2.png" alt="" width={14} height={14} className="[filter:brightness(0)_saturate(100%)_invert(75%)_sepia(20%)_saturate(500%)_hue-rotate(220deg)]" />
           <span className="font-manrope font-semibold text-[13px] text-[#c4b5fd]">Оформить подписку</span>

@@ -23,7 +23,7 @@ export function MediaPreview({ type, src, srcs, onOpenFullscreen }: MediaPreview
 
   if (isMulti) {
     return (
-      <div className="grid grid-cols-2 gap-1.5" style={{ width: 420 }}>
+      <div className="grid grid-cols-2 gap-1.5 w-[420px]">
         {images.map((imgSrc, idx) => (
           <div
             key={idx}

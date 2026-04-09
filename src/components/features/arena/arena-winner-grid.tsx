@@ -38,7 +38,7 @@ export function ArenaWinnerGrid({ responses, winnerId, gridCols }: Props) {
                 <MIcon model={r.model} size={22} />
                 <span className="text-[13px] text-white font-semibold">{r.model.name}</span>
                 {isW && (
-                  <motion.span initial={{ scale: 0, rotate: -12 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: 'spring', stiffness: 500, damping: 15, delay: 0.2 }} className="flex items-center gap-[4px] text-[9px] px-[8px] py-[3px] rounded-[6px] font-bold text-[#c4b5fd]" style={{ background: 'linear-gradient(135deg, rgba(136,138,229,0.25) 0%, rgba(168,90,220,0.2) 100%)' }}>
+                  <motion.span initial={{ scale: 0, rotate: -12 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: 'spring', stiffness: 500, damping: 15, delay: 0.2 }} className="flex items-center gap-[4px] text-[9px] px-[8px] py-[3px] rounded-[6px] font-bold text-[#c4b5fd] bg-gradient-to-br from-[rgba(136,138,229,0.25)] to-[rgba(168,90,220,0.2)]">
                     <motion.div animate={{ rotate: [0, 20, -10, 15, 0], scale: [1, 1.2, 1, 1.15, 1] }} transition={{ duration: 1.5, delay: 0.4 }}>
                       <div className="shrink-0 w-[10px] h-[10px] bg-[#c4b5fd]" style={{ maskImage: `url('${medalImg}')`, WebkitMaskImage: `url('${medalImg}')`, maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat', maskPosition: 'center', WebkitMaskPosition: 'center' }} />
                     </motion.div>
@@ -67,11 +67,10 @@ function WinnerGlow() {
   return (
     <>
       <motion.div
-        className="absolute inset-0 pointer-events-none rounded-[16px]"
+        className="absolute inset-0 pointer-events-none rounded-[16px] bg-[radial-gradient(ellipse_at_50%_0%,rgba(136,138,229,0.25)_0%,transparent_70%)]"
         initial={{ opacity: 0 }}
         animate={{ opacity: [0, 0.3, 0.1, 0.2, 0.08] }}
         transition={{ duration: 2, ease: 'easeOut' }}
-        style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(136,138,229,0.25) 0%, transparent 70%)' }}
       />
       {[...Array(6)].map((_, pi) => (
         <motion.div
