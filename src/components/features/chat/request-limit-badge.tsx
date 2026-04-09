@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { CustomIcon } from '@/components/shared/custom-icon'
 import { DAILY_LIMITS, getResetTimeString, useRequestLimiterStore } from '@/stores/request-limiter'
 import { useSubscriptionStore } from '@/stores/subscription'
+import { useHydrated } from '@/lib/use-hydration'
 
 function todayStr(): string {
   const d = new Date()
@@ -12,6 +13,7 @@ function todayStr(): string {
 
 export function RequestLimitBadge() {
   const [hovered, setHovered] = useState(false)
+  const hydrated = useHydrated()
   const count = useRequestLimiterStore((s) => (s.date === todayStr() ? s.count : 0))
   const tier = useSubscriptionStore((s) => s.subscription.tier)
 
@@ -49,11 +51,15 @@ export function RequestLimitBadge() {
         >
           <div className="flex justify-between gap-3 leading-[20px]">
             <span className="text-white/70">Запросов сегодня:</span>
-            <span><span className="text-[#888ae5] font-semibold">{used}</span><span className="text-white/50">/{limit}</span></span>
+            <span>{hydrated ? (<><span className="text-[#888ae5] font-semibold">{used}</span><span className="text-white/50">/{limit}</span></>) : (<span className="inline-block w-10 h-3.5 bg-white/[0.06] rounded animate-pulse align-middle" />)}</span>
           </div>
           <div className="flex justify-between gap-3 leading-[20px]">
             <span className="text-white/70">Осталось:</span>
-            <span className="text-[#888ae5] font-semibold">{remaining}</span>
+            {hydrated ? (
+              <span className="text-[#888ae5] font-semibold">{remaining}</span>
+            ) : (
+              <span className="inline-block w-6 h-3.5 bg-white/[0.06] rounded animate-pulse" />
+            )}
           </div>
           {isEmpty && (
             <div className="mt-1 pt-1 border-t border-white/10 text-[12px] text-white/60 leading-[16px]">

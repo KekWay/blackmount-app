@@ -9,6 +9,7 @@ import { APP_ASSETS } from '@/lib/assets'
 import { useAuthStore } from '@/stores/auth'
 import { useBalanceStore } from '@/stores/balance'
 import { useSubscriptionStore } from '@/stores/subscription'
+import { useHydrated } from '@/lib/use-hydration'
 import { SidebarUserMenu } from './sidebar-user-menu'
 import { SupportChoiceModal } from '@/components/features/support/support-choice-modal'
 
@@ -28,6 +29,7 @@ export function SidebarUser({ collapsed }: SidebarUserProps) {
   const balance = useBalanceStore((s) => s.balance)
   const hasActiveSub = useSubscriptionStore((s) => s.hasActiveSubscription())
   const tier = useSubscriptionStore((s) => s.subscription.tier)
+  const hydrated = useHydrated()
   const [menuOpen, setMenuOpen] = useState(false)
   const [supportModal, setSupportModal] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
@@ -72,7 +74,9 @@ export function SidebarUser({ collapsed }: SidebarUserProps) {
                 <>
                   <div className="flex flex-col flex-1 min-w-0">
                     <span className="text-[13px] text-white truncate">{user.name}</span>
-                    {hasActiveSub ? (
+                    {!hydrated ? (
+                      <span className="inline-block w-10 h-[14px] mt-0.5 self-start bg-white/[0.06] rounded-[4px] animate-pulse" />
+                    ) : hasActiveSub ? (
                       <div className="h-[14px] rounded-[4px] flex items-center justify-center px-[5px] shrink-0 mt-0.5 self-start" style={{ backgroundImage: 'linear-gradient(122deg, rgb(171, 135, 228) 18%, rgb(155, 33, 130) 88%)' }}>
                         <span className="font-manrope text-[8px] text-white leading-none tracking-wide font-extrabold">{TIER_LABELS[tier] || tier.toUpperCase()}</span>
                       </div>
@@ -86,7 +90,11 @@ export function SidebarUser({ collapsed }: SidebarUserProps) {
                     className="flex gap-1 h-7 items-center px-2 rounded-lg bg-[rgba(57,55,91,0.6)] hover:bg-[rgba(57,55,91,0.8)] transition-colors cursor-pointer"
                     onClick={(e) => { e.stopPropagation(); router.push('/profile?tab=topup') }}
                   >
-                    <span className="font-bakbak text-[13px] text-white leading-none">{balance}</span>
+                    {hydrated ? (
+                      <span className="font-bakbak text-[13px] text-white leading-none">{balance}</span>
+                    ) : (
+                      <span className="inline-block w-6 h-3.5 bg-white/[0.06] rounded animate-pulse" />
+                    )}
                     <Image src={APP_ASSETS.coin} alt="coins" width={14} height={14} className="shrink-0" />
                   </div>
                 </>
