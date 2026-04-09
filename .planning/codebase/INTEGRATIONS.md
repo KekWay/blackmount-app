@@ -9,7 +9,7 @@
   - SDK/Client: Server-side fetch to OpenRouter API (planned; no `/api/` route files yet exist)
   - Auth: `OPENROUTER_API_KEY` environment variable (planned)
   - Model mapping defined in `docs/SPECIFICATION.md` (e.g., `chatgpt-5.2` → `openai/gpt-5.2`)
-  - 8 models served: ChatGPT, Claude, Gemini (text); NanoBanana, Flux (image); Sora 2, Kling, Veo 3.1 (video)
+  - 7 нейросетей, 30 версий: ChatGPT, Claude, Gemini (text); NanoBanana, Flux (image); Kling, Veo 3.1 (video)
   - All model metadata in `src/data/ai-models.ts`
 
 **Google Fonts:**
