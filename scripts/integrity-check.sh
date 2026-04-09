@@ -92,6 +92,20 @@ else
   fail "console.log/warn найдено в $LOGS местах"
 fi
 
+# --- Тесты ---
+echo ""
+echo "🧪 Тесты"
+
+TEST_OUTPUT=$(npx vitest run 2>&1)
+TEST_EXIT=$?
+
+if [ $TEST_EXIT -eq 0 ]; then
+  pass "vitest — все тесты пройдены"
+else
+  fail "vitest — есть падения"
+  echo "$TEST_OUTPUT" | grep "FAIL\|AssertionError" | head -5
+fi
+
 # --- 6. TypeScript ---
 echo ""
 echo "🔧 TypeScript"
