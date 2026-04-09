@@ -1,11 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-
-interface User {
-  email: string
-  name: string
-  referredBy?: string
-}
+import type { User } from '@/types'
 
 interface AuthState {
   isLoggedIn: boolean

@@ -1,16 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-
-export interface SharedItem {
-  id: string
-  prompt: string
-  response: string
-  modelId: string
-  modelName: string
-  type: 'text' | 'image' | 'video'
-  mediaUrl?: string
-  createdAt: string
-}
+import type { SharedItem } from '@/types'
 
 interface SharedState {
   items: Record<string, SharedItem>

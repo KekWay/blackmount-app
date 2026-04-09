@@ -2,7 +2,8 @@
 
 import { useState, useRef, useCallback } from 'react'
 import { APP_ASSETS } from '@/lib/assets'
-import { useSupportStore, type TicketCategory } from '@/stores/support-store'
+import { useSupportStore } from '@/stores/support-store'
+import type { TicketCategory } from '@/types'
 
 interface SupportNewTicketProps {
   onCreated: (ticketId: string) => void

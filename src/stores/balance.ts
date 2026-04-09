@@ -1,17 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import type { OperationItem, ModelCategory } from '@/types'
-
-interface GenHistoryItem {
-  id: string
-  modelId: string
-  title: string
-  prompt?: string
-  preview: string
-  time: string
-  dateStr: string
-  type: ModelCategory
-}
+import type { OperationItem, GenHistoryItem } from '@/types'
 
 interface BalanceState {
   balance: number
@@ -28,6 +17,7 @@ interface BalanceState {
   removeGenHistoryItem: (id: string) => void
 }
 
+/** @mock Заменить на API GET /api/balance при подключении Supabase */
 const DEFAULT_BALANCE = 550
 
 function nowDateStr(): string {
@@ -36,6 +26,7 @@ function nowDateStr(): string {
   return `${pad(d.getDate())}.${pad(d.getMonth() + 1)}.${String(d.getFullYear()).slice(2)} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`
 }
 
+/** @mock Заменить на API GET /api/balance/operations */
 const defaultOperations: OperationItem[] = [
   { id: '1', type: 'spent', label: 'ChatGPT 5.2', amount: -5, date: '23.02.26 18:45:03' },
   { id: '2', type: 'spent', label: 'ChatGPT 5.2', amount: -5, date: '23.02.26 18:42:11' },
@@ -48,6 +39,7 @@ const defaultOperations: OperationItem[] = [
   { id: '9', type: 'topup', label: 'Пополнение счета', amount: 350, date: '20.02.26 09:00:00' },
 ]
 
+/** @mock Заменить на API GET /api/balance/generations */
 const defaultGenHistory: GenHistoryItem[] = [
   { id: '1', modelId: 'chatgpt', title: 'Что такое сатурн?', preview: 'Сатурн – это шестая по удаленности от Солнца планета...', time: '16:30', dateStr: '2026-02-23', type: 'text' },
   { id: '2', modelId: 'gemini', title: 'Напиши код на Python', preview: 'Конечно! Вот пример кода для сортировки массива...', time: '15:45', dateStr: '2026-02-23', type: 'text' },

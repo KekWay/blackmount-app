@@ -1,27 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-
-export type TicketStatus = 'open' | 'answered' | 'closed'
-export type TicketCategory = 'general' | 'payment' | 'withdraw' | 'technical'
-export type MessageSender = 'user' | 'support'
-
-export interface SupportMessage {
-  id: string
-  ticketId: string
-  sender: MessageSender
-  text: string
-  createdAt: string
-}
-
-export interface SupportTicket {
-  id: string
-  subject: string
-  category: TicketCategory
-  status: TicketStatus
-  messages: SupportMessage[]
-  createdAt: string
-  updatedAt: string
-}
+import type { SupportMessage, SupportTicket, TicketCategory } from '@/types'
 
 interface SupportState {
   tickets: SupportTicket[]
@@ -36,6 +15,7 @@ function genId(): string {
 
 const MOCK_REPLY = 'Спасибо за обращение! Мы рассмотрим ваш вопрос в ближайшее время.'
 
+/** @mock Заменить на API GET /api/support/tickets */
 const defaultTickets: SupportTicket[] = [
   {
     id: 'demo-1',

@@ -22,6 +22,7 @@ interface ChatSessionsState {
   removeSession: (sessionId: string) => void
 }
 
+/** @mock Заменить на Supabase table chat_sessions + messages */
 function genId(): string {
   return `s-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`
 }

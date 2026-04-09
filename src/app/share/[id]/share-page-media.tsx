@@ -1,7 +1,7 @@
 'use client'
 
 import { Play, ImageIcon } from 'lucide-react'
-import type { SharedItem } from '@/stores/shared'
+import type { SharedItem } from '@/types'
 
 interface Props {
   item: SharedItem

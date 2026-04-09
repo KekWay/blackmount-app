@@ -1,14 +1,5 @@
 import { create } from 'zustand'
-
-interface PendingGeneration {
-  id: string
-  modelId: string
-  type: 'image' | 'video' | 'text'
-  status: 'pending' | 'completed'
-  startedAt: number
-  prompt: string
-  sessionId?: string
-}
+import type { PendingGeneration } from '@/types'
 
 interface GenerationState {
   pendingGenerations: PendingGeneration[]

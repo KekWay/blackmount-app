@@ -1,25 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-
-export type WithdrawalStatus = 'pending' | 'processing' | 'completed' | 'rejected'
-
-export interface WithdrawalRequest {
-  id: string
-  amount: number
-  method: 'card' | 'sbp'
-  details: string
-  status: WithdrawalStatus
-  reason?: string
-  createdAt: string
-  updatedAt: string
-}
-
-export interface ConversionRecord {
-  id: string
-  amount: number
-  coins: number
-  createdAt: string
-}
+import type { WithdrawalRequest, WithdrawalStatus, ConversionRecord } from '@/types'
 
 interface ReferralState {
   withdrawals: WithdrawalRequest[]
@@ -33,6 +14,7 @@ function genId(): string {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`
 }
 
+/** @mock Заменить на API GET /api/referral */
 const defaultWithdrawals: WithdrawalRequest[] = [
   {
     id: 'wd-1',

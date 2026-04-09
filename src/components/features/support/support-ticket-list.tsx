@@ -1,6 +1,6 @@
 'use client'
 
-import type { SupportTicket, TicketStatus } from '@/stores/support-store'
+import type { SupportTicket, TicketStatus } from '@/types'
 import { formatDateShort } from '@/lib/utils'
 
 interface SupportTicketListProps {

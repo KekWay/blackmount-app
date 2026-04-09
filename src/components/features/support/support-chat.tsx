@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 import { APP_ASSETS } from '@/lib/assets'
 import { formatTime } from '@/lib/utils'
-import type { SupportTicket } from '@/stores/support-store'
+import type { SupportTicket } from '@/types'
 import { useSupportStore } from '@/stores/support-store'
 
 interface SupportChatProps {
