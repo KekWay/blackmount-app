@@ -17,7 +17,8 @@ const TIER_PRICES: Record<string, string> = {
 
 export function AccountTabSubscription({ onNavigateSubscription }: { onNavigateSubscription: () => void }) {
   const subscription = useSubscriptionStore((s) => s.subscription)
-  const hasSubscription = subscription.tier !== 'free'
+  const hasActiveSub = useSubscriptionStore((s) => s.hasActiveSubscription)
+  const hasSubscription = hasActiveSub()
 
   if (hasSubscription) {
     return (

@@ -8,12 +8,13 @@ import { Badge } from '@/components/ui/badge'
 export function ProfileHeader() {
   const user = useAuthStore((s) => s.user)
   const subscription = useSubscriptionStore((s) => s.subscription)
+  const hasActiveSub = useSubscriptionStore((s) => s.hasActiveSubscription)
   const hydrated = useHydrated()
 
   const name = user?.name ?? 'Пользователь'
   const email = user?.email ?? 'user@example.com'
   const initial = name.charAt(0).toUpperCase()
-  const isPro = subscription.tier !== 'free'
+  const isPro = hasActiveSub()
 
   return (
     <div className="flex items-center gap-4">

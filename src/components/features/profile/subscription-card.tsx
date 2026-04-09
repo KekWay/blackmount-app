@@ -6,7 +6,8 @@ import { useSubscriptionStore } from '@/stores/subscription'
 
 export function SubscriptionCard() {
   const subscription = useSubscriptionStore((s) => s.subscription)
-  const isActive = subscription.tier !== 'free'
+  const hasActiveSub = useSubscriptionStore((s) => s.hasActiveSubscription)
+  const isActive = hasActiveSub()
 
   const formattedExpiry = subscription.expiresAt
     ? new Date(subscription.expiresAt).toLocaleDateString('ru-RU', {

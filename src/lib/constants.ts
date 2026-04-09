@@ -10,7 +10,7 @@ export const NAV_ITEMS = [
   { href: '/arena', label: 'Арена', icon: 'Swords' },
 ] as const
 
-export const MOBILE_NAV_ITEMS = NAV_ITEMS.slice(0, 5)
+export const MOBILE_NAV_ITEMS = NAV_ITEMS
 
 export const PLACEHOLDER_TEXTS = [
   'Напиши код на Python...',

@@ -1,3 +1,5 @@
+import type { SubscriptionTier } from '@/types'
+
 export const greetingPhrases = [
   'Чем могу помочь?', 'Что создадим сегодня?', 'Готов помочь!',
   'С чего начнём?', 'Какой у вас запрос?', 'Что вас интересует?',
@@ -24,7 +26,7 @@ export const testImagePool = [
 export const FREE_SUB_VERSIONS = ['chatgpt-5-mini', 'gemini-3-flash', 'gemini-2.5-flash']
 
 /** Возвращает true если версия бесплатна для данного тарифа подписки (только Pro/Max) */
-export function isVersionFreeForTier(versionId: string, tier: string): boolean {
+export function isVersionFreeForTier(versionId: string, tier: SubscriptionTier): boolean {
   if (!FREE_SUB_VERSIONS.includes(versionId)) return false
   return tier === 'pro' || tier === 'max'
 }

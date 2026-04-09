@@ -63,10 +63,10 @@ export function useChatEffects(p: Params) {
   const modelVersionsRef = useRef(model.versions)
   modelVersionsRef.current = model.versions
 
+  const versionFromUrl = searchParams.get('version')
   useEffect(() => {
-    const versionParam = searchParamsRef.current.get('version')
     const versions = modelVersionsRef.current
-    const matchedVersion = versionParam ? versions.find((v) => v.id === versionParam) : null
+    const matchedVersion = versionFromUrl ? versions.find((v) => v.id === versionFromUrl) : null
     if (matchedVersion) {
       p.setSelectedVersionId(matchedVersion.id)
     } else {
@@ -76,7 +76,7 @@ export function useChatEffects(p: Params) {
     p.setWebSearchActive(false); p.setDeepResearchActive(false)
     p.setIsRecording(false); p.setSettingsOpen(false)
     p.setGreeting(getRandomGreeting())
-  }, [model.id])
+  }, [model.id, versionFromUrl])
 
   useEffect(() => {
     p.setAudioEnabled(false)

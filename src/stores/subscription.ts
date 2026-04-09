@@ -3,14 +3,14 @@ import { persist } from 'zustand/middleware'
 import type { SubscriptionData, SubscriptionTier } from '@/types'
 import { SUBSCRIPTION_VERSION_IDS } from '@/lib/locked-versions'
 
-export const TIER_ORDER: Record<string, number> = {
+export const TIER_ORDER: Record<SubscriptionTier, number> = {
   free: 0,
   basic: 1,
   pro: 2,
   max: 3,
 }
 
-export function getMinTierForVersion(_versionId: string, subscriptionOnly: boolean): string {
+export function getMinTierForVersion(_versionId: string, subscriptionOnly: boolean): SubscriptionTier {
   return subscriptionOnly ? 'basic' : 'free'
 }
 

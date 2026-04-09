@@ -1,11 +1,11 @@
-import type { AIModel, ModelVersion } from '@/types'
+import type { AIModel, ModelVersion, SubscriptionTier } from '@/types'
 import { getBasePrice, hasAudioPricing } from '@/types/models'
 import { isVersionFreeForTier, DURATION_KEY_MAP } from './chat-constants'
 
 interface ComputeDynamicCostParams {
   model: AIModel
   selectedVersion: ModelVersion
-  tier: string
+  tier: SubscriptionTier
   isTextModel: boolean
   webSearchActive: boolean
   deepResearchActive: boolean

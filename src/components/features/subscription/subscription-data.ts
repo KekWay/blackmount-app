@@ -50,6 +50,7 @@ export const COMPARE_ROWS: CompareRow[] = [
   { label: 'ChatGPT 5.4', price: 6, basic: '50 запросов', pro: '91 запрос', max: '200 запросов' },
   { label: 'ChatGPT 5.3 / 5.2 / Claude Sonnet 4.6 / 4.5 / 3.7 / Gemini 3.1 Pro / 3 Pro', price: 5, basic: '60 запросов', pro: '110 запросов', max: '240 запросов' },
   { label: 'ChatGPT 5 / Gemini 2.5 Pro', price: 3, basic: '100 запросов', pro: '183 запроса', max: '400 запросов' },
+  { label: 'Claude Haiku 4.5', price: 1.5, basic: '200 запросов', pro: '366 запросов', max: '800 запросов' },
   { label: 'ChatGPT 5 mini / Gemini 3 Flash / Flash 2.5', price: 1, basic: '300 запросов', pro: 'Бесплатно', max: 'Бесплатно' },
   { section: 'Особенности' },
   { label: 'Ежемесячные айкоины', price: null, basic: '300', pro: '550', max: '1200', isCoinValue: true },
