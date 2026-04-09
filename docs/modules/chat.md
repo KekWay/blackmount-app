@@ -60,22 +60,48 @@ function getApiProvider(modelId: string): 'openrouter' | 'fal' | 'kie' {
 ```
 
 ## Ценообразование (айкоины за запрос)
-| Модель | Цена |
-|--------|------|
-| ChatGPT 5.2 | 5 |
-| ChatGPT 5 | 3 |
-| ChatGPT 5 mini | 1 |
-| Claude Opus 4.5 | 8 |
-| Claude Sonnet 4.5/3.7 | 5 |
-| Claude Haiku 4.5 | 1.5 |
-| Gemini 3 Pro | 5 |
-| Gemini 2.5 Pro | 3 |
-| Gemini Flash | 1 |
-| NanoBanana | 7 / Pro 22 |
-| Flux | 7 / Ultra 15 |
-| Sora 2 | 25 / Pro 115 |
-| Kling 2.5 | 35 / 2.6 со звуком 170 |
-| Veo 3.1 Fast | 50 / Quality 185 |
+
+### Текстовые модели
+| Модель | Версия | Цена (₽) | Подписка |
+|--------|--------|-----------|----------|
+| ChatGPT | 5.4 | 6 | ✅ |
+| ChatGPT | 5.3 | 5 | ✅ |
+| ChatGPT | 5.2 | 5 | — |
+| ChatGPT | 5 | 3 | — |
+| ChatGPT | 5 mini | 1 | — (бесплатно для Pro/Max) |
+| Claude | Opus 4.6 | 8 | ✅ |
+| Claude | Sonnet 4.6 | 5 | — |
+| Claude | Opus 4.5 | 8 | ✅ |
+| Claude | Sonnet 4.5 | 5 | — |
+| Claude | Sonnet 3.7 | 5 | — |
+| Claude | Haiku 4.5 | 1.5 | — |
+| Gemini | 3.1 Pro | 5 | ✅ |
+| Gemini | 3 Pro | 5 | — |
+| Gemini | 2.5 Pro | 3 | — |
+| Gemini | 3 Flash | 1 | — (бесплатно для Pro/Max) |
+| Gemini | 2.5 Flash | 1 | — (бесплатно для Pro/Max) |
+
+### Модели изображений
+| Модель | Версия | Цена (₽) | Подписка |
+|--------|--------|-----------|----------|
+| NanoBanana | 2 (1K/2K/4K) | 13 / 19 / 26 | ✅ |
+| NanoBanana | Pro (1K/2K/4K) | 22 / 22 / 43 | ✅ |
+| NanoBanana | (базовая) | 7 | — |
+| Flux | 2 Pro | 5 | ✅ |
+| Flux | 1.1 Pro Ultra | 15 | ✅ |
+| Flux | 1 Pro | 7 | — |
+| Flux | 1 Dev | 4 | — |
+
+### Модели видео
+| Модель | Версия | Длит. | Цена (₽) | Звук | Подписка |
+|--------|--------|-------|-----------|------|----------|
+| Kling | 3.0 Pro | 5с / 10с | 85 / 170 | всегда вкл | ✅ |
+| Kling | 3.0 | 5с / 10с | 55 / 110 | всегда вкл | ✅ |
+| Kling | 2.6 Pro | 5с / 10с | 45–170 | toggle | ✅ |
+| Kling | 2.6 | 5с / 10с | 45–170 | toggle | — |
+| Kling | 2.5 Turbo | 5с / 10с | 35 / 65 | нет | — |
+| Veo 3.1 | Quality | 8с | 220 | — | ✅ |
+| Veo 3.1 | Fast | 8с | 50 | — | ✅ |
 
 ## UI компоненты (src/components/features/chat/)
 chat-container, chat-header, chat-empty-state, message-list, message-bubble, chat-input, chat-input-actions, chat-attach-menu, model-selector, message-actions, typing-indicator, media-preview
