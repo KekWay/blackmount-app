@@ -1,3 +1,4 @@
+// DEV ONLY — не подчиняется правилу 150 строк
 'use client'
 
 import { useState } from 'react'
