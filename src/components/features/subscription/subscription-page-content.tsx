@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuthStore } from '@/stores/auth'
-import { motion, AnimatePresence } from 'motion/react'
+import { motion } from 'motion/react'
 import Image from 'next/image'
 import { AnimatedToggle } from '@/components/shared/animated-toggle'
 import { useBalanceStore } from '@/stores/balance'
@@ -13,7 +13,6 @@ import { PaymentOverlay } from '@/components/shared/payment-overlay'
 import { type Plan, type Period, plansArr, planFeatures } from './subscription-data'
 import { SubscriptionPlanCard } from './subscription-plan-card'
 import { PricingComparison } from './subscription-comparison'
-import { AllModelsOverlay } from './subscription-models-overlay'
 
 export function SubscriptionPageContent() {
   const router = useRouter()
@@ -25,7 +24,6 @@ export function SubscriptionPageContent() {
 
   const [period, setPeriod] = useState<Period>('month')
   const [showPayment, setShowPayment] = useState(false)
-  const [showModelsModal, setShowModelsModal] = useState(false)
   const [payPlan, setPayPlan] = useState<Plan>('pro')
   const addBalance = useBalanceStore((s) => s.addBalance)
   const addOperation = useBalanceStore((s) => s.addOperation)
@@ -80,9 +78,6 @@ export function SubscriptionPageContent() {
         }} />
       )}
 
-      <AnimatePresence>
-        {showModelsModal && <AllModelsOverlay onClose={() => setShowModelsModal(false)} />}
-      </AnimatePresence>
     </motion.div>
   )
 }

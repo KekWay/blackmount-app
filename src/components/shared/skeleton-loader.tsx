@@ -8,6 +8,7 @@ function Skeleton({ className = '', style }: { className?: string; style?: React
   )
 }
 
+/** TODO: подключить при lazy-loading страниц через next/dynamic */
 export function HomePageSkeleton() {
   return (
     <div className="w-full h-full px-6 lg:px-10 pt-8 pb-10">
@@ -34,6 +35,7 @@ export function HomePageSkeleton() {
   )
 }
 
+/** TODO: подключить при lazy-loading страниц через next/dynamic */
 export function ChatPageSkeleton() {
   return (
     <div className="w-full h-full flex flex-col">

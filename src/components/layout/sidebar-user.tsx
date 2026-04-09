@@ -10,10 +10,12 @@ import { useAuthStore } from '@/stores/auth'
 import { useBalanceStore } from '@/stores/balance'
 import { useSubscriptionStore } from '@/stores/subscription'
 import { useHydrated } from '@/lib/use-hydration'
+import type { SubscriptionTier } from '@/types'
 import { SidebarUserMenu } from './sidebar-user-menu'
 import { SupportChoiceModal } from '@/components/features/support/support-choice-modal'
 
-const TIER_LABELS: Record<string, string> = {
+const TIER_LABELS: Record<SubscriptionTier, string> = {
+  free: 'FREE',
   basic: 'BASIC',
   pro: 'PRO',
   max: 'MAX',

@@ -105,7 +105,8 @@ Kling 3.0/3.0 Pro — звук всегда включён. Kling 2.6/2.6 Pro �
 Шрифты: Manrope (body) · Maven Pro (headings) · Bakbak One (accent)
 
 ## Запрещено
-❌ figma:asset · ../../imports/ · data-name · any · style={{}} · console.log · >150 строк
+❌ figma:asset · ../../imports/ · data-name · any · console.log · >150 строк
+⚠️ style={{}} — избегать, но допустимо для dynamic gradients, mask-image, CSS custom properties
 
 ## Obsidian Knowledge Vault
 Хранилище знаний: ../blackmount-vault/
@@ -121,3 +122,9 @@ Kling 3.0/3.0 Pro — звук всегда включён. Kling 2.6/2.6 Pro �
 3. Если принято решение — создай заметку в knowledge/decisions/
 4. Если найден и решён баг — создай в knowledge/debugging/
 5. Обнови index.md если добавлены новые заметки
+
+## Git
+- После каждого промпта: `git add -A && git commit -m "..." && git push origin main`
+- Перед коммитом: запусти `/code-review` для проверки качества
+- Перед коммитом: запусти `bash scripts/integrity-check.sh` для проверки целостности данных
+- Формат коммита: `type: описание` (fix, feat, refactor, docs, a11y, cleanup, vault)

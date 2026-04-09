@@ -1,15 +1,18 @@
 'use client'
 
 import { useSubscriptionStore } from '@/stores/subscription'
+import type { SubscriptionTier } from '@/types'
 import { IMG_LOGO } from './profile-data'
 
-const TIER_LABELS: Record<string, string> = {
+const TIER_LABELS: Record<SubscriptionTier, string> = {
+  free: 'FREE',
   basic: 'BASIC',
   pro: 'PRO',
   max: 'MAX',
 }
 
-const TIER_PRICES: Record<string, string> = {
+const TIER_PRICES: Record<SubscriptionTier, string> = {
+  free: '',
   basic: '499\u20BD/мес',
   pro: '999\u20BD/мес',
   max: '1 799\u20BD/мес',

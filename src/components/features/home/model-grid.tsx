@@ -5,6 +5,7 @@ import { Sparkles } from 'lucide-react'
 import type { AIModel } from '@/types'
 import { ModelCard } from '@/components/features/models/model-card'
 import { useSubscriptionStore } from '@/stores/subscription'
+import { useHydrated } from '@/lib/use-hydration'
 import type { FilterCategory } from './filter-tabs'
 
 interface ModelGridProps {
@@ -17,6 +18,7 @@ interface ModelGridProps {
 export function ModelGrid({ models, activeFilter, searchQuery, onResetFilters }: ModelGridProps) {
   const router = useRouter()
   const isModelLocked = useSubscriptionStore((s) => s.isModelLocked)
+  const hydrated = useHydrated()
 
   if (models.length === 0) {
     return (
@@ -64,7 +66,7 @@ export function ModelGrid({ models, activeFilter, searchQuery, onResetFilters }:
         <div key={model.id}>
           <ModelCard
             model={model}
-            locked={isModelLocked(model.id)}
+            locked={hydrated ? isModelLocked(model.id) : false}
             onClick={() => router.push(`/chat/${model.id}`)}
           />
         </div>

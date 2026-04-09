@@ -1,8 +1,9 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import type { SubscriptionTier } from '@/types'
 import { useSubscriptionStore } from './subscription'
 
-export const DAILY_LIMITS: Record<string, number> = {
+export const DAILY_LIMITS: Record<SubscriptionTier, number> = {
   free: 50,
   basic: 100,
   pro: 150,
