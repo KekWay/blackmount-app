@@ -10,13 +10,7 @@ export const TIER_ORDER: Record<string, number> = {
   max: 3,
 }
 
-export const VERSION_MIN_TIER: Record<string, string> = {
-  // Пока все subscriptionOnly версии требуют basic
-  // Пример для будущего: 'some-premium-version': 'pro'
-}
-
-export function getMinTierForVersion(versionId: string, subscriptionOnly: boolean): string {
-  if (VERSION_MIN_TIER[versionId]) return VERSION_MIN_TIER[versionId]
+export function getMinTierForVersion(_versionId: string, subscriptionOnly: boolean): string {
   return subscriptionOnly ? 'basic' : 'free'
 }
 
