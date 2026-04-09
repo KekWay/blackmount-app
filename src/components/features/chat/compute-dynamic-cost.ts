@@ -1,6 +1,6 @@
 import type { AIModel, ModelVersion } from '@/types'
 import { getBasePrice, hasAudioPricing } from '@/types/models'
-import { isVersionFreeForTier, videoPricingMap, DURATION_KEY_MAP } from './chat-constants'
+import { isVersionFreeForTier, DURATION_KEY_MAP } from './chat-constants'
 
 interface ComputeDynamicCostParams {
   model: AIModel
@@ -44,10 +44,5 @@ export function computeDynamicCost({
     }
   }
   if (model.category === 'image') return Math.round(bp * (quality === '4K' ? 2.5 : quality === '2K' ? 1.5 : 1) * imageCount)
-  const vk = selectedVersion.id
-  const audioVk = `${vk}-audio`
-  if (audioEnabled && videoPricingMap[audioVk]) {
-    return videoPricingMap[audioVk]?.[DURATION_KEY_MAP[videoDuration]] ?? bp
-  }
-  return videoPricingMap[vk]?.[DURATION_KEY_MAP[videoDuration]] ?? bp
+  return bp
 }

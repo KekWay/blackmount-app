@@ -14,12 +14,18 @@ export function getMinTierForVersion(_versionId: string, subscriptionOnly: boole
   return subscriptionOnly ? 'basic' : 'free'
 }
 
+/**
+ * Модели, заблокированные целиком (все версии).
+ * Сейчас пусто — блокировка работает на уровне версий (SUBSCRIPTION_VERSION_IDS).
+ * Оставлено для будущего: если нужно заблокировать модель целиком (например, новая модель в бете).
+ */
 export const LOCKED_MODEL_IDS = new Set<string>([])
 
 interface SubscriptionState {
   subscription: SubscriptionData
   setSubscription: (tier: SubscriptionTier, expiresAt?: string | null) => void
   hasActiveSubscription: () => boolean
+  checkExpiration: () => void
   isModelLocked: (modelId: string) => boolean
   isVersionLocked: (versionId: string, subscriptionOnly?: boolean) => boolean
   getFirstFreeVersion: (modelId: string, versions: { id: string }[]) => string | null
@@ -37,11 +43,16 @@ export const useSubscriptionStore = create<SubscriptionState>()(
       hasActiveSubscription: () => {
         const { tier, expiresAt } = get().subscription
         if (tier === 'free') return false
-        if (expiresAt && new Date(expiresAt).getTime() < Date.now()) {
-          set({ subscription: { tier: 'free', expiresAt: null } })
-          return false
-        }
+        if (expiresAt && new Date(expiresAt).getTime() < Date.now()) return false
         return true
+      },
+
+      /** Вызывать при монтировании приложения или перед проверкой подписки */
+      checkExpiration: () => {
+        const { tier, expiresAt } = get().subscription
+        if (tier !== 'free' && expiresAt && new Date(expiresAt).getTime() < Date.now()) {
+          set({ subscription: { tier: 'free', expiresAt: null } })
+        }
       },
 
       isModelLocked: (modelId) => {

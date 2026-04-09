@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useMemo } from 'react'
-import { useParams, useSearchParams } from 'next/navigation'
+import { useParams, useSearchParams, notFound } from 'next/navigation'
 import { aiModels } from '@/data/ai-models'
 import { useBalanceStore } from '@/stores/balance'
 import { useSubscriptionStore } from '@/stores/subscription'
@@ -53,7 +53,10 @@ export function useChatState() {
   const isModelLocked = useSubscriptionStore((s) => s.isModelLocked)
   const isVersionLocked = useSubscriptionStore((s) => s.isVersionLocked)
   const tier = useSubscriptionStore((s) => s.subscription.tier)
-  const model = aiModels.find((m) => m.id === modelId) || aiModels[0]
+  const model = aiModels.find((m) => m.id === modelId)
+  if (!model) {
+    notFound()
+  }
   const modelLocked = isModelLocked(model.id)
   const defaultVersion = (() => {
     const s = [...model.versions].sort((a, b) => getBasePrice(a.price) - getBasePrice(b.price))
@@ -62,7 +65,7 @@ export function useChatState() {
   })()
   const selectedVersion = model.versions.find((v) => v.id === selectedVersionId) || defaultVersion
   const isTextModel = model.category === 'text'
-  const dailyLimit = useRequestLimiterStore.getState().getDailyLimit()
+  const dailyLimit = useRequestLimiterStore((s) => s.getDailyLimit())
 
   const dynamicCost = useMemo(() => {
     return computeDynamicCost({

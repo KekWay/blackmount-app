@@ -75,7 +75,7 @@ export const aiModels: AIModel[] = [
       { id: 'kling-3.0', label: 'Kling 3.0', description: 'Нативное аудио', price: { '5s': 55, '10s': 110 }, tier: 'sub' },
       { id: 'kling-2.6-pro', label: 'Kling 2.6 Pro', description: 'Кинематограф', price: { '5s': 45, '5s_audio': 85, '10s': 85, '10s_audio': 170 }, tier: 'sub' },
       { id: 'kling-2.6', label: 'Kling 2.6', description: 'Аудио-визуал', price: { '5s': 45, '5s_audio': 85, '10s': 85, '10s_audio': 170 }, tier: 'free' },
-      { id: 'kling-2.5-turbo', label: 'Kling 2.5 Turbo', description: 'Быстрый стандарт', price: 35, tier: 'free' },
+      { id: 'kling-2.5-turbo', label: 'Kling 2.5 Turbo', description: 'Быстрый стандарт', price: { '5s': 35, '10s': 65 }, tier: 'free' },
     ],
     glowColors: ['#00AA55', '#0088CC', '#00CC66'],  },
   {
@@ -84,8 +84,8 @@ export const aiModels: AIModel[] = [
     category: 'video',
     gradient: 'linear-gradient(120.356deg, rgb(113, 136, 227) 40.108%, rgb(226, 105, 78) 93.807%)',
     versions: [
-      { id: 'veo-3.1-quality', label: 'Veo 3.1 Quality', description: 'Кинематограф', price: 220, tier: 'sub' },
-      { id: 'veo-3.1-fast', label: 'Veo 3.1 Fast', description: 'Быстрое кино', price: 50, tier: 'sub' },
+      { id: 'veo-3.1-quality', label: 'Veo 3.1 Quality', description: 'Кинематограф', price: { '8s': 220, '5s': 145 }, tier: 'sub' },
+      { id: 'veo-3.1-fast', label: 'Veo 3.1 Fast', description: 'Быстрое кино', price: { '8s': 50, '5s': 35 }, tier: 'sub' },
     ],
     glowColors: ['#3287FF', '#E55966', '#CAC631', '#41C18A'],  },
 ]

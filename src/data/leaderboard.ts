@@ -1,3 +1,5 @@
+import { SUBSCRIPTION_VERSION_IDS } from '@/lib/locked-versions'
+
 export interface LeaderboardModel {
   id: string
   name: string
@@ -79,8 +81,6 @@ export const SPOTLIGHTS = [
   { title: "Рассуждения", badge: "#1 Reasoning", model: "Claude Opus 4.6", score: 97, iconImg: "/assets/models/leader-claude-reasoning.png", color: "#D4A574", metric: "Логика", metricValue: "99", aiModelRef: "claude" },
   { title: "Аналитика", badge: "#1 Analytics", model: "Claude Opus 4.6", score: 97, iconImg: "/assets/models/leader-claude-analytics.png", color: "#818cf8", metric: "Аналитика", metricValue: "98", aiModelRef: "claude" },
 ]
-
-import { SUBSCRIPTION_VERSION_IDS } from '@/lib/locked-versions'
 
 /** Проверяет, заблокирована ли модель рейтинга */
 export function isRatingVersionLocked(leaderboardId: string): boolean {

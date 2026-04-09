@@ -1,7 +1,8 @@
 'use client'
 
-import { useState, createContext, useContext } from 'react'
+import { useState, createContext, useContext, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
+import { useSubscriptionStore } from '@/stores/subscription'
 import { Sidebar } from '@/components/layout/sidebar'
 import { MobileSidebar } from '@/components/layout/mobile-sidebar'
 import { MobileNav } from '@/components/layout/mobile-nav'
@@ -21,6 +22,10 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
     try { return localStorage.getItem('sidebarCollapsed') === 'true' } catch { return false }
   })
   const [mobileOpen, setMobileOpen] = useState(false)
+
+  useEffect(() => {
+    useSubscriptionStore.getState().checkExpiration()
+  }, [])
 
   const sidebarW = collapsed ? 72 : 248
   const isChat = pathname.startsWith('/chat/')
