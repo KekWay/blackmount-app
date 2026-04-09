@@ -181,7 +181,7 @@ User → /api/chat → [авторизация] → [баланс >= cost?] → 
 | Kling 2.6 Pro | 5с / 10с | 45–85 / 85–170 | subscriptionOnly |
 | Kling 2.6 | 5с / 10с | 45–85 / 85–170 | pro |
 | Kling 2.5 Turbo | 5с / 10с | 35 / 65 | pro |
-| Veo 3.1 Quality | 8с | 185 | subscriptionOnly |
+| Veo 3.1 Quality | 8с | 220 | subscriptionOnly |
 | Veo 3.1 Fast | 8с | 50 | pro |
 
 Динамические цены Kling — через длительность (5с/10с) + звук.

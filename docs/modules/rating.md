@@ -27,16 +27,18 @@
 - ❌ Автоматический подсчёт usage % из реальных запросов
 - ❌ API эндпоинты
 
-## Модели в рейтинге (20 штук)
+## Модели в рейтинге (21 штука)
 
-### Текстовые (10):
-ChatGPT 5.2, ChatGPT 5, ChatGPT 5 mini, Claude Opus 4.5, Claude Sonnet 4.5, Claude Sonnet 3.7, Claude Haiku 4.5, Gemini 3 Pro, Gemini 2.5 Pro, Gemini 2.5 Flash, Gemini 3 Flash
+### Текстовые (11):
+ChatGPT 5.2, ChatGPT 5, ChatGPT 5 mini, Claude Opus 4.5, Claude Sonnet 4.5, Claude Sonnet 3.7, Claude Haiku 4.5, Gemini 3 Pro, Gemini 2.5 Pro, Gemini 3 Flash, Gemini 2.5 Flash
 
 ### Изображения (4):
 Flux 1.1 Pro Ultra, Flux 1 Pro, NanoBanana Pro, NanoBanana
 
-### Видео (7):
+### Видео (6):
 Kling 3.0 Pro, Kling 3.0, Veo 3.1 Quality, Veo 3.1 Fast, Kling 2.6, Kling 2.5 Turbo
+
+> Примечание: после добавления новых моделей в `leaderboard.ts`, в рейтинг также войдут: ChatGPT 5.4, 5.3, Claude Opus/Sonnet 4.6, Gemini 3.1 Pro, NanoBanana 2, Flux 2 Pro, Flux 1 Dev, Kling 2.6 Pro.
 
 ## Метрики моделей
 
@@ -74,7 +76,7 @@ Kling 3.0 Pro, Kling 3.0, Veo 3.1 Quality, Veo 3.1 Fast, Kling 2.6, Kling 2.5 Tu
 | Название | Модель | Метрика | Значение |
 |----------|--------|---------|----------|
 | Лучший для кода | Claude Sonnet 4.5 | Точность | 96% |
-| Креативность | Flux 1.1 Pro | Арт | 97 |
+| Креативность | Flux 1.1 Pro Ultra | Арт | 97 |
 | Доступность | ChatGPT 5 mini | Цена | 1 ₿ |
 | Быстрый ответ | Gemini 2.5 Flash | Скорость | 98 |
 | Лучшее видео | Kling 3.0 Pro | Качество | 92 |
@@ -120,9 +122,11 @@ Kling 3.0 Pro, Kling 3.0, Veo 3.1 Quality, Veo 3.1 Fast, Kling 2.6, Kling 2.5 Tu
 - Счётчики видны всем
 
 ### Locked модели
-Модели привязанные к подписке (RATING_LOCKED_MAP):
-- chatgpt-5.2, claude-opus-4.6, gemini-3.1-pro, flux-1.1-pro-ultra, nanobanana-pro, nanobanana-2, kling-3.0-pro, veo-3.1-quality, kling-2.6
+Модели привязанные к подписке (RATING_LOCKED_MAP) — из текущих 21 модели рейтинга:
+- claude-opus-4.5, flux-1.1-pro-ultra, nanobanana-pro, kling-3.0-pro, kling-3.0, veo-3.1-quality, veo-3.1-fast
 - При клике «Попробовать» → SubscriptionGateModal
+
+> Примечание: при добавлении новых моделей в рейтинг, в RATING_LOCKED_MAP также нужно добавить: gpt-5.4, gpt-5.3, claude-opus-4.6, gemini-3.1-pro, nanobanana-2, flux-2-pro, kling-2.6-pro.
 
 ## Текущее хранение данных
 

@@ -23,7 +23,7 @@
 |----------|-----------|------------|-----------|-------------|-----------------|------------------|---------------------|
 | chatgpt | gpt-5.4 | ChatGPT 5.4 | 6 | max | openai/gpt-5.4 | ✅ | — |
 | chatgpt | gpt-5.3 | ChatGPT 5.3 | 5 | pro | openai/gpt-5.3 | ✅ | — |
-| chatgpt | chatgpt-5.2 | ChatGPT 5.2 | 5 | max | openai/gpt-5.2 | ✅ | — |
+| chatgpt | chatgpt-5.2 | ChatGPT 5.2 | 5 | free | openai/gpt-5.2 | — | — |
 | chatgpt | chatgpt-5 | ChatGPT 5 | 3 | pro | openai/gpt-5 | — | — |
 | chatgpt | chatgpt-5-mini | ChatGPT 5 mini | 1 | free | openai/gpt-5-mini | — | ✅ Pro/Max |
 | claude | claude-opus-4.6 | Claude Opus 4.6 | 8 | max | anthropic/claude-opus-4.6 | ✅ | — |
@@ -33,7 +33,7 @@
 | claude | claude-sonnet-3.7 | Claude Sonnet 3.7 | 5 | pro | anthropic/claude-3.7-sonnet | — | — |
 | claude | claude-haiku-4.5 | Claude Haiku 4.5 | 1.5 | free | anthropic/claude-haiku-4.5 | — | — |
 | gemini | gemini-3.1-pro | Gemini 3.1 Pro | 5 | pro | google/gemini-3.1-pro | ✅ | — |
-| gemini | gemini-3-pro | Gemini 3 Pro | 5 | pro | google/gemini-3-pro | — | — |
+| gemini | gemini-3-pro | Gemini 3 Pro | 5 | free | google/gemini-3-pro | — | — |
 | gemini | gemini-2.5-pro | Gemini 2.5 Pro | 3 | pro | google/gemini-2.5-pro | — | — |
 | gemini | gemini-3-flash | Gemini 3 Flash | 1 | free | google/gemini-3-flash | — | ✅ Pro/Max |
 | gemini | gemini-2.5-flash | Gemini 2.5 Flash | 1 | free | google/gemini-2.5-flash | — | ✅ Pro/Max |
@@ -68,10 +68,10 @@
 | kling | kling-3.0-pro | Kling 3.0 Pro | 85/170 (5с/10с) | max | kling3.0_pro | всегда вкл | ✅ |
 | kling | kling-3.0 | Kling 3.0 | 55/110 (5с/10с) | max | kling3.0 | всегда вкл | ✅ |
 | kling | kling-2.6-pro | Kling 2.6 Pro | 45-170 (длит+звук) | max | kling2.6_pro | toggle | ✅ |
-| kling | kling-2.6 | Kling 2.6 | 45-170 (длит+звук) | pro | kling2.6 | toggle | ✅ |
+| kling | kling-2.6 | Kling 2.6 | 45-170 (длит+звук) | free | kling2.6 | toggle | — |
 | kling | kling-2.5-turbo | Kling 2.5 Turbo | 35/65 (5с/10с) | pro | kling2.5_turbo | нет | — |
 | veo31 | veo-3.1-quality | Veo 3.1 Quality | 220 | max | veo3_quality | — | ✅ |
-| veo31 | veo-3.1-fast | Veo 3.1 Fast | 50 | pro | veo3_fast | — | — |
+| veo31 | veo-3.1-fast | Veo 3.1 Fast | 50 | pro | veo3_fast | — | ✅ |
 
 > Veo 3.1 Quality — цена обновлена до 220₽ (API подорожал: $1.25 → $2.00 за 8с на kie.ai).
 > Kling 3.0 / 3.0 Pro — звук всегда включён (нет toggle).
@@ -101,19 +101,21 @@
 Входят в `SUBSCRIPTION_VERSION_IDS` — требуют подписку Basic+:
 
 ```
-gpt-5.4, gpt-5.3, chatgpt-5.2,
+gpt-5.4, gpt-5.3,
 claude-opus-4.6, claude-opus-4.5,
-gemini-3.1-pro, gemini-3-pro,
+gemini-3.1-pro,
 nanobanana-2, nanobanana-pro,
 flux-2-pro, flux-1.1-pro-ultra,
-kling-3.0-pro, kling-3.0, kling-2.6-pro, kling-2.6,
+kling-3.0-pro, kling-3.0, kling-2.6-pro,
 veo-3.1-quality, veo-3.1-fast
 ```
 
 НЕ входят (доступны без подписки):
+`chatgpt-5.2`, `chatgpt-5`, `chatgpt-5-mini`,
 `claude-sonnet-4.6`, `claude-sonnet-4.5`, `claude-sonnet-3.7`, `claude-haiku-4.5`,
-`chatgpt-5`, `chatgpt-5-mini`, `gemini-2.5-pro`, `gemini-3-flash`, `gemini-2.5-flash`,
-`nanobanana`, `flux-1-pro`, `flux-1-dev`, `kling-2.5-turbo`
+`gemini-3-pro`, `gemini-2.5-pro`, `gemini-3-flash`, `gemini-2.5-flash`,
+`nanobanana`, `flux-1-pro`, `flux-1-dev`,
+`kling-2.6`, `kling-2.5-turbo`
 
 ---
 

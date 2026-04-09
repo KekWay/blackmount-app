@@ -224,7 +224,7 @@ $$ LANGUAGE plpgsql SECURITY DEFINER;
 **Защита:**
 ```typescript
 // В API route — ПЕРЕД отправкой к AI провайдеру:
-const LOCKED_VERSIONS = new Set(['chatgpt-5.2', 'claude-opus-4.5', 'gemini-3-pro', ...])
+const LOCKED_VERSIONS = new Set(['gpt-5.4', 'claude-opus-4.6', 'gemini-3.1-pro', ...])
 
 if (LOCKED_VERSIONS.has(versionId)) {
   const { data: sub } = await supabase

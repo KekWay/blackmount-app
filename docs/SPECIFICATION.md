@@ -46,7 +46,7 @@ CREATE TABLE profiles (
 - При регистрации получаю 20 айкоинов
 - Вижу баланс в sidebar
 - При генерации списываются айкоины по тарифу
-- Подписчик Pro/Max: GPT-5 mini и Gemini Flash бесплатно (cost=0)
+- Подписчик Pro/Max: ChatGPT 5 mini, Gemini 3 Flash и Gemini 2.5 Flash бесплатно (cost=0)
 
 ### Данные
 ```sql
@@ -223,12 +223,12 @@ CREATE TABLE subscriptions (
 ### Гейтинг
 ```typescript
 const LOCKED_VERSIONS = new Set([
-  'gpt-5.4','gpt-5.3','chatgpt-5.2',
+  'gpt-5.4','gpt-5.3',
   'claude-opus-4.6','claude-opus-4.5',
-  'gemini-3.1-pro','gemini-3-pro',
+  'gemini-3.1-pro',
   'nanobanana-2','nanobanana-pro',
   'flux-2-pro','flux-1.1-pro-ultra',
-  'kling-3.0-pro','kling-3.0','kling-2.6-pro','kling-2.6',
+  'kling-3.0-pro','kling-3.0','kling-2.6-pro',
   'veo-3.1-quality','veo-3.1-fast',
 ])
 const FREE_FOR_SUBSCRIBERS = new Set(['chatgpt-5-mini','gemini-3-flash','gemini-2.5-flash'])
